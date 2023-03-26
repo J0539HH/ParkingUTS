@@ -42,7 +42,6 @@ app.get(
     "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
     "/lib/js/vendor/popper-1.16.0/popper.min.js",
     "/lib/jQuery/alertas/jquery.alerts.js",
-    "/lib/aes/aes.js",
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
