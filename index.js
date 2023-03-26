@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require("cors"); // Importar el módulo cors
+const cors = require("cors"); 
 const app = express();
 const path = require("path");
 
@@ -46,12 +46,17 @@ app.get(
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
-    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff"
+    "/Multimedia/spinner.gif",
+    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
+    "/Multimedia/icoAlertWarning.svg"
+    
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
   }
 );
+
+app.use(express.static(path.join(__dirname, 'Multimedia')));
 
 app.get(
   "/lib/js/vendor/sweetalert2/dist/sweetalert2.min.css",
