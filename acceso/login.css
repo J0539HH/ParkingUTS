@@ -9,6 +9,11 @@ body {
     overflow: hidden;
 }
 
+
+.contTitle{
+    color: white;
+}
+
 .InputsOtpRecuperar {
     width: 10% !important;
     margin-right: 5px;

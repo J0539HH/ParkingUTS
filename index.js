@@ -35,6 +35,7 @@ app.get(
     "/lib/aes/aes.js",
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
+    "/Multimedia/fondoWeb.jpg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
