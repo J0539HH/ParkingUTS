@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self'; script-src 'self'">
+
+        <meta charset="UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon"  />
+        <title>Inicio de sesión</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css">
+        <!-- Bootstrap Icon-->
+        <link rel="stylesheet" href="../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css">
+        <!-- OverlayScrollbars -->
+        <link rel="stylesheet" href="../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Sweet Alert -->
+        <link rel="stylesheet" href="../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css">
+        <!-- Global CSS -->
+        <link rel="stylesheet" href="../modulos/principal/styleGlobal.css">
+        <!-- CSS Site -->
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="../lib/jQuery/alertas/jquery.alerts.css">
+    </head>
+
+    <body>
+        <div id="divGlobal" class="hidden">
+            <div id="contInterfazLogin">
+                <section id="sectionHeader" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contImgLogo">
+                        <div class="spaceSide">
+                            <div class="contTitle">
+                                <p class="pTextTitle">Ingreso al sistema</p>
+                                <p class="pTextSubTitle">¡Introduce tus datos de acceso!</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sectionLogin" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="usuario">Usuario</label>
+                            <input placeholder="" type="text" class="form-control" id="usuario" name="usuario" />
+                            <span class="spanHelperErrorInput">El usuario es obligatorio</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="password">Contraseña</label>
+                            <input placeholder="" type="password" class="form-control passwordInfo" id="password" name="password" />
+                            <span class="spanHelperErrorInput">La contraseña es obligatoria</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contInterfaceBtn">
+                        <button id="btnIniciarSesion" class="buttonBtn btnPrimary">
+                            Verificar
+                        </button>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="contHelpers">
+                            <p class="pTxtMsg hidden">Usuario o contraseña incorrectos</p>
+                            <p id="pOlvidoContraseña" class="pTxtOlvidoContraseña">¿Olvidó su contraseña?</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+
+        <!-- Modal OTP-->
+        <div class="modal notificationModal fade" id="modalOTP" tabindex="-1" role="dialog" aria-labelledby="modalOTPLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header hidden">
+                        <h5 class="modal-title" id="modalOTPLabel">Verificación OTP</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="../iconos/OTP.svg" alt="" class="imgIconAlert">
+                        <p class="pTextDescAlertModal">Ingrese el número OTP enviado a su celular:</p>
+                        <div class="contInputs">
+                            <input  maxlength="1" type="text" class="form-control input-key inputOTP " onkeyup="this.value = Numeros(this.value)" id="Numero1"/>
+                            <input  maxlength="1" type="text" class="form-control input-key inputOTP " onkeyup="this.value = Numeros(this.value)" id="Numero2"/>
+                            <input  maxlength="1" type="text" class="form-control input-key inputOTP " onkeyup="this.value = Numeros(this.value)" id="Numero3"/>
+                            <input  maxlength="1" type="text" class="form-control input-key inputOTP " onkeyup="this.value = Numeros(this.value)" id="Numero4"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnVerificarOTP" type="button" class="buttonBtn btnPrimary">Verificar</button>
+                        <button id="btnCerrarModalOTP" type="button" class="buttonBtn btnPrimary btnCancel" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal NEW OTP-->
+        <div class="modal notificationModal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modalOTPLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header hidden">
+                        <h5 class="modal-title" id="modalOTPLabel">Reenvio de codigo OTP</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="../iconos/OTP.svg" alt="" class="imgIconAlert">
+                        <p class="pTextDescAlertModal">C&oacute;digo vencido<br>Presione para generar un nuevo OTP</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnNuevoOtp2" type="button" class="buttonBtn btnPrimary">Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal OTP RECUPERATION-->
+        <div class="modal notificationModal fade" id="validarOTPrecuperar" tabindex="-1" role="dialog" aria-labelledby="modalOTPLabel" aria-hidden="true">
+            <div class="modal-dialog" style="min-width: 346px;overflow: hidden;width: 24%;max-width: 346px;">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header hidden">
+                            <h5 class="modal-title" id="modalOTPLabel">Ingrese el otp enviado a su correo electrónico</h5>
+                        </div>
+                        <div class="modal-body">
+                            <img src="../iconos/OTP.svg" alt="" class="imgIconAlert">
+                            <p class="pTextDescAlertModal">Ingrese el otp enviado a su correo electrónico</p>
+                            <div id="CajaInputOTP" class="contenedorOtpRecover">
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP1"/>
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP2"/>
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP3"/>
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP4"/>
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP5"/>
+                                <input  maxlength="1" type="text" class="form-control input-key inputOTP InputsOtpRecuperar" onkeyup="this.value = Numeros(this.value)" id="OTP6"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnValidarOTPpassword" type="button" class="buttonBtn btnPrimary">Recuperar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal User -->
+        <div class="modal notificationModal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="modalUserLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header hidden">
+                        <h5 class="modal-title" id="modalUserLabel">Verificación OTP</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="../iconos/icoAlertWarning.svg" alt="" class="imgIconAlert">
+                        <p class="pTextDescAlertModal">Ingrese el nombre de usuario asociado a la cuenta</p>
+                        <div class="contInputs">
+                            <input type="text" class="form-control" id="usuarioIngresado">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="buttonBtn btnPrimary" id="btnValidarCorreo">Enviar</button>
+                        <button id="btnCerrarModalUser" type="button" class="buttonBtn btnPrimary btnCancel" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div id="contFooter">
+            <div class="contInfoFooter">
+                <p class="pInfoFooter">Cel: +57 318 000 0000</p>
+                <p class="pInfoFooter">Corporación Avance</p>
+                <p class="pInfoFooter">Bucaramanga - Colombia</p>
+            </div>
+        </div>
+        <!-- Modal change password -->
+        <div class="modal notificationModal fade" id="CambiarContra" tabindex="-1" role="dialog" aria-labelledby="modalUserLabel" aria-hidden="true">
+            <div class="modal-dialog dialogCambiarPass" >
+                <section   class="modal-content content-CambiarContra"  >
+                    <P class="tituloRestablecerContraseña">RESTABLECER CONTRASEÑA</P>
+                    <p  class="InfoCambiarPass infoCambiarPass0">Al terminar, te enviaremos al inicio de sesión para que hagas uso de tu nueva contraseña.</p>
+                    <p class="InfoCambiarPass">Los campos marcados con (*) son obligatorios</p>
+                    <p  class="tituloRecoverPass">Contraseña*</p>
+                    <div id="CajaNuevaContra" style="display:grid; margin-right: 5%;">
+                        <input  id ="pass1" maxlength="15" class="mb-15" autofocus >
+                        <img  class="img-fluid  ojoPassword1" src="../imagenes/Login/eye.svg" alt="Photo" >
+                        <p class="tituloRecoverPass">Confirmar contraseña*</p>
+                        <input  " id ="pass2" maxlength="15" class="mb-15">
+                        <img  class="img-fluid  ojoPassword" src="../imagenes/Login/eye.svg" alt="Photo" >
+                    </div>
+                    <div class="div-Condiciones">
+                        <p class="Condiciones" style="margin-top: 8px !important;">La contraseña debe contener mínimo 8 caracteres.</p>
+                        <p class="Condiciones">Incluir al menos un número (0 – 9).</p>
+                        <p class="Condiciones">Incluir al menos una letra minúscula (‘a’ – ‘z’).</p>
+                        <p class="Condiciones">Incluir al menos una letra mayúscula (‘A’ – ‘Z’).</p>
+                        <p class="Condiciones" style="margin-bottom: 8px !important">Incluir al menos un carácter especial (‘%’, ‘$’, ‘#’, ‘.’, ‘!’, ‘@’, ‘*’).</p>
+                    </div>
+                    <div  style="display: flex;justify-content: center; margin-top: 5px;">                   
+                        <button type="button" class="buttonBtn btnPrimary btnCambiarpass" id="btnCambiarpass">Restablecer</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+        <script src="../lib/jQuery/utilidadesjQuery.js"></script>
+        <script src="../lib/jQuery/alertas/jquery.alerts.js"></script>
+        <!-- Popper -->
+        <script src="../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+        <!-- OverlayScrollbars -->
+        <script src="../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js" type="text/javascript">
+        </script>
+        <!-- Sweet Alert -->
+        <script src="../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+        <!-- Script Global -->
+        <script src="../modulos/principal/scriptGlobal.js"></script>
+        <!-- Script Site -->
+        <script src="login.js"></script>
+        <!-- Script SHA256 -->
+        <script src="../lib/aes/aes.js"></script>
+        <script src="../lib/jQuery/sha256.js"></script>
+
+        <!-- Spinner Site -->
+        <div id="spinner" class="spinner">
+            <div style="position:fixed; left:45%;top:39%">
+                <img  class="spinner-img" src="../iconos/spinner.gif" alt="Loading"/>
+                <div id="textLoad" class="spinner-msg"></div>
+            </div>
+        </div>
+    </body>
+
+</html>

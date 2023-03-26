@@ -1,0 +1,73 @@
+/* 
+    Created on : 17-mar-2016, 11:24:52
+    Author     : leidy.ortiz
+*/
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    position: absolute;
+    left: 250px;
+    width: 0;
+    height: 90%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #F8F8F8;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#contenedorFactura {
+    width: 100%;
+    position: absolute;
+    padding: 15px 0px 15px 0px;
+}
+
+#wrapper.toggled #contenedorFactura {
+    position: absolute;
+    margin-right: -250px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #contenedorFactura {
+        padding: 20px 0px 20px 0px;
+        position: relative;
+    }
+
+    #wrapper.toggled #contenedorFactura {
+        position: relative;
+        margin-right: 0;
+    }
+}
