@@ -1,11 +1,5 @@
 /* global utilidadesjQuery */
 
-var OTPgenerado = "";
-var Usuario = "";
-var OTP2 = "";
-
-var VERIFICAR_LOGIN = 101;
-
 $(document).ready(function () {
   $("#password").on("keydown", function (event) {
     var tecla = event.keyCode
@@ -134,6 +128,36 @@ function AlertIncorrecta(Texto) {
       // DENIED CODE
     }
   });
+}
+
+function Try() {
+  const express = require("express");
+  const app = express();
+  const MongoClient = require("mongodb").MongoClient;
+
+  const uri =
+    "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.mongodb.net/docutech?retryWrites=true&w=majority";
+
+  app.get("/consulta", (req, res) => {
+    MongoClient.connect(uri, { useNewUrlParser: true }, (err, client) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error al conectar a la base de datos");
+        return;
+      }
+      const collection = client.db("docutech").collection("usuarios");
+      collection.find({}).toArray((err, documentos) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error al consultar la base de datos");
+          return;
+        }
+        res.send(documentos);
+      });
+    });
+  });
+
+  app.listen(3000, () => console.log("Servidor escuchando en el puerto 3000"));
 }
 
 function CerrarAlerta() {

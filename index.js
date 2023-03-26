@@ -1,8 +1,23 @@
 const express = require("express");
-const cors = require("cors"); 
+const cors = require("cors");
 const app = express();
 const path = require("path");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
+const port = process.env.PORT || 4000;
+app.use(bodyParser.json());
+
+// Importar las rutas de la API
+const apiRoutes = require("./api");
+
+// Usar las rutas de la API
+app.use("/api", apiRoutes);
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`API web escuchando en el puerto ${port}`);
+});
 
 app.use(cors());
 
@@ -14,7 +29,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
 
 app.get(
   "/lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css",
@@ -47,15 +61,14 @@ app.get(
     "/Multimedia/fondoWeb.jpg",
     "/Multimedia/spinner.gif",
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
-    "/Multimedia/icoAlertWarning.svg"
-    
+    "/Multimedia/icoAlertWarning.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
   }
 );
 
-app.use(express.static(path.join(__dirname, 'Multimedia')));
+app.use(express.static(path.join(__dirname, "Multimedia")));
 
 app.get(
   "/lib/js/vendor/sweetalert2/dist/sweetalert2.min.css",
