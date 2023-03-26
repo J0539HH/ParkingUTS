@@ -3,8 +3,18 @@ const cors = require("cors"); // Importar el módulo cors
 const app = express();
 const path = require("path");
 
-// Usar el middleware de cors
+
 app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 
 app.get(
   "/lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css",
@@ -36,6 +46,7 @@ app.get(
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
+    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff"
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

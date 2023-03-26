@@ -11,5 +11,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/"
+    ]
   }
 }
