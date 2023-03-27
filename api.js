@@ -1,26 +1,40 @@
 const express = require("express");
 const router = express.Router();
-const MongoClient = require("mongodb").MongoClient;
-require("dotenv").config();
+const bodyParser = require("body-parser");
+const jsonParser = bodyParser.json();
 
-// Ruta de ejemplo para obtener todos los documentos de una colección
-router.get("/usuarios", (req, res) => {
-  // Conexión a la base de datos
-  const uri = "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.mongodb.net/docutech?retryWrites=true&w=majority";
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  client.connect((err) => {
-    const collection = client.db("<database>").collection("<collection>");
-    // Consulta para obtener todos los documentos de la colección
-    collection.find({}).toArray((err, result) => {
-      if (err) throw err;
-      // Devolver los resultados como respuesta HTTP al navegador
-      res.send(result);
-      client.close();
-    });
-  });
+const { MongoClient } = require("mongodb");
+
+const uri =
+  "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.5iod7gv.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri);
+
+router.get("/", (req, res) => {
+  res.send("API funcionando by Jhosep Florez");
+});
+
+router.post("/usuarios", jsonParser, async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("docutech");
+    const collection = database.collection("usuarios");
+    console.log(req.body.usuario);
+    const query = {
+      usuario: req.body.usuario,
+      contraseña: req.body.contrasena,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  } finally {
+    await client.close();
+  }
 });
 
 module.exports = router;

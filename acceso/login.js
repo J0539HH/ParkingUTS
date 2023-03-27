@@ -80,9 +80,8 @@ function verificarLogin() {
     return;
   }
   var fecha = new Date();
-  AlertIncorrecta(
-    "Nombre de usuario incorrecto o no existe, inténtelo otra vez."
-  );
+
+  ValidarUsuario();
   spinner("Validando Usuario, por favor espere...");
 }
 
@@ -130,35 +129,36 @@ function AlertIncorrecta(Texto) {
   });
 }
 
-function Try() {
-  const express = require("express");
-  const app = express();
-  const MongoClient = require("mongodb").MongoClient;
-
-  const uri =
-    "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.mongodb.net/docutech?retryWrites=true&w=majority";
-
-  app.get("/consulta", (req, res) => {
-    MongoClient.connect(uri, { useNewUrlParser: true }, (err, client) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al conectar a la base de datos");
-        return;
-      }
-      const collection = client.db("docutech").collection("usuarios");
-      collection.find({}).toArray((err, documentos) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send("Error al consultar la base de datos");
-          return;
-        }
-        res.send(documentos);
-      });
+function ValidarUsuario() {
+  const usuario = document.getElementById("usuario").value;
+  const contrasena = document.getElementById("password").value;
+  const url = "/api/usuarios";
+  const data = {
+    usuario: usuario,
+    contrasena: contrasena,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      // Lógica para manejar la respuesta de la API...
+      AlertIncorrecta("Bienvenido al sistema");
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al validar el usuario:", error);
+      // Lógica para manejar el error...
+      AlertIncorrecta("Usuario y/o contraseña incorrecta");
+      $("#spinner").hide();
     });
-  });
-
-  app.listen(3000, () => console.log("Servidor escuchando en el puerto 3000"));
 }
+
 
 function CerrarAlerta() {
   $.alerts._hide();

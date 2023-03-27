@@ -2,22 +2,20 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const bodyParser = require("body-parser");
-require("dotenv").config();
 
-const port = process.env.PORT || 4000;
-app.use(bodyParser.json());
+const portApi = 4000;
 
-// Importar las rutas de la API
-const apiRoutes = require("./api");
+app.use(express.static("public"));
 
-// Usar las rutas de la API
-app.use("/api", apiRoutes);
+if (require.main === module) {
+  app.use("/api", require("./api"));
+}
 
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`API web escuchando en el puerto ${port}`);
+app.listen(portApi, () => {
+  console.log(`Api  database corriendo en corriendo en http://localhost:${portApi} by JDFM`);
 });
+
+app.use(express.json());
 
 app.use(cors());
 
@@ -56,6 +54,7 @@ app.get(
     "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
     "/lib/js/vendor/popper-1.16.0/popper.min.js",
     "/lib/jQuery/alertas/jquery.alerts.js",
+    "/lib/aes/aes.js",
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
@@ -188,7 +187,7 @@ app.get(
 );
 
 app.listen(3000, () => {
-  console.log("Servidor iniciado en el puerto 3000 by JDFM");
+  console.log("Servidor iniciado en el puerto http://localhost:3000 by JDFM");
 });
 
 app.use(express.static("public"));
