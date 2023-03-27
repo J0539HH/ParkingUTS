@@ -190,9 +190,8 @@ function ValidarUsuario() {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       // Lógica para manejar la respuesta de la API...
-      IniciarSession(result.idusuario);
+      IniciarSession(result.idusuario, result.idrol);
       AlertCorrecta("Bienvenido al sistema!");
       $("#spinner").hide();
     })
@@ -209,10 +208,10 @@ function CerrarAlerta() {
   callback(true);
 }
 
-function IniciarSession(idusuario) {
+function IniciarSession(idusuario, idrol) {
   fetch("/api/sesion", {
     method: "POST",
-    body: JSON.stringify({ idusuario: idusuario }),
+    body: JSON.stringify({ idusuario: idusuario, idrol: idrol }),
     headers: {
       "Content-Type": "application/json",
     },

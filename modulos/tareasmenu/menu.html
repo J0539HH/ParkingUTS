@@ -42,8 +42,114 @@
   </head>
 
   <body>
-    <h4>Acá el menu</h4>
+    <div></div>
+    <div id="ContenedorMenu">
+      <div id="templateContainer">
+        <nav
+          class="navbar navbar-fixed-top alta-theme"
+          style="position: relative"
+        >
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <span style="float: left; font-size: 25px; margin: 20px 10px"
+                ><img
+                  src="../../Multimedia/Logo.svg"
+                  height="40px;"
+                  style="margin-right: 10px"
+                /><b>Docutech </b></span
+              >
+            </div>
+          </div>
+        </nav>
 
+        <br />
+        <h1 style="margin-left: 50px">Herramientas</h1>
+
+        <div class="container-fluid alta-theme">
+          <div class="col-md-12 main alta-theme">
+            <div class="row placeholders">
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <div class="circular-menu">
+                  <div class="circle">
+                    <a href=""><span class="fa fa-home fa-2x"></span></a>
+                    <a href=""><span class="fa fa-facebook fa-2x"></span></a>
+                    <a href=""><span class="fa fa-twitter fa-2x"></span></a>
+                    <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
+                    <a href=""><span class="fa fa-github fa-2x"></span></a>
+                    <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                    <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+                  </div>
+                  <button
+                    class="dashboard-item menu-button"
+                    style="background-color: #8561c8"
+                  >
+                    <span class="fa fa-file-text-o"></span>
+                  </button>
+                </div>
+                <h4>Gestor de usuarios</h4>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <div class="circular-menu" id="CreacionServicios">
+                  <div class="circle">
+                    <a href=""><span class="fa fa-twitter fa-2x"></span></a>
+                    <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
+                    <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                    <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                    <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+                  </div>
+                  <button
+                    class="dashboard-item menu-button"
+                    style="background-color: #00b8ed"
+                  >
+                    <span class="fa fa-group"></span>
+                  </button>
+                </div>
+                <h4>Creacion de servicios</h4>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <div class="circular-menu">
+                  <div class="circle">
+                    <a href=""><span class="fa fa-home fa-2x"></span></a>
+                    <a href=""><span class="fa fa-github fa-2x"></span></a>
+                    <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                  </div>
+                  <button
+                    class="dashboard-item menu-button"
+                    style="background-color: #68c182"
+                  >
+                    <span class="fa fa-line-chart"></span>
+                  </button>
+                </div>
+                <h4>Gestion de servicios</h4>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <div class="circular-menu">
+                  <div class="circle">
+                    <a href=""><span class="fa fa-home fa-2x"></span></a>
+                    <a href=""><span class="fa fa-facebook fa-2x"></span></a>
+                  </div>
+                  <button
+                    class="dashboard-item menu-button"
+                    style="background-color: #ffb54d"
+                  >
+                    <span class="fa fa-industry"></span>
+                  </button>
+                </div>
+                <h4>Consultar servicios</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contFooter">
+      <div class="contInfoFooter">
+        <p class="pInfoFooter">Apps Empresariales</p>
+        <p class="pInfoFooter">DOCUTECH</p>
+        <p class="pInfoFooter">Bucaramanga - Colombia</p>
+      </div>
+    </div>
 
     <!-- jQuery -->
     <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
@@ -54,20 +160,29 @@
     <!-- Bootstrap -->
     <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
     <!-- OverlayScrollbars -->
-    <script src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js" type="text/javascript">
-    </script>
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"
+    ></script>
     <!-- Sweet Alert -->
-    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+    <script
+      src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"
+    ></script>
     <!-- Script Global -->
     <script src="../../modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
     <script src="menu.js"></script>
     <!-- Spinner Site -->
     <div id="spinner" class="spinner">
-        <div style="position:fixed; left:45%;top:39%">
-            <img class="spinner-img" src="../../Multimedia/spinner.gif" alt="Loading" />
-            <div id="textLoad" class="spinner-msg"></div>
-        </div>
+      <div style="position: fixed; left: 45%; top: 39%">
+        <img
+          class="spinner-img"
+          src="../../Multimedia/spinner.gif"
+          alt="Loading"
+        />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
     </div>
   </body>
 </html>

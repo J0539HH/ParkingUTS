@@ -15,6 +15,7 @@ app.get(
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
+    "/Multimedia/Logo.svg",
     "/Multimedia/spinner.gif",
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
     "/Multimedia/icoAlertWarning.svg",
@@ -54,29 +55,17 @@ app.use(
 
 app.get("/api/sesion", (req, res) => {
   const idusuario = req.session.idusuario;
-  res.send({ idusuario: idusuario });
-  console.log(idusuario);
+  const idrol = req.session.idrol;
+  res.send({ idusuario: idusuario, idrol: idrol });
 });
 
 app.post("/api/sesion", (req, res) => {
   const idusuario = req.body.idusuario;
+  const idrol = req.body.idrol;
   req.session.idusuario = idusuario;
+  req.session.idrol = idrol;
   res.send();
 });
-
-const verificarSesion = (req, res) => {
-  const usuario = req.session.idusuario;
-  console.log("buenas");
-  if (req.session.idusuario) {
-    // si hay una sesión iniciada, responder con código 200 OK
-    res.sendStatus(200);
-  } else {
-    // si no hay una sesión iniciada, responder con código 401 Unauthorized
-    res.sendStatus(401);
-  }
-};
-
-app.get("/verificar-sesion", verificarSesion);
 
 //
 
