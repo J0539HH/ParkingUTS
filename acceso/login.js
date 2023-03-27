@@ -42,6 +42,10 @@ $(document).ready(function () {
       backdrop: "static",
       keyboard: false,
     });
+    $("#modalUser").modal("show");
+    LimpiarRegistros();
+    $("#usuarioIngresado").val($("#usuario").val());
+  });
 
   $("div#divGlobal").overlayScrollbars({
     overflowBehavior: {
@@ -204,7 +208,6 @@ function CerrarAlerta() {
   $.alerts._hide();
   callback(true);
 }
-
 
 function IniciarSession(idusuario) {
   fetch("/api/sesion", {
