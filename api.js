@@ -18,7 +18,6 @@ router.post("/usuarios", jsonParser, async (req, res) => {
     await client.connect();
     const database = client.db("docutech");
     const collection = database.collection("usuarios");
-    console.log(req.body.usuario);
     const query = {
       usuario: req.body.usuario,
       contraseña: req.body.contrasena,

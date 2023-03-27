@@ -129,6 +129,50 @@ function AlertIncorrecta(Texto) {
   });
 }
 
+function AlertCorrecta(Texto) {
+  Swal.fire({
+    title: "",
+    text: Texto,
+    imageUrl: "../Multimedia/icoAlertSuccess.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary btnHidden",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // CONFIRMED CODE
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
+
 function ValidarUsuario() {
   const usuario = document.getElementById("usuario").value;
   const contrasena = document.getElementById("password").value;
@@ -148,7 +192,7 @@ function ValidarUsuario() {
     .then((result) => {
       console.log(result);
       // Lógica para manejar la respuesta de la API...
-      AlertIncorrecta("Bienvenido al sistema");
+      AlertCorrecta("Bienvenido al sistema!");
       $("#spinner").hide();
     })
     .catch((error) => {

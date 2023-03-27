@@ -2,8 +2,29 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-
 const portApi = 4000;
+
+app.get(
+  [
+    "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
+    "/lib/jQuery/alertas/jquery.alerts.css",
+    "/lib/jQuery/utilidadesjQuery.js",
+    "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
+    "/lib/js/vendor/popper-1.16.0/popper.min.js",
+    "/lib/jQuery/alertas/jquery.alerts.js",
+    "/lib/aes/aes.js",
+    "/modulos/principal/styleGlobal.css",
+    "/modulos/principal/scriptGlobal.js",
+    "/Multimedia/fondoWeb.jpg",
+    "/Multimedia/spinner.gif",
+    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
+    "/Multimedia/icoAlertWarning.svg",
+    "/Multimedia/icoAlertSuccess.svg",
+  ],
+  (req, res) => {
+    res.sendFile(__dirname + req.path);
+  }
+);
 
 app.use(express.static("public"));
 
@@ -46,26 +67,7 @@ app.get(
   }
 );
 
-app.get(
-  [
-    "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
-    "/lib/jQuery/alertas/jquery.alerts.css",
-    "/lib/jQuery/utilidadesjQuery.js",
-    "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
-    "/lib/js/vendor/popper-1.16.0/popper.min.js",
-    "/lib/jQuery/alertas/jquery.alerts.js",
-    "/lib/aes/aes.js",
-    "/modulos/principal/styleGlobal.css",
-    "/modulos/principal/scriptGlobal.js",
-    "/Multimedia/fondoWeb.jpg",
-    "/Multimedia/spinner.gif",
-    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
-    "/Multimedia/icoAlertWarning.svg",
-  ],
-  (req, res) => {
-    res.sendFile(__dirname + req.path);
-  }
-);
+
 
 app.use(express.static(path.join(__dirname, "Multimedia")));
 
