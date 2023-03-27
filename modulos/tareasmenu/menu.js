@@ -1,21 +1,20 @@
 $(document).ready(function () {
   verificarSesion();
-  console.log("VerificandoSessionbyJDFM");
 });
 
 function verificarSesion() {
+  console.log("VerificandoSessionbyJDFM");
   fetch("/api/sesion")
     .then((response) => response.json())
     .then((data) => {
       const idusuario = data.idusuario;
       console.log(idusuario);
       if (idusuario === undefined || idusuario === null) {
-        AlertIncorrecta(
+        AlertIncorrectX(
           "Estas tratando de acceder al sistema sin credenciales"
         );
-        setTimeout(function () {
-          window.location.href = "https://www.memedeportes.com";
-        }, 1500);
+        window.location.href =
+          "https://www.uts.edu.co/sitio/tecnologia-en-desarrollo-de-sistemas-informaticos/";
       }
     })
     .catch((error) => {
@@ -23,7 +22,7 @@ function verificarSesion() {
     });
 }
 
-function AlertIncorrecta(Texto) {
+function AlertIncorrectX(Texto) {
   Swal.fire({
     title: "",
     text: Texto,
