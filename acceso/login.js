@@ -192,6 +192,11 @@ function ValidarUsuario() {
     .then((result) => {
       console.log(result);
       // Lógica para manejar la respuesta de la API...
+
+      setTimeout(function () {
+        window.location.href = "/modulos/tareasmenu/menu.html";
+      }, 1500);
+
       AlertCorrecta("Bienvenido al sistema!");
       $("#spinner").hide();
     })
@@ -202,7 +207,6 @@ function ValidarUsuario() {
       $("#spinner").hide();
     });
 }
-
 
 function CerrarAlerta() {
   $.alerts._hide();

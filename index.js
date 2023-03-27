@@ -20,6 +20,7 @@ app.get(
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
     "/Multimedia/icoAlertWarning.svg",
     "/Multimedia/icoAlertSuccess.svg",
+    "/modulos/tareasmenu/menu.html",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
