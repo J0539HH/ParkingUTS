@@ -21,6 +21,10 @@ app.get(
     "/Multimedia/icoAlertWarning.svg",
     "/Multimedia/icoAlertSuccess.svg",
     "/modulos/tareasmenu/menu.html",
+    "/modulos/tareasmenu/menu.js",
+    "/modulos/tareasmenu/menu.css",
+    "/lib/js/vendor/popper-1.16.0/popper.min.js",
+    "/lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
