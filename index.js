@@ -3,7 +3,6 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const portApi = 4000;
-
 app.get(
   [
     "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
@@ -23,13 +22,63 @@ app.get(
     "/modulos/tareasmenu/menu.html",
     "/modulos/tareasmenu/menu.js",
     "/modulos/tareasmenu/menu.css",
-    "/lib/js/vendor/popper-1.16.0/popper.min.js",
-    "/lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
   }
 );
+app.use(express.static("public"));
+
+//
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["420"],
+  })
+);
+
+app.use(
+  session({
+    secret: "420",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
+app.get("/api/sesion", (req, res) => {
+  const idusuario = req.session.idusuario;
+  res.send({ idusuario: idusuario });
+  console.log(idusuario);
+});
+
+app.post("/api/sesion", (req, res) => {
+  const idusuario = req.body.idusuario;
+  req.session.idusuario = idusuario;
+  res.send();
+});
+
+const verificarSesion = (req, res) => {
+  const usuario = req.session.idusuario;
+  console.log("buenas");
+  if (req.session.idusuario) {
+    // si hay una sesión iniciada, responder con código 200 OK
+    res.sendStatus(200);
+  } else {
+    // si no hay una sesión iniciada, responder con código 401 Unauthorized
+    res.sendStatus(401);
+  }
+};
+
+app.get("/verificar-sesion", verificarSesion);
+
+//
 
 app.use(express.static("public"));
 
@@ -38,7 +87,9 @@ if (require.main === module) {
 }
 
 app.listen(portApi, () => {
-  console.log(`Api  database corriendo en corriendo en http://localhost:${portApi} by JDFM`);
+  console.log(
+    `Api  database corriendo en corriendo en http://localhost:${portApi} by JDFM`
+  );
 });
 
 app.use(express.json());
@@ -71,8 +122,6 @@ app.get(
     );
   }
 );
-
-
 
 app.use(express.static(path.join(__dirname, "Multimedia")));
 
@@ -196,5 +245,3 @@ app.get(
 app.listen(3000, () => {
   console.log("Servidor iniciado en el puerto http://localhost:3000 by JDFM");
 });
-
-app.use(express.static("public"));

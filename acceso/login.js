@@ -42,10 +42,6 @@ $(document).ready(function () {
       backdrop: "static",
       keyboard: false,
     });
-    $("#modalUser").modal("show");
-    LimpiarRegistros();
-    $("#usuarioIngresado").val($("#usuario").val());
-  });
 
   $("div#divGlobal").overlayScrollbars({
     overflowBehavior: {
@@ -192,11 +188,7 @@ function ValidarUsuario() {
     .then((result) => {
       console.log(result);
       // Lógica para manejar la respuesta de la API...
-
-      setTimeout(function () {
-        window.location.href = "/modulos/tareasmenu/menu.html";
-      }, 1500);
-
+      IniciarSession(result.idusuario);
       AlertCorrecta("Bienvenido al sistema!");
       $("#spinner").hide();
     })
@@ -211,6 +203,20 @@ function ValidarUsuario() {
 function CerrarAlerta() {
   $.alerts._hide();
   callback(true);
+}
+
+
+function IniciarSession(idusuario) {
+  fetch("/api/sesion", {
+    method: "POST",
+    body: JSON.stringify({ idusuario: idusuario }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  setTimeout(function () {
+    window.location.href = "/modulos/tareasmenu/menu.html";
+  }, 1500);
 }
 
 function spinner(texto) {
