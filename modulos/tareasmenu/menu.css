@@ -5,7 +5,6 @@ body {
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 
 #templateContainer {
-  background-image: url("http://jdevadf.oracle.com/workbetter/afr/alta-v1/tile.png");
   background-repeat: repeat;
   color: #606062;
   overflow: hidden;
@@ -53,15 +52,18 @@ body {
 #templateContainer .main {
   padding: 20px;
 }
+
 #templateContainer .main.alta-theme {
   margin-top: 40px;
 }
+
 @media (min-width: 768px) {
   .main {
     padding-right: 60px;
     padding-left: 60px;
   }
 }
+
 #templateContainer .main .page-header {
   margin-top: 0;
 }
@@ -74,17 +76,21 @@ body {
   margin-bottom: 30px;
   text-align: center;
 }
+
 #templateContainer .placeholders h4 {
   margin-bottom: 0;
   font-weight: bold;
 }
+
 #templateContainer .placeholder {
   margin-bottom: 50px;
 }
+
 #templateContainer .placeholder img {
   display: inline-block;
   border-radius: 50%;
 }
+
 #templateContainer .placeholder .dashboard-item {
   display: inline-block;
   width: 200px;
@@ -96,6 +102,7 @@ body {
   color: #fff;
   box-shadow: 0px 0px 10px #999;
 }
+
 #templateContainer .placeholder .dashboard-item:hover {
   box-shadow: 0px 0px 25px #888;
 }
@@ -140,13 +147,13 @@ body {
   font-weight: bold;
 }
 
-#templateContainer .circle a:hover {
-}
+#templateContainer .circle a:hover {}
 
 #templateContainer .menu-button {
   position: relative;
   top: -225px;
 }
+
 #templateContainer .dashboard-item.menu-button.selected {
   top: -175px;
   width: 100px;
@@ -190,13 +197,16 @@ div#contFooter p.pInfoFooter {
 }
 
 .InfoCabecera {
-  min-width: 850px;
-  margin-left: 321px;
-  margin-top: 19px;
-  margin-right: 120px;
+  font-size: 22px;
+  margin-top: 24px;
 }
 
 .SubtituloMenu {
   margin-left: 50px !important;
   text-decoration: underline;
+}
+
+.txtFooter {
+  font-weight: 400;
+  color: white;
 }

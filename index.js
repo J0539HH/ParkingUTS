@@ -20,9 +20,15 @@ app.get(
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
     "/Multimedia/icoAlertWarning.svg",
     "/Multimedia/icoAlertSuccess.svg",
+    "/Multimedia/Javascript-logo.png",
+    "/Multimedia/Mongo-db-logo.png",
+    "/Multimedia/nodejs.jpg",
+    "/Multimedia/visual.jpg",
+    "/Multimedia/pc.svg",
     "/modulos/tareasmenu/menu.html",
     "/modulos/tareasmenu/menu.js",
     "/modulos/tareasmenu/menu.css",
+    "/modulos/tareasmenu/pc.svg",
     "/modulos/tareasmenu/GestorUsuarios.html",
     "/modulos/tareasmenu/GestorUsuarios.css",
     "/modulos/tareasmenu/GestorUsuarios.js",
@@ -229,7 +235,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

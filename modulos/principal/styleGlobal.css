@@ -436,7 +436,7 @@ textarea.form-control.inputError {
   color: var(--red-color);
 }
 
-.form-group input.form-control.inputError + span.spanHelperErrorInput {
+.form-group input.form-control.inputError+span.spanHelperErrorInput {
   display: block;
 }
 
@@ -483,18 +483,11 @@ div.bootstrap-select button.dropdown-toggle div.filter-option {
   align-items: center;
 }
 
-div.bootstrap-select
-  button.dropdown-toggle
-  div.filter-option
-  div.filter-option-inner {
+div.bootstrap-select button.dropdown-toggle div.filter-option div.filter-option-inner {
   width: 100%;
 }
 
-div.bootstrap-select
-  button.dropdown-toggle
-  div.filter-option
-  div.filter-option-inner
-  div.filter-option-inner-inner {
+div.bootstrap-select button.dropdown-toggle div.filter-option div.filter-option-inner div.filter-option-inner-inner {
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 2px 0;
@@ -518,7 +511,7 @@ div.bootstrap-select div.dropdown-menu.show {
   padding-bottom: 0px;
 }
 
-div.bootstrap-select > .dropdown-toggle::after {
+div.bootstrap-select>.dropdown-toggle::after {
   /* border-left: 0 none !important;
     border-right: 0 none !important;
     border-top: 0 none !important; */
@@ -564,12 +557,12 @@ div.bootstrap-select div.dropdown-menu.show ul.dropdown-menu li:hover {
   background-color: var(--gray-bg-color);
 }
 
-select.form-control.inputError + button.dropdown-toggle {
+select.form-control.inputError+button.dropdown-toggle {
   border: 1px solid var(--red-color);
 }
 
 .bootstrap-select .dropdown-toggle:focus,
-.bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
+.bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
   outline: none !important;
   outline-offset: 0px;
   border: 1px solid var(--orange-main-color);
@@ -800,14 +793,11 @@ div.os-scrollbar.os-scrollbar-horizontal {
   bottom: -15px;
 }
 
-.os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+.os-theme-dark>.os-scrollbar>.os-scrollbar-track>.os-scrollbar-handle {
   background: var(--gray-disable-bg-color);
 }
 
-.os-theme-dark
-  > .os-scrollbar:hover
-  > .os-scrollbar-track
-  > .os-scrollbar-handle {
+.os-theme-dark>.os-scrollbar:hover>.os-scrollbar-track>.os-scrollbar-handle {
   background: var(--black-alter-text-color);
 }
 
@@ -885,11 +875,7 @@ table.table.styleTableList tbody td div.divContBtnTable button.buttonBtn {
   margin: 0;
 }
 
-table.table.styleTableList
-  tbody
-  td
-  div.divContBtnTable
-  button.buttonBtn:first-child {
+table.table.styleTableList tbody td div.divContBtnTable button.buttonBtn:first-child {
   margin-right: 15px;
 }
 
@@ -942,14 +928,8 @@ div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions {
   width: 100%;
 }
 
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-confirm,
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-deny {
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm,
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny {
   font-size: var(--p-font);
   line-height: var(--lh-p-font);
   background: var(--btn-primary-color);
@@ -959,50 +939,29 @@ div.swal2-container
   margin: 0;
 }
 
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-confirm:hover,
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-deny:hover {
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:hover,
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:hover {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   background-image: none;
 }
 
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-confirm:focus,
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-deny:focus {
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:focus,
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:focus {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   box-shadow: none;
 }
 
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-confirm:active,
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-deny:active {
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:active,
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:active {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   box-shadow: none;
   background-image: none;
 }
 
-div.swal2-container
-  div.swal2-popup.swal2-modal
-  div.swal2-actions
-  button.swal2-deny.btnHidden {
+div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny.btnHidden {
   display: none !important;
 }
 
@@ -1100,11 +1059,11 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border: 1px solid var(--gray-border-color);
 }
 
-.lbContCheck:hover input ~ .spanCheckmark {
+.lbContCheck:hover input~.spanCheckmark {
   background-color: var(--white-color);
 }
 
-.lbContCheck input:checked ~ .spanCheckmark {
+.lbContCheck input:checked~.spanCheckmark {
   background-color: var(--orange-main-color);
   border: 1px solid var(--orange-main-color);
 }
@@ -1121,7 +1080,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   display: none;
 }
 
-.lbContCheck input:checked ~ .spanCheckmark:after {
+.lbContCheck input:checked~.spanCheckmark:after {
   display: block;
 }
 
@@ -1147,17 +1106,16 @@ div.modal.notificationModal p.pTextDescAlertModal {
 
 /* Large devices (desktops, 992px and up) */
 
-@media (max-width: 991px) {
-}
+@media (max-width: 991px) {}
 
 /* Medium devices (tablets, 768px and up) */
 
-@media (max-width: 767px) {
-}
+@media (max-width: 767px) {}
 
 /* Small devices (landscape phones, 576px and up) */
 
 @media (max-width: 575px) {
+
   /* Variables */
   :root {
     /* Fonts Size */
@@ -1180,6 +1138,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
     --title-details-font: 18px;
     --lh-title-details-font: 17px;
   }
+
   /* Input */
   input.form-control,
   textarea.form-control,
@@ -1187,6 +1146,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
     height: 40px;
     padding: 5px 8px;
   }
+
   /* select.form-control {
         top: 0 !important;
         left: 0 !important;
@@ -1199,48 +1159,59 @@ div.modal.notificationModal p.pTextDescAlertModal {
     bottom: 27px;
     font-size: 15px;
   }
+
   input.form-control.passwordInfo,
   input[type="password"].form-control {
     padding-right: 30px;
   }
+
   /* Select Bootstrap */
   div.bootstrap-select button.dropdown-toggle {
     height: 40px;
     padding: 2px 8px;
   }
+
   /* Header */
   p.pInfoUser span.spanNombreCliente {
     font-size: var(--medium-font);
     line-height: var(--lh-medium-font);
   }
+
   p.pInfoUser span.spanInfoAdicional {
     font-size: var(--small-font);
     line-height: var(--lh-small-font);
   }
+
   p.pInfoBodega span.spanSubTitleBodegas {
     font-size: var(--small-font);
     line-height: var(--lh-small-font);
   }
+
   div.divContDetalle p.pDetalles {
     font-size: var(--regular-font);
     line-height: var(--lh-regular-font);
   }
+
   /* Alertas */
   div.swal2-container div.swal2-popup.swal2-modal img.swal2-image {
     width: 40px !important;
     height: 40px !important;
   }
+
   div.swal2-container div.swal2-popup.swal2-modal {
     max-width: 350px;
   }
+
   /* Modal Notification */
   div.modal.notificationModal img.imgIconAlert {
     height: 40px !important;
   }
+
   div.modal.notificationModal.show .modal-dialog {
     max-width: 350px;
     margin: auto auto;
   }
+
   /* Botones */
   button.buttonBtn {
     height: 40px;
@@ -1248,13 +1219,16 @@ div.modal.notificationModal p.pTextDescAlertModal {
     font-size: var(--p-font);
     line-height: var(--lh-p-font);
   }
+
   button.buttonBtn.btnIco {
     height: 45px;
   }
+
   button.buttonBtn.btnIco.icoUp i {
     font-size: 15px;
     margin-bottom: 2px;
   }
+
   /* Checkbox Style */
   /* .lbContCheck {
         padding-left: 27px;
@@ -1275,11 +1249,9 @@ div.modal.notificationModal p.pTextDescAlertModal {
     } */
 }
 
-@media (max-width: 500px) {
-}
+@media (max-width: 500px) {}
 
-@media (max-width: 450px) {
-}
+@media (max-width: 450px) {}
 
 @media (max-width: 372px) {
   div.modal.notificationModal.show .modal-dialog {
@@ -1356,6 +1328,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   height: 100%;
   text-align: center;
 }
+
 .spinner-msg {
   text-align: center;
   font-weight: bold;
@@ -1373,6 +1346,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
 .BotonCabecera {
   margin-top: 10px !important;
 }
+
 /****** buttons' style starts here ******/
 .button {
   display: inline-block;
@@ -1384,6 +1358,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   padding: 13px 85px;
   margin: 20px;
 }
+
 .button:hover {
   -webkit-transition: 200ms ease-in;
   -moz-transition: 200ms ease-in;
@@ -1394,9 +1369,11 @@ div.modal.notificationModal p.pTextDescAlertModal {
 /****** blue buttons ******/
 .button1 {
   background-color: rgba(255, 255, 255, 0);
-  border-color: rgb(52, 168, 200); /* #34a8c8 */
+  border-color: rgb(52, 168, 200);
+  /* #34a8c8 */
   color: rgb(52, 168, 200);
 }
+
 .button1:hover {
   border: 3px solid rgba(52, 168, 200, 0.7);
   color: rgba(52, 168, 200, 0.7);
@@ -1407,6 +1384,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border-color: rgb(52, 168, 200);
   color: rgb(255, 255, 255);
 }
+
 .button2:hover {
   background-color: rgba(255, 255, 255, 0);
   border-color: rgb(52, 168, 200);
@@ -1418,6 +1396,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border-color: rgb(52, 168, 200);
   color: rgb(52, 168, 200);
 }
+
 .button3:hover {
   background-color: rgb(52, 168, 200);
   border-color: rgb(52, 168, 200);
@@ -1426,27 +1405,59 @@ div.modal.notificationModal p.pTextDescAlertModal {
 
 /******  red buttons ******/
 .button7 {
-  background-color: rgba(255,255,255,0);
-  border-color: rgb(226,65,62); /* #e2413e */
-  color: rgb(226,65,62); }
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(226, 65, 62);
+  /* #e2413e */
+  color: rgb(226, 65, 62);
+}
+
 .button7:hover {
-  border: 3px solid rgba(226,65,62,0.8);
-  color: rgba(226,65,62,0.8); }
+  border: 3px solid rgba(226, 65, 62, 0.8);
+  color: rgba(226, 65, 62, 0.8);
+}
 
 .button8 {
-  background-color: rgb(226,65,62);
-  border-color: rgb(226,65,62);
-  color: rgb(255,255,255); }
+  background-color: rgb(226, 65, 62);
+  border-color: rgb(226, 65, 62);
+  color: rgb(255, 255, 255);
+}
+
 .button8:hover {
-  background-color: rgba(255,255,255,0);
-  border-color: rgb(226,65,62);
-  color: rgb(226,65,62); }
-  
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(226, 65, 62);
+  color: rgb(226, 65, 62);
+}
+
 .button9 {
-  background-color: rgba(255,255,255,0);
-  border-color: rgb(226,65,62);
-  color: rgb(226,65,62); }
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(226, 65, 62);
+  color: rgb(226, 65, 62);
+}
+
 .button9:hover {
-  background-color: rgb(226,65,62);
-  border-color: rgb(226,65,62);
-  color: rgb(255,255,255); }
+  background-color: rgb(226, 65, 62);
+  border-color: rgb(226, 65, 62);
+  color: rgb(255, 255, 255);
+}
+
+
+.containerApp {
+  min-width: 1280px;
+}
+
+.FooterSistema {
+  min-height: 50PX;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.iconoFooter {
+  margin-right: 10px;
+  height: 38px;
+  border: 1px gray black;
+  border-radius: 10px;
+}
+
+.ML-15{
+  margin-left: 15px;
+}

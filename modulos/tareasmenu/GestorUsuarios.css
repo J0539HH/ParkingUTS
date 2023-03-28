@@ -1,0 +1,216 @@
+#sidebar {
+    height: auto;
+    min-width: 15%;
+    max-width: 15%;
+    min-height: calc(100vh - 54px);
+    background-color: #1A1A1A;
+    -webkit-transition: all 0.3s ease-in-out;
+    margin: -12px 0 -32px -15px;
+}
+
+
+.cabeceranav {
+    background-color: #1664ab;
+}
+
+#sidebar .sidebar-header {
+    background: #1664ab;
+    padding: 0 0 15px 0;
+}
+
+.filtrosbusquedad {
+    margin: 0px 15px;
+    width: calc(100% - 30px) !important;
+}
+
+.SelectFiltro {
+    width: 100% !important;
+}
+
+.inputGeneral {
+    font-size: 12px;
+    padding: 3px 12px;
+    height: 25px;
+}
+
+.TituloSidebar {
+    color: #FFF;
+    font-size: 11px;
+}
+
+select,
+#select2-nombre-container,
+#select2-nombre-results {
+    text-align: left;
+    font-family: Source Sans Pro;
+    font-size: 12px;
+    width: 100% !important;
+}
+
+.btn-opciones {
+    opacity: 0.7;
+    color: #FFF;
+    margin: 0px 40px 12px 40px;
+}
+
+.chequedpdfcsv {
+    padding: 25px 0px 0px 70px;
+    width: auto;
+}
+
+.select2.select2-container.select2-container--default {
+    font-size: 12px !important;
+    width: 100% !important;
+}
+
+.select2-results__option {
+    font-size: 12px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #cbd0d2;
+    color: white;
+}
+
+#sidebar .sidebar-header {
+    background: #1664ab;
+    padding: 0 0 15px 0;
+}
+
+.tituloBusqueda {
+    padding-left: 15px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 5px;
+    color: #FFF;
+}
+
+.grupotitulos {
+    font-size: 11px;
+    margin-left: 15px;
+    margin-bottom: 4px;
+    color: #FFF;
+}
+
+.botonBuscar {
+    width: 20px;
+    text-align: center;
+    justify-content: center;
+    padding: 1px 69px 25px 22px;
+    max-height: 5px;
+    border-radius: 10px;
+}
+
+.contenedorBotonesSide {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#sidebarCollapse i {
+    transition: .5s transform;
+}
+
+#sidebar.active {
+    margin-left: -15%;
+}
+
+.navbar-btn {
+    margin-left: -8px;
+    margin-top: calc(50vh - 60px);
+    padding: 10px 1px;
+    height: 50px;
+    width: 17px;
+    font-size: 13px;
+    border-radius: 5px 0px 0px 5px;
+    color: #1664ab;
+    background-color: #FFFFFF;
+    border: none;
+}
+
+
+.btn:hover svg {
+    stroke-dashoffset: -480;
+}
+
+.btn span {
+    color: black;
+    font-weight: 100;
+    font-size: 13px !important;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+#sidebarCollapse i {
+    transition: .5s transform;
+}
+
+#sidebar.active {
+    margin-left: -15%;
+}
+
+#content.active {
+    left: 0;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+i.rotateImg::before {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    margin-left: 0px;
+}
+
+.navbar-btn {
+    margin-left: -8px;
+    margin-top: calc(50vh - 60px);
+    padding: 10px 1px;
+    height: 50px;
+    width: 17px;
+    font-size: 13px;
+    border-radius: 5px 0px 0px 5px;
+    color: #1664ab;
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.btn-info {
+    color: #1664ab;
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.btn-info:hover {
+    color: #1664ab;
+    background-color: #FFF;
+    border-color: #FFF;
+    border: none;
+}
+
+.btn-sidebar-activado {
+    margin: 0px;
+    padding: 10px 1px;
+    height: 50px;
+    width: 17px;
+    font-size: 13px;
+    margin-top: calc(50vh - 60px);
+    color: #FFF;
+    background-color: #1664ab;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#contenedorSidebar {
+    align-items: stretch;
+    display: flex;
+}
