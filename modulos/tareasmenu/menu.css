@@ -188,3 +188,15 @@ div#contFooter p.pInfoFooter {
   line-height: var(--lh-normal-btn-font);
   color: var(--white-text-color);
 }
+
+.InfoCabecera {
+  min-width: 850px;
+  margin-left: 321px;
+  margin-top: 19px;
+  margin-right: 120px;
+}
+
+.SubtituloMenu {
+  margin-left: 50px !important;
+  text-decoration: underline;
+}

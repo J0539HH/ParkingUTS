@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Menu principal</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap Icon-->
+    <link
+      rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
+    />
+    <!-- OverlayScrollbars -->
+    <link
+      rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
+    />
+    <!-- Sweet Alert -->
+    <link
+      rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
+
+  <body>
+    <div></div>
+    <div id="ContenedorMenu">
+      <div id="templateContainer">
+        <nav
+          class="navbar navbar-fixed-top alta-theme"
+          style="position: relative; background: white"
+        >
+          <div class="container-fluid">
+            <div class="navbar-header" style="display: flex;">
+              <span style="float: left; font-size: 25px; margin: 20px 10px"
+                ><img
+                  src="../../Multimedia/logo.jpg"
+                  height="40px;"
+                  style="margin-right: 10px"
+              /></span>
+              <h3 class="InfoCabecera">Herramienta de gestion de usuarios.</h3>
+              <a id="VolverMenu" class="button button2 BotonCabecera">Volver al menú</a>
+            </div>
+          </div>
+        </nav>
+
+        <br />
+          <div class="container-fluid alta-theme">
+          <div class="col-md-12 main alta-theme">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contFooter">
+      <div class="contInfoFooter">
+        <p class="pInfoFooter">Apps Empresariales</p>
+        <p class="pInfoFooter">DOCUTECH</p>
+        <p class="pInfoFooter">Bucaramanga - Colombia</p>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- Sweet Alert -->
+    <script
+      src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="GestorUsuarios.js"></script>
+    
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div style="position: fixed; left: 45%; top: 39%">
+        <img
+          class="spinner-img"
+          src="../../Multimedia/spinner.gif"
+          alt="Loading"
+        />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -15,7 +15,7 @@ app.get(
     "/modulos/principal/styleGlobal.css",
     "/modulos/principal/scriptGlobal.js",
     "/Multimedia/fondoWeb.jpg",
-    "/Multimedia/Logo.svg",
+    "/Multimedia/logo.jpg",
     "/Multimedia/spinner.gif",
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
     "/Multimedia/icoAlertWarning.svg",
@@ -23,6 +23,9 @@ app.get(
     "/modulos/tareasmenu/menu.html",
     "/modulos/tareasmenu/menu.js",
     "/modulos/tareasmenu/menu.css",
+    "/modulos/tareasmenu/GestorUsuarios.html",
+    "/modulos/tareasmenu/GestorUsuarios.css",
+    "/modulos/tareasmenu/GestorUsuarios.js",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

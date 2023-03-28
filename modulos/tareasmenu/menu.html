@@ -47,29 +47,34 @@
       <div id="templateContainer">
         <nav
           class="navbar navbar-fixed-top alta-theme"
-          style="position: relative"
+          style="position: relative; background: white"
         >
           <div class="container-fluid">
-            <div class="navbar-header">
+            <div class="navbar-header" style="display: flex">
               <span style="float: left; font-size: 25px; margin: 20px 10px"
                 ><img
-                  src="../../Multimedia/Logo.svg"
+                  src="../../Multimedia/logo.jpg"
                   height="40px;"
                   style="margin-right: 10px"
-                /><b>Docutech </b></span
+              /></span>
+              <h3 class="InfoCabecera">
+                Sistema administrador de mantenimientos en dispositivos
+                electrónicos.
+              </h3>
+              <a id="volverLogin" class="button button8 BotonCabecera"
+                >Salir del sistema</a
               >
             </div>
           </div>
         </nav>
 
         <br />
-        <h1 style="margin-left: 50px">Herramientas</h1>
-
+        <h1 class="SubtituloMenu">Herramientas disponibles!</h1>
         <div class="container-fluid alta-theme">
           <div class="col-md-12 main alta-theme">
             <div class="row placeholders">
               <div class="col-xs-6 col-sm-3 placeholder">
-                <div class="circular-menu">
+                <div class="circular-menu" id="GestionDeUsuarios">
                   <div class="circle">
                     <a href=""><span class="fa fa-home fa-2x"></span></a>
                     <a href=""><span class="fa fa-facebook fa-2x"></span></a>
@@ -107,7 +112,7 @@
                 <h4>Creacion de servicios</h4>
               </div>
               <div class="col-xs-6 col-sm-3 placeholder">
-                <div class="circular-menu">
+                <div class="circular-menu" id="GestionarServicio">
                   <div class="circle">
                     <a href=""><span class="fa fa-home fa-2x"></span></a>
                     <a href=""><span class="fa fa-github fa-2x"></span></a>
@@ -123,7 +128,7 @@
                 <h4>Gestion de servicios</h4>
               </div>
               <div class="col-xs-6 col-sm-3 placeholder">
-                <div class="circular-menu">
+                <div class="circular-menu" id="ConsultarServicios">
                   <div class="circle">
                     <a href=""><span class="fa fa-home fa-2x"></span></a>
                     <a href=""><span class="fa fa-facebook fa-2x"></span></a>
