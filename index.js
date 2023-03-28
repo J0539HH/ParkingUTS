@@ -3,6 +3,9 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const portApi = 4000;
+
+console.log("Versión de Express: " + express.version);
+
 app.get(
   [
     "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
@@ -75,7 +78,11 @@ app.post("/api/sesion", (req, res) => {
   req.session.idusuario = idusuario;
   req.session.idrol = idrol;
   res.send();
-  console.log(req.session);
+});
+
+app.get("/api/logout", (req, res) => {
+  req.session = null;
+  res.send();
 });
 
 //

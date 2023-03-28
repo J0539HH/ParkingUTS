@@ -284,6 +284,132 @@
       </div>
     </div>
 
+    <!-- Modal para modificar un usuario -->
+    <div
+      class="modal fade"
+      id="modificarUsuarioModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modificarUsuarioModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modificarUsuarioModalLabel">
+              Modificar usuario!
+            </h5>
+            <img
+              src="../../Multimedia/logo.jpg"
+              height="10px;"
+              class="iconoFormulario"
+            />
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Cerrar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="modificarUsuarioForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="usuarioMod">Usuario</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="usuarioMod"
+                      name="usuarioMod"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="contraseñaMod">Contraseña</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="contraseñaMod"
+                      name="contraseñaMod"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="tipoUsuarioMod">Tipo de usuario</label>
+                    <select
+                      class="form-control"
+                      id="tipoUsuarioMod"
+                      name="tipoUsuarioMod"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="1">Administrador</option>
+                      <option value="2">Cliente</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="estadoMod">Estado</label>
+                    <select
+                      class="form-control"
+                      id="estadoMod"
+                      name="estadoMod"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="true">Activo</option>
+                      <option value="false">Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nombreMod">Nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombreMod"
+                      name="nombreMod"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              id="ActualizarUser"
+              form="agregarUsuarioForm"
+              class="btn btn-primary"
+            >
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Spinner Site -->
     <div id="spinner" class="spinner">
       <div style="position: fixed; left: 45%; top: 39%">

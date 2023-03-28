@@ -19,7 +19,7 @@ $(document).ready(function () {
   });
 
   $("#volverLogin").on("click", function () {
-    window.location.href = "../../acceso/login.html";
+    CerrarSession();
   });
 });
 
@@ -52,3 +52,5 @@ $(function () {
     }
   );
 });
+
+

@@ -60,6 +60,18 @@ function verificarSesion() {
     });
 }
 
+function CerrarSession() {
+  fetch("/api/logout", { method: "GET" })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "../../acceso/login.html";
+      } else {
+        throw new Error("Error al cerrar sesión");
+      }
+    })
+    .catch((error) => console.error(error));
+}
+
 function AlertIncorrectX(Texto) {
   Swal.fire({
     title: "",

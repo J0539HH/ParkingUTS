@@ -25,7 +25,28 @@ router.post("/usuarios", jsonParser, async (req, res) => {
       password: req.body.password,
       estado: true,
     };
-    console.log(query);
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  } finally {
+    await client.close();
+  }
+});
+
+router.post("/EspecificUser", jsonParser, async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db("docutech");
+    const collection = database.collection("usuarios");
+    const query = {
+      idusuario: req.body.idusuario,
+    };
     const result = await collection.findOne(query);
     if (result) {
       res.json(result);
@@ -79,7 +100,6 @@ router.post("/NewUser", jsonParser, async (req, res) => {
       estado: true,
     });
     res.json(result);
-    console.error(result.acknowledged);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

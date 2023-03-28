@@ -236,9 +236,8 @@ i.rotateImg::before {
 }
 
 .BotonRegistrar {
-  width: 30px;
   height: 30px;
-  padding: 3px 93px 47px 36px;
+  padding: 5px 32px 25px 26px;
   margin: 36px 0 0 14px;
 }
 
