@@ -248,6 +248,7 @@ function ValidarInsercion() {
 }
 
 function InsertarUsuario() {
+  spinner("Registrando usuario, por favor espere");
   let NewUsuario = $("#usuario").val();
   let NewPass = $("#contraseña").val();
   let NewTipoU = $("#tipoUsuario").val();
@@ -270,10 +271,12 @@ function InsertarUsuario() {
     .then((result) => {
       console.log(result);
       AlertCorrectX("Usuario regristrado en el sistema ");
+      $("#spinner").hide();
       cargarUsuarios();
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
+      $("#spinner").hide();
     });
 
   limpiarModal();
@@ -328,7 +331,7 @@ function ValidarEliminacion(Id) {
 }
 
 function EliminarDefinitivo(idUser) {
-  spinner("Cargando datos del usuario, por favor espere");
+  spinner("Eliminado el usuario, por favor espere");
   const url = "/api/deleteUser";
   const data = {
     idusuario: idUser,
@@ -343,8 +346,8 @@ function EliminarDefinitivo(idUser) {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("El usuario se elimino con exito!");
-      cargarUsuarios();
       $("#spinner").hide();
+      cargarUsuarios();
     })
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar el usuario");
