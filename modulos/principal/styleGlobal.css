@@ -436,7 +436,7 @@ textarea.form-control.inputError {
   color: var(--red-color);
 }
 
-.form-group input.form-control.inputError+span.spanHelperErrorInput {
+.form-group input.form-control.inputError + span.spanHelperErrorInput {
   display: block;
 }
 
@@ -483,11 +483,18 @@ div.bootstrap-select button.dropdown-toggle div.filter-option {
   align-items: center;
 }
 
-div.bootstrap-select button.dropdown-toggle div.filter-option div.filter-option-inner {
+div.bootstrap-select
+  button.dropdown-toggle
+  div.filter-option
+  div.filter-option-inner {
   width: 100%;
 }
 
-div.bootstrap-select button.dropdown-toggle div.filter-option div.filter-option-inner div.filter-option-inner-inner {
+div.bootstrap-select
+  button.dropdown-toggle
+  div.filter-option
+  div.filter-option-inner
+  div.filter-option-inner-inner {
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 2px 0;
@@ -511,7 +518,7 @@ div.bootstrap-select div.dropdown-menu.show {
   padding-bottom: 0px;
 }
 
-div.bootstrap-select>.dropdown-toggle::after {
+div.bootstrap-select > .dropdown-toggle::after {
   /* border-left: 0 none !important;
     border-right: 0 none !important;
     border-top: 0 none !important; */
@@ -557,12 +564,12 @@ div.bootstrap-select div.dropdown-menu.show ul.dropdown-menu li:hover {
   background-color: var(--gray-bg-color);
 }
 
-select.form-control.inputError+button.dropdown-toggle {
+select.form-control.inputError + button.dropdown-toggle {
   border: 1px solid var(--red-color);
 }
 
 .bootstrap-select .dropdown-toggle:focus,
-.bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+.bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
   outline: none !important;
   outline-offset: 0px;
   border: 1px solid var(--orange-main-color);
@@ -793,11 +800,14 @@ div.os-scrollbar.os-scrollbar-horizontal {
   bottom: -15px;
 }
 
-.os-theme-dark>.os-scrollbar>.os-scrollbar-track>.os-scrollbar-handle {
+.os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
   background: var(--gray-disable-bg-color);
 }
 
-.os-theme-dark>.os-scrollbar:hover>.os-scrollbar-track>.os-scrollbar-handle {
+.os-theme-dark
+  > .os-scrollbar:hover
+  > .os-scrollbar-track
+  > .os-scrollbar-handle {
   background: var(--black-alter-text-color);
 }
 
@@ -875,7 +885,11 @@ table.table.styleTableList tbody td div.divContBtnTable button.buttonBtn {
   margin: 0;
 }
 
-table.table.styleTableList tbody td div.divContBtnTable button.buttonBtn:first-child {
+table.table.styleTableList
+  tbody
+  td
+  div.divContBtnTable
+  button.buttonBtn:first-child {
   margin-right: 15px;
 }
 
@@ -928,8 +942,14 @@ div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions {
   width: 100%;
 }
 
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm,
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny {
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-confirm,
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny {
   font-size: var(--p-font);
   line-height: var(--lh-p-font);
   background: var(--btn-primary-color);
@@ -939,29 +959,50 @@ div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-d
   margin: 0;
 }
 
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:hover,
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:hover {
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-confirm:hover,
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny:hover {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   background-image: none;
 }
 
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:focus,
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:focus {
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-confirm:focus,
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny:focus {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   box-shadow: none;
 }
 
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-confirm:active,
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny:active {
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-confirm:active,
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny:active {
   background: var(--btn-primary-hover-color);
   border-color: var(--btn-primary-hover-color);
   box-shadow: none;
   background-image: none;
 }
 
-div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions button.swal2-deny.btnHidden {
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny.btnHidden {
   display: none !important;
 }
 
@@ -1059,11 +1100,11 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border: 1px solid var(--gray-border-color);
 }
 
-.lbContCheck:hover input~.spanCheckmark {
+.lbContCheck:hover input ~ .spanCheckmark {
   background-color: var(--white-color);
 }
 
-.lbContCheck input:checked~.spanCheckmark {
+.lbContCheck input:checked ~ .spanCheckmark {
   background-color: var(--orange-main-color);
   border: 1px solid var(--orange-main-color);
 }
@@ -1080,7 +1121,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   display: none;
 }
 
-.lbContCheck input:checked~.spanCheckmark:after {
+.lbContCheck input:checked ~ .spanCheckmark:after {
   display: block;
 }
 
@@ -1106,16 +1147,17 @@ div.modal.notificationModal p.pTextDescAlertModal {
 
 /* Large devices (desktops, 992px and up) */
 
-@media (max-width: 991px) {}
+@media (max-width: 991px) {
+}
 
 /* Medium devices (tablets, 768px and up) */
 
-@media (max-width: 767px) {}
+@media (max-width: 767px) {
+}
 
 /* Small devices (landscape phones, 576px and up) */
 
 @media (max-width: 575px) {
-
   /* Variables */
   :root {
     /* Fonts Size */
@@ -1249,9 +1291,11 @@ div.modal.notificationModal p.pTextDescAlertModal {
     } */
 }
 
-@media (max-width: 500px) {}
+@media (max-width: 500px) {
+}
 
-@media (max-width: 450px) {}
+@media (max-width: 450px) {
+}
 
 @media (max-width: 372px) {
   div.modal.notificationModal.show .modal-dialog {
@@ -1380,17 +1424,17 @@ div.modal.notificationModal p.pTextDescAlertModal {
 }
 
 .button2 {
-  background-color: rgb(52, 168, 200);
-  border-color: rgb(52, 168, 200);
+  background-color: #1664ab;
+  border-color: #1664ab;
   color: rgb(255, 255, 255);
 }
 
 .button2:hover {
   background-color: rgba(255, 255, 255, 0);
-  border-color: rgb(52, 168, 200);
-  color: rgb(52, 168, 200);
+  border-color: #1664ab;
+  color: #1664ab;
 }
-
+  
 .button3 {
   background-color: rgba(255, 255, 255, 0);
   border-color: rgb(52, 168, 200);
@@ -1440,13 +1484,45 @@ div.modal.notificationModal p.pTextDescAlertModal {
   color: rgb(255, 255, 255);
 }
 
+/****** green buttons ******/
+.button4 {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(124, 191, 66); /* #7cbf42 */
+  color: rgb(124, 191, 66);
+}
+.button4:hover {
+  border: 3px solid rgba(124, 191, 66, 0.7);
+  color: rgba(124, 191, 66, 0.7);
+}
+
+.button5 {
+  background-color: rgb(124, 191, 66);
+  border-color: rgb(124, 191, 66);
+  color: rgb(255, 255, 255);
+}
+.button5:hover {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(124, 191, 66);
+  color: rgb(124, 191, 66);
+}
+
+.button6 {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(124, 191, 66);
+  color: rgb(124, 191, 66);
+}
+.button6:hover {
+  background-color: rgb(124, 191, 66);
+  border-color: rgb(124, 191, 66);
+  color: rgb(255, 255, 255);
+}
 
 .containerApp {
   min-width: 1280px;
 }
 
 .FooterSistema {
-  min-height: 50PX;
+  min-height: 50px;
   display: flex !important;
   justify-content: center !important;
 }
@@ -1458,6 +1534,14 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border-radius: 10px;
 }
 
-.ML-15{
+.ML-15 {
   margin-left: 15px;
+}
+
+.TGray {
+  color: #606062 !important;
+}
+
+.BlueSistem {
+  color: #1664ab !important;
 }

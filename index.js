@@ -32,6 +32,7 @@ app.get(
     "/modulos/tareasmenu/GestorUsuarios.html",
     "/modulos/tareasmenu/GestorUsuarios.css",
     "/modulos/tareasmenu/GestorUsuarios.js",
+    "/lib/datatables/datatables.min.js",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
@@ -74,6 +75,7 @@ app.post("/api/sesion", (req, res) => {
   req.session.idusuario = idusuario;
   req.session.idrol = idrol;
   res.send();
+  console.log(req.session);
 });
 
 //
@@ -235,7 +237,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

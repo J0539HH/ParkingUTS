@@ -202,3 +202,103 @@ function configuracionInputError() {
       .css("display", "none");
   });
 }
+
+function spinner(texto) {
+  if (texto === "") {
+    texto = "Cargando...";
+  }
+  if (texto === false) {
+    $("#spinner").hide();
+    return;
+  }
+  $("#textLoad").html(texto);
+  $("#spinner").show();
+}
+
+function AlertIncorrecta(Texto) {
+  Swal.fire({
+    title: "",
+    text: Texto,
+    imageUrl: "../../Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary btnHidden",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // CONFIRMED CODE
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
+
+function AlertCorrectX(Texto) {
+  Swal.fire({
+    title: "",
+    text: Texto,
+    imageUrl: "../../Multimedia/icoAlertSuccess.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary btnHidden",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // CONFIRMED CODE
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
