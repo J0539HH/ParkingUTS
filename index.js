@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const portApi = 4000;
 
-console.log("Versión de Express: " + express.version);
+console.log("APLICACIONES EMPRESARIALES 2023");
 
 app.get(
   [
@@ -94,9 +94,7 @@ if (require.main === module) {
 }
 
 app.listen(portApi, () => {
-  console.log(
-    `Api  database corriendo en corriendo en http://localhost:${portApi} by JDFM`
-  );
+  console.log(`Database API corriendo en http://localhost:${portApi} by JDFM`);
 });
 
 app.use(express.json());

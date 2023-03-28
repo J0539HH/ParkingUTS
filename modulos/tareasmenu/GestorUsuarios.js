@@ -9,7 +9,7 @@ $(document).ready(function () {
   });
 
   $("#agregarNewUser").on("click", function () {
-    AgregarUsuario();
+    ValidarInsercion();
   });
 
   $("#abrirModal").on("click", function () {
@@ -28,33 +28,6 @@ $(document).ready(function () {
     $("#sidebarCollapse").toggleClass("btn-sidebar-activado");
   });
 });
-
-function AgregarUsuario() {
-  let NewUsuario = $("#usuario").val();
-  let NewPass = $("#contraseña").val();
-  let NewTipoU = $("#tipoUsuario").val();
-  let NewName = $("#nombre").val();
-
-  if (NewUsuario === "") {
-    AlertIncorrectX("Debes agregar un nombre de usuario");
-    return;
-  }
-  if (NewPass === "") {
-    AlertIncorrectX("Debes agregar una contraseña para el usuario");
-    return;
-  }
-  if (NewTipoU === "") {
-    AlertIncorrectX("Debes agregar un tipo de usuario");
-    return;
-  }
-  if (NewName === "") {
-    AlertIncorrectX(
-      "Debes agregar el nombre de la persona que utilizará el perfil"
-    );
-    return;
-  }
-  ValidarInsercion();
-}
 
 function cargarUsuarios() {
   spinner("Cargando usuarios, por favor espere");
@@ -117,7 +90,7 @@ function CargarTablaUsuarios(tableData) {
             '<a class="btn btn-primary btn-sm" onclick="editarUsuario(' +
             row.idusuario +
             ')">Editar</a> ' +
-            '<a class="btn btn-danger btn-sm ml-1" onclick="eliminarUsuario(' +
+            '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
             row.idusuario +
             ')">Eliminar</a>'
           );
@@ -207,6 +180,30 @@ function limpiarModalEdit() {
 }
 
 function ValidarInsercion() {
+  let NewUsuario = $("#usuario").val();
+  let NewPass = $("#contraseña").val();
+  let NewTipoU = $("#tipoUsuario").val();
+  let NewName = $("#nombre").val();
+
+  if (NewUsuario === "") {
+    AlertIncorrectX("Debes agregar un nombre de usuario");
+    return;
+  }
+  if (NewPass === "") {
+    AlertIncorrectX("Debes agregar una contraseña para el usuario");
+    return;
+  }
+  if (NewTipoU === "") {
+    AlertIncorrectX("Debes agregar un tipo de usuario");
+    return;
+  }
+  if (NewName === "") {
+    AlertIncorrectX(
+      "Debes agregar el nombre de la persona que utilizará el perfil"
+    );
+    return;
+  }
+
   Swal.fire({
     title: "",
     text: "Estas seguro de agregar un nuevo usuario al sistema?",
@@ -273,12 +270,84 @@ function InsertarUsuario() {
     .then((result) => {
       console.log(result);
       AlertCorrectX("Usuario regristrado en el sistema ");
+      cargarUsuarios();
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
     });
 
-  setTimeout(cargarUsuarios, 2500);
   limpiarModal();
   $("#agregarUsuarioModal").modal("hide");
+}
+
+function ValidarEliminacion(Id) {
+  Swal.fire({
+    title: "",
+    html:
+      "¿Estás seguro de eliminar el usuario con <b>identificador: " +
+      Id +
+      "</b> del sistema?",
+    imageUrl: "../../Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "Cancelar",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary ",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      EliminarDefinitivo(Id);
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
+
+function EliminarDefinitivo(idUser) {
+  spinner("Cargando datos del usuario, por favor espere");
+  const url = "/api/deleteUser";
+  const data = {
+    idusuario: idUser,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      AlertCorrectX("El usuario se elimino con exito!");
+      cargarUsuarios();
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo cargar el usuario");
+      $("#spinner").hide();
+    });
 }

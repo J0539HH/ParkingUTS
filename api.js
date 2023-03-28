@@ -61,6 +61,28 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
   }
 });
 
+router.post("/deleteUser", async (req, res) => {
+  try {
+    const idusuario = req.body.idusuario;
+    await client.connect();
+    const database = client.db("docutech");
+    const collection = database.collection("usuarios");
+    const result = await collection.deleteOne({
+      idusuario: idusuario,
+    });
+    if (result.deletedCount > 0) {
+      res.json({ success: true });
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  } finally {
+    await client.close();
+  }
+});
+
 router.post("/usuariosTotal", jsonParser, async (req, res) => {
   try {
     await client.connect();
