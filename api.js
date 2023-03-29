@@ -102,6 +102,25 @@ router.post("/usuariosTotal", jsonParser, async (req, res) => {
   }
 });
 
+router.post("/EditUser", jsonParser, async (req, res) => {
+  try {
+    const { usuario: usuario, password: password, idrol: idrol, nombre: nombre, estado: estado } = req.body;
+    const idusuario = parseInt(req.body.idusuario);
+    const idrolInt = parseInt(idrol);
+    const estadoBool = (estado);
+    await client.connect();
+    const database = client.db("docutech");
+    const collection = database.collection("usuarios");
+    const result = await collection.updateOne({ idusuario: idusuario }, { $set: { usuario: usuario, password: password, idrol: idrolInt, nombre: nombre, estado: estadoBool } });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  } finally {
+    await client.close();
+  }
+});
+
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {
     const { usuario, password, idrol, nombre } = req.body;
