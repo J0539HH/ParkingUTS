@@ -3,6 +3,9 @@ var idrol = null;
 $(document).ready(function () {
   verificarSesion();
   cargarUsuarios();
+  LimpiarFiltros();
+  limpiarModal();
+  limpiarModalEdit();
 
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
@@ -10,6 +13,10 @@ $(document).ready(function () {
 
   $("#ActualizarUser").on("click", function () {
     ValidarActualizacion();
+  });
+
+  $("#BotonBusqueda").on("click", function () {
+    BuscarXfiltros();
   });
 
   $("#agregarNewUser").on("click", function () {
@@ -30,7 +37,67 @@ $(document).ready(function () {
     $("#sidebarCollapse").toggleClass("navbar-btn");
     $("#sidebarCollapse").toggleClass("btn-sidebar-activado");
   });
+
+  $("#verContraseñaMod").click(function () {
+    var tipo = $("#contraseñaMod").attr("type");
+    if (tipo == "password") {
+      $("#contraseñaMod").attr("type", "text");
+      $("#verContraseñaMod").text("Ocultar");
+    } else {
+      $("#contraseñaMod").attr("type", "password");
+      $("#verContraseñaMod").text("Mostrar");
+    }
+  });
 });
+
+function BuscarXfiltros() {
+  spinner("Cargando usuarios solicitados, por favor espere");
+  let busNombre = $("#busNombre").val();
+  let busRol = parseInt($("#busRol").val());
+  let busUsuario = $("#busUsuario").val().toUpperCase();
+  let busEstado0 = $("#busEstado").val();
+  busEstado = "";
+  if (busEstado0 === "true") {
+    busEstado = true;
+  }
+  if (busEstado0 === "false") {
+    busEstado = false;
+  }
+
+  const url = "/api/FiltrarUsuarios";
+  const data = {
+    usuario: busUsuario,
+    nombre: busNombre,
+    idrol: busRol,
+    estado: busEstado,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      const tableData = { data: result };
+      CargarTablaUsuarios(tableData);
+      LimpiarFiltros();
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se encontraron coincidencias.");
+      LimpiarFiltros();
+      $("#spinner").hide();
+    });
+}
+
+function LimpiarFiltros() {
+  $("#busNombre").val("");
+  $("#busRol").val("");
+  $("#busUsuario").val("");
+  $("#busEstado").val("");
+}
 
 function cargarUsuarios() {
   spinner("Cargando usuarios, por favor espere");
@@ -53,6 +120,8 @@ function cargarUsuarios() {
 }
 
 function CargarTablaUsuarios(tableData) {
+  console.log(tableData);
+
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -168,6 +237,8 @@ function MostrarDatosUsuario(Data) {
   $("#nombreMod").val(Data.nombre);
   $("#estadoMod").val(Data.estado.toString());
   $("#modificarUsuarioModal").modal("show");
+  $("#contraseñaMod").attr("type", "password");
+  $("#verContraseñaMod").text("Mostrar");
 }
 
 function ValidarActualizacion(IdUsuario) {
@@ -367,7 +438,7 @@ function InsertarUsuario() {
   spinner("Registrando usuario, por favor espere");
   let NewUsuario = $("#usuario").val().toUpperCase();
   let NewPass = $("#contraseña").val();
-  let NewTipoU = $("#tipoUsuario").val();
+  let NewTipoU = parseInt($("#tipoUsuario").val());
   let NewName = $("#nombre").val();
   const url = "/api/NewUser";
   const data = {

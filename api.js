@@ -153,4 +153,34 @@ router.post("/NewUser", jsonParser, async (req, res) => {
   }
 });
 
+// Consultar Por filtros
+router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {};
+
+    if (req.body.nombre) {
+      query.nombre = { $regex: req.body.nombre, $options: "i" };
+    }
+    if (req.body.idrol) {
+      query.idrol = req.body.idrol;
+    }
+    if (req.body.usuario) {
+      query.usuario = req.body.usuario;
+    }
+    if (typeof req.body.estado === "boolean") {
+      query.estado = req.body.estado;
+    }
+    const result = await collection.find(query).toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron usuarios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

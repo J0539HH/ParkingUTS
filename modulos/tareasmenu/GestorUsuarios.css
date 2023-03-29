@@ -50,11 +50,6 @@ select,
   margin: 0px 40px 12px 40px;
 }
 
-.chequedpdfcsv {
-  padding: 25px 0px 0px 70px;
-  width: auto;
-}
-
 .select2.select2-container.select2-container--default {
   font-size: 12px !important;
   width: 100% !important;
@@ -95,9 +90,9 @@ select,
   width: 20px;
   text-align: center;
   justify-content: center;
-  padding: 1px 69px 25px 22px;
+  padding: 4px 69px 25px 22px;
   max-height: 5px;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 .contenedorBotonesSide {
@@ -235,6 +230,11 @@ i.rotateImg::before {
   margin-top: -70px;
 }
 
+#verContraseñaMod {
+  height: 80% !important;
+  padding: 3px 12px 9px 5px;
+}
+
 .BotonRegistrar {
   height: 30px;
   padding: 5px 32px 25px 26px;
@@ -249,4 +249,8 @@ i.rotateImg::before {
 .iconoFormulario {
   margin: 6px 0 -6px 13%;
   height: 21px;
+}
+
+body {
+  overflow-x: hidden;
 }

@@ -54,7 +54,7 @@ function verificarSesion() {
         );
         setTimeout(function () {
           window.location.href = "../../acceso/login.html";
-        }, 10500);
+        }, 1000);
       }
     })
     .catch((error) => {
