@@ -40,6 +40,7 @@ $(document).ready(function () {
 });
 
 function verificarSesion() {
+  //  return;
   console.log("VerificandoSessionbyJDFM");
   fetch("/api/sesion")
     .then((response) => response.json())
@@ -47,12 +48,13 @@ function verificarSesion() {
       const idusuario = data.idusuario;
       idrol = data.idrol;
       if (idusuario === undefined || idusuario === null) {
+        $("#ContenedorTotal").addClass("hidden");
         AlertIncorrectX(
           "Estas tratando de acceder al sistema sin credenciales"
         );
         setTimeout(function () {
           window.location.href = "../../acceso/login.html";
-        }, 1500);
+        }, 10500);
       }
     })
     .catch((error) => {

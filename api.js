@@ -4,21 +4,30 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
-
 const { MongoClient } = require("mongodb");
 
+// Conexion activa a la base de datos
 const uri =
   "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.5iod7gv.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
+
+(async () => {
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB Atlas / DOCUTECHCLUSTER ");
+  } catch (err) {
+    console.error(err);
+  }
+})();
+const database = client.db("docutech");
 
 router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+// Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
   try {
-    await client.connect();
-    const database = client.db("docutech");
     const collection = database.collection("usuarios");
     const query = {
       usuario: req.body.usuario,
@@ -34,15 +43,11 @@ router.post("/usuarios", jsonParser, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
-
+// Cargar usuario especifico
 router.post("/EspecificUser", jsonParser, async (req, res) => {
   try {
-    await client.connect();
-    const database = client.db("docutech");
     const collection = database.collection("usuarios");
     const query = {
       idusuario: req.body.idusuario,
@@ -56,15 +61,12 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
-
+// Eliminar usuario especifico
 router.post("/deleteUser", async (req, res) => {
   try {
     const idusuario = req.body.idusuario;
-    await client.connect();
     const database = client.db("docutech");
     const collection = database.collection("usuarios");
     const result = await collection.deleteOne({
@@ -78,15 +80,11 @@ router.post("/deleteUser", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
-
+// Cargar todos los usuarios
 router.post("/usuariosTotal", jsonParser, async (req, res) => {
   try {
-    await client.connect();
-    const database = client.db("docutech");
     const collection = database.collection("usuarios");
     const result = await collection.find({}).toArray();
     if (result.length > 0) {
@@ -97,36 +95,44 @@ router.post("/usuariosTotal", jsonParser, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
-
+// Editar usuario especifico
 router.post("/EditUser", jsonParser, async (req, res) => {
   try {
-    const { usuario: usuario, password: password, idrol: idrol, nombre: nombre, estado: estado } = req.body;
+    const {
+      usuario: usuario,
+      password: password,
+      idrol: idrol,
+      nombre: nombre,
+      estado: estado,
+    } = req.body;
     const idusuario = parseInt(req.body.idusuario);
     const idrolInt = parseInt(idrol);
-    const estadoBool = (estado);
-    await client.connect();
-    const database = client.db("docutech");
+    const estadoBool = estado;
     const collection = database.collection("usuarios");
-    const result = await collection.updateOne({ idusuario: idusuario }, { $set: { usuario: usuario, password: password, idrol: idrolInt, nombre: nombre, estado: estadoBool } });
+    const result = await collection.updateOne(
+      { idusuario: idusuario },
+      {
+        $set: {
+          usuario: usuario,
+          password: password,
+          idrol: idrolInt,
+          nombre: nombre,
+          estado: estadoBool,
+        },
+      }
+    );
     res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
-
+// Registrar nuevo usuario
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {
     const { usuario, password, idrol, nombre } = req.body;
-
-    await client.connect();
-    const database = client.db("docutech");
     const collection = database.collection("usuarios");
 
     const lastUser = await collection.findOne({}, { sort: { idusuario: -1 } });
@@ -144,8 +150,6 @@ router.post("/NewUser", jsonParser, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
-  } finally {
-    await client.close();
   }
 });
 

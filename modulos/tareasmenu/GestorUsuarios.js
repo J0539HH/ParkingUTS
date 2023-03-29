@@ -12,6 +12,9 @@ $(document).ready(function () {
     ValidarActualizacion();
   });
 
+  $("#agregarNewUser").on("click", function () {
+    ValidarInsercion();
+  });
   $("#abrirModal").on("click", function () {
     limpiarModal();
   });
@@ -129,16 +132,9 @@ function CargarTablaUsuarios(tableData) {
   });
 }
 
-function limpiarModal() {
-  $("#usuario").val("");
-  $("#contraseña").val("");
-  $("#tipoUsuario").val("");
-  $("#nombre").val("");
-}
-
 function editarUsuario(idUser) {
   spinner("Cargando datos del usuario, por favor espere");
-
+  console.log(idUser);
   $("#ActualizarUser").on("click", function () {
     ValidarActualizacion(idUser);
   });
@@ -174,16 +170,6 @@ function MostrarDatosUsuario(Data) {
   $("#modificarUsuarioModal").modal("show");
 }
 
-function limpiarModalEdit() {
-  $("#usuarioMod").val("");
-  $("#contraseñaMod").val("");
-  $("#tipoUsuarioMod").val("");
-  $("#nombreMod").val("");
-  $("#estadoMod").val("");
-}
-
-
-
 function ValidarActualizacion(IdUsuario) {
   let UsuarioEdit = $("#usuarioMod").val();
   let PasswordEdit = $("#contraseñaMod").val();
@@ -211,9 +197,7 @@ function ValidarActualizacion(IdUsuario) {
   }
 
   if (EstadoEdit === "") {
-    AlertIncorrectX(
-      "Debes agregar el estado del usuario"
-    );
+    AlertIncorrectX("Debes agregar el estado del usuario");
     return;
   }
 
@@ -260,8 +244,58 @@ function ValidarActualizacion(IdUsuario) {
   });
 }
 
-function ValidarInsercion() {
+function RealizarModificacion(IdUsuario) {
+  spinner("Modificando datos del usuario, por favor espere");
+  let UsuarioEdit = $("#usuarioMod").val();
+  let PasswordEdit = $("#contraseñaMod").val();
+  let IdRolEdit = $("#tipoUsuarioMod").val();
+  let NombreEdit = $("#nombreMod").val();
+  let estado = $("#estadoMod").val();
+  EstadoEdit = false;
+  if (estado === "true") {
+    EstadoEdit = true;
+  }
 
+  const url = "/api/EditUser";
+  const dataM = {
+    idusuario: IdUsuario,
+    usuario: UsuarioEdit,
+    password: PasswordEdit,
+    idrol: IdRolEdit,
+    nombre: NombreEdit,
+    estado: EstadoEdit,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(dataM),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      AlertCorrectX("Usuario Modificado exitosamente!");
+      $("#spinner").hide();
+      cargarUsuarios();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
+      $("#spinner").hide();
+    });
+
+  limpiarModalEdit();
+  $("#modificarUsuarioModal").modal("hide");
+}
+
+function limpiarModalEdit() {
+  $("#usuarioMod").val("");
+  $("#contraseñaMod").val("");
+  $("#tipoUsuarioMod").val("");
+  $("#nombreMod").val("");
+  $("#estadoMod").val("");
+}
+
+function ValidarInsercion() {
   let NewUsuario = $("#usuario").val();
   let NewPass = $("#contraseña").val();
   let NewTipoU = $("#tipoUsuario").val();
@@ -329,53 +363,9 @@ function ValidarInsercion() {
   });
 }
 
-function RealizarModificacion(IdUsuario) {
-  spinner("Modificando datos del usuario, por favor espere");
-  let UsuarioEdit = $("#usuarioMod").val();
-  let PasswordEdit = $("#contraseñaMod").val();
-  let IdRolEdit = $("#tipoUsuarioMod").val();
-  let NombreEdit = $("#nombreMod").val();
-  let estado = $("#estadoMod").val();
-  EstadoEdit = false;
-  if (estado === "true") {
-    EstadoEdit = true;
-  }
-
-  const url = "/api/EditUser";
-  const dataM = {
-    idusuario: IdUsuario,
-    usuario: UsuarioEdit,
-    password: PasswordEdit,
-    idrol: IdRolEdit,
-    nombre: NombreEdit,
-    estado: EstadoEdit
-  };
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(dataM),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      AlertCorrectX("Usuario Modificado exitosamente!");
-      $("#spinner").hide();
-      cargarUsuarios();
-    })
-    .catch((error) => {
-      console.error("Error al ingresar:", error);
-      $("#spinner").hide();
-    });
-
-  limpiarModalEdit();
-  $("#modificarUsuarioModal").modal("hide");
-}
-
-
 function InsertarUsuario() {
   spinner("Registrando usuario, por favor espere");
-  let NewUsuario = $("#usuario").val();
+  let NewUsuario = $("#usuario").val().toUpperCase();
   let NewPass = $("#contraseña").val();
   let NewTipoU = $("#tipoUsuario").val();
   let NewName = $("#nombre").val();
@@ -406,6 +396,13 @@ function InsertarUsuario() {
 
   limpiarModal();
   $("#agregarUsuarioModal").modal("hide");
+}
+
+function limpiarModal() {
+  $("#usuario").val("");
+  $("#contraseña").val("");
+  $("#tipoUsuario").val("");
+  $("#nombre").val("");
 }
 
 function ValidarEliminacion(Id) {

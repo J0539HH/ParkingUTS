@@ -174,7 +174,7 @@ function AlertCorrecta(Texto) {
 }
 
 function ValidarUsuario() {
-  const usuario = document.getElementById("usuario").value;
+  const usuario = $("#usuario").val().toUpperCase();
   const password = document.getElementById("password").value;
   const url = "/api/usuarios";
   const data = {
@@ -209,7 +209,6 @@ function CerrarAlerta() {
 }
 
 function IniciarSession(idusuario, idrol) {
-  
   fetch("/api/sesion", {
     method: "POST",
     body: JSON.stringify({ idusuario: idusuario, idrol: idrol }),

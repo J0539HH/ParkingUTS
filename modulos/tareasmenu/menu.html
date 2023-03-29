@@ -1,151 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="icon" type="image/png" href="../../Multimedia/pc.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" />
-  <title>Menu principal</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/pc.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Menu principal</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icon-->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
-  <!-- OverlayScrollbars -->
-  <link rel="stylesheet" href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
-  <!-- Sweet Alert -->
-  <link rel="stylesheet" href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
-  <!-- CSS Site -->
-  <link rel="stylesheet" href="menu.css" />
-  <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
-</head>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
+      />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
+      />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
 
-<body>
-  <div></div>
-  <div id="ContenedorMenu">
-    <div id="templateContainer">
-      <nav class="navbar navbar-fixed-top alta-theme" style="position: relative; background: white">
-        <div class="container-fluid containerApp">
-          <div class="navbar-header" style="display: flex">
-            <span style="float: left; font-size: 25px; margin: 20px 10px"><img src="../../Multimedia/logo.jpg"
-                height="40px;" style="margin-right: 10px" /></span>
-            <h6 class="InfoCabecera">
-              Sistema administrador de mantenimientos en dispositivos
-              electrónicos.
-            </h6>
-          </div>
-          <a id="volverLogin" class="button button8 BotonCabecera">Salir del sistema</a>
-        </div>
-      </nav>
+  <body>
+    <div id="ContenedorTotal">
+      <div id="ContenedorMenu">
+        <div id="templateContainer">
+          <nav class="navbar navbar-fixed-top alta-theme" style="position:
+            relative; background: white">
+            <div class="container-fluid containerApp">
+              <div class="navbar-header" style="display: flex">
+                <span style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    src="../../Multimedia/logo.jpg"
+                    height="40px;" style="margin-right: 10px" /></span>
+                <h6 class="InfoCabecera">
+                  Sistema administrador de mantenimientos en dispositivos
+                  electrónicos.
+                </h6>
+              </div>
+              <a id="volverLogin" class="button button8 BotonCabecera">Salir del
+                sistema</a>
+            </div>
+          </nav>
 
-      <br />
-      <h1 class="SubtituloMenu">Herramientas disponibles!</h1>
-      <div class="container-fluid alta-theme">
-        <div class="col-md-12 main alta-theme">
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <div class="circular-menu" id="GestionDeUsuarios">
-                <div class="circle">
-                  <a href=""><span class="fa fa-home fa-2x"></span></a>
-                  <a href=""><span class="fa fa-facebook fa-2x"></span></a>
-                  <a href=""><span class="fa fa-twitter fa-2x"></span></a>
-                  <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
-                  <a href=""><span class="fa fa-github fa-2x"></span></a>
-                  <a href=""><span class="fa fa-rss fa-2x"></span></a>
-                  <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+          <br />
+          <h1 class="SubtituloMenu">Herramientas disponibles!</h1>
+          <div class="container-fluid alta-theme">
+            <div class="col-md-12 main alta-theme">
+              <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                  <div class="circular-menu" id="GestionDeUsuarios">
+                    <div class="circle">
+                      <a href=""><span class="fa fa-home fa-2x"></span></a>
+                      <a href=""><span class="fa fa-facebook fa-2x"></span></a>
+                      <a href=""><span class="fa fa-twitter fa-2x"></span></a>
+                      <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
+                      <a href=""><span class="fa fa-github fa-2x"></span></a>
+                      <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                      <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+                    </div>
+                    <button class="dashboard-item menu-button"
+                      style="background-color: #8561c8">
+                      <span class="fa fa-file-text-o"></span>
+                    </button>
+                  </div>
+                  <h4>Gestor de usuarios</h4>
                 </div>
-                <button class="dashboard-item menu-button" style="background-color: #8561c8">
-                  <span class="fa fa-file-text-o"></span>
-                </button>
-              </div>
-              <h4>Gestor de usuarios</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <div class="circular-menu" id="CreacionServicios">
-                <div class="circle">
-                  <a href=""><span class="fa fa-twitter fa-2x"></span></a>
-                  <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
-                  <a href=""><span class="fa fa-rss fa-2x"></span></a>
-                  <a href=""><span class="fa fa-rss fa-2x"></span></a>
-                  <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                  <div class="circular-menu" id="CreacionServicios">
+                    <div class="circle">
+                      <a href=""><span class="fa fa-twitter fa-2x"></span></a>
+                      <a href=""><span class="fa fa-linkedin fa-2x"></span></a>
+                      <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                      <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                      <a href=""><span class="fa fa-pinterest fa-2x"></span></a>
+                    </div>
+                    <button class="dashboard-item menu-button"
+                      style="background-color: #00b8ed">
+                      <span class="fa fa-group"></span>
+                    </button>
+                  </div>
+                  <h4>Creacion de servicios</h4>
                 </div>
-                <button class="dashboard-item menu-button" style="background-color: #00b8ed">
-                  <span class="fa fa-group"></span>
-                </button>
-              </div>
-              <h4>Creacion de servicios</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <div class="circular-menu" id="GestionarServicio">
-                <div class="circle">
-                  <a href=""><span class="fa fa-home fa-2x"></span></a>
-                  <a href=""><span class="fa fa-github fa-2x"></span></a>
-                  <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                  <div class="circular-menu" id="GestionarServicio">
+                    <div class="circle">
+                      <a href=""><span class="fa fa-home fa-2x"></span></a>
+                      <a href=""><span class="fa fa-github fa-2x"></span></a>
+                      <a href=""><span class="fa fa-rss fa-2x"></span></a>
+                    </div>
+                    <button class="dashboard-item menu-button"
+                      style="background-color: #68c182">
+                      <span class="fa fa-line-chart"></span>
+                    </button>
+                  </div>
+                  <h4>Gestion de servicios</h4>
                 </div>
-                <button class="dashboard-item menu-button" style="background-color: #68c182">
-                  <span class="fa fa-line-chart"></span>
-                </button>
-              </div>
-              <h4>Gestion de servicios</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <div class="circular-menu" id="ConsultarServicios">
-                <div class="circle">
-                  <a href=""><span class="fa fa-home fa-2x"></span></a>
-                  <a href=""><span class="fa fa-facebook fa-2x"></span></a>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                  <div class="circular-menu" id="ConsultarServicios">
+                    <div class="circle">
+                      <a href=""><span class="fa fa-home fa-2x"></span></a>
+                      <a href=""><span class="fa fa-facebook fa-2x"></span></a>
+                    </div>
+                    <button class="dashboard-item menu-button"
+                      style="background-color: #ffb54d">
+                      <span class="fa fa-industry"></span>
+                    </button>
+                  </div>
+                  <h4>Consultar servicios</h4>
                 </div>
-                <button class="dashboard-item menu-button" style="background-color: #ffb54d">
-                  <span class="fa fa-industry"></span>
-                </button>
               </div>
-              <h4>Consultar servicios</h4>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="contFooter" class="FooterSistema">
-    <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
-    <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
-    <img src="../../Multimedia/Javascript-logo.png" class="iconoFooter" />
-    <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
-    <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
-  </div>
-
-  <!-- jQuery -->
-  <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
-  <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
-  <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
-  <!-- Popper -->
-  <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
-  <!-- OverlayScrollbars -->
-  <script src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
-    type="text/javascript"></script>
-  <!-- Sweet Alert -->
-  <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-  <!-- Script Global -->
-  <script src="../../modulos/principal/scriptGlobal.js"></script>
-  <!-- Script Site -->
-  <script src="menu.js"></script>
-  <!-- Spinner Site -->
-  <div id="spinner" class="spinner">
-    <div style="position: fixed; left: 45%; top: 39%">
-      <img class="spinner-img" src="../../Multimedia/spinner.gif" alt="Loading" />
-      <div id="textLoad" class="spinner-msg"></div>
+    <div id="contFooter" class="FooterSistema">
+      <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+      <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+      <img src="../../Multimedia/Javascript-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
     </div>
-  </div>
-</body>
+
+    <!-- jQuery -->
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"></script>
+    <!-- Sweet Alert -->
+    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="menu.js"></script>
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div style="position: fixed; left: 45%; top: 39%">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
+    </div>
+  </body>
 
 </html>
