@@ -1389,6 +1389,8 @@ div.modal.notificationModal p.pTextDescAlertModal {
 /*buttons by jdfm*/
 .BotonCabecera {
   margin-top: 10px !important;
+  padding: 9px 24px 9px 26px !important;
+  border-radius: 10px;
 }
 
 /****** buttons' style starts here ******/
@@ -1434,7 +1436,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   border-color: #1664ab;
   color: #1664ab;
 }
-  
+
 .button3 {
   background-color: rgba(255, 255, 255, 0);
   border-color: rgb(52, 168, 200);

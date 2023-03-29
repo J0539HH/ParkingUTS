@@ -86,6 +86,7 @@ function BuscarXfiltros() {
       $("#spinner").hide();
     })
     .catch((error) => {
+      cargarUsuarios();
       AlertIncorrecta("No se encontraron coincidencias.");
       LimpiarFiltros();
       $("#spinner").hide();

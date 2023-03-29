@@ -3,7 +3,7 @@ var idrol = null;
 $(document).ready(function () {
   verificarSesion();
   $("#CreacionServicios").on("click", function () {
-    jAlert("Acá entra a creacion de servicios");
+    window.location.href = "../tareasmenu/CrearSevicio.html";
   });
 
   $("#GestionarServicio").on("click", function () {
@@ -52,5 +52,3 @@ $(function () {
     }
   );
 });
-
-
