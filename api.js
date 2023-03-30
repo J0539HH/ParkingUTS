@@ -157,7 +157,6 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
     const query = {};
-
     if (req.body.nombre) {
       query.nombre = { $regex: req.body.nombre, $options: "i" };
     }
@@ -205,6 +204,21 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       fechasalida: null,
     });
     res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+// Cargar todos los servicios
+router.post("/serviciosTotal", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("servicios");
+    const result = await collection.find({}).toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron usuarios");
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

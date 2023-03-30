@@ -28,6 +28,7 @@ app.get(
     "/Multimedia/nodejs.jpg",
     "/Multimedia/visual.jpg",
     "/Multimedia/pc.svg",
+    "/Multimedia/seleccionado.svg",
     "/modulos/tareasmenu/menu.html",
     "/modulos/tareasmenu/menu.js",
     "/modulos/tareasmenu/menu.css",
@@ -35,6 +36,9 @@ app.get(
     "/modulos/tareasmenu/GestorUsuarios.html",
     "/modulos/tareasmenu/GestorUsuarios.css",
     "/modulos/tareasmenu/GestorUsuarios.js",
+    "/modulos/tareasmenu/ReporteServicios.html",
+    "/modulos/tareasmenu/ReporteServicios.css",
+    "/modulos/tareasmenu/ReporteServicios.js",
     "/modulos/tareasmenu/CrearSevicio.html",
     "/modulos/tareasmenu/CrearSevicio.css",
     "/modulos/tareasmenu/CrearSevicio.js",
@@ -245,7 +249,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

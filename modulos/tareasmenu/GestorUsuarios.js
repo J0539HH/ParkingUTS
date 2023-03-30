@@ -136,9 +136,13 @@ function CargarTablaUsuarios(tableData) {
         className: " text-center",
         render: function (data, type, row) {
           Rol = row.idrol;
+          if (Rol === 3) {
+            return "<td class=' text-center'>Tecnico</td>";
+          }
           if (Rol === 1) {
             return "<td class=' text-center'>Administrador</td>";
-          } else {
+          }
+          if (Rol === 2) {
             return "<td class=' text-center'>Cliente</td>";
           }
         },

@@ -8,6 +8,17 @@ $(document).ready(function () {
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
   });
+  $("#GestionDeUsuarios").on("click", function () {
+    window.location.href = "../tareasmenu/GestorUsuarios.html";
+  });
+
+  $("#GestionDeUsuarios").on("click", function () {
+    window.location.href = "../tareasmenu/GestorUsuarios.html";
+  });
+
+  $("#ReporteServicios").on("click", function () {
+    window.location.href = "../tareasmenu/ReporteServicios.html";
+  });
 
   $("#GestionarServicio").on("click", function () {
     jAlert("Acá entra a gestionar un servicio");
@@ -17,9 +28,7 @@ $(document).ready(function () {
     jAlert("Acá entra a consultar los servicios");
   });
 
-  $("#GestionDeUsuarios").on("click", function () {
-    window.location.href = "../tareasmenu/GestorUsuarios.html";
-  });
+
 
   $("#volverLogin").on("click", function () {
     CerrarSession();
@@ -57,9 +66,27 @@ $(function () {
 });
 
 function verificarAccesos() {
+
+  // Opciones de un  cliente
   if (idrol === 2) {
-    $("#ContenedorGestionUsuarios").addClass("hidden");
-    $("#ContenedorGestionServicios").addClass("hidden");
+    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
   }
+
+  // Opciones de un  tecnico
+  if (idrol === 3) {
+    $("#ContenedorGestionServicios").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
+  }
+
+  // Opciones de un  administrador
+  if (idrol === 1) {
+    $("#ContenedorGestionUsuarios").removeClass("hidden");
+    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorGestionServicios").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
+    $("#ContenedorReporteServicios").removeClass("hidden");
+  }
+
   $("body").removeClass("hidden");
 }
