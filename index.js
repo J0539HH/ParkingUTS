@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
+const session = require("express-session");
+const cookieSession = require("cookie-session");
 const portApi = 4000;
 
 console.log("APLICACIONES EMPRESARIALES 2023");
@@ -53,10 +55,50 @@ app.get(
 );
 app.use(express.static("public"));
 
-//
-const session = require("express-session");
+// Configuracion de corro
 const bodyParser = require("body-parser");
-const cookieSession = require("cookie-session");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "docutech.info.empresariales@gmail.com",
+    pass: "pjsswumpcbagbgbx",
+  },
+});
+
+// Configurar body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Ruta para enviar correo electrónico
+app.post("/EnvioDecorreo", (req, res) => {
+  const correo = req.body.correo;
+  const asunto = req.body.asunto;
+  const mensaje = req.body.mensaje;
+
+  // Configurar los datos del correo electrónico
+  const mailOptions = {
+    from: "docutech.info.empresariales@gmail.com",
+    to: correo,
+    subject: asunto,
+    html: mensaje,
+  };
+
+  // Enviar el correo electrónico
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Error al enviar el correo electrónico");
+    } else {
+      console.log("Correo electrónico enviado: " + info.response);
+      res.send("Correo electrónico enviado correctamente");
+    }
+  });
+});
+
+//
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -252,7 +294,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

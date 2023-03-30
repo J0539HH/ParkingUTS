@@ -121,8 +121,6 @@ function cargarUsuarios() {
 }
 
 function CargarTablaUsuarios(tableData) {
-  console.log(tableData);
-
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -225,6 +223,7 @@ function editarUsuario(idUser) {
   })
     .then((response) => response.json())
     .then((result) => {
+      console.log(result);
       MostrarDatosUsuario(result);
       $("#spinner").hide();
     })
@@ -239,6 +238,7 @@ function MostrarDatosUsuario(Data) {
   $("#contraseñaMod").val(Data.password);
   $("#tipoUsuarioMod").val(Data.idrol);
   $("#nombreMod").val(Data.nombre);
+  $("#correoMod").val(Data.correo);
   $("#estadoMod").val(Data.estado.toString());
   $("#modificarUsuarioModal").modal("show");
   $("#contraseñaMod").attr("type", "password");
@@ -251,6 +251,7 @@ function ValidarActualizacion(IdUsuario) {
   let IdRolEdit = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
   let EstadoEdit = $("#estadoMod").val();
+  let CorreoEdit = $("#correoMod").val();
 
   if (UsuarioEdit === "") {
     AlertIncorrectX("Debes agregar un nombre de usuario");
@@ -273,6 +274,10 @@ function ValidarActualizacion(IdUsuario) {
 
   if (EstadoEdit === "") {
     AlertIncorrectX("Debes agregar el estado del usuario");
+    return;
+  }
+  if (CorreoEdit === "") {
+    AlertIncorrectX("Debes agregar el correo del usuario");
     return;
   }
 
@@ -325,7 +330,9 @@ function RealizarModificacion(IdUsuario) {
   let PasswordEdit = $("#contraseñaMod").val();
   let IdRolEdit = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
+  let correo = $("#correoMod").val();
   let estado = $("#estadoMod").val();
+
   EstadoEdit = false;
   if (estado === "true") {
     EstadoEdit = true;
@@ -339,6 +346,7 @@ function RealizarModificacion(IdUsuario) {
     idrol: IdRolEdit,
     nombre: NombreEdit,
     estado: EstadoEdit,
+    correo: correo,
   };
   fetch(url, {
     method: "POST",

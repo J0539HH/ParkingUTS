@@ -105,6 +105,7 @@ router.post("/EditUser", jsonParser, async (req, res) => {
       idrol: idrol,
       nombre: nombre,
       estado: estado,
+      correo: correo,
     } = req.body;
     const idusuario = parseInt(req.body.idusuario);
     const idrolInt = parseInt(idrol);
@@ -119,6 +120,7 @@ router.post("/EditUser", jsonParser, async (req, res) => {
           idrol: idrolInt,
           nombre: nombre,
           estado: estadoBool,
+          correo: correo,
         },
       }
     );
@@ -209,7 +211,16 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       fechasalida: null,
       idusuario,
     });
-    res.json(result);
+    const insertedItem = await collection.findOne({ idservicio: newId });
+    const usuariosCollection = database.collection("usuarios");
+    const usuario = await usuariosCollection.findOne({
+      idusuario: insertedItem.idusuario,
+    });
+    const response = {
+      servicio: insertedItem,
+      usuario: usuario,
+    };
+    res.json(response);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

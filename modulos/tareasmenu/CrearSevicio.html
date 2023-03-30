@@ -1,187 +1,206 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="icon" type="image/png" href="../../Multimedia/pc.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" />
-  <title>Crear Servicios</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/pc.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Crear Servicios</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icon-->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
-  <!-- OverlayScrollbars -->
-  <link rel="stylesheet" href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
-  <!-- Sweet Alert -->
-  <link rel="stylesheet" href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
-  <!-- CSS Site -->
-  <link rel="stylesheet" href="menu.css" />
-  <link rel="stylesheet" href="CrearSevicio.css" />
-  <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
-</head>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
+      />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
+      />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="CrearSevicio.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
 
-<body>
-  <div id="ContenedorTotal">
-    <div id="ContenedorFormularioIn" style="display: grid">
-      <div id="templateContainer">
-        <nav class="navbar navbar-fixed-top alta-theme" style="position: relative; background: white">
-          <div class="container-fluid containerApp">
-            <div class="navbar-header" style="width: 70%; min-width: 44rem">
-              <span style="float: left; font-size: 25px; margin: 20px 10px"><img src="../../Multimedia/logo.jpg"
-                  height="40px;" style="margin-right: 10px" /></span>
-              <h6 class="InfoCabecera">Interfaz para crear solicitudes de
-                servicios</h6>
+  <body>
+    <div id="ContenedorTotal">
+      <div id="ContenedorFormularioIn" style="display: grid">
+        <div id="templateContainer">
+          <nav class="navbar navbar-fixed-top alta-theme" style="position:
+            relative; background: white">
+            <div class="container-fluid containerApp">
+              <div class="navbar-header" style="width: 70%; min-width: 44rem">
+                <span style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    src="../../Multimedia/logo.jpg"
+                    height="40px;" style="margin-right: 10px" /></span>
+                <h6 class="InfoCabecera">Interfaz para crear solicitudes de
+                  servicios</h6>
+              </div>
+              <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
+                menú</a>
             </div>
-            <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
-              menú</a>
-          </div>
-        </nav>
-        <br />
-      </div>
-    </div>
-    <div id="mainContainer" class="container">
-      <!-- Header -->
-      <header>
-        <div class="row">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
-              divContSaldo">
-            <p class="TituloFormulario">
-              Formulario de ingreso
-            </p>
-          </div>
+          </nav>
+          <br />
         </div>
-      </header>
-
-      <div id="DatosTotalesFormulario">
-
-        <!-- Comodin Breadcrumb Section -->
-        <section class="row paddingLateral alterBreadcrumb hidden">
-          <div class="divBreadcrumb">
-            <i class="bi bi-arrow-left-short iBreadcrumb"></i>
-            <p class="pTxtBreadcrumb"></p>
-          </div>
-        </section>
-
-        <!-- Datos Origen Section -->
-        <section id="sectionDatosOrigen" class="row contPasos contMaxWeb">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
-            <h1 class="h1TitleForm">Datos del dispositivo</h1>
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput" for="direccionOrigen">Comentarios
-                de entrada</label>
-              <textarea placeholder="" type="text" class="form-control" id="comentariosEntrada"
-                name="direccionOrigen"> </textarea>
-              <span class="spanHelperErrorInput">La informacion es obligatoria</span>
+      </div>
+      <div id="mainContainer" class="container">
+        <!-- Header -->
+        <header>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+              divContSaldo">
+              <p class="TituloFormulario">
+                Formulario de ingreso
+              </p>
             </div>
           </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput" for="marca">Marca</label>
-              <select class="form-control selectpicker" id="marca" name="marca" data-live-search="false" data-size="5">
-                <option value="">-- Seleccione de la lista --</option>
-                <option value="acer">Acer</option>
-                <option value="apple">Apple</option>
-                <option value="asus">Asus</option>
-                <option value="dell">Dell</option>
-                <option value="google">Google</option>
-                <option value="hp">HP</option>
-                <option value="huawei">Huawei</option>
-                <option value="lenovo">Lenovo</option>
-                <option value="motorola">Motorola</option>
-                <option value="msi">MSI</option>
-                <option value="oneplus">OnePlus</option>
-                <option value="razer">Razer</option>
-                <option value="samsung">Samsung</option>
-                <option value="sony">Sony</option>
-                <option value="xiaomi">Xiaomi</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-          </div>
+        </header>
 
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput " for="tipoDispositivo">Tipo de
-                dispositivo</label>
-              <select class="form-control selectpicker" id="tipoDispositivo" name="tipoDispositivo"
-                data-live-search="false" data-size="5">
-                <option value="0">-- Seleccione de la lista --</option>
-                <option value="Computador Portatil">Computador Portatil</option>
-                <option value="Computador de escritorio">Computador de
-                  escritorio</option>
-                <option value="Celular">Celular</option>
-                <option value="Tablet">Tablet</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-          </div>
+        <div id="DatosTotalesFormulario">
 
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput" for="numeroSerie">Numero de
-                serie (Opcional)</label>
-              <input placeholder="" type="text" class="form-control" id="numeroSerie" name="numeroSerie">
+          <!-- Comodin Breadcrumb Section -->
+          <section class="row paddingLateral alterBreadcrumb hidden">
+            <div class="divBreadcrumb">
+              <i class="bi bi-arrow-left-short iBreadcrumb"></i>
+              <p class="pTxtBreadcrumb"></p>
             </div>
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+          </section>
+
+          <!-- Datos Origen Section -->
+          <section id="sectionDatosOrigen" class="row contPasos contMaxWeb">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
+              <h1 class="h1TitleForm">Datos del dispositivo</h1>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="direccionOrigen">Comentarios
+                  de entrada</label>
+                <textarea placeholder="" type="text" class="form-control"
+                  id="comentariosEntrada"
+                  name="direccionOrigen"> </textarea>
+                <span class="spanHelperErrorInput">La informacion es obligatoria</span>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="marca">Marca</label>
+                <select class="form-control selectpicker" id="marca"
+                  name="marca" data-live-search="false" data-size="5">
+                  <option value="">-- Seleccione de la lista --</option>
+                  <option value="acer">Acer</option>
+                  <option value="apple">Apple</option>
+                  <option value="asus">Asus</option>
+                  <option value="dell">Dell</option>
+                  <option value="google">Google</option>
+                  <option value="hp">HP</option>
+                  <option value="huawei">Huawei</option>
+                  <option value="lenovo">Lenovo</option>
+                  <option value="motorola">Motorola</option>
+                  <option value="msi">MSI</option>
+                  <option value="oneplus">OnePlus</option>
+                  <option value="razer">Razer</option>
+                  <option value="samsung">Samsung</option>
+                  <option value="sony">Sony</option>
+                  <option value="xiaomi">Xiaomi</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput " for="tipoDispositivo">Tipo de
+                  dispositivo</label>
+                <select class="form-control selectpicker" id="tipoDispositivo"
+                  name="tipoDispositivo"
+                  data-live-search="false" data-size="5">
+                  <option value="0">-- Seleccione de la lista --</option>
+                  <option value="Computador Portatil">Computador Portatil</option>
+                  <option value="Computador de escritorio">Computador de
+                    escritorio</option>
+                  <option value="Celular">Celular</option>
+                  <option value="Tablet">Tablet</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="numeroSerie">Numero de
+                  serie (Opcional)</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="numeroSerie" name="numeroSerie">
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
               contInterfaceBtn">
-            <button id="btnSolicitar" class="buttonBtn btnPrimary">
-              Solicitar
-            </button>
-          </div>
-        </section>
+              <button id="btnSolicitar" class="buttonBtn btnPrimary">
+                Solicitar
+              </button>
+            </div>
+          </section>
 
+        </div>
+      </div>
+
+    </div>
+    <div id="contFooter" class="FooterSistema">
+      <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+      <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+      <img src="../../Multimedia/Javascript-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+      <p class="txtFooter ml-4">Powered by JDFM ©</p>
+    </div>
+
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div style="position: fixed; left: 45%; top: 39%">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
       </div>
     </div>
 
-  </div>
-  <div id="contFooter" class="FooterSistema">
-    <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
-    <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
-    <img src="../../Multimedia/Javascript-logo.png" class="iconoFooter" />
-    <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
-    <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
-    <p class="txtFooter ml-4">Powered by JDFM ©</p>
-  </div>
-
-  <!-- Spinner Site -->
-  <div id="spinner" class="spinner">
-    <div style="position: fixed; left: 45%; top: 39%">
-      <img class="spinner-img" src="../../Multimedia/spinner.gif" alt="Loading" />
-      <div id="textLoad" class="spinner-msg"></div>
-    </div>
-  </div>
-
-  <!-- jQuery -->
-  <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
-  <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
-  <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
-  <!-- Popper -->
-  <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
-  <!-- OverlayScrollbars -->
-  <script src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
-    type="text/javascript"></script>
-  <!-- Sweet Alert -->
-  <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-  <!-- Script Global -->
-  <script src="../../modulos/principal/scriptGlobal.js"></script>
-  <!-- Script Site -->
-  <script src="CrearSevicio.js"></script>
-  <!-- Script Tables -->
-  <script src="../../lib/datatables/datatables.min.js"></script>
-</body>
+    <!-- jQuery -->
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"></script>
+    <!-- Sweet Alert -->
+    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="CrearSevicio.js"></script>
+    <!-- Script Tables -->
+    <script src="../../lib/datatables/datatables.min.js"></script>
+    <!-- Script AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
 
 </html>

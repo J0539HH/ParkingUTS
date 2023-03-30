@@ -109,7 +109,55 @@ function ValidarFormulario() {
     );
     return;
   }
+  if (Estado === "Entregado") {
+    ConfirmacioFinalizar();
+    return;
+  }
   ActualizarServicio();
+}
+
+function ConfirmacioFinalizar() {
+  Swal.fire({
+    title: "",
+    text: "Estas seguro de dar por finalizado el servicio?",
+    imageUrl: "../../Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "Volver",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary ",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      ActualizarServicio();
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
 }
 
 function ActualizarServicio() {
