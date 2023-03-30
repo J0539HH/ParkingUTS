@@ -152,7 +152,6 @@ router.post("/NewUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 // Consultar Por filtros
 router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
   try {
@@ -182,5 +181,35 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+// Registrar nuevo formulario
+router.post("/NewForm", jsonParser, async (req, res) => {
+  try {
+    const { comentariosentrada, marca, tipodispositivo, numeroserie } = req.body;
+    const collection = database.collection("servicios");
+
+    const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
+    const newId = lastUser ? lastUser.idservicio + 1 : 1;
+    const fechaEntrada = new Date();
+    const result = await collection.insertOne({
+      idservicio: newId,
+      comentariosentrada,
+      marca,
+      tipodispositivo,
+      numeroserie,
+      estado: true,
+      comentariossalida: "",
+      ram: 0,
+      tipodisco: "",
+      estado: "En cola",
+      fechaentrada: fechaEntrada,
+      fechasalida: null,
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 module.exports = router;

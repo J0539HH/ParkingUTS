@@ -2,6 +2,9 @@ var idrol = null;
 
 $(document).ready(function () {
   verificarSesion();
+  $("body").addClass("hidden");
+  setTimeout(verificarAccesos, 400);
+
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
   });
@@ -52,3 +55,11 @@ $(function () {
     }
   );
 });
+
+function verificarAccesos() {
+  if (idrol === 2) {
+    $("#ContenedorGestionUsuarios").addClass("hidden");
+    $("#ContenedorGestionServicios").addClass("hidden");
+  }
+  $("body").removeClass("hidden");
+}
