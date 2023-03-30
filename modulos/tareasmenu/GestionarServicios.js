@@ -48,7 +48,13 @@ function cargarInfoServicio() {
 }
 
 function cargarDatos(data) {
-  console.log(data);
+  if (data.estado === "Entregado") {
+    AlertIncorrecta(
+      "El servicio ya a sido entregado no puedes realizar modificaciones"
+    );
+    LimpiarFormulario();
+    return;
+  }
   $("#comentariosEntrada").val(data.comentariosentrada);
   $("#marca").val(data.marca);
   $("#tipoDispositivo").val(data.tipodispositivo);
@@ -91,6 +97,10 @@ function ValidarFormulario() {
   }
   if (Estado === "") {
     AlertIncorrecta("Debes indicar el estado del servicio");
+    return;
+  }
+  if (Estado === "En cola") {
+    AlertIncorrecta("No puedes dejar en cola el servicio a gestionar");
     return;
   }
   if (ComentariosSalida === "") {
@@ -151,5 +161,6 @@ function LimpiarFormulario() {
   $("#numeroServicio").val("");
   $("#comentariosSalida").val("");
   $("#ram").val("");
+  $("#estado").val("");
   $("#tipoDisco").val("");
 }
