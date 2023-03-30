@@ -16,8 +16,6 @@ $(document).ready(function () {
   $("#numeroServicio").on("change", function () {
     cargarInfoServicio();
   });
-
-
 });
 
 function cargarInfoServicio() {
@@ -44,27 +42,37 @@ function cargarInfoServicio() {
     .catch((error) => {
       console.log(error);
       AlertIncorrecta("No se pudo cargar el servicio");
+      LimpiarFormulario();
       $("#spinner").hide();
     });
 }
 
 function cargarDatos(data) {
+  console.log(data);
   $("#comentariosEntrada").val(data.comentariosentrada);
   $("#marca").val(data.marca);
   $("#tipoDispositivo").val(data.tipodispositivo);
   $("#estado").val(data.estado);
   $("#numeroSerie").val(data.numeroserie);
+  $("#comentariosSalida").val(data.comentariossalida);
+  $("#ram").val(data.ram);
+  $("#tipoDisco").val(data.tipodisco);
 }
 
 function ValidarFormulario() {
-  let ComentariosEntrada = $("#comentariosEntrada").val();
+  let ComentariosSalida = $("#comentariosSalida").val();
   let Marca = $("#marca").val();
+  let Estado = $("#estado").val();
   let TipoDispositivo = $("#tipoDispositivo").val();
+  let idservicio = $("#numeroServicio").val();
+  let ram = $("#ram").val();
+  let tipodisco = $("#tipoDisco").val();
 
-  if (ComentariosEntrada === "") {
-    AlertIncorrecta("Debes indicar alguna informacion sobre el mantenimiento del dispositivo");
+  if (idservicio === "") {
+    AlertIncorrecta("Debes indicar un número de servicio");
     return;
   }
+
   if (Marca === "") {
     AlertIncorrecta("Debes indicar la marca del dispositivo");
     return;
@@ -73,41 +81,66 @@ function ValidarFormulario() {
     AlertIncorrecta("Debes seleccionar un tipo de dispositivo");
     return;
   }
-  return;
-  RealizarInsercion();
+  if (ram === "") {
+    AlertIncorrecta("Debes indicar la cantidad de memoria ram del dispositivo");
+    return;
+  }
+  if (tipodisco === "") {
+    AlertIncorrecta("Debes indicar el tipo de almacenamiento del dispositivo");
+    return;
+  }
+  if (Estado === "") {
+    AlertIncorrecta("Debes indicar el estado del servicio");
+    return;
+  }
+  if (ComentariosSalida === "") {
+    AlertIncorrecta(
+      "Debes indicar alguna informacion sobre el mantenimiento del dispositivo"
+    );
+    return;
+  }
+  ActualizarServicio();
 }
 
-function RealizarInsercion() {
-  spinner("Registrando servicio, por favor espere");
-  let comentariosentrada = $("#comentariosEntrada").val();
-  let marca = $("#marca").val();
-  let tipodispositivo = $("#tipoDispositivo").val();
+function ActualizarServicio() {
+  spinner("Actualizando el  servicio, por favor espere");
+  let idservicio = parseInt($("#numeroServicio").val());
+  let ComentariosSalida = $("#comentariosSalida").val();
+  let Marca = $("#marca").val();
+  let Estado = $("#estado").val();
+  let TipoDispositivo = $("#tipoDispositivo").val();
   let numeroserie = $("#numeroSerie").val();
+  let ram = $("#ram").val();
+  let tipodisco = $("#tipoDisco").val();
 
-  const url = "/api/NewForm";
-  const data = {
-    comentariosentrada,
-    marca,
-    tipodispositivo,
-    numeroserie
+  const url = "/api/EditService";
+  const dataM = {
+    idservicio: idservicio,
+    marca: Marca,
+    tipodispositivo: TipoDispositivo,
+    estado: Estado,
+    numeroserie,
+    comentariossalida: ComentariosSalida,
+    ram: ram,
+    tipodisco: tipodisco,
   };
   fetch(url, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(dataM),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((response) => response.json())
     .then((result) => {
-      AlertCorrectX("Servicio regristrado en el sistema ");
-      $("#spinner").hide();
-      LimpiarFormulario();
+      AlertCorrectX("Servicio modificado exitosamente!");
     })
     .catch((error) => {
-      console.error("Error al registrar:", error);
-      $("#spinner").hide();
+      console.error("Error al modificar:", error);
     });
+
+  LimpiarFormulario();
+  $("#spinner").hide();
 }
 
 function LimpiarFormulario() {
@@ -115,4 +148,8 @@ function LimpiarFormulario() {
   $("#marca").val("");
   $("#tipoDispositivo").val("");
   $("#numeroSerie").val("");
-} 
+  $("#numeroServicio").val("");
+  $("#comentariosSalida").val("");
+  $("#ram").val("");
+  $("#tipoDisco").val("");
+}

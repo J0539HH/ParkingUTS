@@ -1,4 +1,4 @@
-// Api que conecta a MONGODB by Jhosep Florez //
+// Api que gestiona peticiones a MONGODB by Jhosep Florez //
 
 const express = require("express");
 const router = express.Router();
@@ -10,7 +10,6 @@ const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://J0539H:mTOvskP74buqKogn@clusterdocutech.5iod7gv.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
-
 (async () => {
   try {
     await client.connect();
@@ -183,9 +182,14 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
 // Registrar nuevo formulario
 router.post("/NewForm", jsonParser, async (req, res) => {
   try {
-    const { idusuario, comentariosentrada, marca, tipodispositivo, numeroserie } = req.body;
+    const {
+      idusuario,
+      comentariosentrada,
+      marca,
+      tipodispositivo,
+      numeroserie,
+    } = req.body;
     const collection = database.collection("servicios");
-    console.log(req.body);
     const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
     const newId = lastUser ? lastUser.idservicio + 1 : 1;
     const fechaEntrada = new Date();
@@ -198,7 +202,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       numeroserie,
       estado: true,
       comentariossalida: "",
-      ram: 0,
+      ram: "",
       tipodisco: "",
       estado: "En cola",
       fechaentrada: fechaEntrada,
@@ -215,11 +219,26 @@ router.post("/NewForm", jsonParser, async (req, res) => {
 router.post("/serviciosTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
-    const result = await collection.find({}).toArray();
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "usuarios",
+            localField: "idusuario",
+            foreignField: "idusuario",
+            as: "usuario",
+          },
+        },
+        {
+          $unwind: "$usuario",
+        },
+      ])
+      .toArray();
+
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("No se encontraron sevicios");
+      res.status(404).send("No se encontraron servicios");
     }
   } catch (err) {
     console.error(err);
@@ -237,7 +256,6 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
     if (result) {
       res.json(result);
     } else {
-      console.log(result);
       res.status(404).send("Servicio no encontrado");
     }
   } catch (err) {
@@ -245,6 +263,41 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+// Editar servicio especifico
+router.post("/EditService", jsonParser, async (req, res) => {
+  try {
+    const {
+      idservicio,
+      marca,
+      tipodispositivo,
+      estado,
+      numeroserie,
+      comentariossalida,
+      ram,
+      tipodisco,
+    } = req.body;
+    const collection = database.collection("servicios");
+    const fechasalida = new Date();
+    const result = await collection.updateOne(
+      { idservicio: idservicio },
+      {
+        $set: {
+          marca: marca,
+          comentariossalida: comentariossalida,
+          tipodispositivo: tipodispositivo,
+          numeroserie: numeroserie,
+          estado: estado,
+          fechasalida: fechasalida,
+          ram: ram,
+          tipodisco: tipodisco,
+        },
+      }
+    );
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 module.exports = router;

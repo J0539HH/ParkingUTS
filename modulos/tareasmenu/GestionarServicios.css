@@ -46,9 +46,12 @@ body {
 }
 
 #comentariosEntrada {
-  min-height: 100px;
+  min-height: 50px;
 }
 
 #comentariosSalida {
-  min-height: 100px;
+  min-height: 50px;
+}
+#btnGestionar {
+  margin-bottom: 60px !important;
 }

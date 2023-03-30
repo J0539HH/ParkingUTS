@@ -48,7 +48,6 @@ $(document).ready(function () {
   });
 });
 
-
 function cargarServicios() {
   spinner("Cargando servicios, por favor espere");
   const url = "/api/serviciosTotal";
@@ -83,18 +82,19 @@ function CargarTablaUsuarios(tableData) {
         className: "text-center",
         render: function (data, type, row, meta) {
           return data.charAt(0).toUpperCase() + data.slice(1);
-        }
+        },
       },
       { data: "estado", className: " text-center" },
       { data: "tipodispositivo", className: " text-center" },
+      { data: "usuario.nombre", className: " text-center" },
       {
         data: "fechaentrada",
         className: "text-center",
         render: function (data, type, row, meta) {
           var date = new Date(data);
-          var options = { day: 'numeric', month: 'long', year: 'numeric' };
-          return date.toLocaleDateString('es-ES', options);
-        }
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          return date.toLocaleDateString("es-ES", options);
+        },
       },
       { data: "comentariosentrada", className: " text-center" },
     ],
@@ -129,4 +129,3 @@ function CargarTablaUsuarios(tableData) {
     },
   });
 }
-
