@@ -133,7 +133,7 @@ router.post("/EditUser", jsonParser, async (req, res) => {
 // Registrar nuevo usuario
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {
-    const { usuario, password, idrol, nombre } = req.body;
+    const { usuario, password, idrol, nombre, correo } = req.body;
     const collection = database.collection("usuarios");
 
     const lastUser = await collection.findOne({}, { sort: { idusuario: -1 } });
@@ -146,6 +146,7 @@ router.post("/NewUser", jsonParser, async (req, res) => {
       idrol,
       nombre,
       estado: true,
+      correo,
     });
     res.json(result);
   } catch (err) {

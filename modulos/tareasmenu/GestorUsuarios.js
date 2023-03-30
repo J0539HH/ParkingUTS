@@ -383,6 +383,7 @@ function ValidarInsercion() {
   let NewPass = $("#contraseña").val();
   let NewTipoU = $("#tipoUsuario").val();
   let NewName = $("#nombre").val();
+  let Correo = $("#correo").val();
 
   if (NewUsuario === "") {
     AlertIncorrectX("Debes agregar un nombre de usuario");
@@ -394,6 +395,10 @@ function ValidarInsercion() {
   }
   if (NewTipoU === "") {
     AlertIncorrectX("Debes agregar un tipo de usuario");
+    return;
+  }
+  if (Correo === "") {
+    AlertIncorrectX("Debes agregar correo electronico");
     return;
   }
   if (NewName === "") {
@@ -452,12 +457,14 @@ function InsertarUsuario() {
   let NewPass = $("#contraseña").val();
   let NewTipoU = parseInt($("#tipoUsuario").val());
   let NewName = $("#nombre").val();
+  let Correo = $("#correo").val();
   const url = "/api/NewUser";
   const data = {
     usuario: NewUsuario,
     password: NewPass,
     idrol: NewTipoU,
     nombre: NewName,
+    correo: Correo,
   };
   fetch(url, {
     method: "POST",

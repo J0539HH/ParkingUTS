@@ -17,8 +17,8 @@ $(document).ready(function () {
 function enviarCorreo(datos) {
   const mensaje = `<p>Hola</p> <b>${datos.usuario.nombre}</b><p>Acabamos de recibir exitosamente el ingreso del servicio con identificador:</p>
   <p style="color:#1664ab; font-size: 20px">${datos.servicio.idservicio}</p>
-  <br><p>Puedes realizar el seguimiento en el portal con el número anterior</p>
-  <p>Estos son los datos de tu servicio</p>
+  <p>Puedes realizar el seguimiento en el portal con el número anterior</p>
+  <b>Estos son los datos de tu servicio</b>
   <br><b>Tipo de dispositivo:&nbsp;</b>${datos.servicio.tipodispositivo} 
   <br><b>Marca:&nbsp;</b>${datos.servicio.marca}
   <br><b>Informacion sobre el mantenimiento:&nbsp;</b>${datos.servicio.comentariosentrada}
@@ -98,7 +98,7 @@ function RealizarInsercion() {
     .then((response) => response.json())
     .then((result) => {
       enviarCorreo(result);
-      AlertCorrectX("Servicio regristrado en el sistema ");
+      AlertCorrectX("Servicio registrado en el sistema ");
       $("#spinner").hide();
       LimpiarFormulario();
     })
