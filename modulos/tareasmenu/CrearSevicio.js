@@ -15,24 +15,23 @@ $(document).ready(function () {
 });
 
 function enviarCorreo(datos) {
-  const mensaje = `<p>Hola <b>${datos.usuario.nombre}</b>, acabamos de recibir exitosamente el ingreso del servicio con identificador:</p><h2>${datos.servicio.idservicio}</h2>
-  <p>Puedes realizar el seguimiento en el portal con el número anterior</p>.
-  <br><p>Estos son los datos de tu servicio</p>
-  <br>Tipo de dispositivo:${datos.servicio.tipodispositivo} 
-  <br>Marca:${datos.servicio.marca}
-  <br>Informacion sobre el mantenimiento:${datos.servicio.comentariosentrada}
-  <br><br>Gracias por confiarnos la solicitud de tu mantenimiento! `;
+  const mensaje = `<p>Hola</p> <b>${datos.usuario.nombre}</b><p>Acabamos de recibir exitosamente el ingreso del servicio con identificador:</p>
+  <p style="color:#1664ab; font-size: 20px">${datos.servicio.idservicio}</p>
+  <br><p>Puedes realizar el seguimiento en el portal con el número anterior</p>
+  <p>Estos son los datos de tu servicio</p>
+  <br><b>Tipo de dispositivo:&nbsp;</b>${datos.servicio.tipodispositivo} 
+  <br><b>Marca:&nbsp;</b>${datos.servicio.marca}
+  <br><b>Informacion sobre el mantenimiento:&nbsp;</b>${datos.servicio.comentariosentrada}
+  <br><br>Gracias por confiarnos la solicitud de tu mantenimiento!`;
   const correo = datos.usuario.correo;
   const asunto = "Ingreso de servicio (Mantenimiento)";
 
-  // Configurar los datos de la solicitud POST
   const data = {
     correo: correo,
     asunto: asunto,
     mensaje: mensaje,
   };
 
-  // Hacer la solicitud POST usando fetch()
   fetch("/EnvioDecorreo", {
     method: "POST",
     headers: {

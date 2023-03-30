@@ -55,7 +55,7 @@ app.get(
 );
 app.use(express.static("public"));
 
-// Configuracion de corro
+
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 
@@ -67,17 +67,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Configurar body-parser
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Ruta para enviar correo electrónico
+
 app.post("/EnvioDecorreo", (req, res) => {
   const correo = req.body.correo;
   const asunto = req.body.asunto;
   const mensaje = req.body.mensaje;
 
-  // Configurar los datos del correo electrónico
   const mailOptions = {
     from: "docutech.info.empresariales@gmail.com",
     to: correo,
@@ -85,7 +84,7 @@ app.post("/EnvioDecorreo", (req, res) => {
     html: mensaje,
   };
 
-  // Enviar el correo electrónico
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
