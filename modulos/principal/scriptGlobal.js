@@ -47,6 +47,7 @@ function verificarSesion() {
     .then((data) => {
       const idusuario = data.idusuario;
       idrol = data.idrol;
+      idUsuario = data.idusuario; 
       if (idusuario === undefined || idusuario === null) {
         $("#ContenedorTotal").addClass("hidden");
         AlertIncorrectX(

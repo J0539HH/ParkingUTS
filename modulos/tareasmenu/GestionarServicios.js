@@ -9,11 +9,52 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/menu.html";
   });
 
-  $("#btnSolicitar").on("click", function () {
+  $("#btnGestionar").on("click", function () {
     ValidarFormulario();
   });
+
+  $("#numeroServicio").on("change", function () {
+    cargarInfoServicio();
+  });
+
+
 });
 
+function cargarInfoServicio() {
+  let idservicio = parseInt($("#numeroServicio").val());
+
+  spinner("Cargando datos del servicio, por favor espere");
+  const url = "/api/servicioEspecifico";
+  const data = {
+    idservicio: idservicio,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      cargarDatos(result);
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.log(error);
+      AlertIncorrecta("No se pudo cargar el servicio");
+      $("#spinner").hide();
+    });
+}
+
+function cargarDatos(data) {
+  $("#comentariosEntrada").val(data.comentariosentrada);
+  $("#marca").val(data.marca);
+  $("#tipoDispositivo").val(data.tipodispositivo);
+  $("#estado").val(data.estado);
+  $("#numeroSerie").val(data.numeroserie);
+}
 
 function ValidarFormulario() {
   let ComentariosEntrada = $("#comentariosEntrada").val();
@@ -31,7 +72,9 @@ function ValidarFormulario() {
   if (TipoDispositivo === "") {
     AlertIncorrecta("Debes seleccionar un tipo de dispositivo");
     return;
-  } RealizarInsercion();
+  }
+  return;
+  RealizarInsercion();
 }
 
 function RealizarInsercion() {
@@ -43,7 +86,6 @@ function RealizarInsercion() {
 
   const url = "/api/NewForm";
   const data = {
-    idusuario: idUsuario, 
     comentariosentrada,
     marca,
     tipodispositivo,

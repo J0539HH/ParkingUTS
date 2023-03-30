@@ -183,9 +183,9 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
 // Registrar nuevo formulario
 router.post("/NewForm", jsonParser, async (req, res) => {
   try {
-    const { comentariosentrada, marca, tipodispositivo, numeroserie } = req.body;
+    const { idusuario, comentariosentrada, marca, tipodispositivo, numeroserie } = req.body;
     const collection = database.collection("servicios");
-
+    console.log(req.body);
     const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
     const newId = lastUser ? lastUser.idservicio + 1 : 1;
     const fechaEntrada = new Date();
@@ -194,6 +194,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       comentariosentrada,
       marca,
       tipodispositivo,
+      modelo: "",
       numeroserie,
       estado: true,
       comentariossalida: "",
@@ -202,6 +203,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       estado: "En cola",
       fechaentrada: fechaEntrada,
       fechasalida: null,
+      idusuario,
     });
     res.json(result);
   } catch (err) {
@@ -217,7 +219,26 @@ router.post("/serviciosTotal", jsonParser, async (req, res) => {
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("No se encontraron usuarios");
+      res.status(404).send("No se encontraron sevicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+// Cargar servicio especifico
+router.post("/servicioEspecifico", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("servicios");
+    const query = {
+      idservicio: req.body.idservicio,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      console.log(result);
+      res.status(404).send("Servicio no encontrado");
     }
   } catch (err) {
     console.error(err);

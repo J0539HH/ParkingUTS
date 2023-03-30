@@ -42,6 +42,9 @@ app.get(
     "/modulos/tareasmenu/CrearSevicio.html",
     "/modulos/tareasmenu/CrearSevicio.css",
     "/modulos/tareasmenu/CrearSevicio.js",
+    "/modulos/tareasmenu/GestionarServicios.html",
+    "/modulos/tareasmenu/GestionarServicios.css",
+    "/modulos/tareasmenu/GestionarServicios.js",
     "/lib/datatables/datatables.min.js",
   ],
   (req, res) => {

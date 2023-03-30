@@ -1,4 +1,5 @@
 var idrol = null;
+var idUsuario = null;
 
 $(document).ready(function () {
   verificarSesion();
@@ -21,7 +22,7 @@ $(document).ready(function () {
   });
 
   $("#GestionarServicio").on("click", function () {
-    jAlert("Acá entra a gestionar un servicio");
+    window.location.href = "../tareasmenu/GestionarServicios.html";
   });
 
   $("#ConsultarServicios").on("click", function () {

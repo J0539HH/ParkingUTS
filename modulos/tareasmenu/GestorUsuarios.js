@@ -208,7 +208,6 @@ function CargarTablaUsuarios(tableData) {
 
 function editarUsuario(idUser) {
   spinner("Cargando datos del usuario, por favor espere");
-  console.log(idUser);
   $("#ActualizarUser").on("click", function () {
     ValidarActualizacion(idUser);
   });
