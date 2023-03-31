@@ -1547,3 +1547,9 @@ div.modal.notificationModal p.pTextDescAlertModal {
 .BlueSistem {
   color: #1664ab !important;
 }
+
+@media (max-width: 750px) {
+  .txtFooter {
+    display: none;
+  }
+}
