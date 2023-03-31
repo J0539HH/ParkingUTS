@@ -241,7 +241,7 @@ app.get("/lib/js/vendor/sweetalert2/dist/sweetalert2.min.js", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("/AplicacionesEmpresariales/acceso/Login.html");
+  res.redirect("../acceso/Login.html");
 });
 
 app.get("/acceso/login.css", (req, res) => {
