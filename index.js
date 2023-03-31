@@ -241,15 +241,31 @@ app.get("/lib/js/vendor/sweetalert2/dist/sweetalert2.min.js", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("/acceso/login.html");
+  res.redirect("/AplicacionesEmpresariales/acceso/login.html");
 });
 
 app.get("/acceso/login.css", (req, res) => {
-  res.sendFile(path.join(__dirname, "", "acceso", "login.css"));
+  res.sendFile(
+    path.join(
+      __dirname,
+      "..",
+      "AplicacionesEmpresariales",
+      "acceso",
+      "login.css"
+    )
+  );
 });
 
-app.get("/acceso/login.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "acceso", "login.html"));
+app.get("/AplicacionesEmpresariales/acceso/login.html", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "..",
+      "AplicacionesEmpresariales",
+      "acceso",
+      "login.html"
+    )
+  );
 });
 
 app.get("/lib/jQuery/sha256.js", (req, res) => {
