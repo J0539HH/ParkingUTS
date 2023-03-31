@@ -25,7 +25,7 @@ app.get(
     "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
     "/Multimedia/icoAlertWarning.svg",
     "/Multimedia/icoAlertSuccess.svg",
-    "/Multimedia/Javascript-logo.png",
+    "/Multimedia/JS.png",
     "/Multimedia/Mongo-db-logo.png",
     "/Multimedia/nodejs.jpg",
     "/Multimedia/visual.jpg",
