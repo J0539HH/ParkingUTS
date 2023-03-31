@@ -4,7 +4,7 @@ var idUsuario = null;
 $(document).ready(function () {
   verificarSesion();
   $("body").addClass("hidden");
-  setTimeout(verificarAccesos, 600);
+  verificarAccesos();
 
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
@@ -66,27 +66,10 @@ $(function () {
 
 function verificarAccesos() {
   spinner("Validando tipo de usuario");
-  // Opciones de un  cliente
-  if (idrol === 2) {
-    $("#ContenedorCreacionServicio").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
-  }
-
-  // Opciones de un  tecnico
-  if (idrol === 3) {
-    $("#ContenedorGestionServicios").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
-  }
-
-  // Opciones de un  administrador
-  if (idrol === 1) {
-    $("#ContenedorGestionUsuarios").removeClass("hidden");
-    $("#ContenedorCreacionServicio").removeClass("hidden");
-    $("#ContenedorGestionServicios").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
-    $("#ContenedorReporteServicios").removeClass("hidden");
-  }
-
+  $("#ContenedorGestionUsuarios").removeClass("hidden");
+  $("#ContenedorCreacionServicio").removeClass("hidden");
+  $("#ContenedorGestionServicios").removeClass("hidden");
+  $("#ContenedorConsultarServicios").removeClass("hidden");
+  $("#ContenedorReporteServicios").removeClass("hidden");
   $("body").removeClass("hidden");
-  $("#spinner").hide();
 }
