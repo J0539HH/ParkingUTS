@@ -29,7 +29,7 @@ app.get(
    "/AplicacionesEmpresariales/Multimedia/Mongo-db-logo.png",
    "/AplicacionesEmpresariales/Multimedia/nodejs.jpg",
    "/AplicacionesEmpresariales/Multimedia/visual.jpg",
-   "Multimdddedia/pc.svg",
+   "/AplicacionesEmpresariales/Multimedia/pc.svg",
    "/AplicacionesEmpresariales/Multimedia/seleccionado.svg",
    "/AplicacionesEmpresariales/modulos/tareasmenu/menu.html",
    "/AplicacionesEmpresariales/modulos/tareasmenu/menu.js",
