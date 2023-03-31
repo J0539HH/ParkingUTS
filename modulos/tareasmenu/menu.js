@@ -65,7 +65,6 @@ $(function () {
 });
 
 function verificarAccesos() {
-  spinner("Validando tipo de usuario");
   $("#ContenedorGestionUsuarios").removeClass("hidden");
   $("#ContenedorCreacionServicio").removeClass("hidden");
   $("#ContenedorGestionServicios").removeClass("hidden");
