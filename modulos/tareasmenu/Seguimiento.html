@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
     <!-- CSS Site -->
     <link rel="stylesheet" href="menu.css" />
-    <link rel="stylesheet" href="CrearSevicio.css" />
+    <link rel="stylesheet" href="Seguimiento.css" />
     <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
   </head>
 
@@ -88,75 +88,75 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="form-group">
                 <input placeholder="" type="text" class="form-control"
-                  id="numeroSerie" name="numeroSerie">
+                  id="numeroServicio" name="numeroServicio">
               </div>
             </div>
-            <div id="detallesServicio" class="">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
-                mt-3">
-                <h1 class="h1TitleForm">Detalles del servicio</h1>
-              </div>
-              <div class="row">
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/person.svg">
-                  <p><strong>Comentarios del cliente:</strong></p>
-                  <p id="comentariosCliente">
-                  </p>
-                </div>
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/badge-tm.svg">
-                  <p><strong>Marca:</strong></p>
-                  <p id="marca"> </p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/pc-display.svg">
-                  <p><strong>Tipo del dispositivo:</strong></p>
-                  <p id="tipoDispositivo">
-                  </p>
-                </div>
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/memory.svg">
-                  <p><strong>Memoria RAM:</strong></p>
-                  <p id="memoriaRam"> </p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/hdd.svg">
-                  <p><strong>Tipo de almacenamiento:</strong></p>
-                  <p id="tipoAlmacenamiento">
-                  </p>
-                </div>
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/award-fill.svg">
-                  <p><strong>Número de serie:</strong></p>
-                  <p id="numeroSerie"> </p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/bullseye.svg">
-                  <p><strong>Estado:</strong></p>
-                  <p id="estado"> </p>
-                </div>
-                <div class="col-md-6 d-flex">
-                  <img src="../../Multimedia/gear.svg">
-                  <p><strong>Comentarios del técnico:</strong></p>
-                  <p id="comentariosTecnico">
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
-              contInterfaceBtn">
-              <button id="btnSolicitar" class="buttonBtn btnPrimary">
-                Consultar
-              </button>
-            </div>
-          </section>
 
+          </section>
+          <div id="detallesServicio" class="hidden">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+              mt-3">
+              <h1 class="h1TitleForm">Detalles del servicio</h1>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6 d-flex ">
+                <img src="../../Multimedia/cliente.png" class="iconosR">
+                <p><strong>Comentarios del cliente:</strong></p>
+                <p id="comentariosCliente">
+                </p>
+              </div>
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/marca.png" class="iconosR">
+                <p><strong>Marca:</strong></p>
+                <p id="marca"> </p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/dispositivo.png" class="iconosR">
+                <p><strong>Tipo del dispositivo:</strong></p>
+                <p id="tipoDispositivo">
+                </p>
+              </div>
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/ram.png" class="iconosR">
+                <p><strong>Memoria RAM:</strong></p>
+                <p id="memoriaRam"> </p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/hdd.png" class="iconosR">
+                <p><strong>Tipo de almacenamiento:</strong></p>
+                <p id="tipoAlmacenamiento">
+                </p>
+              </div>
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/serie.png" class="iconosR">
+                <p><strong>Número de serie:</strong></p>
+                <p id="numeroSerie"> </p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/estado.png" class="iconosR">
+                <p><strong>Estado:</strong></p>
+                <p id="estado"> </p>
+              </div>
+              <div class="col-md-6 d-flex">
+                <img src="../../Multimedia/tecnico.png" class="iconosR">
+                <p><strong>Comentarios del técnico:</strong></p>
+                <p id="comentariosTecnico">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+            contInterfaceBtn">
+            <button id="btnConsultar" class="buttonBtn btnPrimary">
+              Consultar
+            </button>
+          </div>
         </div>
       </div>
 
@@ -197,7 +197,7 @@
     <!-- Script Global -->
     <script src="../../modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
-    <script src="CrearSevicio.js"></script>
+    <script src="Seguimiento.js"></script>
     <!-- Script Tables -->
     <script src="../../lib/datatables/datatables.min.js"></script>
     <!-- Script AXIOS -->
