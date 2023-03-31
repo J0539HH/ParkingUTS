@@ -241,7 +241,7 @@ app.get("/lib/js/vendor/sweetalert2/dist/sweetalert2.min.js", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("../acceso/Login.html");
+  res.redirect("/AplicacionesEmpresariales/acceso/Login.html");
 });
 
 app.get("/acceso/login.css", (req, res) => {
@@ -266,6 +266,23 @@ app.get("/AplicacionesEmpresariales/acceso/Login.html", (req, res) => {
       "Login.html"
     )
   );
+});
+
+app.get("/AplicacionesEmpresariales/acceso/login.js", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "..",
+      "AplicacionesEmpresariales",
+      "acceso",
+      "login.js"
+    )
+  );
+});
+
+app.get("/principal/scriptGlobal.js", (req, res) => {
+  res.setHeader("Content-Type", "application/javascript");
+  res.sendFile(path.join(__dirname, "principal", "scriptGlobal.js"));
 });
 
 app.get("/lib/jQuery/sha256.js", (req, res) => {
@@ -295,21 +312,6 @@ app.get(
     );
   }
 );
-
-app.get("/acceso/login.js", (req, res) => {
-  res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(path.join(__dirname, "acceso", "login.js"));
-});
-
-app.get("/acceso/login.js", (req, res) => {
-  res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(path.join(__dirname, "acceso", "login.js"));
-});
-
-app.get("/principal/scriptGlobal.js", (req, res) => {
-  res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(path.join(__dirname, "principal", "scriptGlobal.js"));
-});
 
 app.get(
   "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js",
