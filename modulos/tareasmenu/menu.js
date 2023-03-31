@@ -4,7 +4,7 @@ var idUsuario = null;
 $(document).ready(function () {
   verificarSesion();
   $("body").addClass("hidden");
-  setTimeout(verificarAccesos, 400);
+  setTimeout(verificarAccesos, 600);
 
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
@@ -65,6 +65,7 @@ $(function () {
 });
 
 function verificarAccesos() {
+  spinner("Validando tipo de usuario");
   // Opciones de un  cliente
   if (idrol === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
@@ -87,4 +88,5 @@ function verificarAccesos() {
   }
 
   $("body").removeClass("hidden");
+  $("#spinner").hide();
 }
