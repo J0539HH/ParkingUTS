@@ -42,7 +42,6 @@ function validarUsuario() {
 }
 
 function ConsultarServicio(idservicio) {
-  console.log(idservicio);
   if (idservicio === null) {
     return;
   }
@@ -62,7 +61,6 @@ function ConsultarServicio(idservicio) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       cargarDatos(result);
       $("#spinner").hide();
     })
@@ -74,8 +72,16 @@ function ConsultarServicio(idservicio) {
     });
 }
 function cargarDatos(data) {
-  $("#detallesServicio").removeClass("hidden");
+  console.log(data);
+  if (idrol === 2) {
+    if (data.idusuario !== idUsuario) {
+      AlertIncorrecta("Solo puedes visualizar tus servicios!");
+      LimpiarDatos();
+      return;
+    }
+  }
 
+  $("#detallesServicio").removeClass("hidden");
   $("#comentariosCliente").html(data.comentariosentrada);
   $("#marca").html(data.marca);
   $("#tipoDispositivo").html(data.tipodispositivo);
