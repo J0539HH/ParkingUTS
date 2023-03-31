@@ -22,7 +22,7 @@ $(document).ready(function () {
     ConsultarServicio(idservicio);
   });
 
-  setTimeout(validarUsuario, 200);
+  setTimeout(validarUsuario, 400);
 
   const inputNumeroServicio = $("#numeroServicio");
 
