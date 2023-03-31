@@ -47,14 +47,14 @@ function verificarSesion() {
     .then((data) => {
       const idusuario = data.idusuario;
       idrol = data.idrol;
-      idUsuario = data.idusuario; 
+      idUsuario = data.idusuario;
       if (idusuario === undefined || idusuario === null) {
         $("#ContenedorTotal").addClass("hidden");
         AlertIncorrectX(
           "Estas tratando de acceder al sistema sin credenciales"
         );
         setTimeout(function () {
-          window.location.href = "../../acceso/login.html";
+          window.location.href = "../../acceso/Login.html";
         }, 1000);
       }
     })
@@ -67,7 +67,7 @@ function CerrarSession() {
   fetch("/api/logout", { method: "GET" })
     .then((response) => {
       if (response.ok) {
-        window.location.href = "../../acceso/login.html";
+        window.location.href = "../../acceso/Login.html";
       } else {
         throw new Error("Error al cerrar sesión");
       }
