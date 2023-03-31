@@ -138,8 +138,10 @@ function CargarTablaUsuarios(tableData) {
     drawCallback: function (settings) {
       $("#spinner").hide();
     },
+    order: [[0, "desc"]] 
   });
 }
+
 
 function Detallado(id) {
   window.location.replace("../tareasmenu/Seguimiento.html?id=" + id);
