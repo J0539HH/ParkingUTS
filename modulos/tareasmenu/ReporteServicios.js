@@ -97,6 +97,17 @@ function CargarTablaUsuarios(tableData) {
         },
       },
       { data: "comentariosentrada", className: " text-center" },
+      {
+        data: null,
+        className: "text-center",
+        render: function (data, type, row) {
+          return (
+            '<img src="../../Multimedia/lupa.png" class="iconoTabla" onclick="Detallado(\'' +
+            row.idservicio +
+            "')\" />"
+          );
+        },
+      },
     ],
     language: {
       sProcessing: "Procesando...",
@@ -128,4 +139,8 @@ function CargarTablaUsuarios(tableData) {
       $("#spinner").hide();
     },
   });
+}
+
+function Detallado(id) {
+  window.location.replace("../tareasmenu/Seguimiento.html?id=" + id);
 }

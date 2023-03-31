@@ -5,13 +5,24 @@ $(document).ready(function () {
   verificarSesion();
   LimpiarDatos();
 
+  var urlParams = new URLSearchParams(window.location.search);
+  var idParam = urlParams.get("id");
+  ConsultarServicio(idParam);
+
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
   });
 
-  $("#btnConsultar").on("click", function () {
-    ConsultarServicio();
+  $("#volverReportes").on("click", function () {
+    window.location.href = "../tareasmenu/ReporteServicios.html";
   });
+
+  $("#btnConsultar").on("click", function () {
+    let idservicio = $("#numeroServicio").val();
+    ConsultarServicio(idservicio);
+  });
+
+  setTimeout(validarUsuario, 200);
 
   const inputNumeroServicio = $("#numeroServicio");
 
@@ -24,9 +35,19 @@ $(document).ready(function () {
   });
 });
 
-function ConsultarServicio() {
-  let idservicio = parseInt($("#numeroServicio").val());
+function validarUsuario() {
+  if (idrol === 1) {
+    $("#volverReportes").removeClass("hidden");
+  }
+}
 
+function ConsultarServicio(idservicio) {
+  console.log(idservicio);
+  if (idservicio === null) {
+    return;
+  }
+  idservicio = parseInt(idservicio);
+  $("#numeroServicio").val(idservicio);
   spinner("Cargando datos del servicio, por favor espere");
   const url = "/api/servicioEspecifico";
   const data = {

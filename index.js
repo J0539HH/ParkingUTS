@@ -59,6 +59,7 @@ app.get(
     "/Multimedia/ram.png",
     "/Multimedia/tecnico.png",
     "/Multimedia/serie.png",
+    "/Multimedia/lupa.png",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
