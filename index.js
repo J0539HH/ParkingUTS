@@ -29,7 +29,7 @@ app.get(
     "/Multimedia/Mongo-db-logo.png",
     "/Multimedia/nodejs.jpg",
     "/Multimedia/visual.jpg",
-    "/Multimedia/pc.svg",
+    "../Multimedia/pc.svg",
     "/Multimedia/seleccionado.svg",
     "/modulos/tareasmenu/menu.html",
     "/modulos/tareasmenu/menu.js",
