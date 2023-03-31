@@ -47,14 +47,25 @@ app.get(
     "/modulos/tareasmenu/GestionarServicios.html",
     "/modulos/tareasmenu/GestionarServicios.css",
     "/modulos/tareasmenu/GestionarServicios.js",
+    "/modulos/tareasmenu/Seguimiento.html",
+    "/modulos/tareasmenu/Seguimiento.css",
+    "/modulos/tareasmenu/Seguimiento.js",
     "/lib/datatables/datatables.min.js",
+    "/modulos/tareasmenu/hdd.svg",
+    "/modulos/tareasmenu/hash.svg",
+    "/modulos/tareasmenu/gear.svg",
+    "/modulos/tareasmenu/bullseye.svg",
+    "/modulos/tareasmenu/badge-tm.svg",
+    "/modulos/tareasmenu/award-fill.svg",
+    "/modulos/tareasmenu/person.svg",
+    "/modulos/tareasmenu/pc-display.svg",
+    "/modulos/tareasmenu/memory.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
   }
 );
 app.use(express.static("public"));
-
 
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
@@ -67,10 +78,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 app.post("/EnvioDecorreo", (req, res) => {
   const correo = req.body.correo;
@@ -83,7 +92,6 @@ app.post("/EnvioDecorreo", (req, res) => {
     subject: asunto,
     html: mensaje,
   };
-
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {

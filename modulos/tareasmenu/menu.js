@@ -26,10 +26,8 @@ $(document).ready(function () {
   });
 
   $("#ConsultarServicios").on("click", function () {
-    jAlert("Acá entra a consultar los servicios");
+    window.location.href = "../tareasmenu/Seguimiento.html";
   });
-
-
 
   $("#volverLogin").on("click", function () {
     CerrarSession();
@@ -67,7 +65,6 @@ $(function () {
 });
 
 function verificarAccesos() {
-
   // Opciones de un  cliente
   if (idrol === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
