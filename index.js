@@ -10,56 +10,56 @@ console.log("APLICACIONES EMPRESARIALES 2023");
 
 app.get(
   [
-   "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
-   "/lib/jQuery/alertas/jquery.alerts.css",
-   "/lib/jQuery/utilidadesjQuery.js",
-   "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
-   "/lib/js/vendor/popper-1.16.0/popper.min.js",
-   "/lib/jQuery/alertas/jquery.alerts.js",
-   "/lib/aes/aes.js",
-   "/modulos/principal/styleGlobal.css",
-   "/modulos/principal/scriptGlobal.js",
-   "/Multimedia/fondoWeb.jpg",
-   "/Multimedia/logo.jpg",
-   "/Multimedia/spinner.gif",
-   "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
-   "/Multimedia/icoAlertWarning.svg",
-   "/Multimedia/icoAlertSuccess.svg",
-   "/Multimedia/Javascript-logo.png",
-   "/Multimedia/Mongo-db-logo.png",
-   "/Multimedia/nodejs.jpg",
-   "/Multimedia/visual.jpg",
-   "/Multimedia/pc.svg",
-   "/Multimedia/seleccionado.svg",
-   "/modulos/tareasmenu/menu.html",
-   "/modulos/tareasmenu/menu.js",
-   "/modulos/tareasmenu/menu.css",
-   "/modulos/tareasmenu/pc.svg",
-   "/modulos/tareasmenu/GestorUsuarios.html",
-   "/modulos/tareasmenu/GestorUsuarios.css",
-   "/modulos/tareasmenu/GestorUsuarios.js",
-   "/modulos/tareasmenu/ReporteServicios.html",
-   "/modulos/tareasmenu/ReporteServicios.css",
-   "/modulos/tareasmenu/ReporteServicios.js",
-   "/modulos/tareasmenu/CrearSevicio.html",
-   "/modulos/tareasmenu/CrearSevicio.css",
-   "/modulos/tareasmenu/CrearSevicio.js",
-   "/modulos/tareasmenu/GestionarServicios.html",
-   "/modulos/tareasmenu/GestionarServicios.css",
-   "/modulos/tareasmenu/GestionarServicios.js",
-   "/modulos/tareasmenu/Seguimiento.html",
-   "/modulos/tareasmenu/Seguimiento.css",
-   "/modulos/tareasmenu/Seguimiento.js",
-   "/lib/datatables/datatables.min.js",
-   "/Multimedia/hdd.png",
-   "/Multimedia/dispositivo.png",
-   "/Multimedia/cliente.png",
-   "/Multimedia/estado.png",
-   "/Multimedia/marca.png",
-   "/Multimedia/ram.png",
-   "/Multimedia/tecnico.png",
-   "/Multimedia/serie.png",
-   "/Multimedia/lupa.png",
+    "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
+    "/lib/jQuery/alertas/jquery.alerts.css",
+    "/lib/jQuery/utilidadesjQuery.js",
+    "/lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js",
+    "/lib/js/vendor/popper-1.16.0/popper.min.js",
+    "/lib/jQuery/alertas/jquery.alerts.js",
+    "/lib/aes/aes.js",
+    "/modulos/principal/styleGlobal.css",
+    "/modulos/principal/scriptGlobal.js",
+    "/Multimedia/fondoWeb.jpg",
+    "/Multimedia/logo.jpg",
+    "/Multimedia/spinner.gif",
+    "/lib/js/vendor/bootstrap-icons-1.2.2/font/fonts/bootstrap-icons.woff",
+    "/Multimedia/icoAlertWarning.svg",
+    "/Multimedia/icoAlertSuccess.svg",
+    "/Multimedia/Javascript-logo.png",
+    "/Multimedia/Mongo-db-logo.png",
+    "/Multimedia/nodejs.jpg",
+    "/Multimedia/visual.jpg",
+    "/Multimedia/pc.svg",
+    "/Multimedia/seleccionado.svg",
+    "/modulos/tareasmenu/menu.html",
+    "/modulos/tareasmenu/menu.js",
+    "/modulos/tareasmenu/menu.css",
+    "/modulos/tareasmenu/pc.svg",
+    "/modulos/tareasmenu/GestorUsuarios.html",
+    "/modulos/tareasmenu/GestorUsuarios.css",
+    "/modulos/tareasmenu/GestorUsuarios.js",
+    "/modulos/tareasmenu/ReporteServicios.html",
+    "/modulos/tareasmenu/ReporteServicios.css",
+    "/modulos/tareasmenu/ReporteServicios.js",
+    "/modulos/tareasmenu/CrearSevicio.html",
+    "/modulos/tareasmenu/CrearSevicio.css",
+    "/modulos/tareasmenu/CrearSevicio.js",
+    "/modulos/tareasmenu/GestionarServicios.html",
+    "/modulos/tareasmenu/GestionarServicios.css",
+    "/modulos/tareasmenu/GestionarServicios.js",
+    "/modulos/tareasmenu/Seguimiento.html",
+    "/modulos/tareasmenu/Seguimiento.css",
+    "/modulos/tareasmenu/Seguimiento.js",
+    "/lib/datatables/datatables.min.js",
+    "/Multimedia/hdd.png",
+    "/Multimedia/dispositivo.png",
+    "/Multimedia/cliente.png",
+    "/Multimedia/estado.png",
+    "/Multimedia/marca.png",
+    "/Multimedia/ram.png",
+    "/Multimedia/tecnico.png",
+    "/Multimedia/serie.png",
+    "/Multimedia/lupa.png",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
@@ -256,18 +256,6 @@ app.get("/acceso/login.css", (req, res) => {
   );
 });
 
-app.get("/AplicacionesEmpresariales/acceso/Login.html", (req, res) => {
-  res.sendFile(
-    path.join(
-      __dirname,
-      "..",
-      "AplicacionesEmpresariales",
-      "acceso",
-      "Login.html"
-    )
-  );
-});
-
 app.get("/AplicacionesEmpresariales/acceso/login.js", (req, res) => {
   res.sendFile(
     path.join(
@@ -276,6 +264,18 @@ app.get("/AplicacionesEmpresariales/acceso/login.js", (req, res) => {
       "AplicacionesEmpresariales",
       "acceso",
       "login.js"
+    )
+  );
+});
+
+app.get("/AplicacionesEmpresariales/acceso/login.css", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "..",
+      "AplicacionesEmpresariales",
+      "acceso",
+      "login.css"
     )
   );
 });
