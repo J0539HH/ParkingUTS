@@ -2,9 +2,8 @@ var idrol = null;
 var idUsuario = null;
 
 $(document).ready(function () {
-  verificarSesion();
+  verificarSesionM();
   $("body").addClass("hidden");
-  verificarAccesos();
 
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
@@ -64,11 +63,56 @@ $(function () {
   );
 });
 
+
+
+function verificarSesionM() {
+  spinner("Validando tipo de usuario");
+  console.log("VerificandoSessionbyJDFM");
+  fetch("/api/sesion")
+    .then((response) => response.json())
+    .then((data) => {
+      const idusuario = data.idusuario;
+      idrol = data.idrol;
+      idUsuario = data.idusuario;
+      verificarAccesos();
+      if (idusuario === undefined || idusuario === null) {
+        $("#ContenedorTotal").addClass("hidden");
+        AlertIncorrectX(
+          "Estas tratando de acceder al sistema sin credenciales"
+        );
+        setTimeout(function () {
+          window.location.href = "../../acceso/Login.html";
+        }, 1000);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function verificarAccesos() {
-  $("#ContenedorGestionUsuarios").removeClass("hidden");
-  $("#ContenedorCreacionServicio").removeClass("hidden");
-  $("#ContenedorGestionServicios").removeClass("hidden");
-  $("#ContenedorConsultarServicios").removeClass("hidden");
-  $("#ContenedorReporteServicios").removeClass("hidden");
+
+  // Opciones de un  cliente
+  if (idrol === 2) {
+    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
+  }
+
+  // Opciones de un  tecnico
+  if (idrol === 3) {
+    $("#ContenedorGestionServicios").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
+  }
+
+  // Opciones de un  administrador
+  if (idrol === 1) {
+    $("#ContenedorGestionUsuarios").removeClass("hidden");
+    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorGestionServicios").removeClass("hidden");
+    $("#ContenedorConsultarServicios").removeClass("hidden");
+    $("#ContenedorReporteServicios").removeClass("hidden");
+  }
+
   $("body").removeClass("hidden");
+  $("#spinner").hide();
 }
