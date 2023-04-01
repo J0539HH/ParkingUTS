@@ -2,7 +2,6 @@
   height: auto;
   min-height: calc(100vh - 54px);
   background-color: #1a1a1a;
-  -webkit-transition: all 0.3s ease-in-out;
   margin: -12px 0 -32px 0px;
 }
 
