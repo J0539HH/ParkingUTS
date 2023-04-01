@@ -266,6 +266,12 @@ i.rotateImg::before {
     font-size: 2em;
     line-height: 1.2;
   }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
