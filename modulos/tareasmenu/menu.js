@@ -3,7 +3,6 @@ var idUsuario = null;
 
 $(document).ready(function () {
   verificarSesionM();
-  $("body").addClass("hidden");
 
   $("#CreacionServicios").on("click", function () {
     window.location.href = "../tareasmenu/CrearSevicio.html";
@@ -113,6 +112,5 @@ function verificarAccesos() {
     $("#ContenedorReporteServicios").removeClass("hidden");
   }
 
-  $("body").removeClass("hidden");
   $("#spinner").hide();
 }
