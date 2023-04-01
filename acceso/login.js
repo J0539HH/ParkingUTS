@@ -5,8 +5,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -18,8 +18,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -66,7 +66,7 @@ $(document).ready(function () {
 });
 
 function verificarLogin() {
-  var usuario = $("#usuario").val();
+  var usuario = ($("#usuario").val()).trim();
   var password = $("#password").val();
   if (usuario === "") {
     jAlert(
