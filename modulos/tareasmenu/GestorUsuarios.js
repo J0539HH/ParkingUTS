@@ -326,7 +326,7 @@ function ValidarActualizacion(IdUsuario) {
 
 function RealizarModificacion(IdUsuario) {
   spinner("Modificando datos del usuario, por favor espere");
-  let UsuarioEdit = $("#usuarioMod").val();
+  let UsuarioEdit = $("#usuarioMod").val().toUpperCase();
   let PasswordEdit = $("#contraseñaMod").val();
   let IdRolEdit = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
