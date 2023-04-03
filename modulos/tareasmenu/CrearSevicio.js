@@ -79,6 +79,7 @@ function RealizarInsercion() {
   let marca = $("#marca").val();
   let tipodispositivo = $("#tipoDispositivo").val();
   let numeroserie = $("#numeroSerie").val();
+  let modelo = $("#modelo").val();
 
   const url = "/api/NewForm";
   const data = {
@@ -87,6 +88,7 @@ function RealizarInsercion() {
     marca,
     tipodispositivo,
     numeroserie,
+    modelo
   };
   fetch(url, {
     method: "POST",
@@ -113,4 +115,5 @@ function LimpiarFormulario() {
   $("#marca").val("");
   $("#tipoDispositivo").val("");
   $("#numeroSerie").val("");
+  $("#modelo").val("");
 }

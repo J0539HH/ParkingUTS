@@ -59,8 +59,7 @@ select,
   font-size: 12px !important;
 }
 
-.select2-container--default
-  .select2-results__option--highlighted[aria-selected] {
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #cbd0d2;
   color: white;
 }
@@ -148,7 +147,7 @@ button:focus:not(:focus-visible) {
   left: 0;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -252,7 +251,7 @@ i.rotateImg::before {
 }
 
 body {
-  overflow: hidden;
+  overflow: auto;
 }
 
 #comentariosEntrada {

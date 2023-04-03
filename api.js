@@ -191,6 +191,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       marca,
       tipodispositivo,
       numeroserie,
+      modelo,
     } = req.body;
     const collection = database.collection("servicios");
     const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
@@ -201,7 +202,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
       comentariosentrada,
       marca,
       tipodispositivo,
-      modelo: "",
+      modelo,
       numeroserie,
       estado: true,
       comentariossalida: "",
