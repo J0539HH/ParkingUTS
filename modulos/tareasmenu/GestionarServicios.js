@@ -64,7 +64,7 @@ function cargarDatos(data) {
   $("#comentariosSalida").val("");
   $("#ram").val(data.ram);
   $("#tipoDisco").val(data.tipodisco);
-  comentariosVigentes = (data.comentariossalida);
+  comentariosVigentes = data.comentariossalida;
 }
 
 function ValidarFormulario() {
@@ -112,7 +112,7 @@ function ValidarFormulario() {
   }
   if (ComentariosSalida === "") {
     AlertIncorrecta(
-      "Debes indicar alguna informacion sobre el mantenimiento del dispositivo"
+      "Debes indicar alguna información sobre la actualizacion del servicio"
     );
     return;
   }
@@ -167,11 +167,11 @@ function ConfirmacioFinalizar() {
   });
 }
 
-
 function ActualizarServicio() {
   spinner("Actualizando el  servicio, por favor espere");
   let idservicio = parseInt($("#numeroServicio").val());
-  let ComentariosSalida = (comentariosVigentes + " -> " + $("#comentariosSalida").val());
+  let ComentariosSalida =
+    comentariosVigentes + " -> " + $("#comentariosSalida").val();
   let Marca = $("#marca").val();
   let Estado = $("#estado").val();
   let TipoDispositivo = $("#tipoDispositivo").val();
@@ -209,7 +209,7 @@ function ActualizarServicio() {
 
   LimpiarFormulario();
   $("#spinner").hide();
-  setTimeout(function() {
+  setTimeout(function () {
     window.location.href = "../tareasmenu/menu.html";
   }, 1500);
 }
