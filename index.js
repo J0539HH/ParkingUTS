@@ -6,7 +6,6 @@ const session = require("express-session");
 const cookieSession = require("cookie-session");
 const portApi = 4000;
 
-console.log("APLICACIONES EMPRESARIALES 2023");
 
 app.get(
   [
@@ -156,7 +155,7 @@ if (require.main === module) {
 }
 
 app.listen(portApi, () => {
-  console.log(`Database API corriendo en http://localhost:${portApi} by JDFM`);
+  console.log(`Database API corriendo en el puerto: ${portApi} by JDFM`);
 });
 
 app.use(express.json());
@@ -303,11 +302,11 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );
 
 app.listen(3000, () => {
-  console.log("Servidor iniciado en el puerto http://localhost:3000 by JDFM");
+  console.log("Servidor iniciado en el puerto: 3000 by JDFM");
 });

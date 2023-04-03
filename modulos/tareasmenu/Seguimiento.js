@@ -80,16 +80,16 @@ function cargarDatos(data) {
       return;
     }
   }
-
+  let marca = data.marca;
   $("#detallesServicio").removeClass("hidden");
-  $("#comentariosCliente").html(data.comentariosentrada);
-  $("#marca").html(data.marca);
-  $("#tipoDispositivo").html(data.tipodispositivo);
-  $("#estado").html(data.estado);
-  $("#numeroSerie").html(data.numeroserie);
-  $("#comentariosTecnico").html(data.comentariossalida);
-  $("#memoriaRam").html(data.ram);
-  $("#tipoAlmacenamiento").html(data.tipodisco);
+  $("#comentariosCliente").html("&nbsp;" + data.comentariosentrada);
+  $("#marca").html("&nbsp;" + marca.charAt(0).toUpperCase() + marca.slice(1));
+  $("#tipoDispositivo").html("&nbsp;" + data.tipodispositivo);
+  $("#estado").html("&nbsp;" + data.estado);
+  $("#numeroSerie").html("&nbsp;" + data.numeroserie);
+  $("#comentariosTecnico").html("&nbsp;" + data.comentariossalida);
+  $("#memoriaRam").html("&nbsp;" + data.ram);
+  $("#tipoAlmacenamiento").html("&nbsp;" + data.tipodisco);
 }
 
 function LimpiarDatos() {
