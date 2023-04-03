@@ -22,6 +22,14 @@ $(document).ready(function () {
     ConsultarServicio(idservicio);
   });
 
+  $("#numeroServicio").keypress(function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      let idservicio = $("#numeroServicio").val();
+      ConsultarServicio(idservicio);
+    }
+  });
+
   setTimeout(validarUsuario, 400);
 
   const inputNumeroServicio = $("#numeroServicio");
