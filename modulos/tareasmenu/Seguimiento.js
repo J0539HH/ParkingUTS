@@ -80,7 +80,6 @@ function ConsultarServicio(idservicio) {
     });
 }
 function cargarDatos(data) {
-  console.log(data);
   if (idrol === 2) {
     if (data.idusuario !== idUsuario) {
       AlertIncorrecta("Solo puedes visualizar tus servicios!");
@@ -90,17 +89,39 @@ function cargarDatos(data) {
   }
   let marca = data.marca;
   let SolicitanteServicio = data.usuario;
+  let infoRam = data.ram;
+  let numeroSerie = data.numeroserie;
+  let comentariosSalida = data.comentariossalida;
+  let almacenamiento = data.tipodisco;
+  let modelo = data.modelo;
+
+  if (infoRam === "") {
+    infoRam = "Se esta definiendo esta caracteristica";
+  }
+  if (numeroSerie === "") {
+    numeroSerie = "Se esta definiendo esta caracteristica";
+  }
+  if (comentariosSalida === "") {
+    comentariosSalida = "El servicio aun no tiene comentarios de actualización";
+  }
+  if (almacenamiento === "") {
+    almacenamiento = "Se esta definiendo esta caracteristica";
+  }
+  if (modelo === "") {
+    modelo = "Se esta definiendo esta caracteristica";
+  }
+
   $("#detallesServicio").removeClass("hidden");
   $("#comentariosCliente").html("&nbsp;" + data.comentariosentrada);
   $("#solicitante").html("&nbsp;" + SolicitanteServicio.nombre);
   $("#marca").html("&nbsp;" + marca.charAt(0).toUpperCase() + marca.slice(1));
   $("#tipoDispositivo").html("&nbsp;" + data.tipodispositivo);
   $("#estado").html("&nbsp;" + data.estado);
-  $("#numeroSerie").html("&nbsp;" + data.numeroserie);
-  $("#comentariosTecnico").html("&nbsp;" + data.comentariossalida);
-  $("#memoriaRam").html("&nbsp;" + data.ram);
-  $("#tipoAlmacenamiento").html("&nbsp;" + data.tipodisco);
-  $("#modelo").html("&nbsp;" + data.modelo);
+  $("#numeroSerie").html("&nbsp;" + numeroSerie);
+  $("#comentariosTecnico").html("&nbsp;" + comentariosSalida);
+  $("#memoriaRam").html("&nbsp;" + infoRam);
+  $("#tipoAlmacenamiento").html("&nbsp;" + almacenamiento);
+  $("#modelo").html("&nbsp;" + modelo);
 }
 
 function LimpiarDatos() {
