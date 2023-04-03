@@ -290,3 +290,10 @@ i.rotateImg::before {
     max-width: 960px;
   }
 }
+
+#estado {
+  color: green;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

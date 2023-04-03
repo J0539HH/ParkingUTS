@@ -100,7 +100,7 @@ function RealizarInsercion() {
     .then((response) => response.json())
     .then((result) => {
       enviarCorreo(result);
-      AlertCorrectX("Servicio registrado en el sistema ");
+      AlertCorrectX("Te enviamos un correo con información del servicio!");
       $("#spinner").hide();
       LimpiarFormulario();
     })

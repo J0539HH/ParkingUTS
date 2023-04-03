@@ -1,5 +1,6 @@
 var idrol = null;
 var idUsuario = null;
+var comentariosVigentes = "";
 
 $(document).ready(function () {
   verificarSesion();
@@ -47,7 +48,6 @@ function cargarInfoServicio() {
 }
 
 function cargarDatos(data) {
-
   if (data.estado === "Entregado") {
     AlertIncorrecta(
       "El servicio ya a sido entregado no puedes realizar modificaciones"
@@ -64,6 +64,7 @@ function cargarDatos(data) {
   $("#comentariosSalida").val("");
   $("#ram").val(data.ram);
   $("#tipoDisco").val(data.tipodisco);
+  comentariosVigentes = (data.comentariossalida);
 }
 
 function ValidarFormulario() {
@@ -166,10 +167,11 @@ function ConfirmacioFinalizar() {
   });
 }
 
+
 function ActualizarServicio() {
   spinner("Actualizando el  servicio, por favor espere");
   let idservicio = parseInt($("#numeroServicio").val());
-  let ComentariosSalida = $("#comentariosSalida").val();
+  let ComentariosSalida = (comentariosVigentes + " -> " + $("#comentariosSalida").val());
   let Marca = $("#marca").val();
   let Estado = $("#estado").val();
   let TipoDispositivo = $("#tipoDispositivo").val();
@@ -207,6 +209,9 @@ function ActualizarServicio() {
 
   LimpiarFormulario();
   $("#spinner").hide();
+  setTimeout(function() {
+    window.location.href = "../tareasmenu/menu.html";
+  }, 1500);
 }
 
 function LimpiarFormulario() {
