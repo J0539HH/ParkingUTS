@@ -62,6 +62,9 @@ app.get(
     "/Multimedia/tecnico.png",
     "/Multimedia/serie.png",
     "/Multimedia/lupa.png",
+    "/Multimedia/Star.png",
+    "/Multimedia/modelos.png",
+
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

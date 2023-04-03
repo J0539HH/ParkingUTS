@@ -257,6 +257,7 @@ i.rotateImg::before {
 
 .iconosR {
   height: 36px;
+  margin-right: 2px;
 }
 
 @media (max-width: 767px) {

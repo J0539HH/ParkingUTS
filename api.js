@@ -261,12 +261,25 @@ router.post("/serviciosTotal", jsonParser, async (req, res) => {
 router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
-    const query = {
-      idservicio: req.body.idservicio,
-    };
-    const result = await collection.findOne(query);
-    if (result) {
-      res.json(result);
+    const aggregation = [
+      {
+        $match: { idservicio: req.body.idservicio }
+      },
+      {
+        $lookup: {
+          from: "usuarios",
+          localField: "idusuario",
+          foreignField: "idusuario",
+          as: "usuario",
+        },
+      },
+      {
+        $unwind: "$usuario",
+      },
+    ];
+    const result = await collection.aggregate(aggregation).toArray();
+    if (result.length > 0) {
+      res.json(result[0]);
     } else {
       res.status(404).send("Servicio no encontrado");
     }
@@ -275,6 +288,8 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 // Editar servicio especifico
 router.post("/EditService", jsonParser, async (req, res) => {
   try {
@@ -287,6 +302,7 @@ router.post("/EditService", jsonParser, async (req, res) => {
       comentariossalida,
       ram,
       tipodisco,
+      modelo,
     } = req.body;
     const collection = database.collection("servicios");
     const fechasalida = new Date();
@@ -302,6 +318,7 @@ router.post("/EditService", jsonParser, async (req, res) => {
           fechasalida: fechasalida,
           ram: ram,
           tipodisco: tipodisco,
+          modelo: modelo,
         },
       }
     );

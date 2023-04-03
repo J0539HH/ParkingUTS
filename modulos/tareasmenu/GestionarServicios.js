@@ -35,7 +35,6 @@ function cargarInfoServicio() {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       cargarDatos(result);
       $("#spinner").hide();
     })
@@ -48,6 +47,7 @@ function cargarInfoServicio() {
 }
 
 function cargarDatos(data) {
+
   if (data.estado === "Entregado") {
     AlertIncorrecta(
       "El servicio ya a sido entregado no puedes realizar modificaciones"
@@ -57,10 +57,11 @@ function cargarDatos(data) {
   }
   $("#comentariosEntrada").val(data.comentariosentrada);
   $("#marca").val(data.marca);
+  $("#modelo").val(data.modelo);
   $("#tipoDispositivo").val(data.tipodispositivo);
   $("#estado").val(data.estado);
   $("#numeroSerie").val(data.numeroserie);
-  $("#comentariosSalida").val(data.comentariossalida);
+  $("#comentariosSalida").val("");
   $("#ram").val(data.ram);
   $("#tipoDisco").val(data.tipodisco);
 }
@@ -73,12 +74,17 @@ function ValidarFormulario() {
   let idservicio = $("#numeroServicio").val();
   let ram = $("#ram").val();
   let tipodisco = $("#tipoDisco").val();
+  let modelo = $("#modelo").val();
 
   if (idservicio === "") {
     AlertIncorrecta("Debes indicar un número de servicio");
     return;
   }
 
+  if (modelo === "") {
+    AlertIncorrecta("Debes indicar el modelo del dispositivo");
+    return;
+  }
   if (Marca === "") {
     AlertIncorrecta("Debes indicar la marca del dispositivo");
     return;
@@ -170,6 +176,7 @@ function ActualizarServicio() {
   let numeroserie = $("#numeroSerie").val();
   let ram = $("#ram").val();
   let tipodisco = $("#tipoDisco").val();
+  let modelo = $("#modelo").val();
 
   const url = "/api/EditService";
   const dataM = {
@@ -181,6 +188,7 @@ function ActualizarServicio() {
     comentariossalida: ComentariosSalida,
     ram: ram,
     tipodisco: tipodisco,
+    modelo: modelo,
   };
   fetch(url, {
     method: "POST",
@@ -211,4 +219,5 @@ function LimpiarFormulario() {
   $("#ram").val("");
   $("#estado").val("");
   $("#tipoDisco").val("");
+  $("#modelo").val("");
 }

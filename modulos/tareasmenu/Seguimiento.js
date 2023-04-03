@@ -81,8 +81,10 @@ function cargarDatos(data) {
     }
   }
   let marca = data.marca;
+  let SolicitanteServicio = data.usuario;
   $("#detallesServicio").removeClass("hidden");
   $("#comentariosCliente").html("&nbsp;" + data.comentariosentrada);
+  $("#solicitante").html("&nbsp;" + SolicitanteServicio.nombre);
   $("#marca").html("&nbsp;" + marca.charAt(0).toUpperCase() + marca.slice(1));
   $("#tipoDispositivo").html("&nbsp;" + data.tipodispositivo);
   $("#estado").html("&nbsp;" + data.estado);
@@ -90,6 +92,7 @@ function cargarDatos(data) {
   $("#comentariosTecnico").html("&nbsp;" + data.comentariossalida);
   $("#memoriaRam").html("&nbsp;" + data.ram);
   $("#tipoAlmacenamiento").html("&nbsp;" + data.tipodisco);
+  $("#modelo").html("&nbsp;" + data.modelo);
 }
 
 function LimpiarDatos() {
