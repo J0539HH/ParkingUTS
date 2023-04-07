@@ -6,6 +6,10 @@ $(document).ready(function () {
   verificarSesion();
   LimpiarFormulario();
 
+  var urlParams = new URLSearchParams(window.location.search);
+  var idParam = parseInt(urlParams.get("id"));
+  cargarInfoServicio(idParam);
+
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
   });
@@ -15,12 +19,13 @@ $(document).ready(function () {
   });
 
   $("#numeroServicio").on("change", function () {
-    cargarInfoServicio();
+    let idservicio = parseInt($("#numeroServicio").val());
+    cargarInfoServicio(idservicio);
   });
 });
 
-function cargarInfoServicio() {
-  let idservicio = parseInt($("#numeroServicio").val());
+function cargarInfoServicio(idservicio) {
+  $("#numeroServicio").val(idservicio);
 
   spinner("Cargando datos del servicio, por favor espere");
   const url = "/api/servicioEspecifico";

@@ -54,6 +54,9 @@ app.get(
     "/modulos/tareasmenu/AsignacionServicios.html",
     "/modulos/tareasmenu/AsignacionServicios.css",
     "/modulos/tareasmenu/AsignacionServicios.js",
+    "/modulos/tareasmenu/ServiciosAsignados.html",
+    "/modulos/tareasmenu/ServiciosAsignados.css",
+    "/modulos/tareasmenu/ServiciosAsignados.js",
     "/lib/datatables/datatables.min.js",
     "/Multimedia/hdd.png",
     "/Multimedia/dispositivo.png",
@@ -67,6 +70,7 @@ app.get(
     "/Multimedia/Star.png",
     "/Multimedia/asignar.png",
     "/Multimedia/modelos.png",
+    "/Multimedia/tool.png",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

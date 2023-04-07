@@ -30,6 +30,9 @@ $(document).ready(function () {
   $("#ConsultarServicios").on("click", function () {
     window.location.href = "../tareasmenu/Seguimiento.html";
   });
+  $("#Asignados").on("click", function () {
+    window.location.href = "../tareasmenu/ServiciosAsignados.html";
+  });
 
   $("#volverLogin").on("click", function () {
     CerrarSession();
@@ -102,6 +105,7 @@ function verificarAccesos() {
   if (idrol === 3) {
     $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
+    $("#ContenedorAsignados").removeClass("hidden");
   }
 
   // Opciones de un  administrador

@@ -169,12 +169,12 @@ function ConfirmarAsignacion() {
   let tecnico = $("#tecnicoModal option:selected").text();
   Swal.fire({
     title: "",
-    text:
-      "Desea asignar el servicio #" +
+    html:
+      "Desea asignar el servicio  <b>#" +
       idServicioAsignable +
-      " al tecnico: " +
+      "</b> <br> Al tecnico: <b>" +
       tecnico +
-      "?",
+      "?</b>",
     imageUrl: "../../Multimedia/icoAlertWarning.svg",
     imageWidth: 80,
     imageHeight: 80,
@@ -235,14 +235,35 @@ function AsignacionDefinitiva() {
     },
   })
     .then((response) => response.json())
+    .then((result) => {})
+    .catch((error) => {
+      console.error("Error al modificar:", error);
+    });
+
+  let tecnicoAsignar = parseInt($("#tecnicoModal").val());
+  let servicioAsignado = parseInt(idServicioAsignable);
+  const url2 = "/api/NewAsignado";
+  const data = {
+    idusuario: tecnicoAsignar,
+    idservicio: servicioAsignado,
+  };
+  fetch(url2, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Servicio modificado exitosamente!");
       cargarServiciosEnCola();
       $("#agregarUsuarioModal").modal("hide");
     })
     .catch((error) => {
-      console.error("Error al modificar:", error);
+      console.error("Error al ingresar:", error);
     });
+
   $("#spinner").hide();
 }
 

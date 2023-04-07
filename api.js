@@ -324,6 +324,44 @@ router.post("/serviciosSinAsignar", jsonParser, async (req, res) => {
   }
 });
 
+// Cargar servicios de un tecnico
+router.post("/serviciosTecnico", jsonParser, async (req, res) => {
+  try {
+    const idtecnico = req.body.idTecnico;
+    const collection = database.collection("servicios");
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "serviciosasignados",
+            localField: "idservicio",
+            foreignField: "idservicio",
+            as: "serviciosasignados",
+          },
+        },
+        {
+          $unwind: "$serviciosasignados",
+        },
+        {
+          $match: {
+            estado: "En mantenimiento",
+            "serviciosasignados.idusuario": idtecnico,
+          },
+        },
+      ])
+      .toArray();
+
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar servicio especifico
 router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   try {
@@ -417,4 +455,28 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
   }
 });
 
+// Registrar Asignacion
+router.post("/NewAsignado", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, idservicio } = req.body;
+    const collection = database.collection("serviciosasignados");
+    const lastAsignacion = await collection.findOne(
+      {},
+      { sort: { idasignacion: -1 } }
+    );
+    const newIdAsignacion = lastAsignacion
+      ? lastAsignacion.idasignacion + 1
+      : 1;
+
+    const result = await collection.insertOne({
+      idasignacion: newIdAsignacion,
+      idusuario: idusuario,
+      idservicio: idservicio,
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 module.exports = router;
