@@ -6,7 +6,6 @@ const session = require("express-session");
 const cookieSession = require("cookie-session");
 const portApi = 4000;
 
-
 app.get(
   [
     "/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css",
@@ -52,6 +51,9 @@ app.get(
     "/modulos/tareasmenu/Seguimiento.html",
     "/modulos/tareasmenu/Seguimiento.css",
     "/modulos/tareasmenu/Seguimiento.js",
+    "/modulos/tareasmenu/AsignacionServicios.html",
+    "/modulos/tareasmenu/AsignacionServicios.css",
+    "/modulos/tareasmenu/AsignacionServicios.js",
     "/lib/datatables/datatables.min.js",
     "/Multimedia/hdd.png",
     "/Multimedia/dispositivo.png",
@@ -63,8 +65,8 @@ app.get(
     "/Multimedia/serie.png",
     "/Multimedia/lupa.png",
     "/Multimedia/Star.png",
+    "/Multimedia/asignar.png",
     "/Multimedia/modelos.png",
-
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
@@ -305,7 +307,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

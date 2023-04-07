@@ -62,6 +62,34 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Cargar tecnicos
+router.post("/cargarTecnicos", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      idrol: req.body.idrol,
+      estado: true,
+    };
+    const projection = {
+      correo: 1,
+      idusuario: 1,
+      nombre: 1,
+      _id: 0,
+    };
+    const cursor = await collection.find(query).project(projection);
+    const result = await cursor.toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("Tecnicos no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Eliminar usuario especifico
 router.post("/deleteUser", async (req, res) => {
   try {
@@ -228,6 +256,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 // Cargar todos los servicios
 router.post("/serviciosTotal", jsonParser, async (req, res) => {
   try {
@@ -258,13 +287,50 @@ router.post("/serviciosTotal", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Cargar servicios en cola
+router.post("/serviciosSinAsignar", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("servicios");
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "usuarios",
+            localField: "idusuario",
+            foreignField: "idusuario",
+            as: "usuario",
+          },
+        },
+        {
+          $unwind: "$usuario",
+        },
+        {
+          $match: {
+            estado: "En cola",
+          },
+        },
+      ])
+      .toArray();
+
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar servicio especifico
 router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
     const aggregation = [
       {
-        $match: { idservicio: req.body.idservicio }
+        $match: { idservicio: req.body.idservicio },
       },
       {
         $lookup: {
@@ -289,7 +355,6 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // Editar servicio especifico
 router.post("/EditService", jsonParser, async (req, res) => {
@@ -320,6 +385,28 @@ router.post("/EditService", jsonParser, async (req, res) => {
           ram: ram,
           tipodisco: tipodisco,
           modelo: modelo,
+        },
+      }
+    );
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Asignar servicio especifico
+router.post("/AsignarServicio", jsonParser, async (req, res) => {
+  try {
+    const { idservicio, estado, comentariossalida } = req.body;
+    const collection = database.collection("servicios");
+    const fechasalida = new Date();
+    const result = await collection.updateOne(
+      { idservicio: idservicio },
+      {
+        $set: {
+          comentariossalida: comentariossalida,
+          estado: estado,
         },
       }
     );

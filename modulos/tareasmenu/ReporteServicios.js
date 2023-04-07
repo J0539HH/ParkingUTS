@@ -60,17 +60,15 @@ function cargarServicios() {
     .then((response) => response.json())
     .then((result) => {
       const tableData = { data: result };
-      console.log(tableData);
-      CargarTablaUsuarios(tableData);
+      CargarTablaServicios(tableData);
     })
     .catch((error) => {
       // Lógica para manejar el error...
     });
 }
 
-function CargarTablaUsuarios(tableData) {
+function CargarTablaServicios(tableData) {
   console.log(tableData);
-
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -138,10 +136,9 @@ function CargarTablaUsuarios(tableData) {
     drawCallback: function (settings) {
       $("#spinner").hide();
     },
-    order: [[0, "desc"]] 
+    order: [[0, "desc"]],
   });
 }
-
 
 function Detallado(id) {
   window.location.replace("../tareasmenu/Seguimiento.html?id=" + id);

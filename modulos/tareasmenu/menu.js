@@ -23,6 +23,10 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/GestionarServicios.html";
   });
 
+  $("#AsignacionServicios").on("click", function () {
+    window.location.href = "../tareasmenu/AsignacionServicios.html";
+  });
+
   $("#ConsultarServicios").on("click", function () {
     window.location.href = "../tareasmenu/Seguimiento.html";
   });
@@ -62,8 +66,6 @@ $(function () {
   );
 });
 
-
-
 function verificarSesionM() {
   spinner("Validando tipo de usuario");
   console.log("VerificandoSessionbyJDFM");
@@ -90,7 +92,6 @@ function verificarSesionM() {
 }
 
 function verificarAccesos() {
-
   // Opciones de un  cliente
   if (idrol === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
@@ -110,6 +111,7 @@ function verificarAccesos() {
     $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorReporteServicios").removeClass("hidden");
+    $("#ContenedorAsignacionServicio").removeClass("hidden");
   }
 
   $("#spinner").hide();

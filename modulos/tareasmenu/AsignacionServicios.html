@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../../Multimedia/pc.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" />
-    <title>Reporte de servicios</title>
+    <title>Asignacion de servicios</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
     <!-- CSS Site -->
     <link rel="stylesheet" href="menu.css" />
-    <link rel="stylesheet" href="ReporteServicios.css" />
+    <link rel="stylesheet" href="AsignacionServicios.css" />
     <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
   </head>
 
@@ -48,7 +48,7 @@
                 <span style="float: left; font-size: 25px; margin: 20px 10px"><img
                     src="../../Multimedia/logo.jpg"
                     height="40px;" style="margin-right: 10px" /></span>
-                <h6 class="InfoCabecera">Reporte total de servicios.</h6>
+                <h6 class="InfoCabecera">Asignacion de servicios.</h6>
               </div>
               <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
                 menú</a>
@@ -58,7 +58,7 @@
         </div>
         <div id="contenedorCentral">
           <div id="ContenedorTabla" class="alta-theme ContenedorMax">
-            <h4 class="BlueSistem">Reporte total de servicios en el sistema</h4>
+            <h4 class="BlueSistem">Servicios en cola para ser asignados</h4>
             <!--<div class="table-wrapper-scroll-y my-custom-scrollbar">-->
             <table id="tablaUsuarios" class="table table-striped"
               style="font-size: 12px; width: 100%">
@@ -66,12 +66,11 @@
                 <tr>
                   <th class="text-center">ID</th>
                   <th class="text-center">Marca</th>
-                  <th class="text-center">Estado</th>
                   <th class="text-center">Tipo de dispositivo</th>
                   <th class="text-center">Cliente</th>
                   <th class="text-center">Fecha entrada</th>
                   <th class="text-center">Comentarios</th>
-                  <th class="text-center">Detalles</th>
+                  <th class="text-center">Asignar</th>
                 </tr>
               </thead>
               <tbody id="tbody1"></tbody>
@@ -90,7 +89,54 @@
       </div>
     </div>
 
+    <!-- Modal para agregar un usuario -->
+    <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" role="dialog"
+      aria-labelledby="agregarUsuarioModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="asignarServicioTittle">
+              Asignar Servicio
+            </h5>
+            <img src="../../Multimedia/logo.jpg" height="10px;"
+              class="iconoFormulario" />
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="agregarUsuarioForm">
+              <div class="form-group">
+                <label for="tecnicoModal">Tecnico:</label>
+                <select class="form-control" id="tecnicoModal"
+                  name="tecnicoModal" required>
+                  <option value="">Seleccione una tecnico</option>
 
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="comentariosSalida">Comentarios de asignación:</label>
+                <textarea placeholder="" type="text" class="form-control
+                  comentModal"
+                  id="comentariosSalida"
+                  name="comentariosSalida"> </textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">
+              Anular
+            </button>
+            <button type="button" id="asignarServicio" form="agregarUsuarioForm"
+              class="btn btn-primary">
+              Asignar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Spinner Site -->
     <div id="spinner" class="spinner">
@@ -119,7 +165,7 @@
     <!-- Script Global -->
     <script src="../../modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
-    <script src="ReporteServicios.js"></script>
+    <script src="AsignacionServicios.js"></script>
     <!-- Script Tables -->
     <script src="../../lib/datatables/datatables.min.js"></script>
   </body>
