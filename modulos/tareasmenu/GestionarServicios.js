@@ -7,7 +7,7 @@ $(document).ready(function () {
   LimpiarFormulario();
 
   var urlParams = new URLSearchParams(window.location.search);
-  var idParam = parseInt(urlParams.get("id"));
+  var idParam = urlParams.get("id");
   cargarInfoServicio(idParam);
 
   $("#VolverMenu").on("click", function () {
@@ -19,12 +19,16 @@ $(document).ready(function () {
   });
 
   $("#numeroServicio").on("change", function () {
-    let idservicio = parseInt($("#numeroServicio").val());
+    let idservicio = $("#numeroServicio").val();
     cargarInfoServicio(idservicio);
   });
 });
 
 function cargarInfoServicio(idservicio) {
+  if (idservicio === null) {
+    return;
+  }
+  idservicio = parseInt(idservicio);
   $("#numeroServicio").val(idservicio);
 
   spinner("Cargando datos del servicio, por favor espere");
@@ -125,9 +129,56 @@ function ValidarFormulario() {
     ConfirmacioFinalizar();
     return;
   }
+  if (Estado === "Listo para entregar") {
+    ConfirmacionEntregable();
+    return;
+  }
   ActualizarServicio();
 }
 
+function ConfirmacionEntregable() {
+  Swal.fire({
+    title: "",
+    html: "Estas seguro de dar por <b>finalizado el mantenimiento del servicio?</b>",
+    imageUrl: "../../Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "Volver",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary ",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      ActualizarServicio();
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
 function ConfirmacioFinalizar() {
   Swal.fire({
     title: "",

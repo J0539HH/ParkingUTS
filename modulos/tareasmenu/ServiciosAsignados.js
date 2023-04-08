@@ -9,6 +9,7 @@ $(document).ready(function () {
 });
 
 function cargarMisServiciosEnCola() {
+  spinner("Cargando servicios, por favor espere");
   const url = "/api/serviciosTecnico";
   let idTecnico = idUsuario;
   const data = { idTecnico: idTecnico };
@@ -25,12 +26,11 @@ function cargarMisServiciosEnCola() {
       const tableData = { data: result };
       CargarTablaServicios(tableData);
     })
-    .catch((error) => {});
+    .catch((error) => { });
 }
 
 function CargarTablaServicios(tableData) {
   idServicioAsignable = "";
-  spinner("Cargando servicios, por favor espere");
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -99,7 +99,6 @@ function CargarTablaServicios(tableData) {
 }
 
 function verificarSesionT() {
-  //  return;
   console.log("VerificandoSessionbyJDFM");
   fetch("/api/sesion")
     .then((response) => response.json())

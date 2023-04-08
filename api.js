@@ -26,10 +26,11 @@ router.get("/", (req, res) => {
 
 // Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
+  let userL = (req.body.usuario).trim();
   try {
     const collection = database.collection("usuarios");
     const query = {
-      usuario: req.body.usuario,
+      usuario: userL,
       password: req.body.password,
       estado: true,
     };
@@ -350,7 +351,6 @@ router.post("/serviciosTecnico", jsonParser, async (req, res) => {
         },
       ])
       .toArray();
-
     if (result.length > 0) {
       res.json(result);
     } else {

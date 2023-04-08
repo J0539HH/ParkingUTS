@@ -50,6 +50,7 @@ function CargarTecnicos() {
 
 function cargarServiciosEnCola() {
   LimpiarModal();
+  spinner("Cargando servicios, por favor espere");
   const url = "/api/serviciosSinAsignar";
   fetch(url, {
     method: "POST",
@@ -69,7 +70,6 @@ function cargarServiciosEnCola() {
 
 function CargarTablaServicios(tableData) {
   idServicioAsignable = "";
-  spinner("Cargando servicios, por favor espere");
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -235,7 +235,7 @@ function AsignacionDefinitiva() {
     },
   })
     .then((response) => response.json())
-    .then((result) => {})
+    .then((result) => { })
     .catch((error) => {
       console.error("Error al modificar:", error);
     });
