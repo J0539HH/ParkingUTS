@@ -40,9 +40,10 @@ body {
 }
 
 #templateContainer .container-fluid.alta-theme {
-  background-color: #fff;
+  background-image: url(../../Multimedia/fondomenu.png);
   margin-right: 100px;
   margin-left: 0;
+  border: 3px solid black;
 }
 
 /*
@@ -53,9 +54,7 @@ body {
   padding: 20px;
 }
 
-#templateContainer .main.alta-theme {
-  margin-top: 40px;
-}
+
 
 @media (min-width: 768px) {
   .main {
@@ -82,6 +81,9 @@ body {
 #templateContainer .placeholders h4 {
   margin-bottom: 0;
   font-weight: bold;
+  background: white;
+  color: black;
+  border: 1px solid;
 }
 
 #templateContainer .placeholder {
@@ -115,15 +117,15 @@ body {
 
 /* circular navigation */
 #templateContainer .circular-menu {
-  width: 250px;
+  width: 260px;
   height: 180px;
   margin: 0 0px 11px auto;
 }
 
 
 #templateContainer .circle {
-  width: 250px;
-  height: 250px;
+  width: 260px;
+  height: 260px;
   opacity: 0;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);

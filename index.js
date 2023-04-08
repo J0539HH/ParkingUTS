@@ -71,6 +71,7 @@ app.get(
     "/Multimedia/asignar.png",
     "/Multimedia/modelos.png",
     "/Multimedia/tool.png",
+    "/Multimedia/fondomenu.png",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
@@ -311,7 +312,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );
