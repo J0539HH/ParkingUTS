@@ -438,14 +438,12 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
   try {
     const { idservicio, estado, comentariossalida } = req.body;
     const collection = database.collection("servicios");
-    const fechaAsignacion = new Date();
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
         $set: {
           comentariossalida: comentariossalida,
           estado: estado,
-          fechaasignacion: fechaAsignacion,
         },
       }
     );
@@ -459,6 +457,7 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
 // Registrar Asignacion
 router.post("/NewAsignado", jsonParser, async (req, res) => {
   try {
+    const fechaAsignacion = new Date();
     const { idusuario, idservicio } = req.body;
     const collection = database.collection("serviciosasignados");
     const lastAsignacion = await collection.findOne(
@@ -473,6 +472,7 @@ router.post("/NewAsignado", jsonParser, async (req, res) => {
       idasignacion: newIdAsignacion,
       idusuario: idusuario,
       idservicio: idservicio,
+      fechaAsignacion: fechaAsignacion,
     });
     res.json(result);
   } catch (err) {
