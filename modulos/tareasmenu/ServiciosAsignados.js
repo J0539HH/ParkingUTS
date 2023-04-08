@@ -78,7 +78,7 @@ function CargarTablaServicios(tableData) {
         },
       },
     ],
-    order: [[2, "asc"]],
+    order: [[3, "asc"]],
     language: {
       sProcessing: "Procesando...",
       sLengthMenu: "Mostrar _MENU_ registros",
