@@ -15,10 +15,10 @@ $(document).ready(function () {
 });
 
 function enviarCorreo(datos) {
-  const mensaje = `<p>Hola</p> <b>${datos.usuario.nombre}</b><p>Acabamos de recibir exitosamente el ingreso del servicio con identificador:</p>
-  <p style="color:#1664ab; font-size: 20px">${datos.servicio.idservicio}</p>
+  const mensaje = `<p>Hola, <b>${datos.usuario.nombre}</b></p><p>acabamos de recibir exitosamente el ingreso de un mantenimiento con el número:</p>
+  <div style='display:flex;'><p style='color:#1664ab; font-size: 20px'>${datos.servicio.idservicio}</p></div>
   <p>Puedes realizar el seguimiento en el portal con el número anterior</p>
-  <b>Estos son los datos de tu servicio</b>
+  <b> Estos son algnos datos del servicio </b>
   <br><b>Tipo de dispositivo:&nbsp;</b>${datos.servicio.tipodispositivo} 
   <br><b>Marca:&nbsp;</b>${datos.servicio.marca}
   <br><b>Informacion sobre el mantenimiento:&nbsp;</b>${datos.servicio.comentariosentrada}
