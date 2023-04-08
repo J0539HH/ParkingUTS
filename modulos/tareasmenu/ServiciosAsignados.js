@@ -66,6 +66,17 @@ function CargarTablaServicios(tableData) {
           );
         },
       },
+      {
+        data: null,
+        className: "text-center",
+        render: function (data, type, row) {
+          return (
+            '<img src="../../Multimedia/lupa.png" class="iconoTabla" onclick="Detallado(\'' +
+            row.idservicio +
+            "')\" />"
+          );
+        },
+      },
     ],
     order: [[2, "asc"]],
     language: {
@@ -126,4 +137,8 @@ function verificarSesionT() {
 
 function Gestionar(id) {
   window.location.replace("../tareasmenu/GestionarServicios.html?id=" + id);
+}
+
+function Detallado(id) {
+  window.location.replace("../tareasmenu/Seguimiento.html?id=" + id);
 }

@@ -22,7 +22,19 @@ $(document).ready(function () {
     let idservicio = $("#numeroServicio").val();
     cargarInfoServicio(idservicio);
   });
+
+  $("#volverAsignados").on("click", function () {
+    window.location.href = "../tareasmenu/ServiciosAsignados.html";
+  });
+
+  setTimeout(validarUsuario, 400);
 });
+
+function validarUsuario() {
+  if (idrol === 3) {
+    $("#volverAsignados").removeClass("hidden");
+  }
+}
 
 function cargarInfoServicio(idservicio) {
   if (idservicio === null) {

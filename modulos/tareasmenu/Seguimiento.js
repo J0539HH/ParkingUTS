@@ -17,6 +17,10 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/ReporteServicios.html";
   });
 
+  $("#volverAsignados").on("click", function () {
+    window.location.href = "../tareasmenu/ServiciosAsignados.html";
+  });
+
   $("#btnConsultar").on("click", function () {
     let idservicio = $("#numeroServicio").val();
     ConsultarServicio(idservicio);
@@ -46,6 +50,9 @@ $(document).ready(function () {
 function validarUsuario() {
   if (idrol === 1) {
     $("#volverReportes").removeClass("hidden");
+  }
+  if (idrol === 3) {
+    $("#volverAsignados").removeClass("hidden");
   }
 }
 
