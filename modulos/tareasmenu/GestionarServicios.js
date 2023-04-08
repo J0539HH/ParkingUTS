@@ -139,7 +139,7 @@ function ValidarFormulario() {
 function ConfirmacionEntregable() {
   Swal.fire({
     title: "",
-    html: "Estas seguro de dar por <b>finalizado el mantenimiento del servicio?</b>",
+    html: "Estas seguro de dar por <b>finalizado el mantenimiento</b> del servicio?",
     imageUrl: "../../Multimedia/icoAlertWarning.svg",
     imageWidth: 80,
     imageHeight: 80,

@@ -36,6 +36,8 @@ function CargarTablaServicios(tableData) {
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
+
+      { data: "idservicio", className: " text-center" },
       {
         data: "marca",
         className: "text-center",
@@ -66,6 +68,7 @@ function CargarTablaServicios(tableData) {
         },
       },
     ],
+    order: [[2, "asc"]],
     language: {
       sProcessing: "Procesando...",
       sLengthMenu: "Mostrar _MENU_ registros",

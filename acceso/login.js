@@ -14,6 +14,13 @@ $(document).ready(function () {
     }
   });
 
+
+  $('#usuario').on('keyup', function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, '');
+    $(this).val(valorSinEspacios);
+  });
+  
   $("#usuario").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
