@@ -26,7 +26,7 @@ function cargarMisServiciosEnCola() {
       const tableData = { data: result };
       CargarTablaServicios(tableData);
     })
-    .catch((error) => { });
+    .catch((error) => {});
 }
 
 function CargarTablaServicios(tableData) {
@@ -36,7 +36,6 @@ function CargarTablaServicios(tableData) {
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-
       { data: "idservicio", className: " text-center" },
       {
         data: "marca",
@@ -47,7 +46,7 @@ function CargarTablaServicios(tableData) {
       },
       { data: "tipodispositivo", className: " text-center" },
       {
-        data: "fechaentrada",
+        data: "serviciosasignados.fechaAsignacion",
         className: "text-center",
         render: function (data, type, row, meta) {
           var date = new Date(data);

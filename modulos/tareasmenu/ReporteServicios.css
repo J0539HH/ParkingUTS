@@ -224,6 +224,7 @@ i.rotateImg::before {
 .paginadorTU {
   margin-left: 90%;
   margin-top: -70px;
+  max-width: 10%;
 }
 
 #verContraseñaMod {

@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
 
 // Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
-  let userL = (req.body.usuario).trim();
+  let userL = req.body.usuario.trim();
   try {
     const collection = database.collection("usuarios");
     const query = {
@@ -438,13 +438,14 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
   try {
     const { idservicio, estado, comentariossalida } = req.body;
     const collection = database.collection("servicios");
-    const fechasalida = new Date();
+    const fechaAsignacion = new Date();
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
         $set: {
           comentariossalida: comentariossalida,
           estado: estado,
+          fechaasignacion: fechaAsignacion,
         },
       }
     );
