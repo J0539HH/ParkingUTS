@@ -93,7 +93,13 @@ function CargarTablaServicios(tableData) {
         className: "text-center",
         render: function (data, type, row, meta) {
           var date = new Date(data);
-          var options = { day: "numeric", month: "long", year: "numeric" };
+          var options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          };
           return date.toLocaleDateString("es-ES", options);
         },
       },
@@ -155,13 +161,14 @@ function CargarTablaServicios(tableData) {
 }
 
 function CargarTablaGestionados(tableData) {
+  console.log(tableData);
   idServicioAsignable = "";
   $("#tablaGestionados").DataTable({
     destroy: true,
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "idservicio", className: " text-center" },
+      { data: "estado", className: " text-center" },
       {
         data: "marca",
         className: "text-center",
@@ -169,15 +176,34 @@ function CargarTablaGestionados(tableData) {
           return data.charAt(0).toUpperCase() + data.slice(1);
         },
       },
-
-      { data: "estado", className: " text-center" },
       { data: "tipodispositivo", className: " text-center" },
       {
         data: "serviciosasignados.fechaAsignacion",
         className: "text-center",
         render: function (data, type, row, meta) {
           var date = new Date(data);
-          var options = { day: "numeric", month: "long", year: "numeric" };
+          var options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          };
+          return date.toLocaleDateString("es-ES", options);
+        },
+      },
+      {
+        data: "serviciosasignados.fechaFinalizacion",
+        className: "text-center",
+        render: function (data, type, row, meta) {
+          var date = new Date(data);
+          var options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          };
           return date.toLocaleDateString("es-ES", options);
         },
       },
@@ -193,7 +219,7 @@ function CargarTablaGestionados(tableData) {
         },
       },
     ],
-    order: [[3, "asc"]],
+    order: [[3, "desc"]],
     language: {
       sProcessing: "Procesando...",
       sLengthMenu: "Mostrar _MENU_ registros",

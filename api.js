@@ -510,6 +510,56 @@ router.post("/NewAsignado", jsonParser, async (req, res) => {
       idusuario: idusuario,
       idservicio: idservicio,
       fechaAsignacion: fechaAsignacion,
+      fechaFinalizacion: null,
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Finalizar Asignacion
+
+router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
+   try {
+    const idservicio = req.body.idservicio;
+    const collection = database.collection("serviciosasignados");
+    const fechaFinalizacion = new Date();
+    const result = await collection.updateOne(
+      { idservicio: idservicio },
+      {
+        $set: {
+          fechaFinalizacion: fechaFinalizacion,
+        },
+      }
+    );
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post("/NewAsignado", jsonParser, async (req, res) => {
+  try {
+    const fechaAsignacion = new Date();
+    const { idusuario, idservicio } = req.body;
+    const collection = database.collection("serviciosasignados");
+    const lastAsignacion = await collection.findOne(
+      {},
+      { sort: { idasignacion: -1 } }
+    );
+    const newIdAsignacion = lastAsignacion
+      ? lastAsignacion.idasignacion + 1
+      : 1;
+
+    const result = await collection.insertOne({
+      idasignacion: newIdAsignacion,
+      idusuario: idusuario,
+      idservicio: idservicio,
+      fechaAsignacion: fechaAsignacion,
+      fechaFinalizacion: null,
     });
     res.json(result);
   } catch (err) {

@@ -185,12 +185,36 @@ function ConfirmacionEntregable() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      ActualizarServicio();
+      ActualizarAsignacion();
     } else if (result.isDenied) {
       // DENIED CODE
     }
   });
 }
+
+function ActualizarAsignacion() {
+  let idservicio = parseInt($("#numeroServicio").val());
+
+  const url = "/api/finalizarAsignacion";
+  const data = {
+    idservicio: idservicio,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      ActualizarServicio();
+    })
+    .catch((error) => {
+      console.error("Error al modificar:", error);
+    });
+}
+
 function ConfirmacioFinalizar() {
   Swal.fire({
     title: "",
