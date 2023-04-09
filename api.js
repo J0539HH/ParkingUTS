@@ -362,6 +362,43 @@ router.post("/serviciosTecnico", jsonParser, async (req, res) => {
   }
 });
 
+// Cargar servicios finalizados de un tecnico
+router.post("/serviciosFinalizadosTecnico", jsonParser, async (req, res) => {
+  try {
+    const idtecnico = req.body.idTecnico;
+    const collection = database.collection("servicios");
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "serviciosasignados",
+            localField: "idservicio",
+            foreignField: "idservicio",
+            as: "serviciosasignados",
+          },
+        },
+        {
+          $unwind: "$serviciosasignados",
+        },
+        {
+          $match: {
+            estado: { $in: ["Listo para entregar", "Entregado"] },
+            "serviciosasignados.idusuario": idtecnico,
+          },
+        },
+      ])
+      .toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar servicio especifico
 router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   try {

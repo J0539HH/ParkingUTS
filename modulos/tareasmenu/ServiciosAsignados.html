@@ -43,12 +43,13 @@
         <div id="templateContainer">
           <nav class="navbar navbar-fixed-top alta-theme" style="position:
             relative; background: white">
-            <div class="container-fluid containerApp">
+            <div class="container-fluid ">
               <div class="navbar-header" style="width: 70%; min-width: 44rem">
                 <span style="float: left; font-size: 25px; margin: 20px 10px"><img
                     src="../../Multimedia/logo.jpg"
                     height="40px;" style="margin-right: 10px" /></span>
-                <h6 class="InfoCabecera">Servicios en mantenimiento asignados</h6>
+                <h6 class="InfoCabecera" id="titulInfoCabecera"> Mantenimientos
+                  asignados / historial</h6>
               </div>
               <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
                 menú</a>
@@ -56,11 +57,20 @@
           </nav>
           <br />
         </div>
+        <div class="d-flex cabeceraAsignados">
+          <h4 class="BlueSistem tittleAsignados" id="tituloCabeceraAsignados">Mantenimientos
+            asignados</h4>
+          <a id="serviciosAsignados" class="button button2 BotonCabecera
+            botonAsignados
+            hidden">Asignados</a>
+          <a id="serviciosGestionados" class="button button5 BotonCabecera
+            botonAsignados">Gestionado</a>
+        </div>
         <div id="contenedorCentral">
+
           <div id="ContenedorTabla" class="alta-theme ContenedorMax">
-            <h4 class="BlueSistem">Mis servicios activos</h4>
-            <!--<div class="table-wrapper-scroll-y my-custom-scrollbar">-->
-            <table id="tablaUsuarios" class="table table-striped"
+            <table id="tablaUsuarios" class="table table-striped
+              tabla-Asignados"
               style="font-size: 12px; width: 100%">
               <thead id="thead1">
                 <tr>
@@ -68,14 +78,32 @@
                   <th class="text-center">Marca</th>
                   <th class="text-center">Tipo de dispositivo</th>
                   <th class="text-center">Fecha asignación</th>
-                  <th class="text-center">Comentarios del cliente</th>
+                  <th class="text-center" style="max-width: 220px;">Comentarios
+                    del cliente</th>
                   <th class="text-center">Gestionar</th>
                   <th class="text-center">Inspeccionar</th>
                 </tr>
               </thead>
               <tbody id="tbody1"></tbody>
             </table>
-            <!--</div>-->
+          </div>
+          <div id="ContenedorTablaGestionados" class="alta-theme ContenedorMax
+            hidden">
+            <table id="tablaGestionados" class="table table-striped
+              tabla-Gestionados"
+              style="font-size: 12px; width: 100%">
+              <thead id="thead1">
+                <tr>
+                  <th class="text-center thGestionados">Identificador</th>
+                  <th class="text-center thGestionados">Marca</th>
+                  <th class="text-center thGestionados">Estado</th>
+                  <th class="text-center thGestionados">Tipo de dispositivo</th>
+                  <th class="text-center thGestionados">Fecha asignación</th>
+                  <th class="text-center thGestionados">Inspeccionar</th>
+                </tr>
+              </thead>
+              <tbody id="tbody1"></tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -1548,6 +1548,10 @@ div.modal.notificationModal p.pTextDescAlertModal {
   color: #1664ab !important;
 }
 
+.GreenSistem {
+  color: rgb(124, 191, 66) !important;
+}
+
 @media (max-width: 750px) {
   .txtFooter {
     display: none;
