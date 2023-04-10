@@ -320,10 +320,10 @@ i.rotateImg::before {
   }
 
   .BotonCabecera {
-  margin-top: 10px !important;
-  padding: 9px 24px 9px 26px !important;
-  border-radius: 10px;
-}
+    margin-top: 10px !important;
+    padding: 3px 0px 4px 35px !important;
+    border-radius: 10px;
+  }
   .cabeceraAsignados {
     justify-content: center;
     margin: 0 !important;
