@@ -58,8 +58,33 @@ body {
 }
 
 @media (max-width: 767px) {
-
   /* Estilos para pantallas pequeñas */
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
+}
+
+@media (max-width: 510px) {
+  /* Estilos para pantallas pequeñas */
+
+  .container-fluid {
+    display: list-item !important;
+  }
+
   .TituloFormulario {
     font-size: 2em;
     line-height: 1.2;

@@ -59,7 +59,8 @@ select,
   font-size: 12px !important;
 }
 
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
+.select2-container--default
+  .select2-results__option--highlighted[aria-selected] {
   background-color: #cbd0d2;
   color: white;
 }
@@ -147,7 +148,7 @@ button:focus:not(:focus-visible) {
   left: 0;
 }
 
-#sidebar ul li.active>a,
+#sidebar ul li.active > a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -254,14 +255,19 @@ i.rotateImg::before {
   min-height: 100px;
 }
 
-
 .iconosR {
   height: 36px;
   margin-right: 2px;
 }
 
-@media (max-width: 767px) {
+#estado {
+  color: green;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
+@media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
     font-size: 2em;
@@ -275,8 +281,26 @@ i.rotateImg::before {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (max-width: 510px) {
+  /* Estilos para pantallas pequeñas */
 
+  .container-fluid {
+    display: list-item !important;
+  }
+
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
   /* Estilos para pantallas medianas */
   #mainContainer {
     max-width: 720px;
@@ -284,16 +308,8 @@ i.rotateImg::before {
 }
 
 @media (min-width: 992px) {
-
   /* Estilos para pantallas grandes */
   #mainContainer {
     max-width: 960px;
   }
-}
-
-#estado {
-  color: green;
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
