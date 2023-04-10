@@ -247,6 +247,10 @@ div#contFooter p.pInfoFooter {
     height: 158px !important;
   }
 
+  .container-fluid {
+    justify-content: center !important;
+  }
+
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
     font-size: 2em;
