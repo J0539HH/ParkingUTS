@@ -260,7 +260,7 @@ i.rotateImg::before {
 }
 
 .table thead th {
-  border-bottom: 2px solid #1664ab ;
+  border-bottom: 2px solid #1664ab;
 }
 
 .BotonRegistrar {
@@ -287,6 +287,10 @@ i.rotateImg::before {
   height: 20px;
 }
 
+.comentModal {
+  min-height: 100px;
+}
+
 @media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
@@ -308,6 +312,44 @@ i.rotateImg::before {
   }
 }
 
-.comentModal {
-  min-height: 100px;
+@media (max-width: 510px) {
+  /* Estilos para pantallas pequeñas */
+
+  #VolverMenu {
+    margin: 0px 143px 0px 0px !important;
+  }
+
+  .BotonCabecera {
+  margin-top: 10px !important;
+  padding: 9px 24px 9px 26px !important;
+  border-radius: 10px;
+}
+  .cabeceraAsignados {
+    justify-content: center;
+    margin: 0 !important;
+  }
+  .templateContainer {
+    display: contents !important;
+  }
+  #ContenedorGestion {
+    min-width: 681px;
+  }
+
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
 }
