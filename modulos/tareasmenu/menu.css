@@ -54,8 +54,6 @@ body {
   padding: 20px;
 }
 
-
-
 @media (min-width: 768px) {
   .main {
     padding-right: 60px;
@@ -75,7 +73,6 @@ body {
   margin-bottom: 30px;
   text-align: center;
   justify-content: center;
-
 }
 
 #templateContainer .placeholders h4 {
@@ -122,7 +119,6 @@ body {
   margin: 0 0px 11px auto;
 }
 
-
 #templateContainer .circle {
   width: 260px;
   height: 260px;
@@ -155,7 +151,6 @@ body {
   line-height: 80%;
   font-weight: bold;
 }
-
 
 #templateContainer .menu-button {
   position: relative;
@@ -223,6 +218,34 @@ div#contFooter p.pInfoFooter {
 }
 
 @media (max-width: 767px) {
+  /* Estilos para pantallas pequeñas */
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #templateContainer .navbar.alta-theme {
+    border-bottom: 1px solid #c0c0c0;
+    box-shadow: 0px 10px 15px #c0c0c0;
+    height: 85px;
+    background-color: #f5f5f5;
+    height: 158px !important;
+  }
 
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
