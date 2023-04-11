@@ -228,6 +228,8 @@ div.contInterfaceBtn button {
   border-radius: 16px;
   background-color: var(--white-color);
   padding: 40px 30px 40px 30px;
+  margin-bottom: 25px;
+  margin-top: 10px;
 }
 
 div#contInterfazLogin {
@@ -269,7 +271,7 @@ div.contHelpers p.pTxtOlvidoContraseña {
   font-weight: bold;
   color: #1664ab;
   font-size: 18px;
-  margin: 10px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 /* Modal OTP */

@@ -1,12 +1,13 @@
 /* global utilidadesjQuery */
 
 $(document).ready(function () {
+  
   $("#password").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -14,19 +15,18 @@ $(document).ready(function () {
     }
   });
 
-
-  $('#usuario').on('keyup', function () {
+  $("#usuario").on("keyup", function () {
     var valor = $(this).val();
-    var valorSinEspacios = valor.replace(/\s/g, '');
+    var valorSinEspacios = valor.replace(/\s/g, "");
     $(this).val(valorSinEspacios);
   });
-  
+
   $("#usuario").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -63,6 +63,10 @@ $(document).ready(function () {
     },
   });
 
+  $("#newCliente").on("click", function () {
+    $("#modalNewUser").modal("show");
+  });
+
   configuracionInput();
 
   $(".input-key").keyup(function () {
@@ -73,7 +77,7 @@ $(document).ready(function () {
 });
 
 function verificarLogin() {
-  var usuario = ($("#usuario").val()).trim();
+  var usuario = $("#usuario").val().trim();
   var password = $("#password").val();
   if (usuario === "") {
     jAlert(

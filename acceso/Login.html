@@ -84,7 +84,7 @@
                         col-xs-12 contInterfaceBtn">
                         <button id="btnIniciarSesion" class="buttonBtn
                             btnPrimary">
-                            Verificar
+                            Ingresar
                         </button>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
@@ -92,12 +92,90 @@
                         <div class="contHelpers">
                             <p class="pTxtMsg hidden">Usuario o contraseña
                                 incorrectos</p>
+                            <p id="newCliente"
+                                class="pTxtOlvidoContraseña">Nuevo cliente!</p>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+        <!-- Modal nuevo usuario -->
+        <div class="modal notificationModal fade" id="modalNewUser"
+            tabindex="-1" role="dialog" aria-labelledby="modalUserLabel"
+            aria-hidden="true">
+            <div class="modal-dialog dialogCambiarPass">
+                <section class="modal-content content-CambiarContra">
+                    <P class="tituloRestablecerContraseña text-center">Nuevo cliente del
+                        sistema</P>
+                    <p class="InfoCambiarPass infoCambiarPass0">Al terminar, te
+                        enviaremos la informacion del inicio de sesión por
+                        correo electronico.</p>
+                    <p class="InfoCambiarPass font-weight-bold">Todos los campos
+                        son obligatorios!</p>
+                    <section id="sectionLogin" class="row contForm">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
+                            col-xs-12">
+                            <img
+                                src="../Multimedia/Registration.png"
+                                height="50px;"
+                                style="margin-right: 10px; margin-left: 42%;"
+                                />
+                            <div class="form-group">
+                                <label class="labelNameInput" for="newUser">Nuevo
+                                    usuario</label>
+                                <input placeholder="" type="text"
+                                    class="form-control" id="newUser"
+                                    name="newUser"
+                                    />
+                            </div>
+                        </div>
 
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
+                            col-xs-12">
+                            <div class="form-group">
+                                <label class="labelNameInput" for="newPassword">Nueva
+                                    contraseña</label>
+                                <input placeholder="" type="password"
+                                    class="form-control passwordInfo"
+                                    id="newPassword"
+                                    name="newPassword" />
+
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
+                            col-xs-12">
+                            <div class="form-group">
+                                <label class="labelNameInput" for="newPassword">Repetir
+                                    contraseña</label>
+                                <input placeholder="" type="password"
+                                    class="form-control passwordInfo"
+                                    id="newPassword"
+                                    name="newPassword" />
+
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
+                            col-xs-12">
+                            <div class="form-group">
+                                <label class="labelNameInput" for="newUser">Correo
+                                    electronico</label>
+                                <input placeholder="" type="text"
+                                    class="form-control" id="newUser"
+                                    name="newUser"
+                                    />
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12
+                            col-xs-12 justify-content-center d-flex">
+                            <button type="button" class="buttonBtn btnPrimary
+                                btnCambiarpass" id="btnRegistrar">Registrar</button>
+                        </div>
+                    </section>
+
+
+                </section>
+            </div>
+        </div>
         <div id="contFooter">
             <div class="contInfoFooter">
                 <p class="pInfoFooter">Aplicaciones Empresariales</p>

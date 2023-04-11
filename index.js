@@ -67,12 +67,14 @@ app.get(
     "/Multimedia/tecnico.png",
     "/Multimedia/serie.png",
     "/Multimedia/lupa.png",
+    "/Multimedia/Registration.png",
     "/Multimedia/Star.png",
     "/Multimedia/asignar.png",
     "/Multimedia/modelos.png",
     "/Multimedia/tool.png",
     "/Multimedia/fondomenu.png",
     "/Multimedia/fondoBodyM.png",
+    "/Multimedia/eye.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
@@ -313,7 +315,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );
