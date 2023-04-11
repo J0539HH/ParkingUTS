@@ -72,6 +72,7 @@ app.get(
     "/Multimedia/modelos.png",
     "/Multimedia/tool.png",
     "/Multimedia/fondomenu.png",
+    "/Multimedia/fondoBodyM.png",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
