@@ -2,7 +2,6 @@ body {
   background-image: none !important;
 }
 
-
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 
 #templateContainer {
@@ -81,10 +80,11 @@ Fondo de baner central
 
 #templateContainer .placeholders h4 {
   margin-bottom: 0;
-  font-weight: bold;
   background: white;
   color: black;
-  border: 1px solid;
+  border: 2px solid #1664ab;
+  box-shadow: 0px 0px 10px #c0c0c0;
+  border-radius: 10px;
 }
 
 #templateContainer .placeholder {
@@ -207,16 +207,14 @@ div#contFooter p.pInfoFooter {
 }
 
 .InfoCabecera {
-  font-size: 22px;
-  margin-top: 24px;
   background: white;
   font-size: x-large;
   font-weight: bold;
   color: #1664ab;
-  padding: 0 10px 0 10px;
+  padding: 5px 15px 5px 15px;
   border-radius: 10px;
   box-shadow: 0px 10px 15px #c0c0c0;
-  margin: 0 0 0 0;
+  margin: 0 0 6px 0;
 }
 
 .SubtituloMenu {
