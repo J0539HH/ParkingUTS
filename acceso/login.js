@@ -22,6 +22,36 @@ $(document).ready(function () {
     $(this).val(valorSinEspacios);
   });
 
+  $("#password").on("keyup", function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, "");
+    $(this).val(valorSinEspacios);
+  });
+
+  $("#newPassword").on("keyup", function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, "");
+    $(this).val(valorSinEspacios);
+  });
+
+  $("#newPassword2").on("keyup", function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, "");
+    $(this).val(valorSinEspacios);
+  });
+
+  $("#newCorreo").on("keyup", function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, "");
+    $(this).val(valorSinEspacios);
+  });
+
+  $("#newUser").on("keyup", function () {
+    var valor = $(this).val();
+    var valorSinEspacios = valor.replace(/\s/g, "");
+    $(this).val(valorSinEspacios);
+  });
+
   $("#usuario").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
