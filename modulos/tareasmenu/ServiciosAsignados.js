@@ -45,7 +45,7 @@ function cargarMisServiciosEnCola() {
   })
     .then((response) => response.json())
     .then((result) => {
-      if ((result = "No se encontraron servicios")) {
+      if (result === "No se encontraron servicios") {
         AlertaIncorrecta("Aun no tienes servicios asignados");
         $("#spinner").hide();
         $("#ContenedorTabla").addClass("hidden");
@@ -53,6 +53,34 @@ function cargarMisServiciosEnCola() {
         const tableData = { data: result };
         $("#ContenedorTabla").removeClass("hidden");
         CargarTablaServicios(tableData);
+      }
+    })
+    .catch((error) => {});
+}
+
+function cargarMisServiciosFinalizados() {
+  spinner("Cargando servicios, por favor espere");
+  const url = "/api/serviciosFinalizadosTecnico";
+  let idTecnico = idUsuario;
+  const data = { idTecnico: idTecnico };
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result === "No se encontraron servicios") {
+        AlertaIncorrecta("Aun no tienes servicios gestionados");
+        $("#spinner").hide();
+        $("#ContenedorTablaGestionados").addClass("hidden");
+      } else {
+        const tableData = { data: result };
+        CargarTablaGestionados(tableData);
+        $("#ContenedorTablaGestionados").removeClass("hidden");
       }
     })
     .catch((error) => {});
@@ -100,34 +128,6 @@ function AlertaIncorrecta(Texto) {
       // DENIED CODE
     }
   });
-}
-
-function cargarMisServiciosFinalizados() {
-  spinner("Cargando servicios, por favor espere");
-  const url = "/api/serviciosFinalizadosTecnico";
-  let idTecnico = idUsuario;
-  const data = { idTecnico: idTecnico };
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      if ((result = "No se encontraron servicios")) {
-        AlertaIncorrecta("Aun no tienes servicios gestionados");
-        $("#spinner").hide();
-        $("#ContenedorTablaGestionados").addClass("hidden");
-      } else {
-        const tableData = { data: result };
-        CargarTablaGestionados(tableData);
-        $("#ContenedorTablaGestionados").addClass("hidden");
-      }
-    })
-    .catch((error) => {});
 }
 
 function CargarTablaServicios(tableData) {
