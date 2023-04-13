@@ -217,11 +217,11 @@ function enviarCorreo() {
   const mensaje =
     "<p>Hola! <b>" +
     nombre +
-    ", </b>gracias por registrarte en el sistema de gestion de mantenimientos de <b>DOCUTECH.</b> <br> Estos son tus datos de acceso! <br>🎯 Login:<b>" +
+    ", </b>gracias por registrarte en el sistema de gestion de mantenimientos de <b>DOCUTECH.</b> <br> <p>Estos son tus datos de acceso!</p> <br>🎯 <b>Login:</b> " +
     nuevoUsuario +
-    "</b> <br>⭐ Contraseña: <b>" +
+    "<br>⭐<b>Contraseña:</b> " +
     nuevoPass +
-    "</b> <br>Recuerda que puedes iniciar sesión en este link: http://34.125.36.154:3000/acceso/Login.html </p>";
+    "</p><br>Recuerda que puedes iniciar sesión en el siguiente link: <p>http://34.125.36.154:3000/acceso/Login.html</p> ";
   const correo = $("#newCorreo").val();
   const asunto = "Bienvenido a DOCUTECH";
 
