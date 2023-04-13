@@ -48,6 +48,50 @@ function CargarTecnicos() {
     });
 }
 
+function AlertaIncorrecta(Texto) {
+  Swal.fire({
+    title: "",
+    text: Texto,
+    imageUrl: "/Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary btnHidden",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // CONFIRMED CODE
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
+}
+
 function cargarServiciosEnCola() {
   LimpiarModal();
   spinner("Cargando servicios, por favor espere");
@@ -60,8 +104,15 @@ function cargarServiciosEnCola() {
   })
     .then((response) => response.json())
     .then((result) => {
-      const tableData = { data: result };
-      CargarTablaServicios(tableData);
+      if (result === "No se encontraron servicios") {
+        AlertaIncorrecta("No hay servicios en cola para asignar!");
+        $("#spinner").hide();
+        $("#ContenedorTabla").addClass("hidden");
+      } else {
+        $("#ContenedorTabla").removeClass("hidden");
+        const tableData = { data: result };
+        CargarTablaServicios(tableData);
+      }
     })
     .catch((error) => {
       // Lógica para manejar el error...
@@ -235,7 +286,7 @@ function AsignacionDefinitiva() {
     },
   })
     .then((response) => response.json())
-    .then((result) => { })
+    .then((result) => {})
     .catch((error) => {
       console.error("Error al modificar:", error);
     });

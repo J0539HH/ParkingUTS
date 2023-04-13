@@ -334,7 +334,7 @@ router.post("/serviciosSinAsignar", jsonParser, async (req, res) => {
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("No se encontraron servicios");
+      res.json("No se encontraron servicios");
     }
   } catch (err) {
     console.error(err);
