@@ -63,6 +63,24 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+// Validar usuario especifico
+router.post("/EspecificLogin", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      usuario: req.body.usuario,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.json("Login no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Cargar tecnicos
 router.post("/cargarTecnicos", jsonParser, async (req, res) => {
@@ -90,7 +108,6 @@ router.post("/cargarTecnicos", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 // Eliminar usuario especifico
 router.post("/deleteUser", async (req, res) => {
   try {
@@ -522,7 +539,7 @@ router.post("/NewAsignado", jsonParser, async (req, res) => {
 // Finalizar Asignacion
 
 router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
-   try {
+  try {
     const idservicio = req.body.idservicio;
     const collection = database.collection("serviciosasignados");
     const fechaFinalizacion = new Date();

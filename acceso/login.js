@@ -1,7 +1,8 @@
 /* global utilidadesjQuery */
 
 $(document).ready(function () {
-  
+  limpiarNewUser();
+  limpiarCampos();
   $("#password").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
@@ -67,6 +68,10 @@ $(document).ready(function () {
     $("#modalNewUser").modal("show");
   });
 
+  $("#btnRegistrar").on("click", function () {
+    ValidarNuevoUsuario();
+  });
+
   configuracionInput();
 
   $(".input-key").keyup(function () {
@@ -75,6 +80,104 @@ $(document).ready(function () {
     }
   });
 });
+
+function ValidarNuevoUsuario() {
+  let nuevoUsuario = $("#newUser").val().trim();
+  let UserUPP = nuevoUsuario.toUpperCase();
+  let nuevoPass = $("#newPassword").val();
+  let nuevoPass2 = $("#newPassword2").val();
+  let correo = $("#newCorreo").val();
+  let nombreCompleto = $("#newName").val();
+
+  if (nuevoUsuario === "") {
+    AlertIncorrecta("Debes seleccionar un nombre de usuario");
+    return;
+  }
+  if (nuevoPass === "") {
+    AlertIncorrecta("La contraseña no puede estar vacia");
+    return;
+  }
+  if (nuevoPass2 === "") {
+    AlertIncorrecta("La confirmación de la contraseña no puede estar vacia");
+    return;
+  }
+  if (correo === "") {
+    AlertIncorrecta("El correo no puede estar vacio");
+    return;
+  }
+  if (nombreCompleto === "") {
+    AlertIncorrecta("Debes proporcionarnos tu nombre completo");
+    return;
+  }
+
+  if (nuevoPass !== nuevoPass2) {
+    AlertIncorrecta("Las contraseñas no son iguales");
+    return;
+  }
+  spinner("Validando el usuario, por favor espere");
+  const url = "/api/EspecificLogin";
+  const data = {
+    usuario: UserUPP,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result === "Login no encontrado") {
+        $("#spinner").hide();
+        RegistrarNewUser();
+      } else {
+        $("#spinner").hide();
+        AlertIncorrecta("No puedes registrarte con este nombre de usuario.");
+      }
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo registrar");
+      $("#spinner").hide();
+    });
+}
+
+function RegistrarNewUser() {
+  spinner("Registrando un nuevo usuario, por favor espere");
+  let nuevoUsuario = $("#newUser").val().toUpperCase();
+  let nuevoPass = $("#newPassword").val();
+  let correo = $("#newCorreo").val();
+  let nombreCompleto = $("#newName").val();
+
+  const url = "/api/NewUser";
+  const data = {
+    usuario: nuevoUsuario,
+    password: nuevoPass,
+    idrol: 2,
+    nombre: nombreCompleto,
+    correo: correo,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      AlertCorrectX("Usuario regristrado en el sistema ");
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
+      $("#spinner").hide();
+    });
+  $("#usuario").val(nuevoUsuario);
+  $("#password").val(nuevoPass);
+  limpiarNewUser();
+  $("#modalNewUser").modal("hide");
+}
 
 function verificarLogin() {
   var usuario = $("#usuario").val().trim();
@@ -212,6 +315,19 @@ function ValidarUsuario() {
       AlertIncorrecta("Usuario y/o contraseña incorrecta");
       $("#spinner").hide();
     });
+}
+
+function limpiarNewUser() {
+  $("#newUser").val("");
+  $("#newPassword").val("");
+  $("#newPassword2").val("");
+  $("#newCorreo").val("");
+  $("#newName").val("");
+}
+
+function limpiarCampos() {
+  $("#usuario").val("");
+  $("#password").val("");
 }
 
 function CerrarAlerta() {
