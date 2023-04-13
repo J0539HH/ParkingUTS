@@ -45,10 +45,61 @@ function cargarMisServiciosEnCola() {
   })
     .then((response) => response.json())
     .then((result) => {
-      const tableData = { data: result };
-      CargarTablaServicios(tableData);
+      if ((result = "No se encontraron servicios")) {
+        AlertaIncorrecta("Aun no tienes servicios asignados");
+        $("#spinner").hide();
+        $("#ContenedorTabla").addClass("hidden");
+      } else {
+        const tableData = { data: result };
+        $("#ContenedorTabla").removeClass("hidden");
+        CargarTablaServicios(tableData);
+      }
     })
     .catch((error) => {});
+}
+
+function AlertaIncorrecta(Texto) {
+  Swal.fire({
+    title: "",
+    text: Texto,
+    imageUrl: "/Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Aceptar",
+    denyButtonText: "",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary btnHidden",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // CONFIRMED CODE
+    } else if (result.isDenied) {
+      // DENIED CODE
+    }
+  });
 }
 
 function cargarMisServiciosFinalizados() {
@@ -66,8 +117,15 @@ function cargarMisServiciosFinalizados() {
   })
     .then((response) => response.json())
     .then((result) => {
-      const tableData = { data: result };
-      CargarTablaGestionados(tableData);
+      if ((result = "No se encontraron servicios")) {
+        AlertaIncorrecta("Aun no tienes servicios gestionados");
+        $("#spinner").hide();
+        $("#ContenedorTablaGestionados").addClass("hidden");
+      } else {
+        const tableData = { data: result };
+        CargarTablaGestionados(tableData);
+        $("#ContenedorTablaGestionados").addClass("hidden");
+      }
     })
     .catch((error) => {});
 }
