@@ -212,9 +212,9 @@ function enviarCorreo() {
     "<p>Hola! <b>" +
     nombre +
     ", </b>gracias por registrarte en el sistema de gestion de mantenimientos de <b>DOCUTECH.</b> <br> Estos son tus datos de acceso! <br>🎯 Login:<b>" +
-    $("#newUser").val() +
+    nuevoUsuario +
     "</b> <br>⭐ Contraseña: <b>" +
-    $("#newUser").val() +
+    nuevoPass +
     "</b> <br>Recuerda que puedes iniciar sesión en este link: http://34.125.36.154:3000/acceso/Login.html </p>";
   const correo = $("#newCorreo").val();
   const asunto = "Bienvenido a DOCUTECH";
@@ -234,12 +234,12 @@ function enviarCorreo() {
   })
     .then((response) => {
       if (response.ok) {
-          spinner("Enviando información al correo electronico!");
+        spinner("Enviando información al correo electronico!");
         AlertCorrectX("Usuario registrado en el sistema!! ");
         $("#usuario").val(nuevoUsuario);
         $("#password").val(nuevoPass);
         limpiarNewUser();
-         $("#spinner").hide();
+        $("#spinner").hide();
       } else {
         $("#modalNewUser").modal("show");
         throw new Error("Error al enviar el correo electrónico");
@@ -248,7 +248,6 @@ function enviarCorreo() {
     .catch((error) => {
       console.log(error);
     });
- 
 }
 
 function verificarLogin() {
