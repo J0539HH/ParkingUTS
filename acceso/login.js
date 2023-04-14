@@ -134,6 +134,12 @@ function ValidarNuevoUsuario() {
   if (correo === "") {
     AlertIncorrecta("El correo no puede estar vacio");
     return;
+  } else {
+    var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!patron.test(correo)) {
+      AlertIncorrecta("El correo electrónico ingresado no es válido.");
+      return;
+    }
   }
   if (nombreCompleto === "") {
     AlertIncorrecta("Debes proporcionarnos tu nombre completo");
