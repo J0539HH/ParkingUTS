@@ -144,6 +144,7 @@ function ValidarNuevoUsuario() {
     AlertIncorrecta("Las contraseñas no son iguales");
     return;
   }
+  $("#modalNewUser").modal("hide");
   spinner("Validando el usuario, por favor espere");
   const url = "/api/EspecificLogin";
   const data = {
@@ -159,11 +160,11 @@ function ValidarNuevoUsuario() {
     .then((response) => response.json())
     .then((result) => {
       if (result === "Login no encontrado") {
-        $("#spinner").hide();
         RegistrarNewUser();
       } else {
         $("#spinner").hide();
         AlertIncorrecta("No puedes registrarte con este nombre de usuario.");
+        $("#modalNewUser").modal("show");
       }
     })
     .catch((error) => {
@@ -171,7 +172,6 @@ function ValidarNuevoUsuario() {
       $("#spinner").hide();
     });
 }
-
 function RegistrarNewUser() {
   spinner("Registrando un nuevo usuario, por favor espere");
   let nuevoUsuario = $("#newUser").val().toUpperCase();
@@ -196,31 +196,72 @@ function RegistrarNewUser() {
   })
     .then((response) => response.json())
     .then((result) => {
-      AlertCorrectX("Usuario regristrado en el sistema ");
-      $("#spinner").hide();
+      enviarCorreo();
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
       $("#spinner").hide();
     });
-  $("#usuario").val(nuevoUsuario);
-  $("#password").val(nuevoPass);
-  limpiarNewUser();
-  $("#modalNewUser").modal("hide");
+}
+function enviarCorreo() {
+  spinner("Enviando información al correo electronico!");
+  let nuevoUsuario = $("#newUser").val().toUpperCase();
+  let nuevoPass = $("#newPassword").val();
+  let nombre = $("#newName").val().toUpperCase();
+  const mensaje =
+    "<p>Hola! <b>" +
+    nombre +
+    ", </b>gracias por registrarte en el sistema de gestion de mantenimientos de <b>DOCUTECH.</b> <br> Estos son tus datos de acceso! <br>🎯 Login:<b>" +
+    $("#newUser").val() +
+    "</b> <br>⭐ Contraseña: <b>" +
+    $("#newUser").val() +
+    "</b> <br>Recuerda que puedes iniciar sesión en este link: http://34.125.36.154:3000/acceso/Login.html </p>";
+  const correo = $("#newCorreo").val();
+  const asunto = "Bienvenido a DOCUTECH";
+
+  const data = {
+    correo: correo,
+    asunto: asunto,
+    mensaje: mensaje,
+  };
+
+  fetch("/EnvioDecorreo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+          spinner("Enviando información al correo electronico!");
+        AlertCorrectX("Usuario registrado en el sistema!! ");
+        $("#usuario").val(nuevoUsuario);
+        $("#password").val(nuevoPass);
+        limpiarNewUser();
+         $("#spinner").hide();
+      } else {
+        $("#modalNewUser").modal("show");
+        throw new Error("Error al enviar el correo electrónico");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+ 
 }
 
 function verificarLogin() {
   var usuario = $("#usuario").val().trim();
   var password = $("#password").val();
   if (usuario === "") {
-    jAlert(
-      "Debe proporcionar un nombre de usuario para acceder al sistema",
-      "Aviso"
+    AlertIncorrecta(
+      "Debe proporcionar un nombre de usuario para acceder al sistema"
     );
     return;
   }
   if (password === "") {
-    jAlert("Debe proporcionar una palabra clave de entrada", "Aviso");
+    AlertIncorrecta("Debe proporcionar contraseña para acceder al sistema");
     return;
   }
   var fecha = new Date();
