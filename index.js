@@ -75,6 +75,13 @@ app.get(
     "/Multimedia/fondomenu.png",
     "/Multimedia/fondoBodyM.png",
     "/Multimedia/eye.svg",
+    "/Multimedia/personas.svg",
+    "/Multimedia/newServicio.svg",
+    "/Multimedia/asignarServicios.svg",
+    "/Multimedia/gestion.svg",
+    "/Multimedia/oportunidad.svg",
+    "/Multimedia/evaluar.svg",
+    "/Multimedia/reporte.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

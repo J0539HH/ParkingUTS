@@ -169,9 +169,59 @@ Fondo de baner central
   -webkit-transition: all 0.4s linear;
   -moz-transition: all 0.4s linear;
   transition: all 0.4s linear;
-  background-image: url(../../Multimedia/seleccionado.svg);
+  background-image: url(../../Multimedia/seleccionado.svg) !important;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* Estilos botones */
+
+.btnGestionU {
+  background-color: #8561c8;
+  background-image: url(../../Multimedia/personas.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnNewForm {
+  background-color: #00b8ed;
+  background-image: url(../../Multimedia/newServicio.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnAsignacion {
+  background-color: #f05401;
+  background-image: url(../../Multimedia/oportunidad.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnGestion {
+  background-color: #68c182;
+  background-image: url(../../Multimedia/gestion.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnConsulta {
+  background-color: #ffb54d;
+  background-image: url(../../Multimedia/evaluar.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnReportes {
+  background-color: red;
+  background-image: url(../../Multimedia/reporte.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
 }
 
 /* Footer */
