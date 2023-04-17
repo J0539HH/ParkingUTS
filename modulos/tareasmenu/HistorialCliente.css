@@ -350,13 +350,18 @@ i.rotateImg::before {
     display: contents !important;
   }
 
-  #tablaUsuarios_paginate #dataTables_info {
+  #tablaGestionados_filter {
+    margin: 0 0 0 29px;
+  }
+
+  #dataTables_info {
     display: flex;
     justify-content: center;
   }
 
-  #tablaGestionados_filter #dataTables_info {
-    margin: 0 0 0 29px;
+  #tablaUsuarios_paginate {
+    display: flex;
+    justify-content: center;
   }
 
   #tablaGestionados_paginate {
