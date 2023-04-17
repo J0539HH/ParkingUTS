@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
 });
 
 // Registrar Auditoria
+
 router.post("/NewAudtoria", jsonParser, async (req, res) => {
   try {
     const fechaAuditoria = moment().tz("America/Bogota").format();
