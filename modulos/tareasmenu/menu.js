@@ -100,6 +100,7 @@ function verificarAccesos() {
     $("#ContenedorCreacionServicio").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden");
+    $("#ContainerMenu").addClass("centrarBotones");
   }
 
   // Opciones de un  tecnico
@@ -107,8 +108,7 @@ function verificarAccesos() {
     $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorAsignados").removeClass("hidden");
-        $("#ContainerMenu").addClass("centrarBotones");
-
+    $("#ContainerMenu").addClass("centrarBotones");
   }
 
   // Opciones de un  administrador
