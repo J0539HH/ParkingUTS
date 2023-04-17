@@ -88,6 +88,7 @@ app.get(
     "/Multimedia/asignado.svg",
     "/Multimedia/logoDocu.svg",
     "/Multimedia/gearDocu.svg",
+    "/Multimedia/mystory.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
