@@ -229,8 +229,6 @@ i.rotateImg::before {
   padding: 3px 12px 9px 5px;
 }
 
-
-
 .tittleAsignados {
   padding: 16px 0 0 0;
 }
@@ -290,18 +288,18 @@ i.rotateImg::before {
   min-height: 100px;
 }
 
- .cabeceraAsignados {
-    justify-content: center;
-    margin: 0 !important;
-  }
+.cabeceraAsignados {
+  justify-content: center;
+  margin: 0 !important;
+}
 
-  #ContenedorTabla {
-    margin-bottom: 35px;
-  }
+#ContenedorTabla {
+  margin-bottom: 35px;
+}
 
-  #contenedorGestion {
-    margin-bottom: 35px;
-  }
+#contenedorGestion {
+  min-width: 681px;
+}
 
 @media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
@@ -324,9 +322,6 @@ i.rotateImg::before {
   }
 }
 
-
-
-
 @media (max-width: 510px) {
   /* Estilos para pantallas pequeñas */
 
@@ -334,7 +329,7 @@ i.rotateImg::before {
     margin: 0px 143px 0px 0px !important;
   }
 
-  #bloqueSubmenu{
+  #bloqueSubmenu {
     display: grid !important;
   }
 
@@ -347,35 +342,37 @@ i.rotateImg::before {
   }
 
   .cabeceraAsignados {
-  justify-content: center;
-  margin: 34px 0 -98px -1px;
-}
+    justify-content: center;
+    margin: 34px 0 -98px -1px;
+  }
 
- 
   .templateContainer {
     display: contents !important;
   }
 
+  #tablaUsuarios_paginate {
+    display: flex;
+    justify-content: center;
+  }
 
- #tablaGestionados_filter{
-  margin: 0 0 0 29px;
+  #tablaGestionados_filter {
+    margin: 0 0 0 29px;
+  }
 }
- }
-  .TituloFormulario {
-    font-size: 2em;
-    line-height: 1.2;
-  }
+.TituloFormulario {
+  font-size: 2em;
+  line-height: 1.2;
+}
 
-  .InfoCabecera {
-    font-size: 22px;
-    margin-top: 24px;
-    display: none;
-  }
+.InfoCabecera {
+  font-size: 22px;
+  margin-top: 24px;
+  display: none;
+}
 
-  .button2 {
-    background-color: #1664ab;
-    border-color: #1664ab;
-    color: rgb(255, 255, 255);
-    margin: -7% 0% 0% 25% !important;
-  }
+.button2 {
+  background-color: #1664ab;
+  border-color: #1664ab;
+  color: rgb(255, 255, 255);
+  margin: -7% 0% 0% 25% !important;
 }
