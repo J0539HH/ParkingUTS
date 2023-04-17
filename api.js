@@ -27,7 +27,9 @@ router.get("/", (req, res) => {
 // Registrar Auditoria
 router.post("/NewAudtoria", jsonParser, async (req, res) => {
   try {
-    const fechaAuditoria = new Date();
+    const fechaAuditoria = new Date().toLocaleString("en-US", {
+      timeZone: "America/Bogota",
+    });
     const { idusuario, descripcion } = req.body;
     const collection = database.collection("auditoria");
 
