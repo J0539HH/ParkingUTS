@@ -1432,7 +1432,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
 }
 
 .button2:hover {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: white;
   border-color: #1664ab;
   color: #1664ab;
 }
@@ -1469,7 +1469,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
 }
 
 .button8:hover {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: white;
   border-color: rgb(226, 65, 62);
   color: rgb(226, 65, 62);
 }
