@@ -229,10 +229,7 @@ i.rotateImg::before {
   padding: 3px 12px 9px 5px;
 }
 
-.cabeceraAsignados {
-  justify-content: center;
-  margin: 34px 0 -98px -1px;
-}
+
 
 .tittleAsignados {
   padding: 16px 0 0 0;
@@ -293,6 +290,11 @@ i.rotateImg::before {
   min-height: 100px;
 }
 
+ .cabeceraAsignados {
+    justify-content: center;
+    margin: 0 !important;
+  }
+
 @media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
@@ -314,6 +316,7 @@ i.rotateImg::before {
   }
 }
 
+
 @media (max-width: 510px) {
   /* Estilos para pantallas pequeñas */
 
@@ -334,9 +337,11 @@ i.rotateImg::before {
   }
 
   .cabeceraAsignados {
-    justify-content: center;
-    margin: 0 !important;
-  }
+  justify-content: center;
+  margin: 34px 0 -98px -1px;
+}
+
+ 
   .templateContainer {
     display: contents !important;
   }

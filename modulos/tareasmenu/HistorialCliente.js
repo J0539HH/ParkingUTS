@@ -220,9 +220,11 @@ function CargarTablaGestionados(tableData) {
             year: "numeric",
             hour: "numeric",
             minute: "numeric",
+            timeZone: "America/Bogota",
           };
-          return date.toLocaleDateString("es-ES", options);
+          return date.toLocaleDateString("es-CO", options);
         },
+        type: "date",
       },
       {
         data: null,

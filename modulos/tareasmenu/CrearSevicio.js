@@ -102,7 +102,7 @@ function RealizarInsercion() {
       $("#spinner").hide();
       enviarCorreo(result);
       AlertCorrectX("Te enviamos un correo con información del servicio!");
-      RegistrarAuditoria();
+      RegistrarAuditoria(result);
     })
     .catch((error) => {
       console.error("Error al registrar:", error);
@@ -110,9 +110,10 @@ function RealizarInsercion() {
     });
 }
 
-function RegistrarAuditoria() {
+function RegistrarAuditoria(datos) {
   spinner("Registrando Auditoria");
-  let descripcionAuditoria = "Registro de un nuevo servicio";
+  let descripcionAuditoria =
+    "Registro de un nuevo servicio con id:" + datos.servicio.idservicio;
   const url = "/api/NewAudtoria";
   const data = {
     idusuario: idUsuario,

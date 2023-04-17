@@ -91,8 +91,9 @@ function CargarTablaServicios(tableData) {
         render: function (data, type, row, meta) {
           var date = new Date(data);
           var options = { day: "numeric", month: "long", year: "numeric" };
-          return date.toLocaleDateString("es-ES", options);
+          return date.toLocaleDateString("es-CO", options);
         },
+        type: "date",
       },
       { data: "comentariosentrada", className: " text-center" },
       {
@@ -136,7 +137,7 @@ function CargarTablaServicios(tableData) {
     drawCallback: function (settings) {
       $("#spinner").hide();
     },
-    order: [[0, "desc"]],
+    order: [[0, "asc"]],
   });
 }
 
