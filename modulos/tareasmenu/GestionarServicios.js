@@ -215,10 +215,11 @@ function ActualizarAsignacion() {
     });
 }
 
-function RegistrarAuditoria() {
+function RegistrarAuditoria(idservicio) {
   spinner("Registrando Auditoria");
   let descripcionAuditoria =
-    "Se actualizan la información y/o estado del mantenimento";
+    "Se actualizan la información y/o estado del mantenimento con id:" +
+    idservicio;
   const url = "/api/NewAudtoria";
   const data = {
     idusuario: idUsuario,
@@ -318,7 +319,7 @@ function ActualizarServicio() {
   })
     .then((response) => response.json())
     .then((result) => {
-      RegistrarAuditoria();
+      RegistrarAuditoria(idservicio);
       AlertCorrectX("Servicio modificado exitosamente!");
       sleep(500);
       if ($("#estado").val() === "Entregado") {
