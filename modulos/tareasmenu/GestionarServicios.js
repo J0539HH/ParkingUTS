@@ -215,6 +215,31 @@ function ActualizarAsignacion() {
     });
 }
 
+function RegistrarAuditoria() {
+  spinner("Registrando Auditoria");
+  let descripcionAuditoria =
+    "Se actualizan la información y/o estado del mantenimento";
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idUsuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
+    });
+}
+
 function ConfirmacioFinalizar() {
   Swal.fire({
     title: "",
@@ -293,6 +318,7 @@ function ActualizarServicio() {
   })
     .then((response) => response.json())
     .then((result) => {
+      RegistrarAuditoria();
       AlertCorrectX("Servicio modificado exitosamente!");
       sleep(500);
       if ($("#estado").val() === "Entregado") {
