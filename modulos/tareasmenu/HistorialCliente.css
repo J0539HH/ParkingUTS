@@ -236,10 +236,6 @@ i.rotateImg::before {
 
 .botonAsignados {
   z-index: 1;
-  margin: 15px 0px 0 39px !important;
-  width: 120px;
-  height: 32px;
-  padding: 3px 0px 0px 20px !important;
 }
 
 .cabeceraAsignados {
@@ -271,10 +267,6 @@ i.rotateImg::before {
 
 .botonActivos {
   z-index: 1;
-  margin: 15px 0px 0 33px !important;
-  width: 108px;
-  height: 32px;
-  padding: 3px 0px 0px 28px !important;
 }
 
 .modal-backdrop.show {
