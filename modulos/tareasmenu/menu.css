@@ -293,24 +293,9 @@ div#contFooter p.pInfoFooter {
   color: white;
 }
 
-@media (max-width: 767px) {
-  /* Estilos para pantallas pequeñas */
-  .TituloFormulario {
-    font-size: 2em;
-    line-height: 1.2;
-  }
-
-  .InfoCabecera {
-    font-size: 22px;
-    margin-top: 24px;
-    display: none;
-  }
-
-  .button2 {
-    background-color: #1664ab;
-    border-color: #1664ab;
-    color: rgb(255, 255, 255);
-    margin: -7% 0% 0% 25% !important;
+@media (min-width: 769px) and (max-width: 1024px) {
+  .centrarBotones {
+    margin-top: 10% !important;
   }
 }
 
