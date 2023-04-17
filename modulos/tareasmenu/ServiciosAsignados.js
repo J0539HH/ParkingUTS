@@ -158,7 +158,7 @@ function CargarTablaServicios(tableData) {
             hour: "numeric",
             minute: "numeric",
           };
-          return date.toLocaleDateString("es-ES", options);
+          return date.toLocaleDateString("es-CO", options);
         },
       },
       { data: "comentariosentrada", className: " text-center" },
@@ -247,7 +247,7 @@ function CargarTablaGestionados(tableData) {
             hour: "numeric",
             minute: "numeric",
           };
-          return date.toLocaleDateString("es-ES", options);
+          return date.toLocaleDateString("es-CO", options);
         },
       },
       {
@@ -262,7 +262,7 @@ function CargarTablaGestionados(tableData) {
             hour: "numeric",
             minute: "numeric",
           };
-          return date.toLocaleDateString("es-ES", options);
+          return date.toLocaleDateString("es-CO", options);
         },
       },
       {

@@ -307,7 +307,7 @@ function AsignacionDefinitiva() {
   })
     .then((response) => response.json())
     .then((result) => {
-      AlertCorrectX("Servicio modificado exitosamente!");
+      AlertCorrectX("Servicio asignado exitosamente!");
       cargarServiciosEnCola();
       $("#agregarUsuarioModal").modal("hide");
     })
