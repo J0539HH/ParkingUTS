@@ -393,8 +393,7 @@ function ValidarUsuario() {
 
 function RegistrarAuditoria(idusuario) {
   spinner("Registrando Auditoria");
-  let descripcionAuditoria =
-    "El usuario se logea satisfactoriamente en el sistema";
+  let descripcionAuditoria = "Ingreso exitoso al sistema";
   const url = "/api/NewAudtoria";
   const data = {
     idusuario: idusuario,
