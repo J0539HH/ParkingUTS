@@ -224,6 +224,15 @@ Fondo de baner central
   background-position: center;
 }
 
+.btnAsignados {
+  background-color: red;
+  background-image: url(../../Multimedia/asignado.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+
 /* Footer */
 
 div#contFooter {
