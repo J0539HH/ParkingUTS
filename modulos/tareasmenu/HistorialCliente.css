@@ -217,7 +217,6 @@ i.rotateImg::before {
   margin-top: 3%;
 }
 
-
 .paginadorTU {
   margin-left: 90%;
   margin-top: -70px;
@@ -322,6 +321,18 @@ i.rotateImg::before {
     margin: 0px 143px 0px 0px !important;
   }
 
+  #bloqueSubmenu{
+    display: grid !important;
+  }
+
+  #tablaUsuarios {
+    width: 98% !important;
+  }
+
+  #tablaUsuarios_filter {
+    padding: 0 10% 0;
+  }
+
   .cabeceraAsignados {
     justify-content: center;
     margin: 0 !important;
@@ -350,12 +361,5 @@ i.rotateImg::before {
     border-color: #1664ab;
     color: rgb(255, 255, 255);
     margin: -7% 0% 0% 25% !important;
-  }
-}
-
-@media screen and (max-width: 1024px) and (max-height: 720px) {
-  table {
-    max-width: 100%;
-    width: 100%;
   }
 }
