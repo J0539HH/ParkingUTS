@@ -354,9 +354,6 @@ input.form-control {
   text-overflow: ellipsis;
 }
 
-select.form-control {
-  /*    padding: 2px 40px 2px 20px;*/
-}
 
 input.form-control.passwordInfo,
 input[type="password"].form-control {
