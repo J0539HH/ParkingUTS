@@ -295,6 +295,14 @@ i.rotateImg::before {
     margin: 0 !important;
   }
 
+  #ContenedorTabla {
+    margin-bottom: 35px;
+  }
+
+  #contenedorGestion {
+    margin-bottom: 35px;
+  }
+
 @media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
@@ -315,6 +323,8 @@ i.rotateImg::before {
     margin: -7% 0% 0% 25% !important;
   }
 }
+
+
 
 
 @media (max-width: 510px) {
@@ -345,11 +355,6 @@ i.rotateImg::before {
   .templateContainer {
     display: contents !important;
   }
-
-  /*  #ContenedorGestion {
-    min-width: 681px;
-  }
- */
 
 
  #tablaGestionados_filter{
