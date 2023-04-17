@@ -60,6 +60,9 @@ app.get(
     "/modulos/tareasmenu/HistorialCliente.html",
     "/modulos/tareasmenu/HistorialCliente.css",
     "/modulos/tareasmenu/HistorialCliente.js",
+    "/modulos/tareasmenu/Auditoria.html",
+    "/modulos/tareasmenu/Auditoria.css",
+    "/modulos/tareasmenu/Auditoria.js",
     "/lib/datatables/datatables.min.js",
     "/Multimedia/hdd.png",
     "/Multimedia/dispositivo.png",
@@ -91,6 +94,7 @@ app.get(
     "/Multimedia/mystory.svg",
     "/Multimedia/newGestion.svg",
     "/Multimedia/detallado.svg",
+    "/Multimedia/auditor.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);

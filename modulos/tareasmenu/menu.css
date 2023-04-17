@@ -240,6 +240,14 @@ Fondo de baner central
   background-position: center;
 }
 
+.btnAuditoria {
+  background-color: black;
+  background-image: url(../../Multimedia/auditor.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
 /* Footer */
 
 div#contFooter {

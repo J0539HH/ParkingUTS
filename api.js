@@ -654,4 +654,36 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   }
 });
 
+
+// Cargar todas las auditorias
+router.post("/auditoriasTotal", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("auditoria");
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "usuarios",
+            localField: "idusuario",
+            foreignField: "idusuario",
+            as: "usuario",
+          },
+        },
+        {
+          $unwind: "$usuario",
+        },
+      ])
+      .toArray();
+
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.status(404).send("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

@@ -30,8 +30,13 @@ $(document).ready(function () {
   $("#ConsultarServicios").on("click", function () {
     window.location.href = "../tareasmenu/Seguimiento.html";
   });
+
   $("#Asignados").on("click", function () {
     window.location.href = "../tareasmenu/ServiciosAsignados.html";
+  });
+
+  $("#Auditoria").on("click", function () {
+    window.location.href = "../tareasmenu/Auditoria.html";
   });
 
   $("#volverLogin").on("click", function () {
@@ -120,6 +125,7 @@ function verificarAccesos() {
     $("#ContenedorReporteServicios").removeClass("hidden");
     $("#ContenedorAsignacionServicio").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden");
+    $("#ContenedorAuditoria").removeClass("hidden");
   }
 
   $("#spinner").hide();

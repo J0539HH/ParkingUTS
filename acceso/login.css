@@ -5,12 +5,20 @@ div#divGlobal {
   margin-bottom: 35px;
 }
 
+
+
 body {
-  overflow: hidden;
+  background-image: url("../../Multimedia/fondoWeb.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 .contTitle {
-  color: white;
+  color: black;
 }
 
 .InputsOtpRecuperar {

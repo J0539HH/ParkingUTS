@@ -69,15 +69,7 @@
 
 /* Globales */
 
-body {
-  background-image: url("../../Multimedia/fondoWeb.jpg") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: cover;
-  min-height: 100vh;
-  max-height: 100vh;
-  overflow-y: auto;
-}
+
 
 .marginB15 {
   margin-bottom: 15px;
