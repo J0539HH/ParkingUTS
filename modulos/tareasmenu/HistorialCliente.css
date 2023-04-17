@@ -301,6 +301,26 @@ i.rotateImg::before {
   min-width: 681px;
 }
 
+#tablaUsuarios_paginate {
+  display: flex;
+  justify-content: center;
+}
+
+#tablaUsuarios_info {
+  display: flex;
+  justify-content: center;
+}
+
+#tablaGestionados_info {
+  display: flex;
+  justify-content: center;
+}
+
+#tablaGestionados_paginate {
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 767px) {
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
@@ -357,15 +377,6 @@ i.rotateImg::before {
   #dataTables_info {
     display: flex;
     justify-content: center;
-  }
-
-  #tablaUsuarios_paginate {
-    display: flex;
-    justify-content: center;
-  }
-
-  #tablaGestionados_paginate {
-    margin: 0 0 0 29px;
   }
 }
 .TituloFormulario {
