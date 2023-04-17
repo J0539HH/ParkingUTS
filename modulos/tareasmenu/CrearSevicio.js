@@ -88,7 +88,7 @@ function RealizarInsercion() {
     marca,
     tipodispositivo,
     numeroserie,
-    modelo
+    modelo,
   };
   fetch(url, {
     method: "POST",
@@ -99,10 +99,12 @@ function RealizarInsercion() {
   })
     .then((response) => response.json())
     .then((result) => {
+      $("#spinner").hide();
       enviarCorreo(result);
       AlertCorrectX("Te enviamos un correo con información del servicio!");
-      $("#spinner").hide();
-      LimpiarFormulario();
+      setTimeout(function () {
+        window.location.href = "../tareasmenu/menu.html";
+      }, 1000);
     })
     .catch((error) => {
       console.error("Error al registrar:", error);

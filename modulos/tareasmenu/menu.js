@@ -11,8 +11,8 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/GestorUsuarios.html";
   });
 
-  $("#GestionDeUsuarios").on("click", function () {
-    window.location.href = "../tareasmenu/GestorUsuarios.html";
+  $("#myHistorial").on("click", function () {
+    window.location.href = "../tareasmenu/HistorialCliente.html";
   });
 
   $("#ReporteServicios").on("click", function () {
@@ -67,7 +67,6 @@ $(function () {
       this.querySelector(".menu-button").classList.remove("selected");
     }
   );
-  
 });
 
 function verificarSesionM() {
@@ -100,6 +99,7 @@ function verificarAccesos() {
   if (idrol === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
+    $("#ContenedorMiHistorial").removeClass("hidden");
   }
 
   // Opciones de un  tecnico

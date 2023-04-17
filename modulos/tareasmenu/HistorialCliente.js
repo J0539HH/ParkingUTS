@@ -3,6 +3,7 @@ var idUsuario = null;
 
 $(document).ready(function () {
   verificarSesionT();
+
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
   });
@@ -10,7 +11,7 @@ $(document).ready(function () {
   $("#serviciosGestionados").on("click", function () {
     $("#serviciosAsignados").removeClass("hidden");
     $("#serviciosGestionados").addClass("hidden");
-    $("#tituloCabeceraAsignados").html("Historial de mantenimientos");
+    $("#tituloCabeceraAsignados").html("Mantenimientos entregados");
     $("#ContenedorTabla").addClass("hidden");
     $("#ContenedorTablaGestionados").removeClass("hidden");
     $("#tituloCabeceraAsignados").removeClass("BlueSistem");
@@ -21,7 +22,7 @@ $(document).ready(function () {
   $("#serviciosAsignados").on("click", function () {
     $("#serviciosGestionados").removeClass("hidden");
     $("#serviciosAsignados").addClass("hidden");
-    $("#tituloCabeceraAsignados").html("Mantenimientos asignados");
+    $("#tituloCabeceraAsignados").html("Mantenimientos activos");
     $("#ContenedorTablaGestionados").addClass("hidden");
     $("#ContenedorTabla").removeClass("hidden");
     $("#tituloCabeceraAsignados").removeClass("GreenSistem");
@@ -32,9 +33,9 @@ $(document).ready(function () {
 
 function cargarMisServiciosEnCola() {
   spinner("Cargando servicios, por favor espere");
-  const url = "/api/serviciosTecnico";
-  let idTecnico = idUsuario;
-  const data = { idTecnico: idTecnico };
+  const url = "/api/serviciosUsuario";
+  let idusuario = idUsuario;
+  const data = { idusuario: idusuario };
 
   fetch(url, {
     method: "POST",
@@ -46,7 +47,7 @@ function cargarMisServiciosEnCola() {
     .then((response) => response.json())
     .then((result) => {
       if (result === "No se encontraron servicios") {
-        AlertaIncorrecta("Aun no tienes servicios asignados");
+        AlertaIncorrecta("No tienes mantenimientos activos!");
         $("#spinner").hide();
         $("#ContenedorTabla").addClass("hidden");
       } else {
@@ -60,9 +61,9 @@ function cargarMisServiciosEnCola() {
 
 function cargarMisServiciosFinalizados() {
   spinner("Cargando servicios, por favor espere");
-  const url = "/api/serviciosFinalizadosTecnico";
-  let idTecnico = idUsuario;
-  const data = { idTecnico: idTecnico };
+  const url = "/api/serviciosEntregadosUsuario";
+  let idusuario = idUsuario;
+  const data = { idusuario: idusuario };
 
   fetch(url, {
     method: "POST",
@@ -74,7 +75,7 @@ function cargarMisServiciosFinalizados() {
     .then((response) => response.json())
     .then((result) => {
       if (result === "No se encontraron servicios") {
-        AlertaIncorrecta("Aun no tienes servicios gestionados");
+        AlertaIncorrecta("Aun no tienes mantenimientos gestionados");
         $("#spinner").hide();
         $("#ContenedorTablaGestionados").addClass("hidden");
       } else {
@@ -131,13 +132,13 @@ function AlertaIncorrecta(Texto) {
 }
 
 function CargarTablaServicios(tableData) {
-  idServicioAsignable = "";
+  console.log(tableData);
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "idservicio", className: " text-center" },
+      { data: "estado", className: " text-center " },
       {
         data: "marca",
         className: "text-center",
@@ -146,33 +147,7 @@ function CargarTablaServicios(tableData) {
         },
       },
       { data: "tipodispositivo", className: " text-center" },
-      {
-        data: "serviciosasignados.fechaAsignacion",
-        className: "text-center",
-        render: function (data, type, row, meta) {
-          var date = new Date(data);
-          var options = {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-          };
-          return date.toLocaleDateString("es-ES", options);
-        },
-      },
       { data: "comentariosentrada", className: " text-center" },
-      {
-        data: null,
-        className: "text-center",
-        render: function (data, type, row) {
-          return (
-            '<img src="../../Multimedia/tool.png" class="iconoTabla" onclick="Gestionar(\'' +
-            row.idservicio +
-            "')\" />"
-          );
-        },
-      },
       {
         data: null,
         className: "text-center",
@@ -185,7 +160,7 @@ function CargarTablaServicios(tableData) {
         },
       },
     ],
-    order: [[0, "asc"]],
+    order: [[3, "asc"]],
     language: {
       sProcessing: "Procesando...",
       sLengthMenu: "Mostrar _MENU_ registros",
@@ -220,7 +195,6 @@ function CargarTablaServicios(tableData) {
 
 function CargarTablaGestionados(tableData) {
   console.log(tableData);
-  idServicioAsignable = "";
   $("#tablaGestionados").DataTable({
     destroy: true,
     data: tableData.data,
@@ -235,21 +209,6 @@ function CargarTablaGestionados(tableData) {
         },
       },
       { data: "tipodispositivo", className: " text-center" },
-      {
-        data: "serviciosasignados.fechaAsignacion",
-        className: "text-center",
-        render: function (data, type, row, meta) {
-          var date = new Date(data);
-          var options = {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-          };
-          return date.toLocaleDateString("es-ES", options);
-        },
-      },
       {
         data: "serviciosasignados.fechaFinalizacion",
         className: "text-center",

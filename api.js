@@ -448,6 +448,69 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   }
 });
 
+// Cargar servicios de usuario especifico
+router.post("/serviciosUsuario", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("servicios");
+    const aggregation = [
+      {
+        $match: {
+          estado: {
+            $in: ["Listo para entregar", "En cola", "En mantenimiento"],
+          },
+          idusuario: req.body.idusuario,
+        },
+      },
+    ];
+    const result = await collection.aggregate(aggregation).toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.json("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Cargar servicios Gestionados de usuario especifico
+router.post("/serviciosEntregadosUsuario", jsonParser, async (req, res) => {
+  try {
+    const idusuario = req.body.idusuario;
+    const collection = database.collection("servicios");
+    const result = await collection
+      .aggregate([
+        {
+          $lookup: {
+            from: "serviciosasignados",
+            localField: "idservicio",
+            foreignField: "idservicio",
+            as: "serviciosasignados",
+          },
+        },
+        {
+          $unwind: "$serviciosasignados",
+        },
+        {
+          $match: {
+            estado: "Entregado",
+            idusuario: idusuario,
+          },
+        },
+      ])
+      .toArray();
+    if (result.length > 0) {
+      res.json(result);
+    } else {
+      res.json("No se encontraron servicios");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Editar servicio especifico
 router.post("/EditService", jsonParser, async (req, res) => {
   try {
@@ -537,7 +600,6 @@ router.post("/NewAsignado", jsonParser, async (req, res) => {
 });
 
 // Finalizar Asignacion
-
 router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   try {
     const idservicio = req.body.idservicio;
@@ -558,6 +620,7 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   }
 });
 
+// Nueva
 router.post("/NewAsignado", jsonParser, async (req, res) => {
   try {
     const fechaAsignacion = new Date();

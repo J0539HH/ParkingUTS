@@ -218,7 +218,7 @@ function ActualizarAsignacion() {
 function ConfirmacioFinalizar() {
   Swal.fire({
     title: "",
-    text: "Estas seguro de dar por finalizado el servicio?",
+    html: "Estas seguro de dar por <b>finalizado</b> el servicio?",
     imageUrl: "../../Multimedia/icoAlertWarning.svg",
     imageWidth: 80,
     imageHeight: 80,
@@ -294,16 +294,73 @@ function ActualizarServicio() {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Servicio modificado exitosamente!");
+      sleep(500);
+      if ($("#estado").val() === "Entregado") {
+        AlertCorrectX("Gracias por entregar el servicio!!");
+        setTimeout(function () {
+          window.location.href = "../tareasmenu/menu.html";
+        }, 800);
+      } else {
+        setTimeout(function () {
+          ValidarSalida();
+        }, 1200);
+      }
     })
     .catch((error) => {
       console.error("Error al modificar:", error);
     });
-
-  LimpiarFormulario();
   $("#spinner").hide();
-  setTimeout(function () {
-    window.location.href = "../tareasmenu/menu.html";
-  }, 1500);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function ValidarSalida() {
+  Swal.fire({
+    title: "",
+    html: "Deseas seguir gestionando el servicio?",
+    imageUrl: "../../Multimedia/icoAlertWarning.svg",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageAlt: "Custom Icon",
+    showConfirmButton: true,
+    focusConfirm: false,
+    allowOutsideClick: false,
+    focusDeny: true,
+    showDenyButton: true,
+    confirmButtonText: "Sí",
+    denyButtonText: "No",
+    customClass: {
+      container: "",
+      popup: "",
+      header: "",
+      title: "",
+      closeButton: "",
+      icon: "",
+      image: "",
+      content: "",
+      htmlContainer: "",
+      input: "",
+      inputLabel: "",
+      validationMessage: "",
+      actions: "",
+      confirmButton: "buttonBtn btnPrimary",
+      denyButton: "buttonBtn btnPrimary ",
+      cancelButton: "",
+      loader: "",
+      footer: "",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      cargarInfoServicio($("#numeroServicio").val());
+    } else if (result.isDenied) {
+      AlertCorrectX("Gracias!!");
+      setTimeout(function () {
+        window.location.href = "../tareasmenu/menu.html";
+      }, 800);
+    }
+  });
 }
 
 function LimpiarFormulario() {
