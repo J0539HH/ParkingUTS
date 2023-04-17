@@ -102,13 +102,38 @@ function RealizarInsercion() {
       $("#spinner").hide();
       enviarCorreo(result);
       AlertCorrectX("Te enviamos un correo con información del servicio!");
+      RegistrarAuditoria();
+    })
+    .catch((error) => {
+      console.error("Error al registrar:", error);
+      $("#spinner").hide();
+    });
+}
+
+function RegistrarAuditoria() {
+  spinner("Registrando Auditoria");
+  let descripcionAuditoria = "Registro de un nuevo servicio";
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idUsuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
       setTimeout(function () {
         window.location.href = "../tareasmenu/menu.html";
       }, 1000);
     })
     .catch((error) => {
-      console.error("Error al registrar:", error);
-      $("#spinner").hide();
+      console.error("Error al ingresar:", error);
     });
 }
 
