@@ -117,6 +117,7 @@ function verificarAccesos() {
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorReporteServicios").removeClass("hidden");
     $("#ContenedorAsignacionServicio").removeClass("hidden");
+    $("#ContenedorMiHistorial").removeClass("hidden");
   }
 
   $("#spinner").hide();

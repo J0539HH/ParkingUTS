@@ -210,7 +210,7 @@ Fondo de baner central
 
 .btnConsulta {
   background-color: #ffb54d;
-  background-image: url(../../Multimedia/evaluar.svg);
+  background-image: url(../../Multimedia/reporte.svg);
   background-repeat: no-repeat;
   background-size: 65%;
   background-position: center;
@@ -224,6 +224,14 @@ Fondo de baner central
   background-position: center;
 }
 
+.btnMystory {
+  background-color: indianred;
+  background-image: url(../../Multimedia/reporte.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
 .btnAsignados {
   background-color: red;
   background-image: url(../../Multimedia/asignado.svg);
@@ -231,7 +239,6 @@ Fondo de baner central
   background-size: 65%;
   background-position: center;
 }
-
 
 /* Footer */
 
@@ -317,6 +324,9 @@ div#contFooter p.pInfoFooter {
 
   .container-fluid {
     justify-content: center !important;
+    padding: 0 !important;
+    width: 100%;
+    margin: auto;
   }
 
   /* Estilos para pantallas pequeñas */
