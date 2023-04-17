@@ -174,10 +174,6 @@ Fondo de baner central
   background-size: cover;
 }
 
-.centrarBotones {
-  margin-top: 10% !important;
-}
-
 /* Estilos botones */
 
 .btnGestionU {
@@ -297,7 +293,15 @@ div#contFooter p.pInfoFooter {
   color: white;
 }
 
+.centrarBotones {
+  margin-top: 0 0 0 0;
+}
 
+@media (min-width: 1024px) and (min-height: 768px) {
+  .centrarBotones {
+    margin-top: 10% !important;
+  }
+}
 
 @media (max-width: 510px) {
   #templateContainer .navbar.alta-theme {
