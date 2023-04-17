@@ -86,7 +86,7 @@ function CargarTablaServicios(tableData) {
             hour: "numeric",
             minute: "numeric",
           };
-         return date.toLocaleString("es-CO", options);
+          return date.toLocaleString("es-CO", options);
         },
         type: "date",
       },
