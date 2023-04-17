@@ -350,6 +350,12 @@ i.rotateImg::before {
     min-width: 681px;
   }
  */
+
+
+ #tablaGestionados_filter{
+  margin: 0 0 0 29px;
+}
+ }
   .TituloFormulario {
     font-size: 2em;
     line-height: 1.2;
