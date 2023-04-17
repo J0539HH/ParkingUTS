@@ -67,6 +67,7 @@ $(function () {
       this.querySelector(".menu-button").classList.remove("selected");
     }
   );
+  
 });
 
 function verificarSesionM() {

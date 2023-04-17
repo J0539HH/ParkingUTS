@@ -234,11 +234,16 @@ i.rotateImg::before {
   height: 80% !important;
   padding: 3px 12px 9px 5px;
 }
+.btnEditarGestion {
+  min-width: 67px;
+  margin: 0 0 0 4px;
+}
 
 .BotonRegistrar {
   height: 30px;
   padding: 5px 32px 25px 26px;
   margin: 36px 0 0 14px;
+  border-radius: 10px;
 }
 
 .modal-backdrop.show {

@@ -162,7 +162,7 @@ function CargarTablaUsuarios(tableData) {
         className: " text-center",
         render: function (data, type, row) {
           return (
-            '<a class="btn btn-primary btn-sm" onclick="editarUsuario(' +
+            '<a class="btn btn-primary btn-sm btnEditarGestion" onclick="editarUsuario(' +
             row.idusuario +
             ')">Editar</a> ' +
             '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
