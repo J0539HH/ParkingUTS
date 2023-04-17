@@ -264,7 +264,10 @@ router.post("/NewForm", jsonParser, async (req, res) => {
     const collection = database.collection("servicios");
     const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
     const newId = lastUser ? lastUser.idservicio + 1 : 1;
-    const fechaEntrada = new Date();
+    const fechaActual = new Date().toLocaleString("en-US", {
+      timeZone: "America/Bogota",
+    });
+    const fechaEntrada = new Date(fechaActual);
     const result = await collection.insertOne({
       idservicio: newId,
       comentariosentrada,
@@ -548,7 +551,10 @@ router.post("/EditService", jsonParser, async (req, res) => {
       modelo,
     } = req.body;
     const collection = database.collection("servicios");
-    const fechasalida = new Date();
+    const fechaActual = new Date().toLocaleString("en-US", {
+      timeZone: "America/Bogota",
+    });
+    const fechasalida = new Date(fechaActual);
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
@@ -596,7 +602,10 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
 // Registrar Asignacion
 router.post("/NewAsignado", jsonParser, async (req, res) => {
   try {
-    const fechaAsignacion = new Date();
+    const fechaActual = new Date().toLocaleString("en-US", {
+      timeZone: "America/Bogota",
+    });
+    const fechaAsignacion = new Date(fechaActual);
     const { idusuario, idservicio } = req.body;
     const collection = database.collection("serviciosasignados");
     const lastAsignacion = await collection.findOne(
@@ -626,7 +635,10 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   try {
     const idservicio = req.body.idservicio;
     const collection = database.collection("serviciosasignados");
-    const fechaFinalizacion = new Date();
+    const fechaActual = new Date().toLocaleString("en-US", {
+      timeZone: "America/Bogota",
+    });
+    const fechaFinalizacion = new Date(fechaActual);
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
