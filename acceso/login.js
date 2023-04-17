@@ -380,9 +380,7 @@ function ValidarUsuario() {
   })
     .then((response) => response.json())
     .then((result) => {
-      // Lógica para manejar la respuesta de la API...
       IniciarSession(result.idusuario, result.idrol);
-      AlertCorrecta("Bienvenido al sistema!");
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -390,6 +388,35 @@ function ValidarUsuario() {
       // Lógica para manejar el error...
       AlertIncorrecta("Usuario y/o contraseña incorrecta");
       $("#spinner").hide();
+    });
+}
+
+function RegistrarAuditoria(idusuario) {
+  spinner("Registrando Auditoria");
+  let descripcionAuditoria =
+    "El usuario se logea satisfactoriamente en el sistema";
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idusuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+      AlertCorrecta("Bienvenido al sistema!");
+      setTimeout(function () {
+        window.location.href = "/modulos/tareasmenu/menu.html";
+      }, 1500);
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
     });
 }
 
@@ -419,9 +446,7 @@ function IniciarSession(idusuario, idrol) {
       "Content-Type": "application/json",
     },
   });
-  setTimeout(function () {
-    window.location.href = "/modulos/tareasmenu/menu.html";
-  }, 1500);
+  RegistrarAuditoria(idusuario);
 }
 
 function spinner(texto) {

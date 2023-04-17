@@ -24,6 +24,25 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+// Registrar Auditoria
+router.post("/NewAudtoria", jsonParser, async (req, res) => {
+  try {
+    const fechaAuditoria = new Date();
+    const { idusuario, descripcion } = req.body;
+    const collection = database.collection("auditoria");
+
+    const result = await collection.insertOne({
+      idusuario: idusuario,
+      fecha: fechaAuditoria,
+      descripcion: descripcion,
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
   let userL = req.body.usuario.trim();
@@ -620,31 +639,4 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   }
 });
 
-// Nueva
-router.post("/NewAsignado", jsonParser, async (req, res) => {
-  try {
-    const fechaAsignacion = new Date();
-    const { idusuario, idservicio } = req.body;
-    const collection = database.collection("serviciosasignados");
-    const lastAsignacion = await collection.findOne(
-      {},
-      { sort: { idasignacion: -1 } }
-    );
-    const newIdAsignacion = lastAsignacion
-      ? lastAsignacion.idasignacion + 1
-      : 1;
-
-    const result = await collection.insertOne({
-      idasignacion: newIdAsignacion,
-      idusuario: idusuario,
-      idservicio: idservicio,
-      fechaAsignacion: fechaAsignacion,
-      fechaFinalizacion: null,
-    });
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
 module.exports = router;
