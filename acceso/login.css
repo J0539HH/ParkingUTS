@@ -22,6 +22,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 .content-CambiarContra {
   border: 1px solid grey;
   width: 100%;
@@ -103,13 +104,7 @@ body {
   padding: 2px 0 0 0 !important;
 }
 
-.content-CambiarContra {
-  border: 1px solid grey;
-  width: 100%;
-  height: 99%;
-  margin: 19px 0px 30px 8px;
-  padding: 0 10% 0 10%;
-}
+
 
 .btnCambiarPass {
   border-radius: 6px !important;
