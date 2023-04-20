@@ -294,6 +294,7 @@ div#contFooter p.pInfoFooter {
 .SubtituloMenu {
   text-decoration: underline;
   color: white;
+  margin-top: 5%;
 }
 
 .txtFooter {
