@@ -316,7 +316,7 @@ div#contFooter p.pInfoFooter {
 
 @media (min-width: 1024px) and (min-height: 768px) {
   .centrarBotones {
-    margin-top: 10% !important;
+    margin-top: 5% !important;
   }
 }
 
