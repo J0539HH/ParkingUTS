@@ -338,7 +338,7 @@ i.rotateImg::before {
     background-color: #1664ab;
     border-color: #1664ab;
     color: rgb(255, 255, 255);
-    margin: -7% 0% 0% 25% !important;
+    margin: 0% 0% 0% 25% !important;
   }
 }
 
