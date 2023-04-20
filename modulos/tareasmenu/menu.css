@@ -89,7 +89,7 @@ Fondo de baner central
 
 #templateContainer .placeholder {
   margin-bottom: 50px;
-  min-width: 30% !important;
+  min-width: 25% !important;
   text-align: center;
   justify-content: center;
   display: grid;
