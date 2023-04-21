@@ -658,6 +658,11 @@ router.post("/auditoriasTotal", jsonParser, async (req, res) => {
         {
           $unwind: "$usuario",
         },
+        {
+          $sort: {
+            fecha: -1,
+          },
+        },
       ])
       .toArray();
 

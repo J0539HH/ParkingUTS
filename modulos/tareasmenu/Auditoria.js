@@ -3,7 +3,7 @@ var idUsuario = null;
 
 $(document).ready(function () {
   verificarSesion();
-  cargarServicios();
+  cargarAuditorias();
 
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
@@ -48,7 +48,7 @@ $(document).ready(function () {
   });
 });
 
-function cargarServicios() {
+function cargarAuditorias() {
   spinner("Cargando servicios, por favor espere");
   const url = "/api/auditoriasTotal";
   fetch(url, {
@@ -60,14 +60,15 @@ function cargarServicios() {
     .then((response) => response.json())
     .then((result) => {
       const tableData = { data: result };
-      CargarTablaServicios(tableData);
+      cargarTablaAuditorias(tableData);
     })
     .catch((error) => {
       // Lógica para manejar el error...
     });
 }
 
-function CargarTablaServicios(tableData) {
+function cargarTablaAuditorias(tableData) {
+  console.log(tableData);
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
