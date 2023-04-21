@@ -29,9 +29,7 @@ router.get("/", (req, res) => {
 
 router.post("/NewAudtoria", jsonParser, async (req, res) => {
   try {
-    const fechaAuditoria = moment()
-      .subtract(5, "hours")
-      .format("YYYY-MM-DDTHH:mm:ssZ");
+    const fechaAuditoria = moment().tz("America/Bogota").format();
     const { idusuario, descripcion } = req.body;
     const collection = database.collection("auditoria");
 
