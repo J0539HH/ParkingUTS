@@ -241,6 +241,31 @@ function RegistrarAuditoria(idservicio) {
     });
 }
 
+function RegistrarAuditoriaFinalizado(idservicio) {
+  spinner("Registrando Auditoria");
+  let descripcionAuditoria =
+    "Entrega y finaliza el servicio con id:" + idservicio;
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idUsuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
+    });
+}
+
 function ConfirmacioFinalizar() {
   Swal.fire({
     title: "",
@@ -323,6 +348,7 @@ function ActualizarServicio() {
       AlertCorrectX("Servicio modificado exitosamente!");
       sleep(500);
       if ($("#estado").val() === "Entregado") {
+        RegistrarAuditoriaFinalizado(idservicio);
         AlertCorrectX("Gracias por entregar el servicio!!");
         setTimeout(function () {
           window.location.href = "../tareasmenu/menu.html";
