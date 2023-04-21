@@ -244,7 +244,7 @@ function RegistrarAuditoria(idservicio) {
 function RegistrarAuditoriaFinalizado(idservicio) {
   spinner("Registrando Auditoria");
   let descripcionAuditoria =
-    "Entrega y finaliza el servicio con id:" + idservicio;
+    "Entregado el dispositivo y finalizado el servicio con id:" + idservicio;
   const url = "/api/NewAudtoria";
   const data = {
     idusuario: idUsuario,
