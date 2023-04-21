@@ -292,7 +292,7 @@ div#contFooter p.pInfoFooter {
 }
 
 .SubtituloMenu {
-  margin-top: 5%;
+  margin-top: 5px;
   background: white;
   font-size: x-large;
   font-weight: bold;
@@ -301,7 +301,6 @@ div#contFooter p.pInfoFooter {
   border-radius: 10px;
   box-shadow: 0px 10px 15px #c0c0c0;
   margin: 0 0 6px 0;
-  margin-top: 5%;
   max-width: 314px !important;
 }
 

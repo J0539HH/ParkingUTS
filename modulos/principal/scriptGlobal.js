@@ -233,7 +233,7 @@ function spinner(texto) {
 function AlertIncorrecta(Texto) {
   Swal.fire({
     title: "",
-    text: Texto,
+    html: Texto,
     imageUrl: "../../Multimedia/icoAlertWarning.svg",
     imageWidth: 80,
     imageHeight: 80,

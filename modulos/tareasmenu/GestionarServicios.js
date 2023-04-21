@@ -71,7 +71,7 @@ function cargarInfoServicio(idservicio) {
 function cargarDatos(data) {
   if (data.estado === "Entregado") {
     AlertIncorrecta(
-      "El servicio ya a sido entregado no puedes realizar modificaciones"
+      "El servicio ya a sido <b>Entregado</b> no puedes realizar modificaciones"
     );
     LimpiarFormulario();
     return;
