@@ -344,9 +344,6 @@ function ActualizarServicio() {
   })
     .then((response) => response.json())
     .then((result) => {
-      RegistrarAuditoria(idservicio);
-      AlertCorrectX("Servicio modificado exitosamente!");
-      sleep(500);
       if ($("#estado").val() === "Entregado") {
         RegistrarAuditoriaFinalizado(idservicio);
         AlertCorrectX("Gracias por entregar el servicio!!");
@@ -354,6 +351,9 @@ function ActualizarServicio() {
           window.location.href = "../tareasmenu/menu.html";
         }, 800);
       } else {
+        RegistrarAuditoria(idservicio);
+        AlertCorrectX("Servicio modificado exitosamente!");
+        sleep(500);
         setTimeout(function () {
           ValidarSalida();
         }, 1200);
