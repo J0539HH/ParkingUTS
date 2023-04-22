@@ -307,6 +307,7 @@ function AsignacionDefinitiva() {
   })
     .then((response) => response.json())
     .then((result) => {
+      RegistrarAuditoria(idServicioAsignable, tecnicoAsignar);
       AlertCorrectX("Servicio asignado exitosamente!");
       cargarServiciosEnCola();
       $("#agregarUsuarioModal").modal("hide");
@@ -321,4 +322,32 @@ function AsignacionDefinitiva() {
 function LimpiarModal() {
   $("#tecnicoModal").val("");
   $("#comentariosSalida").val("");
+}
+
+function RegistrarAuditoria(idservicio, tecnicoAsignar) {
+  spinner("Registrando Auditoria");
+  let descripcionAuditoria =
+    "Se le asigna el mantenimiento del servicio con ID: " +
+    idservicio +
+    "al tecnico: " +
+    tecnicoAsignar;
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idUsuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
+    });
 }
