@@ -218,7 +218,7 @@ function ActualizarAsignacion() {
 function RegistrarAuditoria(idservicio) {
   spinner("Registrando Auditoria");
   let descripcionAuditoria =
-    "Se actualizan la información y/o estado del mantenimento con id:" +
+    "Actualización la información y/o estado del mantenimento con id:" +
     idservicio;
   const url = "/api/NewAudtoria";
   const data = {
