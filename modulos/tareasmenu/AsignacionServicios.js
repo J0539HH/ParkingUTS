@@ -329,7 +329,7 @@ function RegistrarAuditoria(idservicio, tecnicoAsignar) {
   let descripcionAuditoria =
     "Se le asigna el mantenimiento del servicio con ID: " +
     idservicio +
-    "al tecnico: " +
+    " a el tecnico: " +
     tecnicoAsignar;
   const url = "/api/NewAudtoria";
   const data = {
