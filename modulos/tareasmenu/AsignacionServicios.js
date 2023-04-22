@@ -93,7 +93,6 @@ function AlertaIncorrecta(Texto) {
 }
 
 function cargarServiciosEnCola() {
-  LimpiarModal();
   spinner("Cargando servicios, por favor espere");
   const url = "/api/serviciosSinAsignar";
   fetch(url, {
@@ -307,7 +306,7 @@ function AsignacionDefinitiva() {
   })
     .then((response) => response.json())
     .then((result) => {
-      RegistrarAuditoria(idServicioAsignable, tecnicoAsignar);
+      RegistrarAuditoria(idServicioAsignable);
       AlertCorrectX("Servicio asignado exitosamente!");
       cargarServiciosEnCola();
       $("#agregarUsuarioModal").modal("hide");
@@ -324,13 +323,14 @@ function LimpiarModal() {
   $("#comentariosSalida").val("");
 }
 
-function RegistrarAuditoria(idservicio, tecnicoAsignar) {
+function RegistrarAuditoria(idservicio) {
+  tecnicoAsignado = $("#tecnicoModal option:selected").html();
   spinner("Registrando Auditoria");
   let descripcionAuditoria =
     "Se le asigna el mantenimiento del servicio con ID: " +
     idservicio +
     " a el tecnico: " +
-    tecnicoAsignar;
+    tecnicoAsignado;
   const url = "/api/NewAudtoria";
   const data = {
     idusuario: idUsuario,
@@ -345,6 +345,7 @@ function RegistrarAuditoria(idservicio, tecnicoAsignar) {
   })
     .then((response) => response.json())
     .then((result) => {
+      LimpiarModal();
       $("#spinner").hide();
     })
     .catch((error) => {
