@@ -378,6 +378,12 @@ i.rotateImg::before {
     display: flex;
     justify-content: center;
   }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
 }
 .TituloFormulario {
   font-size: 2em;
@@ -387,7 +393,6 @@ i.rotateImg::before {
 .InfoCabecera {
   font-size: 22px;
   margin-top: 24px;
-  display: none;
 }
 
 .button2 {
