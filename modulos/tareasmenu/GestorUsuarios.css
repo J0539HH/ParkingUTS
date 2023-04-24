@@ -330,4 +330,10 @@ body {
   #Colapsador {
     z-index: 10;
   }
+
+  .contSpinner {
+    position: fixed;
+    left: 20%;
+    top: 39%;
+  }
 }
