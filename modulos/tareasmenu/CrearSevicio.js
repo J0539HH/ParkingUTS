@@ -41,7 +41,7 @@ function enviarCorreo(datos) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log("Correo electrónico enviado correctamente");
+        AlertCorrectX("Te enviamos un correo con información del servicio!");
       } else {
         throw new Error("Error al enviar el correo electrónico");
       }
@@ -101,8 +101,7 @@ function RealizarInsercion() {
     .then((result) => {
       $("#spinner").hide();
       enviarCorreo(result);
-      AlertCorrectX("Te enviamos un correo con información del servicio!");
-      RegistrarAuditoria(result);
+      RegistrarAuditoriaC(result);
     })
     .catch((error) => {
       console.error("Error al registrar:", error);
@@ -110,7 +109,7 @@ function RealizarInsercion() {
     });
 }
 
-function RegistrarAuditoria(datos) {
+function RegistrarAuditoriaC(datos) {
   spinner("Registrando Auditoria");
   let descripcionAuditoria =
     "Registro de un nuevo servicio con id:" + datos.servicio.idservicio;

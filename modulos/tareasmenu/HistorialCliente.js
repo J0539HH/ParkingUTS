@@ -132,7 +132,6 @@ function AlertaIncorrecta(Texto) {
 }
 
 function CargarTablaServicios(tableData) {
-  console.log(tableData);
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,

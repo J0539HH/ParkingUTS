@@ -188,7 +188,7 @@ function RegistrarNewUser() {
   const url = "/api/NewUser";
   const data = {
     usuario: nuevoUsuario,
-    password: nuevoPass,
+    password: SHA256(nuevoPass),
     idrol: 2,
     nombre: nombreCompleto,
     correo: correo,
@@ -369,7 +369,7 @@ function ValidarUsuario() {
   const url = "/api/usuarios";
   const data = {
     usuario: usuario,
-    password: password,
+    password: SHA256(password),
   };
   fetch(url, {
     method: "POST",

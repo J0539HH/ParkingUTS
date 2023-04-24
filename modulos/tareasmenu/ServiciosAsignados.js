@@ -219,7 +219,6 @@ function CargarTablaServicios(tableData) {
 }
 
 function CargarTablaGestionados(tableData) {
-  console.log(tableData);
   idServicioAsignable = "";
   $("#tablaGestionados").DataTable({
     destroy: true,

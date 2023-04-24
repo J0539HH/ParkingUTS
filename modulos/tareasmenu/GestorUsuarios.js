@@ -223,7 +223,6 @@ function editarUsuario(idUser) {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       MostrarDatosUsuario(result);
       $("#spinner").hide();
     })
@@ -342,7 +341,7 @@ function RealizarModificacion(IdUsuario) {
   const dataM = {
     idusuario: IdUsuario,
     usuario: UsuarioEdit,
-    password: PasswordEdit,
+    password: SHA256(PasswordEdit),
     idrol: IdRolEdit,
     nombre: NombreEdit,
     estado: EstadoEdit,
@@ -461,7 +460,7 @@ function InsertarUsuario() {
   const url = "/api/NewUser";
   const data = {
     usuario: NewUsuario,
-    password: NewPass,
+    password: SHA256(NewPass),
     idrol: NewTipoU,
     nombre: NewName,
     correo: Correo,
