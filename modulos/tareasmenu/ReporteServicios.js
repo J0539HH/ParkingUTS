@@ -68,6 +68,7 @@ function cargarServicios() {
 }
 
 function CargarTablaServicios(tableData) {
+  $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
