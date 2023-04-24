@@ -69,8 +69,6 @@
 
 /* Globales */
 
-
-
 .marginB15 {
   margin-bottom: 15px;
 }
@@ -345,7 +343,6 @@ input.form-control {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 
 input.form-control.passwordInfo,
 input[type="password"].form-control {
@@ -1362,6 +1359,12 @@ div.modal.notificationModal p.pTextDescAlertModal {
   text-align: center;
 }
 
+.contSpinner {
+  position: fixed;
+  left: 45%;
+  top: 39%;
+}
+
 .spinner-msg {
   text-align: center;
   font-weight: bold;
@@ -1544,5 +1547,17 @@ div.modal.notificationModal p.pTextDescAlertModal {
 @media (max-width: 750px) {
   .txtFooter {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .txtFooter {
+    display: none;
+  }
+
+  .contSpinner {
+    position: fixed;
+    left: 30%;
+    top: 39%;
   }
 }
