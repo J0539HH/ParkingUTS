@@ -68,6 +68,7 @@ function cargarAuditorias() {
 }
 
 function cargarTablaAuditorias(tableData) {
+  $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,
@@ -122,6 +123,7 @@ function cargarTablaAuditorias(tableData) {
       $("#spinner").hide();
     },
     order: [[1, "desc"]],
+    pagingType: "simple_numbers",
   });
 }
 
