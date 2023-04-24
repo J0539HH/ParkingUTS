@@ -281,7 +281,7 @@ body {
   }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
 
   .container-fluid {
@@ -304,5 +304,17 @@ body {
     border-color: #1664ab;
     color: rgb(255, 255, 255);
     margin: -7% 0% 0% 25% !important;
+  }
+
+  .paginadorTU {
+    margin-left: 75%;
+  }
+
+  .dataTables_paginate {
+    margin-bottom: 60px;
+  }
+
+  #contenedorSidebar {
+    width: 30%;
   }
 }
