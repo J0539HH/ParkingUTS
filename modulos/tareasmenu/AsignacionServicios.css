@@ -277,7 +277,7 @@ i.rotateImg::before {
   }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
 
   .container-fluid {
@@ -300,5 +300,11 @@ i.rotateImg::before {
     border-color: #1664ab;
     color: rgb(255, 255, 255);
     margin: -7% 0% 0% 25% !important;
+  }
+
+  .contSpinner {
+    position: fixed;
+    left: 20%;
+    top: 39%;
   }
 }

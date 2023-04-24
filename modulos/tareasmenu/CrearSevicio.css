@@ -265,4 +265,9 @@ body {
   .container-fluid {
     display: list-item !important;
   }
+  .contSpinner {
+    position: fixed;
+    left: 20%;
+    top: 39%;
+  }
 }
