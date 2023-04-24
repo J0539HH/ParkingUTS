@@ -304,4 +304,8 @@ i.rotateImg::before {
     max-width: 10%;
     margin-bottom: -63px;
   }
+
+  .dataTables_paginate {
+    margin-bottom: 60px;
+  }
 }
