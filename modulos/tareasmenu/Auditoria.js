@@ -68,7 +68,6 @@ function cargarAuditorias() {
 }
 
 function cargarTablaAuditorias(tableData) {
-  console.log(tableData);
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: tableData.data,

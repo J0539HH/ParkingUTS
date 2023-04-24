@@ -194,7 +194,6 @@ function CargarTablaServicios(tableData) {
 }
 
 function CargarTablaGestionados(tableData) {
-  console.log(tableData);
   $("#tablaGestionados").DataTable({
     destroy: true,
     data: tableData.data,
