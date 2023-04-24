@@ -324,5 +324,7 @@ body {
 
   #sidebarCollapse {
     z-index: 10;
+    width: 14px;
+    border: 1px solid black;
   }
 }
