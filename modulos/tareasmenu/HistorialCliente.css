@@ -342,7 +342,7 @@ i.rotateImg::before {
   }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
 
   #VolverMenu {
@@ -384,12 +384,17 @@ i.rotateImg::before {
     margin-top: 24px;
     display: none;
   }
+
+  .contSpinner {
+    position: fixed;
+    left: 20%;
+    top: 39%;
+  }
 }
 .TituloFormulario {
   font-size: 2em;
   line-height: 1.2;
 }
-
 
 .button2 {
   background-color: #1664ab;
