@@ -103,12 +103,7 @@ function LimpiarFiltros() {
 function cargarUsuarios() {
   spinner("Cargando usuarios, por favor espere");
   const url = "/api/usuariosTotal";
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(url)
     .then((response) => response.json())
     .then((result) => {
       const tableData = { data: result };

@@ -51,12 +51,7 @@ $(document).ready(function () {
 function cargarAuditorias() {
   spinner("Cargando servicios, por favor espere");
   const url = "/api/auditoriasTotal";
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(url)
     .then((response) => response.json())
     .then((result) => {
       const tableData = { data: result };

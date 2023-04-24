@@ -18,18 +18,9 @@ $(document).ready(function () {
 });
 
 function CargarTecnicos() {
-  spinner("Cargando tecnicos, por favor espere");
+  spinner("Cargando técnicos, por favor espere");
   const url = "/api/cargarTecnicos";
-  const data = {
-    idrol: 3,
-  };
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(url)
     .then((response) => response.json())
     .then((usuarios) => {
       $.each(usuarios, function (index, usuario) {
@@ -40,6 +31,7 @@ function CargarTecnicos() {
           })
         );
       });
+
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -95,12 +87,7 @@ function AlertaIncorrecta(Texto) {
 function cargarServiciosEnCola() {
   spinner("Cargando servicios, por favor espere");
   const url = "/api/serviciosSinAsignar";
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(url)
     .then((response) => response.json())
     .then((result) => {
       if (result === "No se encontraron servicios") {

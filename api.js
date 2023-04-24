@@ -104,11 +104,11 @@ router.post("/EspecificLogin", jsonParser, async (req, res) => {
 });
 
 // Cargar tecnicos
-router.post("/cargarTecnicos", jsonParser, async (req, res) => {
+router.get("/cargarTecnicos", async (req, res) => {
   try {
     const collection = database.collection("usuarios");
     const query = {
-      idrol: req.body.idrol,
+      idrol: 3, // Cambiar según el id del rol de técnico
       estado: true,
     };
     const projection = {
@@ -122,7 +122,7 @@ router.post("/cargarTecnicos", jsonParser, async (req, res) => {
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("Tecnicos no encontrado");
+      res.status(404).send("Técnicos no encontrados");
     }
   } catch (err) {
     console.error(err);
@@ -149,7 +149,7 @@ router.post("/deleteUser", async (req, res) => {
   }
 });
 // Cargar todos los usuarios
-router.post("/usuariosTotal", jsonParser, async (req, res) => {
+router.get("/usuariosTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
     const result = await collection.find({}).toArray();
@@ -297,7 +297,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
 });
 
 // Cargar todos los servicios
-router.post("/serviciosTotal", jsonParser, async (req, res) => {
+router.get("/serviciosTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
     const result = await collection
@@ -328,7 +328,7 @@ router.post("/serviciosTotal", jsonParser, async (req, res) => {
 });
 
 // Cargar servicios en cola
-router.post("/serviciosSinAsignar", jsonParser, async (req, res) => {
+router.get("/serviciosSinAsignar", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
     const result = await collection
@@ -642,7 +642,7 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
 });
 
 // Cargar todas las auditorias
-router.post("/auditoriasTotal", jsonParser, async (req, res) => {
+router.get("/auditoriasTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("auditoria");
     const result = await collection
