@@ -353,7 +353,7 @@ function RealizarModificacion(IdUsuario) {
     .then((response) => response.json())
     .then((result) => {
       let descripcionAuditoria =
-        "Modificación de los datos del usuario con id:" + UsuarioEdit;
+        "Modificación de los datos del usuario con id:" + IdUsuario;
       AlertCorrectX("Usuario Modificado exitosamente!");
       RegistrarAuditoriaGestionU(descripcionAuditoria);
       $("#spinner").hide();
