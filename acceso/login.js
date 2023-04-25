@@ -1,8 +1,6 @@
 /* global utilidadesjQuery */
 
 $(document).ready(function () {
-  document.cookie =
-    "mostradoModal=true; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   limpiarNewUser();
   limpiarCampos();
   $("#password").on("keydown", function (event) {
@@ -432,11 +430,7 @@ function CerrarAlerta() {
 function IniciarSession(idusuario, idrol, nombre) {
   fetch("/api/sesion", {
     method: "POST",
-    body: JSON.stringify({
-      idusuario: idusuario,
-      idrol: idrol,
-      nombre: nombre,
-    }),
+    body: JSON.stringify({ idusuario: idusuario, idrol: idrol, nombre: nombre }),
     headers: {
       "Content-Type": "application/json",
     },

@@ -4,10 +4,10 @@ var idUsuario = null;
 $(document).ready(function () {
   verificarSesionM();
 
-  if (document.cookie.indexOf("mostrandoModal=true") === -1) {
+  if (document.cookie.indexOf("mostradoModal=true") === -1) {
     $("#modalUser").modal("show");
     document.cookie =
-      "mostrandoModal=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      "mostradoModal=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
   }
 
   $("#btnModal").on("click", function () {
