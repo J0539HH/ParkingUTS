@@ -318,7 +318,7 @@ function ValidarActualizacion(IdUsuario) {
   });
 }
 
-function RealizarModificacion(IdUsuarioX) {
+function RealizarModificacion(IdUsuario) {
   spinner("Modificando datos del usuario, por favor espere");
   let UsuarioEdit = $("#usuarioMod").val().toUpperCase();
   let PasswordEdit = $("#contraseñaMod").val();
@@ -334,7 +334,7 @@ function RealizarModificacion(IdUsuarioX) {
 
   const url = "/api/EditUser";
   const dataM = {
-    idusuario: IdUsuarioX,
+    idusuario: IdUsuario,
     usuario: UsuarioEdit,
     password: SHA256(PasswordEdit),
     idrol: IdRolEdit,
@@ -351,8 +351,9 @@ function RealizarModificacion(IdUsuarioX) {
   })
     .then((response) => response.json())
     .then((result) => {
-      let descripcionAuditoria = "Cambio en la información de los datos del usuario con id:" + idusuarioX;
-      RegistrarAuditoria(descripcionAuditoria);
+      AlertCorrectX("Usuario Modificado exitosamente!");
+      $("#spinner").hide();
+      cargarUsuarios();
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
@@ -557,32 +558,5 @@ function EliminarDefinitivo(idUser) {
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar el usuario");
       $("#spinner").hide();
-    });
-}
-
-
-
-function RegistrarAuditoria(descripcionAuditoria) {
-  spinner("Registrando Auditoria");
-  const url = "/api/NewAudtoria";
-  const data = {
-    idusuario: idUsuario,
-    descripcion: descripcionAuditoria,
-  };
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      AlertCorrectX("Usuario Modificado exitosamente!");
-      $("#spinner").hide();
-      cargarUsuarios();
-    })
-    .catch((error) => {
-      console.error("Error al ingresar:", error);
     });
 }
