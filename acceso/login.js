@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
   document.cookie =
-    "mostrandoModal=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    "mostradoModal=true; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   limpiarNewUser();
   limpiarCampos();
   $("#password").on("keydown", function (event) {
