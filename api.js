@@ -1,8 +1,7 @@
 // Api que gestiona peticiones a MONGODB by Jhosep Florez //
 
 const express = require("express");
-const fetch = require("node-fetch").default;
-const moment = require("moment");
+const moment = require("moment-timezone");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
@@ -30,13 +29,7 @@ router.get("/", (req, res) => {
 
 router.post("/NewAudtoria", jsonParser, async (req, res) => {
   try {
-    const responseDate = await fetch(
-      "http://worldtimeapi.org/api/timezone/America/Bogota"
-    );
-    const dataTime = await responseDate.json();
-    const fechaAuditoria = moment(dataTime.datetime).format(
-      "YYYY-MM-DD HH:mm:ss"
-    );
+    const fechaAuditoria = moment().tz("America/Bogota").format();
     const { idusuario, descripcion } = req.body;
     const collection = database.collection("auditoria");
 
@@ -270,13 +263,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
     const collection = database.collection("servicios");
     const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
     const newId = lastUser ? lastUser.idservicio + 1 : 1;
-    const responseTime = await fetch(
-      "http://worldtimeapi.org/api/timezone/America/Bogota"
-    );
-    const dataTime = await responseTime.json();
-    const fechaEntrada = moment(dataTime.datetime).format(
-      "YYYY-MM-DD HH:mm:ss"
-    );
+    const fechaEntrada = moment().tz("America/Bogota").format();
     const result = await collection.insertOne({
       idservicio: newId,
       comentariosentrada,
@@ -560,11 +547,7 @@ router.post("/EditService", jsonParser, async (req, res) => {
       modelo,
     } = req.body;
     const collection = database.collection("servicios");
-    const responseTime = await fetch(
-      "http://worldtimeapi.org/api/timezone/America/Bogota"
-    );
-    const dataTime = await responseTime.json();
-    const fechasalida = moment(dataTime.datetime).format("YYYY-MM-DD HH:mm:ss");
+    const fechasalida = moment().tz("America/Bogota").format();
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
@@ -612,13 +595,7 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
 // Registrar Asignacion
 router.post("/NewAsignado", jsonParser, async (req, res) => {
   try {
-    const responseTime = await fetch(
-      "http://worldtimeapi.org/api/timezone/America/Bogota"
-    );
-    const dataTime = await responseTime.json();
-    const fechaAsignacion = moment(dataTime.datetime).format(
-      "YYYY-MM-DD HH:mm:ss"
-    );
+    const fechaAsignacion = moment().tz("America/Bogota").format();
     const { idusuario, idservicio } = req.body;
     const collection = database.collection("serviciosasignados");
     const lastAsignacion = await collection.findOne(
@@ -648,13 +625,7 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   try {
     const idservicio = req.body.idservicio;
     const collection = database.collection("serviciosasignados");
-    const responseTime = await fetch(
-      "http://worldtimeapi.org/api/timezone/America/Bogota"
-    );
-    const dataTime = await responseTime.json();
-    const fechaFinalizacion = moment(dataTime.datetime).format(
-      "YYYY-MM-DD HH:mm:ss"
-    );
+    const fechaFinalizacion = moment().tz("America/Bogota").format();
     const result = await collection.updateOne(
       { idservicio: idservicio },
       {
