@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" contx ent="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Seguimiento de servicios</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
+      />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
+      />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="Seguimiento.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
+
+  <body>
+    <div id="ContenedorTotal">
+      <div id="templateContainer">
+        <nav class="navbar navbar-fixed-top alta-theme" style="position:
+          relative; background: white">
+          <div class="container-fluid ">
+            <div class="navbar-header">
+              <span style="float: left; font-size: 25px; margin: 20px 10px"><img
+                  src="../../Multimedia/logo.jpg"
+                  height="40px;" style="margin-right: 10px" /></span>
+            </div>
+            <h6 class="InfoCabecera">Detallado de un servicio</h6>
+            <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
+              menú</a>
+          </div>
+        </nav>
+        <br />
+      </div>
+      <div id="ContenedorFormularioIn" style="display: grid">
+        <div id="mainContainer" class="container">
+          <a id="volverReportes" class="button button5 BotonCabecera hidden">Volver
+            a
+            reportes</a>
+          <a id="volverAsignados" class="button button5 BotonCabecera hidden">Volver
+            a mis asignados
+          </a>
+          <!-- Header -->
+          <header>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+                divContSaldo">
+                <p class="TituloFormulario">
+                  Consulta tus servicios
+                </p>
+              </div>
+            </div>
+          </header>
+
+          <div id="DatosTotalesFormulario">
+
+            <!-- Comodin Breadcrumb Section -->
+            <section class="row paddingLateral alterBreadcrumb hidden">
+              <div class="divBreadcrumb">
+                <i class="bi bi-arrow-left-short iBreadcrumb"></i>
+                <p class="pTxtBreadcrumb"></p>
+              </div>
+            </section>
+
+            <!-- Datos Origen Section -->
+            <section id="sectionDatosOrigen" class="row contPasos contMaxWeb">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+                mt-3">
+                <h1 class="h1TitleForm">N&uacute;mero del servicio</h1>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <input placeholder="" type="text" class="form-control"
+                    id="numeroServicio" name="numeroServicio">
+                </div>
+              </div>
+
+            </section>
+            <div id="detallesServicio" class="hidden">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+                mt-3">
+                <h1 class="h1TitleForm">Detalles del servicio</h1>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6 d-flex ">
+                  <img src="../../Multimedia/Star.png" class="iconosR">
+                  <p><strong>Solicitante:</strong></p>
+                  <p id="solicitante">
+                  </p>
+                </div>
+                <div class="col-md-6 d-flex ">
+                  <img src="../../Multimedia/cliente.png" class="iconosR">
+                  <p><strong>Comentarios del cliente:</strong></p>
+                  <p id="comentariosCliente">
+                  </p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/marca.png" class="iconosR">
+                  <p><strong>Marca:</strong></p>
+                  <p id="marca"> </p>
+                </div>
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/modelos.png" class="iconosR">
+                  <p><strong>Modelo:</strong></p>
+                  <p id="modelo"> </p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/dispositivo.png" class="iconosR">
+                  <p><strong>Tipo del dispositivo:</strong></p>
+                  <p id="tipoDispositivo">
+                  </p>
+                </div>
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/ram.png" class="iconosR">
+                  <p><strong>Memoria RAM:</strong></p>
+                  <p id="memoriaRam"> </p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/hdd.png" class="iconosR">
+                  <p><strong>Tipo de almacenamiento:</strong></p>
+                  <p id="tipoAlmacenamiento">
+                  </p>
+                </div>
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/serie.png" class="iconosR">
+                  <p><strong>Número de serie:</strong></p>
+                  <p id="numeroSerie"> </p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/estado.png" class="iconosR">
+                  <p><strong>Estado:</strong></p>
+                  <p id="estado"> </p>
+                </div>
+                <div class="col-md-6 d-flex">
+                  <img src="../../Multimedia/tecnico.png" class="iconosR">
+                  <p><strong>Comentarios del servicio:</strong></p>
+                  <p id="comentariosTecnico">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+              contInterfaceBtn">
+              <button id="btnConsultar" class="buttonBtn btnPrimary">
+                Consultar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div id="contFooter" class="FooterSistema">
+      <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+      <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+      <img src="../../Multimedia/JS.png" class="iconoFooter" />
+      <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+      <p class="txtFooter ml-4">Powered by JDFM ©</p>
+    </div>
+
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div class="contSpinner">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"></script>
+    <!-- Sweet Alert -->
+    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="Seguimiento.js"></script>
+  </body>
+
+</html>

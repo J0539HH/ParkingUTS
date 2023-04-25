@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Gestor de usuarios</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
+      />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
+      />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="GestorUsuarios.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
+
+  <body>
+    <div id="ContenedorTotal">
+      <div id="ContenedorGestion" style="display: grid">
+        <div id="templateContainer">
+          <nav class="navbar navbar-fixed-top alta-theme" style="position:
+            relative; background: white">
+            <div class="container-fluid ">
+              <div class="navbar-header">
+                <span style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    src="../../Multimedia/logoDocu.svg"
+                    height="40px;" style="margin-right: 10px; background-color:
+                    #fff;" /></span>
+              </div>
+              <h6 class="InfoCabecera">Herramienta de gestion de usuarios</h6>
+              <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
+                menú</a>
+            </div>
+          </nav>
+          <br />
+        </div>
+        <div id="contenedorCentral">
+          <div id="contenedorSidebar">
+            <nav id="sidebar">
+              <div class="sidebar-header">
+                <h5 style="
+                  color: #ffffff;
+                  margin: 0 15px;
+                  padding-top: 10px;
+                  font-size: 12px;
+                  ">
+                  <b>Filtros de b&uacute;squeda</b>
+                </h5>
+                <hr style="margin: 0 15px; background-color: #fff; opacity: 0.7"
+                  />
+              </div>
+              <div style="padding-top: 15px"></div>
+              <label class="tituloBusqueda">Filtros de busqueda</label>
+              <hr style="
+                opacity: 0.7;
+                margin: 0px 16px 10px 15px;
+                background-color: #fff;
+                height: 1px;
+                " />
+              <label class="grupotitulos"> Nombre persona: </label>
+              <div class="filtrosbusquedad">
+                <input class="form-control inputGeneral" id="busNombre"
+                  type="text" autocomplete="off" />
+              </div>
+              <label class="grupotitulos"> Estado: </label>
+              <div class="filtrosbusquedad">
+                <select class="form-control" id="busEstado" name="BusEstado"
+                  required>
+                  <option value="">Seleccione</option>
+                  <option value="true">Activo</option>
+                  <option value="false">Inactivo</option>
+                </select>
+              </div>
+              <label class="grupotitulos"> Tipo de usuario: </label>
+              <div class="filtrosbusquedad">
+                <select class="form-control" id="busRol" name="estadoMod"
+                  required>
+                  <option value="">Seleccione</option>
+                  <option value="1">Administrador</option>
+                  <option value="2">Cliente</option>
+                  <option value="3">Tecnico</option>
+                </select>
+              </div>
+              <label class="grupotitulos"> Usuario: </label>
+              <div class="filtrosbusquedad">
+                <input class="form-control inputGeneral" id="busUsuario"
+                  type="text" autocomplete="off" />
+              </div>
+
+              <div class="style-btn contenedorBotonesSide">
+                <a id="BotonBusqueda" class="button button2 botonBuscar">Buscar</a>
+              </div>
+            </nav>
+            <div class="content" id="Colapsador">
+              <button type="button" id="sidebarCollapse" class="btn navbar-btn">
+                <i class="bi bi-caret-left-fill"></i>
+              </button>
+            </div>
+          </div>
+          <div id="ContenedorTabla" class="alta-theme contendorC">
+            <h4 class="BlueSistem">Usuarios del sistema</h4>
+
+            <a id="abrirModal" class="button button5 BotonRegistrar"
+              data-toggle="modal"
+              data-target="#agregarUsuarioModal">
+              Agregar usuario
+            </a>
+
+            <!--<div class="table-wrapper-scroll-y my-custom-scrollbar">-->
+            <table id="tablaUsuarios" class="table table-striped"
+              style="font-size: 12px; width: 100%">
+              <thead id="thead1">
+                <tr>
+                  <th class="text-center">Id</th>
+                  <th class="text-center">Usuario</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Tipo de usuario</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Editar</th>
+                </tr>
+              </thead>
+              <tbody id="tbody1"></tbody>
+            </table>
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="contFooter" class="FooterSistema">
+      <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+      <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+      <img src="../../Multimedia/JS.png" class="iconoFooter" />
+      <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+      <p class="txtFooter ml-4">Powered by JDFM ©</p>
+    </div>
+
+    <!-- Modal para agregar un usuario -->
+    <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" role="dialog"
+      aria-labelledby="agregarUsuarioModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="agregarUsuarioModalLabel">
+              Agregar usuario!
+            </h5>
+            <img src="../../Multimedia/logo.jpg" height="10px;"
+              class="iconoFormulario" />
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="agregarUsuarioForm">
+              <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" class="form-control" id="usuario"
+                  name="usuario" required />
+              </div>
+              <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="input" class="form-control" id="contraseña"
+                  name="contraseña" required />
+              </div>
+              <div class="form-group">
+                <label for="tipoUsuario">Tipo de usuario</label>
+                <select class="form-control" id="tipoUsuario" name="tipoUsuario"
+                  required>
+                  <option value="">Seleccione una opción</option>
+                  <option value="1">Administador</option>
+                  <option value="2">Cliente</option>
+                  <option value="3">Tecnico</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre"
+                  name="nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="nombre">Correo electronico:</label>
+                <input type="text" class="form-control" id="correo"
+                  name="nombre" required />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">
+              Cerrar
+            </button>
+            <button type="button" id="agregarNewUser" form="agregarUsuarioForm"
+              class="btn btn-primary">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para modificar un usuario -->
+    <div class="modal fade" id="modificarUsuarioModal" tabindex="-1"
+      role="dialog"
+      aria-labelledby="modificarUsuarioModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modificarUsuarioModalLabel">
+              Modificar usuario!
+            </h5>
+            <img src="../../Multimedia/logoDocu.svg" height="10px;"
+              class="iconoFormulario" />
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="modificarUsuarioForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="usuarioMod">Usuario</label>
+                    <input type="text" class="form-control" id="usuarioMod"
+                      name="usuarioMod" required />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="contraseñaMod">Contraseña</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control"
+                        id="contraseñaMod" name="contraseñaMod" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"
+                          id="verContraseñaMod">Mostrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="tipoUsuarioMod">Tipo de usuario</label>
+                    <select class="form-control" id="tipoUsuarioMod"
+                      name="tipoUsuarioMod" required>
+                      <option value="">Seleccione una opción</option>
+                      <option value="1">Administrador</option>
+                      <option value="2">Cliente</option>
+                      <option value="3">Tecnico</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="estadoMod">Estado</label>
+                    <select class="form-control" id="estadoMod" name="estadoMod"
+                      required>
+                      <option value="">Seleccione una opción</option>
+                      <option value="true">Activo</option>
+                      <option value="false">Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nombreMod">Nombre</label>
+                    <input type="text" class="form-control" id="nombreMod"
+                      name="nombreMod" required />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="correoMod">Correo</label>
+                    <input type="text" class="form-control" id="correoMod"
+                      name="correoMod" required />
+                  </div>
+
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">
+              Cerrar
+            </button>
+            <button type="button" id="ActualizarUser" form="agregarUsuarioForm"
+              class="btn btn-primary">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div class="contSpinner">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"></script>
+    <!-- Script SHA256 -->
+    <script src="../../lib/jQuery/sha256.js"></script>
+    <!-- Sweet Alert -->
+    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="GestorUsuarios.js"></script>
+    <!-- Script Tables -->
+    <script src="../../lib/datatables/datatables.min.js"></script>
+  </body>
+
+</html>

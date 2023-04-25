@@ -1,0 +1,111 @@
+#contenedorCentral {
+  display: flex;
+}
+
+.contendorC {
+  width: 70%;
+}
+
+.ContenedorMax {
+  width: 89% !important;
+  margin-left: -15% !important;
+}
+
+#tablaUsuarios_filter {
+  display: none;
+}
+
+.paginadorTU {
+  margin-left: 90%;
+  margin-top: -70px;
+}
+
+#verContraseñaMod {
+  height: 80% !important;
+  padding: 3px 12px 9px 5px;
+}
+
+.BotonRegistrar {
+  height: 30px;
+  padding: 5px 32px 25px 26px;
+  margin: 36px 0 0 14px;
+}
+
+.modal-backdrop.show {
+  z-index: auto;
+  background: var(--black-text-color);
+}
+
+.iconoFormulario {
+  margin: 6px 0 -6px 13%;
+  height: 21px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#comentariosEntrada {
+  min-height: 50px;
+}
+
+#comentariosSalida {
+  min-height: 50px;
+}
+
+#btnGestionar {
+  margin-bottom: 60px !important;
+}
+
+@media (max-width: 767px) {
+  /* Estilos para pantallas pequeñas */
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Estilos para pantallas pequeñas */
+
+  .container-fluid {
+    display: list-item !important;
+  }
+
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
+
+  .contSpinner {
+    position: fixed;
+    left: 20%;
+    top: 39%;
+  }
+}

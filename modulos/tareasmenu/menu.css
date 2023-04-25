@@ -1,0 +1,428 @@
+body {
+  background-image: none !important;
+}
+
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
+
+#templateContainer {
+  background-repeat: repeat;
+  color: #606062;
+  overflow: hidden;
+}
+
+#templateContainer.fullscreen {
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#templateContainer .navbar.alta-theme {
+  border-bottom: 1px solid #c0c0c0;
+  box-shadow: 0px 10px 15px #c0c0c0;
+  height: 85px;
+  background-image: url(../../Multimedia/fondomenu.png) !important;
+}
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+#templateContainer .navbar-fixed-top {
+  border: 0;
+}
+
+#templateContainer h1 {
+  text-align: center;
+}
+
+/*
+
+Fondo de baner central
+#templateContainer .container-fluid.alta-theme {
+  background-image: url(../../Multimedia/fondomenu.png);
+  margin-right: 100px;
+  margin-left: 0;
+  border: 3px solid black;
+}
+
+
+*/
+/*
+ * Main content
+ */
+
+#templateContainer .main {
+  padding: 20px;
+}
+
+/* Modal InfoUsuario */
+
+#sectionModal {
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 16px;
+  background-color: var(--white-color);
+  padding: 40px 30px 40px 30px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.content-InfoUsuario {
+  border: 1px solid grey;
+  width: 100%;
+  height: 99%;
+  margin: 10px 0px 0px 0px;
+  padding: 0 10% 0 10%;
+}
+
+.tituloInfoUsuario {
+  font-weight: bold;
+  color: #1664ab;
+  font-size: 18px;
+  margin: 20px 0 0 0;
+}
+.indoAdicional {
+  margin-top: 3px;
+  line-height: 1.1;
+}
+#infoUsuario {
+  margin: 10px 0 10px 0;
+  text-align: center;
+}
+
+.btnModal {
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  color: white !important;
+  padding: 3px 0px 0px 0px !important;
+  margin: 10px 0 10px 0 !important;
+  font-weight: normal !important;
+  width: 33% !important;
+  height: 33px !important;
+  font-size: 1rem !important;
+  padding: 2px 0 0 0 !important;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+#templateContainer .main .page-header {
+  margin-top: 0;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+#templateContainer .placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+  justify-content: center;
+}
+
+#templateContainer .placeholders h4 {
+  margin-bottom: 0;
+  background: white;
+  color: black;
+  border: 2px solid #1664ab;
+  box-shadow: 0px 0px 10px #c0c0c0;
+  border-radius: 10px;
+}
+
+#templateContainer .placeholder {
+  margin-bottom: 50px;
+  min-width: 25%;
+  text-align: center;
+  justify-content: center;
+  display: grid;
+}
+
+#templateContainer .placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+#templateContainer .placeholder .dashboard-item {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 9px double #eff;
+  border-radius: 50%;
+  vertical-align: middle;
+  font-size: 65px;
+  color: #fff;
+  box-shadow: 0px 0px 10px #999;
+}
+
+#templateContainer .placeholder .dashboard-item:hover {
+  box-shadow: 0px 0px 0px 6px #1664ab;
+}
+
+/* circular navigation */
+#templateContainer .circular-menu {
+  width: 260px;
+  height: 180px;
+  margin: 0 0px 11px auto;
+}
+
+#templateContainer .circle {
+  width: 260px;
+  height: 260px;
+  opacity: 0;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+}
+
+#templateContainer .open.circle {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+}
+
+#templateContainer .circle a {
+  text-decoration: none;
+  display: block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  position: absolute;
+  text-align: center;
+  line-height: 80%;
+  font-weight: bold;
+}
+
+#templateContainer .menu-button {
+  position: relative;
+  top: -225px;
+}
+
+#templateContainer .dashboard-item.menu-button.selected {
+  top: -200px;
+  width: 100px;
+  height: 100px;
+  font-size: 35px;
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+  background-image: url(../../Multimedia/seleccionado.svg) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Estilos botones */
+
+.btnGestionU {
+  background-color: #8561c8;
+  background-image: url(../../Multimedia/newGestion.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnNewForm {
+  background-color: #00b8ed;
+  background-image: url(../../Multimedia/newServicio.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnAsignacion {
+  background-color: #f05401;
+  background-image: url(../../Multimedia/oportunidad.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnGestion {
+  background-color: #68c182;
+  background-image: url(../../Multimedia/gestion.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnConsulta {
+  background-color: #ffb54d;
+  background-image: url(../../Multimedia/detallado.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnReportes {
+  background-color: red;
+  background-image: url(../../Multimedia/reporte.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnMystory {
+  background-color: indianred;
+  background-image: url(../../Multimedia/mystory.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnAsignados {
+  background-color: red;
+  background-image: url(../../Multimedia/asignado.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+.btnAuditoria {
+  background-color: black;
+  background-image: url(../../Multimedia/auditor.svg);
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center;
+}
+
+/* Footer */
+
+div#contFooter {
+  position: fixed;
+  z-index: 2000;
+  margin-bottom: 0;
+  bottom: 0;
+  width: 100%;
+  height: 35px;
+  padding: 10px 18px;
+  background-color: var(--orange-main-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div#contFooter div.contInfoFooter {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 450px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+div#contFooter p.pInfoFooter {
+  font-weight: 700;
+  font-size: var(--normal-btn-font);
+  line-height: var(--lh-normal-btn-font);
+  color: var(--white-text-color);
+}
+
+.InfoCabecera {
+  background: white;
+  font-size: x-large;
+  font-weight: bold;
+  color: #1664ab;
+  padding: 5px 15px 5px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 15px #c0c0c0;
+  margin: 0 0 6px 0;
+}
+
+.SubtituloMenu {
+  margin-top: 5px;
+  background: white;
+  font-size: x-large;
+  font-weight: bold;
+  color: #1664ab;
+  padding: 5px 15px 5px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 15px #c0c0c0;
+  margin: 0 0 6px 0;
+  max-width: 314px !important;
+}
+
+.txtFooter {
+  font-weight: 400;
+  color: white;
+}
+
+.centrarBotones {
+  margin-top: 0 0 0 0;
+}
+
+@media (min-width: 1024px) and (min-height: 768px) {
+  .centrarBotones {
+    margin-top: 5% !important;
+  }
+}
+
+@media (max-width: 1280px) and (max-height: 768px) {
+  .centrarBotones {
+    margin-top: 5% !important;
+  }
+  #templateContainer .placeholder {
+    margin-bottom: 50px;
+    min-width: 30%;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+  }
+}
+
+@media (max-width: 680px) and (max-height: 800px) {
+  .centrarBotones {
+    margin-top: 5% !important;
+  }
+  #templateContainer .placeholder {
+    margin-bottom: 50px;
+    min-width: 50%;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+  }
+}
+
+@media (max-width: 510px) {
+  #templateContainer .navbar.alta-theme {
+    border-bottom: 1px solid #c0c0c0;
+    box-shadow: 0px 10px 15px #c0c0c0;
+    height: 85px;
+    height: 158px !important;
+  }
+
+  .container-fluid {
+    justify-content: center !important;
+    padding: 0 !important;
+    width: 100%;
+    margin: auto;
+  }
+
+  /* Estilos para pantallas pequeñas */
+  .TituloFormulario {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  .InfoCabecera {
+    font-size: 22px;
+    margin-top: 24px;
+    display: none;
+  }
+
+  .button2 {
+    background-color: #1664ab;
+    border-color: #1664ab;
+    color: rgb(255, 255, 255);
+    margin: -7% 0% 0% 25% !important;
+  }
+}

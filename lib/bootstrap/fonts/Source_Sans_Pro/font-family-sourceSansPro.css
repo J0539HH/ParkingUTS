@@ -1,0 +1,58 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 jul. 2022, 10:40:46
+    Author     : gabriel.anchique
+*/
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: url("SourceSansPro-Regular.ttf");  
+}
+@font-face {
+    font-family: "ExtraLight 200";
+    src: url("SourceSansPro-ExtraLight.ttf");
+}
+@font-face {
+    font-family: "ExtraLight 200 Italic";
+    src: url("SourceSansPro-ExtraLightItalic.ttf");
+}
+@font-face {
+    font-family: "Light 300";
+    src: url("SourceSansPro-Light.ttf");
+}
+@font-face {
+    font-family: "Light 300 Italic";
+    src: url("SourceSansPro-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: "Regular 400 Italic";
+    src: url("SourceSansPro-Italic.ttf");
+}
+@font-face {
+    font-family: "SemiBold 600";
+   src: url("SourceSansPro-SemiBold.ttf");
+}
+@font-face {
+    font-family: "SemiBold 600 Italic";
+   src: url("SourceSansPro-SemiBoldItalic.ttf");
+}
+@font-face {
+    font-family: "Bold 700";
+   src: url("SourceSansPro-Bold.ttf");
+}
+@font-face {
+    font-family: "Bold 700 Italic";
+    src: url("SourceSansPro-BoldItalic.ttf");
+}
+@font-face {
+    font-family: "Black 900";
+    src: url("SourceSansPro-Black.ttf");
+}
+@font-face {
+    font-family: "Black 900 Italic";
+   src: url("SourceSansPro-BlackItalic.ttf");
+}
