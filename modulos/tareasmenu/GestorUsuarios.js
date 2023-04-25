@@ -351,7 +351,10 @@ function RealizarModificacion(IdUsuario) {
   })
     .then((response) => response.json())
     .then((result) => {
+      let descripcionAuditoria =
+        "Modificación de los datos del usuario con id:" + UsuarioEdit;
       AlertCorrectX("Usuario Modificado exitosamente!");
+      RegistrarAuditoriaGestionU(descripcionAuditoria);
       $("#spinner").hide();
       cargarUsuarios();
     })
@@ -469,7 +472,7 @@ function InsertarUsuario() {
   })
     .then((response) => response.json())
     .then((result) => {
-      AlertCorrectX("Usuario regristrado en el sistema ");
+      AlertCorrectX("Usuario registrado en el sistema ");
       $("#spinner").hide();
       cargarUsuarios();
     })
@@ -558,5 +561,29 @@ function EliminarDefinitivo(idUser) {
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar el usuario");
       $("#spinner").hide();
+    });
+}
+
+
+function RegistrarAuditoriaGestionU(descripcionAuditoria) {
+  spinner("Registrando Auditoria");
+  const url = "/api/NewAudtoria";
+  const data = {
+    idusuario: idUsuario,
+    descripcion: descripcionAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      console.error("Error al ingresar:", error);
     });
 }
