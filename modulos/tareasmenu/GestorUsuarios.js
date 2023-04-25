@@ -474,6 +474,8 @@ function InsertarUsuario() {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Usuario registrado en el sistema ");
+      let descripcionAuditoria = "Se registra un nuevo usuario para :" + NewName;
+      RegistrarAuditoriaGestionU(descripcionAuditoria);
       $("#spinner").hide();
       cargarUsuarios();
     })
