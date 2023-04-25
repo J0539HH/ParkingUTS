@@ -121,7 +121,7 @@ function verificarAccesos(Nombre) {
       "Hola <b>" +
         Nombre +
         "</b>" +
-        ", hemos identificado que eres un usuario de tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
+        ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
     );
   }
 
@@ -135,7 +135,7 @@ function verificarAccesos(Nombre) {
       "Hola <b>" +
         Nombre +
         "</b>" +
-        ", hemos identificado que eres un usuario de tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
+        ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
     );
   }
 
@@ -153,7 +153,7 @@ function verificarAccesos(Nombre) {
       "Hola <b>" +
         Nombre +
         "</b>" +
-        ", hemos identificado que eres un usuario de tipo <b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del sistema disponibles, gracias por preferir nuestro sistema!"
+        ", hemos identificado que eres un usuario del tipo <b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del sistema disponibles, gracias por preferir nuestro sistema!"
     );
   }
 
