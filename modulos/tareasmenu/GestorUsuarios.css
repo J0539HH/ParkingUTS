@@ -336,4 +336,10 @@ body {
     left: 20%;
     top: 39%;
   }
+  .modal-backdrop.show {
+    z-index: auto;
+    background: var(--black-text-color);
+    width: 130% !important;
+    height: 130% !important;
+  }
 }
