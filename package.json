@@ -19,6 +19,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "mongodb": "5.1",
+    "node-fetch": "^2.6.1",
     "nodemailer": "^6.9.1",
     "sass": "^1.60.0"
   },
