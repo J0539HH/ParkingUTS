@@ -285,8 +285,8 @@ body {
   /* Estilos para pantallas pequeñas */
 
   .ContenedorMax {
-    width: 70% !important;
-    margin-left: -28% !important;
+    width: 65% !important;
+    margin-left: -27% !important;
   }
 
   .container-fluid {
