@@ -276,6 +276,12 @@ i.rotateImg::before {
 
 @media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
+
+  .ContenedorMax {
+    width: 86% !important;
+    margin: 3%;
+  }
+
   .container-fluid {
     display: list-item !important;
   }
