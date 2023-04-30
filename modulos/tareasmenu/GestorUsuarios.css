@@ -284,6 +284,11 @@ body {
 @media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
 
+  .ContenedorMax {
+    width: 70% !important;
+    margin-left: -28% !important;
+  }
+
   .container-fluid {
     display: list-item !important;
   }
