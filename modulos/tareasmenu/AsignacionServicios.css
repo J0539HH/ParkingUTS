@@ -291,7 +291,7 @@ i.rotateImg::before {
 
   #contenedorCentral {
     width: 83% !important;
-    padding: 0 5px 0 5px;
+    padding: 0 12px 0 6px;
   }
 
   .container-fluid {
