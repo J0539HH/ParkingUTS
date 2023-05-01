@@ -276,6 +276,10 @@ i.rotateImg::before {
 
 @media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
+  #tablaUsuarios_paginate {
+    display: flex;
+    justify-content: center;
+  }
 
   .ContenedorMax {
     width: 98% !important;
