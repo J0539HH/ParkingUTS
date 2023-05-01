@@ -6,8 +6,11 @@ $(document).ready(function () {
 
   if (document.cookie.indexOf("mostradoModal=true") === -1) {
     $("#modalUser").modal("show");
+    var now = new Date();
+    var expireTime = now.getTime() + 12 * 60 * 60 * 1000;
+    now.setTime(expireTime);
     document.cookie =
-      "mostradoModal=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      "mostradoModal=true; expires=" + now.toUTCString() + "; path=/";
   }
 
   $("#btnModal").on("click", function () {
