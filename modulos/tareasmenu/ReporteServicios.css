@@ -278,7 +278,7 @@ i.rotateImg::before {
   /* Estilos para pantallas pequeñas */
 
   .ContenedorMax {
-    width: 100% !important;
+    width: 98% !important;
     padding: 0 5px 0 5px;
   }
   .container-fluid {
