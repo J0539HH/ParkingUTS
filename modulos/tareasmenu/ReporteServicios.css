@@ -276,7 +276,7 @@ i.rotateImg::before {
 
 @media (max-width: 600px) {
   /* Estilos para pantallas pequeñas */
-  #tablaUsuarios_paginate {
+  #tablaUsuarios_paginate #tablaUsuarios_info {
     display: flex;
     justify-content: center;
   }
