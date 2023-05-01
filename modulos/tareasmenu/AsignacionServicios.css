@@ -289,8 +289,8 @@ i.rotateImg::before {
     justify-content: center;
   }
 
-  .ContenedorMax {
-    width: 98% !important;
+  #contenedorCentral {
+    width: 85% !important;
     padding: 0 5px 0 5px;
   }
 
