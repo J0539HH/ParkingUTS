@@ -8,6 +8,8 @@ const jsonParser = bodyParser.json();
 const { MongoClient } = require("mongodb");
 
 
+
+
 // Conexion activa a la base de datos
 const uri =
   "mongodb+srv://J0539H:ZqUi1aTgH2k49Vv0@clusterdocutech.5iod7gv.mongodb.net/?retryWrites=true&w=majority";
