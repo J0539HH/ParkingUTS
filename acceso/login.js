@@ -7,8 +7,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -56,8 +56,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -88,8 +88,21 @@ $(document).ready(function () {
     $("#modalNewUser").modal("show");
   });
 
+  $("#passwordRecovery").on("click", function () {
+    $("#modalRecuperar").modal("show");
+  });
+
+  $("#btnRecuperar").on("click", function () {
+    ValidarUsuarioRecuperar();
+  });
+
+  $("#btnValidar").on("click", function () {
+    ValidarCodigoRecuperar();
+  });
+
   $("#btnRegistrar").on("click", function () {
     ValidarNuevoUsuario();
+
   });
 
   configuracionInput();
@@ -168,6 +181,15 @@ function ValidarNuevoUsuario() {
       $("#spinner").hide();
     });
 }
+function ValidarUsuarioRecuperar() {
+  $("#modalCodigoRecuperar").modal("show");
+  $("#modalRecuperar").modal("hide");
+}
+function ValidarCodigoRecuperar() {
+  $("#modalCambioPass").modal("show");
+  $("#modalCodigoRecuperar").modal("hide");
+}
+
 function RegistrarNewUser() {
   spinner("Registrando un nuevo usuario, por favor espere");
   let nuevoUsuario = $("#newUser").val().toUpperCase();
