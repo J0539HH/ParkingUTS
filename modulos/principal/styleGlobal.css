@@ -15,7 +15,7 @@
 
 :root {
   /* Global */
-  --orange-main-color: #1664ab;
+  --orange-main-color: #aeb628;
   --black-text-color: #000000;
   --black-alter-text-color: #3c3c3b;
   --black-title-color: #131313;
@@ -35,14 +35,14 @@
   --gray-selected-bg-color: #c6c6c5;
   /* Bottoms */
   --btn-disabled-color: #cccccc;
-  --btn-primary-color: #1664ab;
-  --btn-primary-hover-color: #5299db;
+  --btn-primary-color: #aeb628;
+  --btn-primary-hover-color: #ccd424  ;
   --btn-success-color: #7eb88c;
   --btn-success-hover-color: #a3ccad;
   --btn-error-color: #c2171d;
   --btn-error-hover-color: #e5242a;
   /* Switch */
-  --switch-selected: #1664ab;
+  --switch-selected: #b8bf20;
   --switch-no-selected: #d9d9d9;
   /* Fonts Size */
   --small-font: 11px;

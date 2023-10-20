@@ -6,12 +6,10 @@ div#divGlobal {
 }
 
 body {
-  background-image: url("../../Multimedia/fondoWeb.jpg") !important;
+  background-image: url("../../Multimedia/fondoLogin.png") !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: cover;
-  min-height: 100vh;
-  max-height: 100vh;
   overflow-y: auto;
 }
 
