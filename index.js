@@ -166,19 +166,23 @@ app.use(
 );
 
 app.get("/api/sesion", (req, res) => {
-     const idusuario = req.session.idusuario;
+  const idusuario = req.session.idusuario;
   const idrol = req.session.idrol;
   const nombre = req.session.nombre;
   res.send({ idusuario: idusuario, idrol: idrol, nombre: nombre });
+
 });
 
 app.post("/api/sesion", (req, res) => {
-  const idusuario = req.body.idusuario;
-  const idrol = req.body.idrol;
+
+  console.log(req.body);
+  const idusuario = req.body._idusuario;
+  const rol = req.body.rol;
   const nombre = req.body.nombre;
   req.session.idusuario = idusuario;
-  req.session.idrol = idrol;
+  req.session.rol = rol;
   req.session.nombre = nombre;
+  console.log(req.session)
   res.send();
 });
 
@@ -343,7 +347,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

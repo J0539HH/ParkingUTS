@@ -12,7 +12,7 @@ const { MongoClient } = require("mongodb");
 
 // Conexion activa a la base de datos
 const uri =
-  "mongodb+srv://J0539H:RsBp6RTSnD3w8nr6@clusterdocutech.5iod7gv.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://J0539H:xuHDohemqJ82FzCb@utsparking.f4ednna.mongodb.net/";
 const client = new MongoClient(uri);
 (async () => {
   try {
@@ -22,7 +22,7 @@ const client = new MongoClient(uri);
     console.error(err);
   }
 })();
-const database = client.db("docutech");
+const database = client.db("UTSparking");
 
 router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
@@ -51,6 +51,7 @@ router.post("/NewAudtoria", jsonParser, async (req, res) => {
 // Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
   let userL = req.body.usuario.trim();
+
   try {
     const collection = database.collection("usuarios");
     const query = {

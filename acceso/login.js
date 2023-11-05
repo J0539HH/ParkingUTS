@@ -114,6 +114,13 @@ $(document).ready(function () {
   });
 });
 
+function soloNumeros(e) {
+  var key = e.charCode || e.keyCode;
+  if (key < 48 || key > 57) {
+    e.preventDefault();
+  }
+}
+
 function ValidarNuevoUsuario() {
   let nuevoUsuario = $("#newUser").val().trim();
   let UserUPP = nuevoUsuario.toUpperCase();
@@ -386,13 +393,14 @@ function ValidarUsuario() {
   fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
+
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((response) => response.json())
     .then((result) => {
-      IniciarSession(result.idusuario, result.idrol, result.nombre);
+      IniciarSession(result._id, result.rol, result.persona.nombre);
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -449,10 +457,10 @@ function CerrarAlerta() {
   callback(true);
 }
 
-function IniciarSession(idusuario, idrol, nombre) {
+function IniciarSession(idusuario, rol, nombre) {
   fetch("/api/sesion", {
     method: "POST",
-    body: JSON.stringify({ idusuario: idusuario, idrol: idrol, nombre: nombre }),
+    body: JSON.stringify({ _idusuario: idusuario, rol: rol, nombre: nombre }),
     headers: {
       "Content-Type": "application/json",
     },

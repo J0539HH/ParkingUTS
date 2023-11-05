@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" type="image/png" href="/Multimedia/favIcon.png" />
@@ -11,352 +12,250 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
-      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="/lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <!-- Bootstrap Icon-->
-    <link
-      rel="stylesheet"
-      href="/lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
     <!-- OverlayScrollbars -->
-    <link
-      rel="stylesheet"
-      href="/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="/lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
     <!-- Sweet Alert -->
-    <link
-      rel="stylesheet"
-      href="/lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
     <!-- Global CSS -->
     <link rel="stylesheet" href="/modulos/principal/styleGlobal.css" />
     <!-- CSS Site -->
     <link rel="stylesheet" href="login.css" />
     <link rel="stylesheet" href="/lib/jQuery/alertas/jquery.alerts.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="divGlobal" class="hidden">
-      <div id="contInterfazLogin">
-        <section id="sectionHeader" class="row contForm">
-          <div
-            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contImgLogo">
-            <div class="spaceSide">
-              <div class="contTitle">
-                <p class="pTextTitle">Ingreso al sistema</p>
-                <p class="pTextSubTitle">Introduce tus datos de acceso</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div id="contInterfazLogin">
+            <section id="sectionHeader" class="row contForm">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contImgLogo">
+                    <div class="spaceSide">
+                        <div class="contTitle">
+                            <p class="pTextTitle">Ingreso al sistema</p>
+                            <p class="pTextSubTitle">Introduce tus datos de acceso</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="sectionLogin" class="row contForm">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput" for="usuario">Usuario</label>
-              <input
-                placeholder
-                type="text"
-                class="form-control"
-                id="usuario"
-                name="usuario" />
-              <span class="spanHelperErrorInput">El usuario es obligatorio</span>
-            </div>
-          </div>
+            <section id="sectionLogin" class="row contForm">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="labelNameInput" for="usuario">Usuario</label>
+                        <input placeholder type="text" class="form-control" id="usuario" name="usuario" />
+                        <span class="spanHelperErrorInput">El usuario es obligatorio</span>
+                    </div>
+                </div>
 
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <label class="labelNameInput" for="password">Contraseña</label>
-              <input
-                placeholder
-                type="password"
-                class="form-control passwordInfo"
-                id="password"
-                name="password" />
-              <span class="spanHelperErrorInput">La contraseña es obligatoria</span>
-            </div>
-          </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="labelNameInput" for="password">Contraseña</label>
+                        <input placeholder type="password" class="form-control passwordInfo" id="password"
+                            name="password" />
+                        <span class="spanHelperErrorInput">La contraseña es obligatoria</span>
+                    </div>
+                </div>
 
-          <div
-            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contInterfaceBtn">
-            <button id="btnIniciarSesion" class="buttonBtn btnPrimary">
-              Ingresar
-            </button>
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="contHelpers">
-              <p id="newCliente" class="pTxtOlvidoContraseña">Nuevo Usuario</p>
-            </div>
-            <div class="contHelpers mt-2">
-              <p id="passwordRecovery" class="pTxtOlvidoContraseña">
-                Recuperar Contraseña
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 contInterfaceBtn">
+                    <button id="btnIniciarSesion" class="buttonBtn btnPrimary">
+                        Ingresar
+                    </button>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="contHelpers">
+                        <p id="newCliente" class="pTxtOlvidoContraseña">Nuevo Usuario</p>
+                    </div>
+                    <div class="contHelpers mt-2">
+                        <p id="passwordRecovery" class="pTxtOlvidoContraseña">
+                            Recuperar Contraseña
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
     <!-- Modal nuevo usuario -->
-    <div
-      class="modal notificationModal fade"
-      id="modalNewUser"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalUserLabel"
-      aria-hidden="true">
-      <div class="modal-dialog dialogCambiarPass">
-        <section class="modal-content content-CambiarContra">
-          <p class="tituloRestablecerContraseña text-center">
-            Nuevo usuario del sistema
-          </p>
-          <p class="InfoCambiarPass infoCambiarPass0">
-            Introduce tu numero de documento y al terminar, te enviaremos la
-            información del inicio de sesión a tu correo institucional.
-          </p>
-          <p class="InfoCambiarPass font-weight-bold">
-            Todos los campos son obligatorios
-          </p>
-          <section id="sectionLogin" class="row contForm">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <img
-                src="../Multimedia/Registration.png"
-                height="50px;"
-                style="margin-right: 10px; margin-left: 42%" />
-              <div class="form-group">
-                <label class="labelNameInput" for="documento">Numero de
-                  documento</label>
-                <input
-                  placeholder
-                  type="text"
-                  class="form-control"
-                  id="documento"
-                  name="documento" />
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="newUser">Nuevo usuario</label>
-                <input
-                  placeholder
-                  type="text"
-                  class="form-control"
-                  id="newUser"
-                  name="newUser" />
-              </div>
-            </div>
+    <div class="modal notificationModal fade" id="modalNewUser" tabindex="-1" role="dialog"
+        aria-labelledby="modalUserLabel" aria-hidden="true">
+        <div class="modal-dialog dialogCambiarPass">
+            <section class="modal-content content-CambiarContra">
+                <p class="tituloRestablecerContraseña text-center">
+                    Nuevo usuario del sistema
+                </p>
+                <p class="InfoCambiarPass infoCambiarPass0">
+                    Introduce tu numero de documento y al terminar, te enviaremos la
+                    información del inicio de sesión a tu correo institucional.
+                </p>
+                <p class="InfoCambiarPass font-weight-bold">
+                    Todos los campos son obligatorios
+                </p>
+                <section id="sectionLogin" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img src="../Multimedia/Registration.png" height="50px;"
+                            style="margin-right: 10px; margin-left: 42%" />
+                        <div class="form-group">
+                            <label class="labelNameInput" for="documento">Numero de
+                                documento</label>
+                            <input placeholder type="text" class="form-control" onkeypress="soloNumeros(event)"
+                                id="documento" name="documento" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="newUser">Nuevo usuario</label>
+                            <input placeholder type="text" class="form-control" id="newUser" name="newUser" />
+                        </div>
+                    </div>
 
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="newPassword">Nueva contraseña</label>
-                <input
-                  placeholder
-                  type="password"
-                  class="form-control passwordInfo"
-                  id="newPassword"
-                  name="newPassword" />
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="newPassword2">Repetir
-                  contraseña</label>
-                <input
-                  placeholder
-                  type="password"
-                  class="form-control passwordInfo"
-                  id="newPassword2"
-                  name="newPassword2" />
-              </div>
-            </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="newPassword">Nueva contraseña</label>
+                            <input placeholder type="password" class="form-control passwordInfo" id="newPassword"
+                                name="newPassword" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="newPassword2">Repetir
+                                contraseña</label>
+                            <input placeholder type="password" class="form-control passwordInfo" id="newPassword2"
+                                name="newPassword2" />
+                        </div>
+                    </div>
 
-            <div
-              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
-              <button
-                type="button"
-                class="buttonBtn btnPrimary btnCambiarpass"
-                id="btnRegistrar">
-                Registrar
-              </button>
-            </div>
-          </section>
-        </section>
-      </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
+                        <button type="button" class="buttonBtn btnPrimary btnCambiarpass" id="btnRegistrar">
+                            Registrar
+                        </button>
+                    </div>
+                </section>
+            </section>
+        </div>
     </div>
     <!-- Modal recuperar contraseña -->
-    <div
-      class="modal notificationModal fade"
-      id="modalRecuperar"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalUserLabel"
-      aria-hidden="true">
-      <div class="modal-dialog dialogCambiarPass">
-        <section class="modal-content content-CambiarContra">
-          <p class="tituloRestablecerContraseña text-center">
-            Recuperar Contraseña
-          </p>
-          <p class="InfoCambiarPass infoCambiarPass0">
-            Introduce tu numero de documento y al terminar, te enviaremos la
-            información de recuperación de contraseña a tu correo institucional.
-          </p>
-          <section id="sectionLogin" class="row contForm">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="d-flex justify-content-center">
-                <img
-                  src="../Multimedia/identificacion.png"
-                  height="80px;"
-                  style="
+    <div class="modal notificationModal fade" id="modalRecuperar" tabindex="-1" role="dialog"
+        aria-labelledby="modalUserLabel" aria-hidden="true">
+        <div class="modal-dialog dialogCambiarPass">
+            <section class="modal-content content-CambiarContra">
+                <p class="tituloRestablecerContraseña text-center">
+                    Recuperar Contraseña
+                </p>
+                <p class="InfoCambiarPass infoCambiarPass0">
+                    Introduce tu numero de documento y al terminar, te enviaremos la
+                    información de recuperación de contraseña a tu correo institucional.
+                </p>
+                <section id="sectionLogin" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="../Multimedia/identificacion.png" height="80px;" style="
                   margin-top: -25px;
                   margin-bottom: 10px;
                 " />
-              </div>
-              <div class="form-group">
-                <label class="labelNameInput" for="documento">Numero de
-                  documento</label>
-                <input
-                  placeholder
-                  type="text"
-                  class="form-control"
-                  id="documentoR"
-                  name="documento" />
-              </div>
-            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="labelNameInput" for="documento">Numero de
+                                documento</label>
+                            <input placeholder type="text" class="form-control" id="documentoR"
+                                onkeypress="soloNumeros(event)" name="documento" />
+                        </div>
+                    </div>
 
-            <div
-              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
-              <button
-                type="button"
-                class="buttonBtn btnPrimary btnCambiarpass"
-                id="btnRecuperar">
-                Recuperar
-              </button>
-            </div>
-          </section>
-        </section>
-      </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
+                        <button type="button" class="buttonBtn btnPrimary btnCambiarpass" id="btnRecuperar">
+                            Recuperar
+                        </button>
+                    </div>
+                </section>
+            </section>
+        </div>
     </div>
     <!-- Modal codigo recuperacion -->
-    <div
-      class="modal notificationModal fade"
-      id="modalCodigoRecuperar"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalUserLabel"
-      aria-hidden="true">
-      <div class="modal-dialog dialogCambiarPass">
-        <section class="modal-content content-CambiarContra">
-          <p class="tituloRestablecerContraseña text-center">Validar codigo</p>
-          <p class="InfoCambiarPass infoCambiarPass0">
-            Introduce el codigo que recibiste en tu correo institucional.
-          </p>
-          <section id="sectionLogin" class="row contForm">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="d-flex justify-content-center">
-                <img
-                  src="../Multimedia/codigo.png"
-                  height="80px;"
-                  style="
+    <div class="modal notificationModal fade" id="modalCodigoRecuperar" tabindex="-1" role="dialog"
+        aria-labelledby="modalUserLabel" aria-hidden="true">
+        <div class="modal-dialog dialogCambiarPass">
+            <section class="modal-content content-CambiarContra">
+                <p class="tituloRestablecerContraseña text-center">Validar codigo</p>
+                <p class="InfoCambiarPass infoCambiarPass0">
+                    Introduce el codigo que recibiste en tu correo institucional.
+                </p>
+                <section id="sectionLogin" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="../Multimedia/codigo.png" height="80px;" style="
                   margin-top: -25px;
                   margin-bottom: 10px;
                 " />
-              </div>
-              <div class="form-group">
-                <label class="labelNameInput" for="codRecu">Codigo de
-                  recuperación</label>
-                <input
-                  placeholder
-                  type="text"
-                  class="form-control"
-                  id="codRecu"
-                  name="codRecu" />
-              </div>
-            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="labelNameInput" for="codRecu">Codigo de
+                                recuperación</label>
+                            <input placeholder type="text" class="form-control" id="codRecu" name="codRecu" />
+                        </div>
+                    </div>
 
-            <div
-              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
-              <button
-                type="button"
-                class="buttonBtn btnPrimary btnCambiarpass"
-                id="btnValidar">
-                Validar
-              </button>
-            </div>
-          </section>
-        </section>
-      </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
+                        <button type="button" class="buttonBtn btnPrimary btnCambiarpass" id="btnValidar">
+                            Validar
+                        </button>
+                    </div>
+                </section>
+            </section>
+        </div>
     </div>
     <!-- Modal cambio de contraseña -->
-    <div
-      class="modal notificationModal fade"
-      id="modalCambioPass"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalUserLabel"
-      aria-hidden="true">
-      <div class="modal-dialog dialogCambiarPass">
-        <section class="modal-content content-CambiarContra">
-          <p class="tituloRestablecerContraseña text-center">
-            Cambiar contraseña
-          </p>
-          <p class="InfoCambiarPass infoCambiarPass0">
-            Introduce tu nueva contraseña.
-          </p>
-          <section id="sectionLogin" class="row contForm">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="d-flex justify-content-center">
-                <img
-                  src="../Multimedia/candadoAbierto.png"
-                  height="80px;"
-                  style="
+    <div class="modal notificationModal fade" id="modalCambioPass" tabindex="-1" role="dialog"
+        aria-labelledby="modalUserLabel" aria-hidden="true">
+        <div class="modal-dialog dialogCambiarPass">
+            <section class="modal-content content-CambiarContra">
+                <p class="tituloRestablecerContraseña text-center">
+                    Cambiar contraseña
+                </p>
+                <p class="InfoCambiarPass infoCambiarPass0">
+                    Introduce tu nueva contraseña.
+                </p>
+                <section id="sectionLogin" class="row contForm">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="../Multimedia/candadoAbierto.png" height="80px;" style="
                   margin-top: -25px;
                   margin-bottom: 10px;
                 " />
-              </div>
+                        </div>
 
-              <div class="form-group">
-                <label class="labelNameInput" for="newPassRecu">Nueva contraseña</label>
-                <input
-                  placeholder
-                  type="password"
-                  class="form-control"
-                  id="newPassRecu"
-                  name="newPassRecu" />
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="newPassRecu2">Repetir nueva
-                  contraseña</label>
-                <input
-                  placeholder
-                  type="password"
-                  class="form-control"
-                  id="newPassRecu2"
-                  name="newPassRecu2" />
-              </div>
-            </div>
+                        <div class="form-group">
+                            <label class="labelNameInput" for="newPassRecu">Nueva contraseña</label>
+                            <input placeholder type="password" class="form-control" id="newPassRecu"
+                                name="newPassRecu" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="labelNameInput" for="newPassRecu2">Repetir nueva
+                                contraseña</label>
+                            <input placeholder type="password" class="form-control" id="newPassRecu2"
+                                name="newPassRecu2" />
+                        </div>
+                    </div>
 
-            <div
-              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
-              <button
-                type="button"
-                class="buttonBtn btnPrimary btnCambiarpass"
-                id="btnConfirmar">
-                Confirmar
-              </button>
-            </div>
-          </section>
-        </section>
-      </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center d-flex">
+                        <button type="button" class="buttonBtn btnPrimary btnCambiarpass" id="btnConfirmar">
+                            Confirmar
+                        </button>
+                    </div>
+                </section>
+            </section>
+        </div>
     </div>
 
     <div id="contFooter">
-      <div class="contInfoFooter">
-        <p class="pInfoFooter">Unidades Tecnologicas de Satander</p>
-        <p class="pInfoFooter">Bucaramanga - Colombia</p>
-      </div>
+        <div class="contInfoFooter">
+            <p class="pInfoFooter">Unidades Tecnologicas de Satander</p>
+            <p class="pInfoFooter">Bucaramanga - Colombia</p>
+        </div>
     </div>
 
     <!-- jQuery -->
@@ -368,13 +267,9 @@
     <!-- Bootstrap -->
     <script src="/lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
     <!-- OverlayScrollbars -->
-    <script
-      src="/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
-      type="text/javascript"></script>
+    <script src="/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js" type="text/javascript"></script>
     <!-- Sweet Alert -->
-    <script
-      src="/lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
-      type="text/javascript"></script>
+    <script src="/lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
     <!-- Script Global -->
     <script src="/modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
@@ -383,13 +278,11 @@
     <script src="/lib/jQuery/sha256.js"></script>
     <!-- Spinner Site -->
     <div id="spinner" class="spinner">
-      <div style="position: fixed; left: 45%; top: 39%">
-        <img
-          class="spinner-img"
-          src="../Multimedia/spinner.gif"
-          alt="Loading" />
-        <div id="textLoad" class="spinner-msg"></div>
-      </div>
+        <div style="position: fixed; left: 45%; top: 39%">
+            <img class="spinner-img" src="../Multimedia/spinner.gif" alt="Loading" />
+            <div id="textLoad" class="spinner-msg"></div>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
