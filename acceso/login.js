@@ -1,5 +1,8 @@
 /* global utilidadesjQuery */
 
+var usuarioID = "";
+var tokenSession = "";
+
 $(document).ready(function () {
   $("#documentoR").val("1098778076");
   limpiarNewUser();
@@ -224,8 +227,47 @@ function ValidarUsuarioRecuperar() {
 }
 
 function ValidarCodigoRecuperar() {
-  $("#modalCambioPass").modal("show");
   $("#modalCodigoRecuperar").modal("hide");
+  spinner("Validando el codigo de recuperacion, por favor espere");
+  let codigo = $("#codRecu").val();
+  const url = "/api/validarToken";
+  const data = {
+    idusuario: usuarioID,
+    token: codigo.trim(),
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      $("#codRecu").val("");
+      if (response.ok) {
+        $("#modalCambioPass").modal("show");
+        $("#modalCodigoRecuperar").modal("hide");
+        $("#spinner").hide();
+        return response.json();
+      } else {
+        AlertIncorrecta(
+          "El token ingresado no concuerda con los registros en base de datos."
+        );
+        $("#modalCodigoRecuperar").modal("show");
+        $("#spinner").hide();
+      }
+    })
+    .then((result) => {
+      tokenSession = result.token;
+    })
+    .catch((error) => {
+      $("#codRecu").val("");
+      AlertIncorrecta(
+        "El  token ingresado no concuerda con los registros en base de datos."
+      );
+      $("#modalCodigoRecuperar").modal("show");
+      $("#spinner").hide();
+    });
 }
 
 function RegistrarNewUser() {
@@ -308,16 +350,14 @@ function enviarCorreo() {
 }
 
 function enviarCorreoRecuperacion(objetoUsuario) {
+  $("#modalRecuperar").modal("hide");
   spinner(
     "Enviando información de recuperacion de contraseña al correo electronico!"
   );
   let idusuario = objetoUsuario._id;
-  var code = String(Math.floor(Math.random() * 900000) + 100000);
-
   const dataCode = {
     idusuario: idusuario,
   };
-
   fetch("/api/ActualizarToken", {
     method: "POST",
     headers: {
@@ -330,11 +370,16 @@ function enviarCorreoRecuperacion(objetoUsuario) {
         $("#modalCodigoRecuperar").modal("show");
         $("#modalRecuperar").modal("hide");
         $("#spinner").hide();
+        return response.json(); // Return the parsed JSON from the response
       } else {
-        AlertIncorrecta("Error al tratar de recupear usuario");
+        $("#modalRecuperar").modal("show");
+        AlertIncorrecta("Error al tratar de recuperar usuario");
+        throw new Error("Error en la petición"); // Throw an error to skip the next 'then'
       }
     })
-
+    .then((result) => {
+      usuarioID = result._id;
+    })
     .catch((error) => {
       console.log(error);
     });

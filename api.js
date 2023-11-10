@@ -57,6 +57,30 @@ router.post("/ActualizarToken", jsonParser, async (req, res) => {
   }
 });
 
+// Validacion del token
+router.post("/validarToken", jsonParser, async (req, res) => {
+  token = req.body.token;
+  idusuario = req.body.idusuario;
+  tokenSHA = crypto.SHA256(String(token)).toString(crypto.enc.Hex);
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      _id: new ObjectId(idusuario),
+      token: tokenSHA,
+      estado: true,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.status(404).send("El token no concuerda");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 function enviarCorreoRecuperacion(objetoUsuario, codigo) {
   let correo = objetoUsuario.persona.correo;
   let nombre = objetoUsuario.persona.nombre;
@@ -138,6 +162,7 @@ router.post("/usuarios", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 // Cargar usuario especifico
 router.post("/EspecificUser", jsonParser, async (req, res) => {
   try {
