@@ -108,6 +108,25 @@ router.post("/EspecificLogin", jsonParser, async (req, res) => {
   }
 });
 
+// Validar usuario especifico
+router.post("/documentoRecuperable", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("persona");
+    const query = {
+      documento: req.body.documento,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.json("Documento no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar tecnicos
 router.get("/cargarTecnicos", async (req, res) => {
   try {
