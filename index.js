@@ -121,6 +121,7 @@ const transporter = nodemailer.createTransport({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//Envio de correos
 app.post("/EnvioDecorreo", (req, res) => {
   const correo = req.body.correo;
   const asunto = req.body.asunto;
@@ -170,7 +171,6 @@ app.get("/api/sesion", (req, res) => {
   const idrol = req.session.idrol;
   const nombre = req.session.nombre;
   res.send({ idusuario: idusuario, idrol: idrol, nombre: nombre });
-
 });
 
 app.post("/api/sesion", (req, res) => {
@@ -344,7 +344,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

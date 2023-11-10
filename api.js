@@ -6,9 +6,8 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const { MongoClient } = require("mongodb");
-
-
-
+const { ObjectId } = require("mongodb");
+const crypto = require("crypto-js");
 
 // Conexion activa a la base de datos
 const uri =
@@ -27,6 +26,75 @@ const database = client.db("UTSparking");
 router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
+
+// Actualizacion de token
+router.post("/ActualizarToken", jsonParser, async (req, res) => {
+  try {
+    const token = Math.floor(Math.random() * 900000) + 100000;
+    const { idusuario: idusuario } = req.body;
+    const tokenHash = crypto.SHA256(String(token)).toString(crypto.enc.Hex);
+
+    const collection = database.collection("usuarios");
+    const result = await collection.updateOne(
+      { "persona._id": new ObjectId(idusuario) },
+      { $set: { token: tokenHash } }
+    );
+    let resultado = result;
+    if (result.modifiedCount === 1) {
+      const queryU = {
+        "persona._id": new ObjectId(idusuario),
+      };
+      const resultU = await collection.findOne(queryU);
+      if (resultU) {
+        enviarCorreoRecuperacion(resultU, token);
+      }
+      resultado = resultU;
+    }
+    res.json(resultado);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+function enviarCorreoRecuperacion(objetoUsuario, codigo) {
+  let correo = objetoUsuario.persona.correo;
+  let nombre = objetoUsuario.persona.nombre;
+  let usuario = objetoUsuario.usuario;
+  const mensaje =
+    "<p>Hola! <b>" +
+    nombre +
+    ", </b><br>Este es el codigo de validacion para recuperar tu contraseña:<b> " +
+    codigo +
+    "</b><br> Recuerda que tu login de acceso es: <b>" +
+    usuario +
+    "</b>";
+  ("</p> ");
+  const asunto = "Recuperacion de contraseña UTS - PARKING";
+
+  const data = {
+    correo: correo,
+    asunto: asunto,
+    mensaje: mensaje,
+  };
+
+  fetch("http://localhost:3000/EnvioDecorreo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+      } else {
+        throw new Error("Error al enviar el correo electrónico");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 // Registrar Auditoria
 
@@ -51,7 +119,6 @@ router.post("/NewAuditoria", jsonParser, async (req, res) => {
 // Login de un usuario
 router.post("/usuarios", jsonParser, async (req, res) => {
   let userL = req.body.usuario.trim();
-
   try {
     const collection = database.collection("usuarios");
     const query = {
@@ -221,6 +288,7 @@ router.post("/EditUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 // Registrar nuevo usuario
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {

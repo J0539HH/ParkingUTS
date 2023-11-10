@@ -1,14 +1,15 @@
 /* global utilidadesjQuery */
 
 $(document).ready(function () {
+  $("#documentoR").val("1098778076");
   limpiarNewUser();
   limpiarCampos();
   $("#password").on("keydown", function (event) {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -56,8 +57,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -102,7 +103,6 @@ $(document).ready(function () {
 
   $("#btnRegistrar").on("click", function () {
     ValidarNuevoUsuario();
-
   });
 
   configuracionInput();
@@ -193,7 +193,7 @@ function ValidarUsuarioRecuperar() {
 
   const url = "/api/documentoRecuperable";
   const data = {
-    documento: documento
+    documento: documento,
   };
   fetch(url, {
     method: "POST",
@@ -206,20 +206,22 @@ function ValidarUsuarioRecuperar() {
     .then((result) => {
       $("#documentoR").val("");
       if (result === "Documento no encontrado") {
-        AlertIncorrecta("El numero de documento no concuerda con los registros en base de datos.");
+        AlertIncorrecta(
+          "El numero de documento no concuerda con los registros en base de datos."
+        );
       } else {
-
         enviarCorreoRecuperacion(result);
       }
     })
     .catch((error) => {
       $("#documentoR").val("");
-      AlertIncorrecta("El numero de documento no concuerda con los registros en base de datos.");
+      AlertIncorrecta(
+        "El numero de documento no concuerda con los registros en base de datos."
+      );
       console.error("Error de documento:", error);
       $("#spinner").hide();
     });
 }
-
 
 function ValidarCodigoRecuperar() {
   $("#modalCambioPass").modal("show");
@@ -271,7 +273,8 @@ function enviarCorreo() {
     nuevoPass +
     "</p><br>Recuerda que puedes iniciar sesión en el siguiente link: <p>http://34.125.36.154:3000/acceso/Login.html</p> ";
   const correo = $("#newCorreo").val();
-  const asunto = "Bienvenido al sistema de parqueos de las Unidades Tecnologicas de Santander";
+  const asunto =
+    "Bienvenido al sistema de parqueos de las Unidades Tecnologicas de Santander";
 
   const data = {
     correo: correo,
@@ -305,39 +308,33 @@ function enviarCorreo() {
 }
 
 function enviarCorreoRecuperacion(objetoUsuario) {
-  spinner("Enviando información de recuperacion de contraseña al correo electronico!");
-  let correo = objetoUsuario.correo;
-  let nombre = objetoUsuario.nombre;
-  let code = 123456;
-  const mensaje =
-    "<p>Hola! <b>" +
-    nombre +
-    ", </b><br>Este es el codigo de validacion para recuperar tu contraseña: " + code + "</p> ";
-  const asunto = "Recuperacion de contraseña UTS - PARKING";
+  spinner(
+    "Enviando información de recuperacion de contraseña al correo electronico!"
+  );
+  let idusuario = objetoUsuario._id;
+  var code = String(Math.floor(Math.random() * 900000) + 100000);
 
-  const data = {
-    correo: correo,
-    asunto: asunto,
-    mensaje: mensaje,
+  const dataCode = {
+    idusuario: idusuario,
   };
 
-  fetch("/EnvioDecorreo", {
+  fetch("/api/ActualizarToken", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(dataCode),
   })
     .then((response) => {
       if (response.ok) {
-        spinner("Enviando información al correo electronico!");
         $("#modalCodigoRecuperar").modal("show");
         $("#modalRecuperar").modal("hide");
         $("#spinner").hide();
       } else {
-        throw new Error("Error al enviar el correo electrónico");
+        AlertIncorrecta("Error al tratar de recupear usuario");
       }
     })
+
     .catch((error) => {
       console.log(error);
     });
