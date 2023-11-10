@@ -174,15 +174,12 @@ app.get("/api/sesion", (req, res) => {
 });
 
 app.post("/api/sesion", (req, res) => {
-
-  console.log(req.body);
   const idusuario = req.body._idusuario;
   const rol = req.body.rol;
   const nombre = req.body.nombre;
   req.session.idusuario = idusuario;
   req.session.rol = rol;
   req.session.nombre = nombre;
-  console.log(req.session)
   res.send();
 });
 

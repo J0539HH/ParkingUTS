@@ -400,7 +400,7 @@ function ValidarUsuario() {
   })
     .then((response) => response.json())
     .then((result) => {
-      IniciarSession(result._id, result.rol, result.persona.nombre);
+      IniciarSession(result);
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -411,12 +411,12 @@ function ValidarUsuario() {
     });
 }
 
-function RegistrarAuditoria(idusuario) {
+function RegistrarAuditoria(objetoUsuario) {
   spinner("Registrando Auditoria");
   let descripcionAuditoria = "Ingreso exitoso al sistema";
-  const url = "/api/NewAudtoria";
+  const url = "/api/NewAuditoria";
   const data = {
-    idusuario: idusuario,
+    usuario: objetoUsuario,
     descripcion: descripcionAuditoria,
   };
   fetch(url, {
@@ -457,7 +457,10 @@ function CerrarAlerta() {
   callback(true);
 }
 
-function IniciarSession(idusuario, rol, nombre) {
+function IniciarSession(objetoUsuario) {
+  let idusuario = objetoUsuario._id;
+  let rol = objetoUsuario.rol;
+  let nombre = objetoUsuario.nombre;
   fetch("/api/sesion", {
     method: "POST",
     body: JSON.stringify({ _idusuario: idusuario, rol: rol, nombre: nombre }),
@@ -465,7 +468,7 @@ function IniciarSession(idusuario, rol, nombre) {
       "Content-Type": "application/json",
     },
   });
-  RegistrarAuditoria(idusuario);
+  RegistrarAuditoria(objetoUsuario);
 }
 
 function spinner(texto) {

@@ -30,14 +30,14 @@ router.get("/", (req, res) => {
 
 // Registrar Auditoria
 
-router.post("/NewAudtoria", jsonParser, async (req, res) => {
+router.post("/NewAuditoria", jsonParser, async (req, res) => {
   try {
     const fechaAuditoria = moment().tz("America/Bogota").format();
-    const { idusuario, descripcion } = req.body;
+    const { usuario, descripcion } = req.body;
     const collection = database.collection("auditoria");
 
     const result = await collection.insertOne({
-      idusuario: idusuario,
+      usuario: usuario,
       fecha: fechaAuditoria,
       descripcion: descripcion,
     });
@@ -62,6 +62,7 @@ router.post("/usuarios", jsonParser, async (req, res) => {
     const result = await collection.findOne(query);
     if (result) {
       res.json(result);
+      console.log(result);
     } else {
       res.status(404).send("Usuario no encontrado");
     }
