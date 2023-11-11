@@ -27,6 +27,45 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+// Actualizar Contraseña
+router.post("/cambiarContra", jsonParser, async (req, res) => {
+  try {
+    const {
+      idusuario: idusuario,
+      token: token,
+      idrol: idrol,
+      newPass: newPass,
+    } = req.body;
+    const collection = database.collection("usuarios");
+    const result = await collection.updateOne(
+      {
+        _id: new ObjectId(idusuario),
+        token: token,
+        estado: true
+      },
+      {
+        $set: {
+          password: crypto.SHA256(String(newPass)).toString(crypto.enc.Hex),
+        },
+      }
+    );
+    let resultado = result;
+    if (result.modifiedCount === 1) {
+      const queryU = {
+        _id: new ObjectId(idusuario),
+      };
+      const resultU = await collection.findOne(queryU);
+      if (resultU) {
+        resultado = resultU;
+      }
+    }
+    res.json(resultado);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Actualizacion de token
 router.post("/ActualizarToken", jsonParser, async (req, res) => {
   try {
@@ -153,7 +192,6 @@ router.post("/usuarios", jsonParser, async (req, res) => {
     const result = await collection.findOne(query);
     if (result) {
       res.json(result);
-      console.log(result);
     } else {
       res.status(404).send("Usuario no encontrado");
     }

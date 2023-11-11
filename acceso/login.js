@@ -1,5 +1,3 @@
-/* global utilidadesjQuery */
-
 var usuarioID = "";
 var tokenSession = "";
 
@@ -11,8 +9,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -60,8 +58,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-      ? event.which
-      : event.charCode;
+        ? event.which
+        : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -86,6 +84,10 @@ $(document).ready(function () {
     scrollbars: {
       // autoHide: "leave", //"never", "scroll", "leave", "move"
     },
+  });
+
+  $("#btnConfirmar").on("click", function () {
+    cambiarAcceso();
   });
 
   $("#newCliente").on("click", function () {
@@ -222,6 +224,68 @@ function ValidarUsuarioRecuperar() {
         "El numero de documento no concuerda con los registros en base de datos."
       );
       console.error("Error de documento:", error);
+      $("#spinner").hide();
+    });
+
+
+}
+
+function cambiarAcceso() {
+  $("#modalCambioPass").modal("hide");
+  let newPass = ($("#newPassRecu").val()).trim();
+  let newPass2 = ($("#newPassRecu2").val()).trim();
+  let codigo = tokenSession.trim();
+  if (newPass === "" || newPass2 === "") {
+    AlertIncorrecta("Las contraseña no pueden estar vacias");
+    return;
+  }
+  if (newPass !== newPass2) {
+    AlertIncorrecta("Las contraseñas no coiniciden, verifica la información");
+    return;
+  }
+  spinner("Actualizando tu contraseña por favor espera..");
+  const url = "/api/cambiarContra";
+  const data = {
+    idusuario: usuarioID,
+    token: codigo,
+    newPass: newPass
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      $("#newPassRecu").val("");
+      $("#newPassRecu2").val("");
+      if (response.ok) {
+        AlertCorrecta("Contraseña cambiada satisfactoriamente");
+        $("#modalCambioPass").modal("hide");
+        $("#spinner").hide();
+        return response.json();
+        usuarioID = "";
+        tokenSession = "";
+      } else {
+        AlertIncorrecta(
+          "No se pudo modificar tu usuario, intentalo nuevamente desde el inicio."
+        );
+        $("#modalCambioPass").modal("show");
+        $("#spinner").hide();
+      }
+    })
+    .then((result) => {
+      let descripcionAuditoria = "El usuario modifica la contraseña desde la opcion de recuperación";
+      RegistrarAuditoria(result, descripcionAuditoria);
+    })
+    .catch((error) => {
+      $("#newPassRecu").val("");
+      $("#newPassRecu2").val("");
+      AlertIncorrecta(
+        "No se pudo modificar tu usuario, intentalo nuevamente desde el inicio."
+      );
+      $("#modalCambioPass").modal("show");
       $("#spinner").hide();
     });
 }
@@ -521,13 +585,12 @@ function ValidarUsuario() {
     });
 }
 
-function RegistrarAuditoria(objetoUsuario) {
+function RegistrarAuditoria(objetoUsuario, textoAuditoria) {
   spinner("Registrando Auditoria");
-  let descripcionAuditoria = "Ingreso exitoso al sistema";
   const url = "/api/NewAuditoria";
   const data = {
     usuario: objetoUsuario,
-    descripcion: descripcionAuditoria,
+    descripcion: textoAuditoria,
   };
   fetch(url, {
     method: "POST",
@@ -539,10 +602,6 @@ function RegistrarAuditoria(objetoUsuario) {
     .then((response) => response.json())
     .then((result) => {
       $("#spinner").hide();
-      AlertCorrecta("Bienvenido al sistema!");
-      setTimeout(function () {
-        window.location.href = "/modulos/tareasmenu/menu.html";
-      }, 1500);
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
@@ -578,7 +637,12 @@ function IniciarSession(objetoUsuario) {
       "Content-Type": "application/json",
     },
   });
-  RegistrarAuditoria(objetoUsuario);
+  let descripcionAuditoria = "Ingreso exitoso al sistema";
+  RegistrarAuditoria(objetoUsuario, descripcionAuditoria);
+  AlertCorrecta("Bienvenido al sistema!");
+  setTimeout(function () {
+    window.location.href = "/modulos/tareasmenu/menu.html";
+  }, 1500);
 }
 
 function spinner(texto) {
