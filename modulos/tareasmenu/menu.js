@@ -1,4 +1,4 @@
-var idrol = null;
+var rolUsuario = null;
 var idUsuario = null;
 
 $(document).ready(function () {
@@ -96,17 +96,17 @@ function verificarSesionM() {
     .then((data) => {
       console.log(data);
       const idusuario = data.idusuario;
-      idrol = data.idrol;
+      rolUsuario = data.rol;
       idUsuario = data.idusuario;
       verificarAccesos(data.nombre);
       if (idusuario === undefined || idusuario === null) {
         $("#ContenedorTotal").addClass("hidden");
-        /*         AlertIncorrectX(
-                  "Estas tratando de acceder al sistema sin credenciales"
-                );
-                setTimeout(function () {
-                  window.location.href = "../../acceso/Login.html";
-                }, 1000); */
+        AlertIncorrectX(
+          "Estas tratando de acceder al sistema sin credenciales"
+        );
+        setTimeout(function () {
+          window.location.href = "../../acceso/Login.html";
+        }, 1000);
       }
     })
     .catch((error) => {
@@ -117,35 +117,35 @@ function verificarSesionM() {
 function verificarAccesos(Nombre) {
   console.log(Nombre);
   // Opciones de un  cliente
-  if (idrol === 2) {
+  if (rolUsuario === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden");
     $("#ContainerMenu").addClass("centrarBotones");
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
     );
   }
 
   // Opciones de un  tecnico
-  if (idrol === 3) {
+  if (rolUsuario === 3) {
     $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorAsignados").removeClass("hidden");
     $("#ContainerMenu").addClass("centrarBotones");
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
     );
   }
 
   // Opciones de un  administrador
-  if (idrol === 1) {
+  if (rolUsuario === "administrador") {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
     $("#ContenedorCreacionServicio").removeClass("hidden");
     $("#ContenedorGestionServicios").removeClass("hidden");
@@ -156,9 +156,9 @@ function verificarAccesos(Nombre) {
     $("#ContenedorAuditoria").removeClass("hidden");
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario del tipo <b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del sistema disponibles, gracias por preferir nuestro sistema!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario <b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del sistema disponibles, gracias por preferir nuestro sistema!"
     );
   }
 

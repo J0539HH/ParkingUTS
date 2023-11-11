@@ -9,8 +9,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -58,8 +58,8 @@ $(document).ready(function () {
     var tecla = event.keyCode
       ? event.keyCode
       : event.which
-        ? event.which
-        : event.charCode;
+      ? event.which
+      : event.charCode;
     if (tecla === 13) {
       setTimeout(function () {
         verificarLogin();
@@ -226,14 +226,12 @@ function ValidarUsuarioRecuperar() {
       console.error("Error de documento:", error);
       $("#spinner").hide();
     });
-
-
 }
 
 function cambiarAcceso() {
   $("#modalCambioPass").modal("hide");
-  let newPass = ($("#newPassRecu").val()).trim();
-  let newPass2 = ($("#newPassRecu2").val()).trim();
+  let newPass = $("#newPassRecu").val().trim();
+  let newPass2 = $("#newPassRecu2").val().trim();
   let codigo = tokenSession.trim();
   if (newPass === "" || newPass2 === "") {
     AlertIncorrecta("Las contraseña no pueden estar vacias");
@@ -248,7 +246,7 @@ function cambiarAcceso() {
   const data = {
     idusuario: usuarioID,
     token: codigo,
-    newPass: newPass
+    newPass: newPass,
   };
   fetch(url, {
     method: "POST",
@@ -276,7 +274,8 @@ function cambiarAcceso() {
       }
     })
     .then((result) => {
-      let descripcionAuditoria = "El usuario modifica la contraseña desde la opcion de recuperación";
+      let descripcionAuditoria =
+        "El usuario modifica la contraseña desde la opcion de recuperación";
       RegistrarAuditoria(result, descripcionAuditoria);
     })
     .catch((error) => {
@@ -629,7 +628,7 @@ function CerrarAlerta() {
 function IniciarSession(objetoUsuario) {
   let idusuario = objetoUsuario._id;
   let rol = objetoUsuario.rol;
-  let nombre = objetoUsuario.nombre;
+  let nombre = objetoUsuario.persona.nombre;
   fetch("/api/sesion", {
     method: "POST",
     body: JSON.stringify({ _idusuario: idusuario, rol: rol, nombre: nombre }),
@@ -640,6 +639,8 @@ function IniciarSession(objetoUsuario) {
   let descripcionAuditoria = "Ingreso exitoso al sistema";
   RegistrarAuditoria(objetoUsuario, descripcionAuditoria);
   AlertCorrecta("Bienvenido al sistema!");
+  document.cookie =
+    "mostradoModal=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   setTimeout(function () {
     window.location.href = "/modulos/tareasmenu/menu.html";
   }, 1500);

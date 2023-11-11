@@ -168,9 +168,9 @@ app.use(
 
 app.get("/api/sesion", (req, res) => {
   const idusuario = req.session.idusuario;
-  const idrol = req.session.idrol;
+  const rol = req.session.rol;
   const nombre = req.session.nombre;
-  res.send({ idusuario: idusuario, idrol: idrol, nombre: nombre });
+  res.send({ idusuario: idusuario, rol: rol, nombre: nombre });
 });
 
 app.post("/api/sesion", (req, res) => {
