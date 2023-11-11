@@ -41,7 +41,7 @@ router.post("/cambiarContra", jsonParser, async (req, res) => {
       {
         _id: new ObjectId(idusuario),
         token: token,
-        estado: true
+        estado: true,
       },
       {
         $set: {
@@ -50,15 +50,14 @@ router.post("/cambiarContra", jsonParser, async (req, res) => {
       }
     );
     let resultado = result;
-    if (result.modifiedCount === 1) {
-      const queryU = {
-        _id: new ObjectId(idusuario),
-      };
-      const resultU = await collection.findOne(queryU);
-      if (resultU) {
-        resultado = resultU;
-      }
+    const queryU = {
+      _id: new ObjectId(idusuario),
+    };
+    const resultU = await collection.findOne(queryU);
+    if (resultU) {
+      resultado = resultU;
     }
+
     res.json(resultado);
   } catch (err) {
     console.error(err);
@@ -800,31 +799,12 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
 router.get("/auditoriasTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("auditoria");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "usuarios",
-            localField: "idusuario",
-            foreignField: "idusuario",
-            as: "usuario",
-          },
-        },
-        {
-          $unwind: "$usuario",
-        },
-        {
-          $sort: {
-            fecha: -1,
-          },
-        },
-      ])
-      .toArray();
+    const result = await collection.find({}).toArray();
 
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("No se encontraron servicios");
+      res.status(404).send("No se encontraron pudieron cargar las auditorias");
     }
   } catch (err) {
     console.error(err);

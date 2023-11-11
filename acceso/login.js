@@ -274,7 +274,7 @@ function cambiarAcceso() {
     })
     .then((result) => {
       let descripcionAuditoria =
-        "El usuario modifica la contraseña desde la opcion de recuperación";
+        "El usuario cambia la contraseña desde la opción de recuperación";
       RegistrarAuditoria(result, descripcionAuditoria);
     })
     .catch((error) => {
