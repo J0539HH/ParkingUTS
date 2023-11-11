@@ -2,7 +2,6 @@ var usuarioID = "";
 var tokenSession = "";
 
 $(document).ready(function () {
-  $("#documentoR").val("1098778076");
   limpiarNewUser();
   limpiarCampos();
   $("#password").on("keydown", function (event) {
