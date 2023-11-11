@@ -54,6 +54,7 @@ function cargarAuditorias() {
   fetch(url)
     .then((response) => response.json())
     .then((result) => {
+      console.log(result);
       const tableData = { data: result };
       cargarTablaAuditorias(tableData);
     })
@@ -69,7 +70,7 @@ function cargarTablaAuditorias(tableData) {
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "usuario.nombre", className: " text-center" },
+      { data: "usuario.persona.nombre", className: " text-center" },
       {
         data: "fecha",
         className: "text-center",

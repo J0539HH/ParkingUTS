@@ -88,13 +88,10 @@ $(function () {
 });
 
 function verificarSesionM() {
-  console.log("validando sesion");
   spinner("Validando tipo de usuario");
-  console.log("VerificandoSessionbyJDFM");
   fetch("/api/sesion")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const idusuario = data.idusuario;
       rolUsuario = data.rol;
       idUsuario = data.idusuario;
@@ -115,7 +112,6 @@ function verificarSesionM() {
 }
 
 function verificarAccesos(Nombre) {
-  console.log(Nombre);
   // Opciones de un  cliente
   if (rolUsuario === 2) {
     $("#ContenedorCreacionServicio").removeClass("hidden");
@@ -158,7 +154,7 @@ function verificarAccesos(Nombre) {
       "Hola <b>" +
         Nombre +
         "</b>" +
-        ", hemos identificado que eres un usuario <b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del sistema disponibles, gracias por preferir nuestro sistema!"
+        ", hemos identificado que eres un usuario <br><b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del menu disponibles, gracias por preferir nuestro sistema!"
     );
   }
 
