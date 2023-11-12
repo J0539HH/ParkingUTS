@@ -143,12 +143,12 @@ function verificarAccesos(Nombre) {
   // Opciones de un  administrador
   if (rolUsuario === "administrador") {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
-    $("#ContenedorCreacionServicio").removeClass("hidden");
+   /*  $("#ContenedorCreacionServicio").removeClass("hidden");
     $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorReporteServicios").removeClass("hidden");
     $("#ContenedorAsignacionServicio").removeClass("hidden");
-    $("#ContenedorMiHistorial").removeClass("hidden");
+    $("#ContenedorMiHistorial").removeClass("hidden"); */
     $("#ContenedorAuditoria").removeClass("hidden");
     $("#infoUsuario").html(
       "Hola <b>" +

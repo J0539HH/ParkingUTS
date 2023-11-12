@@ -71,7 +71,7 @@ Fondo de baner central
 /* Modal InfoUsuario */
 
 .InfoModal {
-  box-shadow: 0px 0px 7px 4px #1664ab;
+  box-shadow: 0px 0px 7px 4px var(--orange-main-color);
   border-radius: 16px;
   background-color: var(--white-color);
   margin-bottom: 25px;
@@ -144,7 +144,7 @@ Fondo de baner central
   margin-bottom: 0;
   background: white;
   color: black;
-  border: 2px solid #1664ab;
+  border: 2px solid var(--orange-main-color);;
   box-shadow: 0px 0px 10px #c0c0c0;
   border-radius: 10px;
 }
@@ -175,7 +175,7 @@ Fondo de baner central
 }
 
 #templateContainer .placeholder .dashboard-item:hover {
-  box-shadow: 0px 0px 0px 6px #1664ab;
+  box-shadow: 0px 0px 0px 6px var(--orange-main-color);
 }
 
 /* circular navigation */

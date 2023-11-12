@@ -36,7 +36,7 @@
   /* Bottoms */
   --btn-disabled-color: #cccccc;
   --btn-primary-color: #aeb628;
-  --btn-primary-hover-color: #ccd424  ;
+  --btn-primary-hover-color: #ccd424;
   --btn-success-color: #7eb88c;
   --btn-success-hover-color: #a3ccad;
   --btn-error-color: #c2171d;
@@ -1418,15 +1418,15 @@ div.modal.notificationModal p.pTextDescAlertModal {
 }
 
 .button2 {
-  background-color: #1664ab;
-  border-color: #1664ab;
+  background: var(--btn-primary-color);
+  border: 1px solid var(--orange-main-color);
   color: rgb(255, 255, 255);
 }
 
 .button2:hover {
-  background-color: white;
-  border-color: #1664ab;
-  color: #1664ab;
+  background: var(--btn-primary-hover-color);
+  border-color: var(--btn-primary-hover-color);
+  color: black;
 }
 
 .button3 {
@@ -1526,6 +1526,14 @@ div.modal.notificationModal p.pTextDescAlertModal {
   height: 38px;
   border: 1px gray black;
   border-radius: 10px;
+}
+
+#logoCabecera {
+  margin-top: -24px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 6px;
+  height: 75px;
 }
 
 .ML-15 {

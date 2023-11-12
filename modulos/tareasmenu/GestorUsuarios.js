@@ -69,7 +69,7 @@ function BuscarXfiltros() {
   const data = {
     usuario: busUsuario,
     nombre: busNombre,
-    idrol: busRol,
+    rol: busRol,
     estado: busEstado,
   };
   fetch(url, {
@@ -107,6 +107,7 @@ function cargarUsuarios() {
   fetch(url)
     .then((response) => response.json())
     .then((result) => {
+      console.log(result);
       const tableData = { data: result };
 
       CargarTablaUsuarios(tableData);
@@ -122,25 +123,10 @@ function CargarTablaUsuarios(tableData) {
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "idusuario", className: " text-center" },
+      { data: "_id", className: " text-center" },
       { data: "usuario", className: " text-center" },
-      { data: "nombre", className: " text-center" },
-      {
-        data: "idrol",
-        className: " text-center",
-        render: function (data, type, row) {
-          Rol = row.idrol;
-          if (Rol === 3) {
-            return "<td class=' text-center'>Tecnico</td>";
-          }
-          if (Rol === 1) {
-            return "<td class=' text-center'>Administrador</td>";
-          }
-          if (Rol === 2) {
-            return "<td class=' text-center'>Cliente</td>";
-          }
-        },
-      },
+      { data: "persona.nombre", className: " text-center" },
+      { data: "rol", className: " text-center" },
       {
         data: "estado",
         className: " text-center",
@@ -159,10 +145,10 @@ function CargarTablaUsuarios(tableData) {
         render: function (data, type, row) {
           return (
             '<a class="btn btn-primary btn-sm btnEditarGestion" onclick="editarUsuario(' +
-            row.idusuario +
+            row._id +
             ')">Editar</a> ' +
             '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
-            row.idusuario +
+            row._id +
             ')">Eliminar</a>'
           );
         },
@@ -474,7 +460,8 @@ function InsertarUsuario() {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Usuario registrado en el sistema ");
-      let descripcionAuditoria = "Se registra un nuevo usuario para :" + NewName;
+      let descripcionAuditoria =
+        "Se registra un nuevo usuario para :" + NewName;
       RegistrarAuditoriaGestionU(descripcionAuditoria);
       $("#spinner").hide();
       cargarUsuarios();
@@ -566,7 +553,6 @@ function EliminarDefinitivo(idUser) {
       $("#spinner").hide();
     });
 }
-
 
 function RegistrarAuditoriaGestionU(descripcionAuditoria) {
   spinner("Registrando Auditoria");

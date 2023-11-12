@@ -381,10 +381,14 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
     const collection = database.collection("usuarios");
     const query = {};
     if (req.body.nombre) {
-      query.nombre = { $regex: req.body.nombre, $options: "i" };
+      query["persona.nombre"] = {
+        $regex: req.body.nombre,
+        $options: "i",
+      };
     }
-    if (req.body.idrol) {
-      query.idrol = req.body.idrol;
+
+    if (req.body.rol) {
+      query.rol = req.body.rol;
     }
     if (req.body.usuario) {
       query.usuario = req.body.usuario;
@@ -392,6 +396,7 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
     if (typeof req.body.estado === "boolean") {
       query.estado = req.body.estado;
     }
+    console.log(query);
     const result = await collection.find(query).toArray();
     if (result.length > 0) {
       res.json(result);

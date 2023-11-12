@@ -257,7 +257,8 @@ i.rotateImg::before {
 }
 
 body {
-  overflow-x: hidden;
+  min-width: 630px;
+ 
 }
 
 @media (max-width: 767px) {

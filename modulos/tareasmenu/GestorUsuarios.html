@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+    <link rel="icon" type="image/png" href="/Multimedia/favIcon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" />
     <title>Gestor de usuarios</title>
@@ -20,12 +20,10 @@
       href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <!-- Bootstrap Icon-->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
-      />
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
     <!-- OverlayScrollbars -->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
-      />
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
     <!-- Sweet Alert -->
     <link rel="stylesheet"
       href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
@@ -46,9 +44,8 @@
             <div class="container-fluid ">
               <div class="navbar-header">
                 <span style="float: left; font-size: 25px; margin: 20px 10px"><img
-                    src="../../Multimedia/logoDocu.svg"
-                    height="40px;" style="margin-right: 10px; background-color:
-                    #fff;" /></span>
+                    id="logoCabecera"
+                    src="../../Multimedia/logoUnidades.png" /></span>
               </div>
               <h6 class="InfoCabecera">Herramienta de gestion de usuarios</h6>
               <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
@@ -69,8 +66,7 @@
                   ">
                   <b>Filtros de b&uacute;squeda</b>
                 </h5>
-                <hr style="margin: 0 15px; background-color: #fff; opacity: 0.7"
-                  />
+                <hr style="margin: 0 15px; background-color: #fff; opacity: 0.7" />
               </div>
               <div style="padding-top: 15px"></div>
               <label class="tituloBusqueda">Filtros de busqueda</label>
@@ -89,7 +85,7 @@
               <div class="filtrosbusquedad">
                 <select class="form-control" id="busEstado" name="BusEstado"
                   required>
-                  <option value="">Seleccione</option>
+                  <option value>Seleccione</option>
                   <option value="true">Activo</option>
                   <option value="false">Inactivo</option>
                 </select>
@@ -98,8 +94,8 @@
               <div class="filtrosbusquedad">
                 <select class="form-control" id="busRol" name="estadoMod"
                   required>
-                  <option value="">Seleccione</option>
-                  <option value="1">Administrador</option>
+                  <option value>Seleccione</option>
+                  <option value="administrador">Administrador</option>
                   <option value="2">Cliente</option>
                   <option value="3">Tecnico</option>
                 </select>
@@ -191,7 +187,7 @@
                 <label for="tipoUsuario">Tipo de usuario</label>
                 <select class="form-control" id="tipoUsuario" name="tipoUsuario"
                   required>
-                  <option value="">Seleccione una opción</option>
+                  <option value>Seleccione una opción</option>
                   <option value="1">Administador</option>
                   <option value="2">Cliente</option>
                   <option value="3">Tecnico</option>
@@ -270,7 +266,7 @@
                     <label for="tipoUsuarioMod">Tipo de usuario</label>
                     <select class="form-control" id="tipoUsuarioMod"
                       name="tipoUsuarioMod" required>
-                      <option value="">Seleccione una opción</option>
+                      <option value>Seleccione una opción</option>
                       <option value="1">Administrador</option>
                       <option value="2">Cliente</option>
                       <option value="3">Tecnico</option>
@@ -282,7 +278,7 @@
                     <label for="estadoMod">Estado</label>
                     <select class="form-control" id="estadoMod" name="estadoMod"
                       required>
-                      <option value="">Seleccione una opción</option>
+                      <option value>Seleccione una opción</option>
                       <option value="true">Activo</option>
                       <option value="false">Inactivo</option>
                     </select>
