@@ -1,6 +1,8 @@
 body {
   background-image: none !important;
+  min-width: 630px;
 }
+
 
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 
@@ -8,6 +10,14 @@ body {
   background-repeat: repeat;
   color: #606062;
   overflow: hidden;
+}
+
+#logoCabecera {
+  margin-top: -24px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 6px;
+  height: 75px;
 }
 
 #templateContainer.fullscreen {
@@ -22,9 +32,10 @@ body {
 #templateContainer .navbar.alta-theme {
   border-bottom: 1px solid #c0c0c0;
   box-shadow: 0px 10px 15px #c0c0c0;
-  height: 85px;
+  height: 90px;
   background-image: url(../../Multimedia/fondomenu.png) !important;
 }
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -69,6 +80,7 @@ Fondo de baner central
   left: 50%;
   transform: translate(-50%, -50%) !important;
 }
+
 .content-InfoUsuario {
   border: none;
   width: 100%;
@@ -83,10 +95,12 @@ Fondo de baner central
   font-size: 18px;
   margin: 20px 0 0 0;
 }
+
 .indoAdicional {
   margin-top: 3px;
   line-height: 1.1;
 }
+
 #infoUsuario {
   margin: 10px 0 10px 0;
   text-align: center;
@@ -332,7 +346,7 @@ div#contFooter p.pInfoFooter {
   background: white;
   font-size: x-large;
   font-weight: bold;
-  color: #1664ab;
+  color: #aeb628;
   padding: 5px 15px 5px 15px;
   border-radius: 10px;
   box-shadow: 0px 10px 15px #c0c0c0;
@@ -371,6 +385,7 @@ div#contFooter p.pInfoFooter {
   .centrarBotones {
     margin-top: 5% !important;
   }
+
   #templateContainer .placeholder {
     margin-bottom: 50px;
     min-width: 30%;
@@ -384,6 +399,7 @@ div#contFooter p.pInfoFooter {
   .centrarBotones {
     margin-top: 5% !important;
   }
+
   #templateContainer .placeholder {
     margin-bottom: 50px;
     min-width: 50%;

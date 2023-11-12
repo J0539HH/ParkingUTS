@@ -96,6 +96,8 @@ app.get(
     "/Multimedia/logoDocu.svg",
     "/Multimedia/gearDocu.svg",
     "/Multimedia/favIcon.png",
+    "/Multimedia/logoUTS.png",
+    "/Multimedia/logoUnidades.png",
     "/Multimedia/mystory.svg",
     "/Multimedia/newGestion.svg",
     "/Multimedia/detallado.svg",
@@ -344,7 +346,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );
