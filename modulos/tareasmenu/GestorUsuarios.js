@@ -142,7 +142,7 @@ function CargarTablaUsuarios(tableData) {
         className: " text-center",
         render: function (data, type, row) {
           return (
-            '<a class="btn btn-primary btn-sm btnEditarGestion" id="'+row._id+'" onclick="editarUsuario(this.id)">Editar</a>            ' +
+            '<a class="btn fondoVerde btn-primary btn-sm btnEditarGestion" id="'+row._id+'" onclick="editarUsuario(this.id)">Editar</a>            ' +
             '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
             row._id +
             ')">Eliminar</a>'
@@ -283,7 +283,7 @@ function ValidarActualizacion(IdUsuario) {
       validationMessage: "",
       actions: "",
       confirmButton: "buttonBtn btnPrimary",
-      denyButton: "buttonBtn btnPrimary ",
+      denyButton: "buttonBtn btnPrimary fondoRojo ",
       cancelButton: "",
       loader: "",
       footer: "",

@@ -6,11 +6,11 @@
 }
 
 .cabeceranav {
-  background-color: #1664ab;
+  background-color: var(--orange-main-color);
 }
 
 #sidebar .sidebar-header {
-  background: #1664ab;
+  background: var(--orange-main-color);
   padding: 0 0 15px 0;
 }
 
@@ -65,7 +65,7 @@ select,
 }
 
 #sidebar .sidebar-header {
-  background: #1664ab;
+  background: var(--orange-main-color);
   padding: 0 0 15px 0;
 }
 
@@ -116,7 +116,7 @@ select,
   width: 17px;
   font-size: 13px;
   border-radius: 5px 0px 0px 5px;
-  color: #1664ab;
+  color: var(--orange-main-color);
   background-color: #ffffff;
   border: none;
 }
@@ -170,19 +170,19 @@ i.rotateImg::before {
   width: 17px;
   font-size: 13px;
   border-radius: 5px 0px 0px 5px;
-  color: #1664ab;
+  color: var(--orange-main-color);
   background-color: #ffffff;
   border: none;
 }
 
 .btn-info {
-  color: #1664ab;
+  color: var(--orange-main-color);
   background-color: #ffffff;
   border: none;
 }
 
 .btn-info:hover {
-  color: #1664ab;
+  color: var(--orange-main-color);
   background-color: #fff;
   border-color: #fff;
   border: none;
@@ -196,7 +196,7 @@ i.rotateImg::before {
   font-size: 13px;
   margin-top: calc(50vh - 60px);
   color: #fff;
-  background-color: #1664ab;
+  background-color: var(--orange-main-color);
   border: none;
   border-radius: 0px 5px 5px 0px;
 }
@@ -241,9 +241,10 @@ i.rotateImg::before {
 
 .BotonRegistrar {
   height: 30px;
-  padding: 5px 32px 25px 26px;
+  padding: 7px 10px 1px 10px;
   margin: 36px 0 0 14px;
-  border-radius: 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(86, 145, 35) !important;
 }
 
 .modal-backdrop.show {
@@ -258,7 +259,6 @@ i.rotateImg::before {
 
 body {
   min-width: 630px;
- 
 }
 
 @media (max-width: 767px) {
@@ -275,8 +275,8 @@ body {
   }
 
   .button2 {
-    background-color: #1664ab;
-    border-color: #1664ab;
+    background-color: var(--orange-main-color);
+    border-color: var(--orange-main-color);
     color: rgb(255, 255, 255);
     margin: -7% 0% 0% 25% !important;
   }
@@ -315,8 +315,8 @@ body {
   }
 
   .button2 {
-    background-color: #1664ab;
-    border-color: #1664ab;
+    background-color: var(--orange-main-color);
+    border-color: var(--orange-main-color);
     color: rgb(255, 255, 255);
     margin: -7% 0% 0% 25% !important;
   }
