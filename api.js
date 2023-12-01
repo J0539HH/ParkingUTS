@@ -205,7 +205,7 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
     const query = {
-      idusuario: req.body.idusuario,
+      _id: new ObjectId(req.body.idusuario)
     };
     const result = await collection.findOne(query);
     if (result) {

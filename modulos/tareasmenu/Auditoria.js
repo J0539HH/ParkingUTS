@@ -63,6 +63,7 @@ function cargarAuditorias() {
 }
 
 function cargarTablaAuditorias(tableData) {
+  console.log(tableData);
   $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
@@ -84,7 +85,6 @@ function cargarTablaAuditorias(tableData) {
           };
           return date.toLocaleString("es-CO", options);
         },
-        type: "date",
       },
       { data: "descripcion", className: " text-center" },
     ],

@@ -71,6 +71,7 @@ app.get(
     "/Multimedia/estado.png",
     "/Multimedia/marca.png",
     "/Multimedia/ram.png",
+    "/Multimedia/buscar.png",
     "/Multimedia/tecnico.png",
     "/Multimedia/identificacion.png",
     "/Multimedia/codigo.png",

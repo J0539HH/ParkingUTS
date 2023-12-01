@@ -662,6 +662,29 @@ button.buttonBtn.btnError {
   color: var(--white-text-color);
 }
 
+.fondoRojo {
+  background: red !important;
+  border-color: red !important;
+  color: white !important;
+}
+
+.fondoRojo:hover {
+  background: rgb(217, 139, 139) !important;
+  border-color: rgb(217, 139, 139) !important;
+  color: white !important;
+}
+
+.fondoVerde {
+  background: var(--btn-primary-color) !important;
+  border-color: var(--orange-main-color) !important;
+  color: white !important;
+}
+
+.fondoVerde:hover {
+  background: rgb(124, 191, 66) !important;
+  border-color: rgb(86, 145, 35) !important;
+  color: white !important;
+}
 button.buttonBtn.btnError:hover {
   background: var(--btn-error-hover-color);
   border-color: var(--btn-error-hover-color);
@@ -1381,7 +1404,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
 /*buttons by jdfm*/
 .BotonCabecera {
   margin-top: 10px !important;
-  padding: 9px 24px 9px 26px !important;
+  padding: 5px 10px 5px 9px !important;
   border-radius: 10px;
 }
 
@@ -1390,7 +1413,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
   display: inline-block;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 10px;
   text-decoration: inherit;
   border: 3px solid;
   padding: 13px 85px;
@@ -1545,7 +1568,7 @@ div.modal.notificationModal p.pTextDescAlertModal {
 }
 
 .BlueSistem {
-  color: #1664ab !important;
+  color: #aeb628 !important;
 }
 
 .GreenSistem {

@@ -107,7 +107,6 @@ function cargarUsuarios() {
   fetch(url)
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       const tableData = { data: result };
 
       CargarTablaUsuarios(tableData);
@@ -123,7 +122,6 @@ function CargarTablaUsuarios(tableData) {
     data: tableData.data,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "_id", className: " text-center" },
       { data: "usuario", className: " text-center" },
       { data: "persona.nombre", className: " text-center" },
       { data: "rol", className: " text-center" },
@@ -144,9 +142,7 @@ function CargarTablaUsuarios(tableData) {
         className: " text-center",
         render: function (data, type, row) {
           return (
-            '<a class="btn btn-primary btn-sm btnEditarGestion" onclick="editarUsuario(' +
-            row._id +
-            ')">Editar</a> ' +
+            '<a class="btn fondoVerde btn-primary btn-sm btnEditarGestion" id="'+row._id+'" onclick="editarUsuario(this.id)">Editar</a>            ' +
             '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
             row._id +
             ')">Eliminar</a>'
@@ -187,11 +183,10 @@ function CargarTablaUsuarios(tableData) {
 }
 
 function editarUsuario(idUser) {
-  spinner("Cargando datos del usuario, por favor espere");
+  //spinner("Cargando datos del usuario, por favor espere");
   $("#ActualizarUser").on("click", function () {
     ValidarActualizacion(idUser);
   });
-
   const url = "/api/EspecificUser";
   const data = {
     idusuario: idUser,
@@ -215,11 +210,12 @@ function editarUsuario(idUser) {
 }
 
 function MostrarDatosUsuario(Data) {
+  console.log(Data);
   $("#usuarioMod").val(Data.usuario);
   $("#contraseñaMod").val(Data.password);
-  $("#tipoUsuarioMod").val(Data.idrol);
-  $("#nombreMod").val(Data.nombre);
-  $("#correoMod").val(Data.correo);
+  $("#tipoUsuarioMod").val(Data.rol);
+  $("#nombreMod").val(Data.persona.nombre);
+  $("#correoMod").val(Data.persona.correo);
   $("#estadoMod").val(Data.estado.toString());
   $("#modificarUsuarioModal").modal("show");
   $("#contraseñaMod").attr("type", "password");
@@ -228,7 +224,6 @@ function MostrarDatosUsuario(Data) {
 
 function ValidarActualizacion(IdUsuario) {
   let UsuarioEdit = $("#usuarioMod").val();
-  let PasswordEdit = $("#contraseñaMod").val();
   let IdRolEdit = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
   let EstadoEdit = $("#estadoMod").val();
@@ -238,10 +233,7 @@ function ValidarActualizacion(IdUsuario) {
     AlertIncorrectX("Debes agregar un nombre de usuario");
     return;
   }
-  if (PasswordEdit === "") {
-    AlertIncorrectX("Debes agregar una contraseña para el usuario");
-    return;
-  }
+ 
   if (IdRolEdit === "") {
     AlertIncorrectX("Debes agregar un tipo de usuario");
     return;
@@ -291,7 +283,7 @@ function ValidarActualizacion(IdUsuario) {
       validationMessage: "",
       actions: "",
       confirmButton: "buttonBtn btnPrimary",
-      denyButton: "buttonBtn btnPrimary ",
+      denyButton: "buttonBtn btnPrimary fondoRojo ",
       cancelButton: "",
       loader: "",
       footer: "",
@@ -308,7 +300,6 @@ function ValidarActualizacion(IdUsuario) {
 function RealizarModificacion(IdUsuario) {
   spinner("Modificando datos del usuario, por favor espere");
   let UsuarioEdit = $("#usuarioMod").val().toUpperCase();
-  let PasswordEdit = $("#contraseñaMod").val();
   let IdRolEdit = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
   let correo = $("#correoMod").val();
@@ -323,7 +314,6 @@ function RealizarModificacion(IdUsuario) {
   const dataM = {
     idusuario: IdUsuario,
     usuario: UsuarioEdit,
-    password: SHA256(PasswordEdit),
     idrol: IdRolEdit,
     nombre: NombreEdit,
     estado: EstadoEdit,
