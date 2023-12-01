@@ -24,10 +24,22 @@
   width: 100% !important;
 }
 
+#nombrePersona{
+  color:  #363636;
+}
 .inputGeneral {
   font-size: 12px;
   padding: 3px 12px;
   height: 25px;
+}
+.w100{
+  width: 100%;
+}
+
+.contMaxWeb{
+  max-width: 50% !important;
+  display: flex;
+  justify-content: center;
 }
 
 .TituloSidebar {
