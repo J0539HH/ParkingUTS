@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" />
-    <title>Crear Servicios</title>
+    <title>Mi Perfil</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
     <!-- CSS Site -->
     <link rel="stylesheet" href="menu.css" />
-    <link rel="stylesheet" href="CrearSevicio.css" />
+    <link rel="stylesheet" href="MiPerfil.css" />
     <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
   </head>
 
@@ -46,12 +46,12 @@
             <div class="container-fluid ">
               <div class="navbar-header">
                 <span style="float: left; font-size: 25px; margin: 20px 10px"><img
-                    src="../../Multimedia/logoDocu.svg"
+                  id="logoCabecera"
+                    src="../../Multimedia/logoUnidades.png"
                     height="40px;" style="margin-right: 10px; background-color:
                     #fff;" /></span>
               </div>
-              <h6 class="InfoCabecera">Interfaz para crear solicitudes de
-                servicios</h6>
+              <h6 class="InfoCabecera">Interfaz para ver y modificar tu perfil</h6>
               <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
                 menú</a>
             </div>
@@ -66,7 +66,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
               divContSaldo">
               <p class="TituloFormulario">
-                Formulario de ingreso
+                Tus Datos
               </p>
             </div>
           </div>
@@ -85,80 +85,80 @@
           <!-- Datos Origen Section -->
           <section id="sectionDatosOrigen" class="row contPasos contMaxWeb">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
-              <h1 class="h1TitleForm">Datos del dispositivo</h1>
+              <h1 class="h1TitleForm">Datos del Perfil</h1>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="form-group">
-                <label class="labelNameInput" for="direccionOrigen">Comentarios
-                  de entrada</label>
-                <textarea placeholder="" type="text" class="form-control"
-                  id="comentariosEntrada"
-                  name="direccionOrigen"> </textarea>
-                <span class="spanHelperErrorInput">La informacion es obligatoria</span>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="marca">Marca</label>
-                <select class="form-control selectpicker" id="marca"
-                  name="marca" data-live-search="false" data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="acer">Acer</option>
-                  <option value="apple">Apple</option>
-                  <option value="asus">Asus</option>
-                  <option value="dell">Dell</option>
-                  <option value="google">Google</option>
-                  <option value="hp">HP</option>
-                  <option value="huawei">Huawei</option>
-                  <option value="lenovo">Lenovo</option>
-                  <option value="motorola">Motorola</option>
-                  <option value="msi">MSI</option>
-                  <option value="oneplus">OnePlus</option>
-                  <option value="razer">Razer</option>
-                  <option value="samsung">Samsung</option>
-                  <option value="sony">Sony</option>
-                  <option value="xiaomi">Xiaomi</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Modelo
-                  (Opcional)</label>
+                <label class="labelNameInput" for="direccionOrigen">Nombre</label>
                 <input placeholder="" type="text" class="form-control"
-                  id="modelo" name="Modelo">
+                  id="nombrePersona"
+                  name="nombre"> </input>
               </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="form-group">
-                <label class="labelNameInput " for="tipoDispositivo">Tipo de
-                  dispositivo</label>
-                <select class="form-control selectpicker" id="tipoDispositivo"
-                  name="tipoDispositivo"
-                  data-live-search="false" data-size="5">
-                  <option value="0">-- Seleccione de la lista --</option>
-                  <option value="Computador Portatil">Computador Portatil</option>
-                  <option value="Computador de escritorio">Computador de
-                    escritorio</option>
-                  <option value="Celular">Celular</option>
-                  <option value="Tablet">Tablet</option>
-                  <option value="Otro">Otro</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Numero de
-                  serie (Opcional)</label>
+                <label class="labelNameInput" for="direccionOrigen">Usuario</label>
                 <input placeholder="" type="text" class="form-control"
-                  id="numeroSerie" name="numeroSerie">
+                  id="userPersona"
+                  name="user"> </input>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="marca">Documento</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="documentoPersona"
+                  name="documento"> </input>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="numeroSerie">Correo</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="correoPersona" name="correo">
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="numeroSerie">Telefono</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="telefonoPersona" name="telefono">
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput " for="tipoDispositivo">Dirección</label>
+                  <input placeholder="" type="text" class="form-control"
+                  id="direccionPersona"
+                  name="direccion"> </input>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="direccionOrigen">Carrera</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="carreraPersona"
+                  name="carrera"> </input>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="direccionOrigen">Genero</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="generoPersona"
+                  name="genero"> </input>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label class="labelNameInput" for="numeroSerie">Vehículo</label>
+                <input placeholder="" type="text" class="form-control"
+                  id="vehiculoPersona" name="vehiculo">
               </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <button id="btnSolicitar" class="buttonBtn btnPrimary">
-                Solicitar
+                Actualizar Datos
               </button>
             </div>
           </section>
@@ -203,7 +203,7 @@
     <!-- Script Global -->
     <script src="../../modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
-    <script src="CrearSevicio.js"></script>
+    <script src="MiPerfil.css"></script>
     <!-- Script Tables -->
     <script src="../../lib/datatables/datatables.min.js"></script>
     <!-- Script AXIOS -->

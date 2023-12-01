@@ -246,9 +246,9 @@ Fondo de baner central
   background-position: center;
 }
 
-.btnNewForm {
+.btnMyPerfil {
   background-color: #00b8ed;
-  background-image: url(../../Multimedia/newServicio.svg);
+  background-image: url(../../Multimedia/miPerfil.svg);
   background-repeat: no-repeat;
   background-size: 65%;
   background-position: center;

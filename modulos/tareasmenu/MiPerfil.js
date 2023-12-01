@@ -137,6 +137,18 @@ function RegistrarAuditoriaC(datos) {
     });
 }
 
+function verificarSesion() {
+  fetch("/api/sesion")
+        .then((response) => response.json())
+        .then((usuario) => {
+            document.getElementById('nombrePersona').value = usuario.nombre;
+            console.log(nombre);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
 function LimpiarFormulario() {
   $("#comentariosEntrada").val("");
   $("#marca").val("");

@@ -17,8 +17,8 @@ $(document).ready(function () {
     $("#modalUser").modal("hide");
   });
 
-  $("#CreacionServicios").on("click", function () {
-    window.location.href = "../tareasmenu/CrearSevicio.html";
+  $("#MiPerfil").on("click", function () {
+    window.location.href = "../tareasmenu/MiPerfil.html";
   });
   $("#GestionDeUsuarios").on("click", function () {
     window.location.href = "../tareasmenu/GestorUsuarios.html";
@@ -114,7 +114,7 @@ function verificarSesionM() {
 function verificarAccesos(Nombre) {
   // Opciones de un  cliente
   if (rolUsuario === 2) {
-    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorMiPerfil").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden");
     $("#ContainerMenu").addClass("centrarBotones");
@@ -143,7 +143,7 @@ function verificarAccesos(Nombre) {
   // Opciones de un  administrador
   if (rolUsuario === "administrador") {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
-    $("#ContenedorCreacionServicio").removeClass("hidden");
+    $("#ContenedorMiPerfil").removeClass("hidden");
     /* $("#ContenedorGestionServicios").removeClass("hidden");
     $("#ContenedorConsultarServicios").removeClass("hidden");
     $("#ContenedorReporteServicios").removeClass("hidden");

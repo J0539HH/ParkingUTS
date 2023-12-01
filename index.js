@@ -43,9 +43,9 @@ app.get(
     "/modulos/tareasmenu/ReporteServicios.html",
     "/modulos/tareasmenu/ReporteServicios.css",
     "/modulos/tareasmenu/ReporteServicios.js",
-    "/modulos/tareasmenu/CrearSevicio.html",
-    "/modulos/tareasmenu/CrearSevicio.css",
-    "/modulos/tareasmenu/CrearSevicio.js",
+    "/modulos/tareasmenu/MiPerfil.html",
+    "/modulos/tareasmenu/MiPerfil.css",
+    "/modulos/tareasmenu/MiPerfil.js",
     "/modulos/tareasmenu/GestionarServicios.html",
     "/modulos/tareasmenu/GestionarServicios.css",
     "/modulos/tareasmenu/GestionarServicios.js",
@@ -102,6 +102,7 @@ app.get(
     "/Multimedia/newGestion.svg",
     "/Multimedia/detallado.svg",
     "/Multimedia/auditor.svg",
+    "/Multimedia/miPerfil.svg",
   ],
   (req, res) => {
     res.sendFile(__dirname + req.path);
