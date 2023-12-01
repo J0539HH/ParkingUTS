@@ -14,6 +14,16 @@
   padding: 0 0 15px 0;
 }
 
+.headModalParking {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.close {
+  margin: 0 0 0 0 !important;
+}
+
 .filtrosbusquedad {
   margin: 0px 15px;
   width: calc(100% - 30px) !important;
@@ -58,8 +68,7 @@ select,
   font-size: 12px !important;
 }
 
-.select2-container--default
-  .select2-results__option--highlighted[aria-selected] {
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #cbd0d2;
   color: white;
 }
@@ -147,7 +156,7 @@ button:focus:not(:focus-visible) {
   left: 0;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -234,6 +243,7 @@ i.rotateImg::before {
   height: 80% !important;
   padding: 3px 12px 9px 5px;
 }
+
 .btnEditarGestion {
   min-width: 67px;
   margin: 0 0 0 4px;
@@ -253,8 +263,20 @@ i.rotateImg::before {
 }
 
 .iconoFormulario {
-  margin: 6px 0 -6px 13%;
-  height: 21px;
+  height: 56px;
+}
+
+#buscarCedula {
+  height: 55px;
+  margin: -18px 0 -5px 10px;
+}
+
+#agregarUsuarioModalLabel {
+  font-weight: bold;
+  margin: 18px 0 0 0;
+  color: #aeb628;
+  font-style: oblique;
+  text-decoration: underline;
 }
 
 body {
@@ -262,6 +284,7 @@ body {
 }
 
 @media (max-width: 767px) {
+
   /* Estilos para pantallas pequeñas */
   .TituloFormulario {
     font-size: 2em;
@@ -283,6 +306,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   /* Estilos para pantallas pequeñas */
   #tablaUsuarios_paginate {
     display: flex;
@@ -351,6 +375,7 @@ body {
     left: 20%;
     top: 39%;
   }
+
   .modal-backdrop.show {
     z-index: auto;
     background: var(--black-text-color);

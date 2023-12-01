@@ -145,17 +145,25 @@
     aria-labelledby="agregarUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header headModalParking">
           <h5 class="modal-title" id="agregarUsuarioModalLabel">
-            Agregar usuario!
+            Agregar usuario
           </h5>
-          <img src="../../Multimedia/logo.jpg" height="10px;" class="iconoFormulario" />
+          <img src="../../Multimedia/logoUnidades.png" height="20px;" class="iconoFormulario" />
           <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form id="agregarUsuarioForm">
+            <div class="form-group">
+              <label for="contraseña">Cedula</label>
+              <div class="d-flex justify-content-center" style="width: 100%;"> 
+              <input type="input" class="form-control" id="cedula" name="cedula" required />
+              <img src="../../Multimedia/buscar.png" alt="Buscar" class="image-button" id="buscarCedula">
+
+            </div>
+            </div>
             <div class="form-group">
               <label for="usuario">Usuario</label>
               <input type="text" class="form-control" id="usuario" name="usuario" required />
@@ -164,22 +172,19 @@
               <label for="contraseña">Contraseña</label>
               <input type="input" class="form-control" id="contraseña" name="contraseña" required />
             </div>
+
             <div class="form-group">
               <label for="tipoUsuario">Tipo de usuario</label>
               <select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
                 <option value>Seleccione una opción</option>
-                <option value="1">Administador</option>
-                <option value="2">Cliente</option>
-                <option value="3">Tecnico</option>
+                <option value="administador">Administador</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="operador">Operador</option>
               </select>
             </div>
             <div class="form-group">
               <label for="nombre">Nombre</label>
               <input type="text" class="form-control" id="nombre" name="nombre" required />
-            </div>
-            <div class="form-group">
-              <label for="nombre">Correo electronico:</label>
-              <input type="text" class="form-control" id="correo" name="nombre" required />
             </div>
           </form>
         </div>
@@ -200,11 +205,11 @@
     aria-labelledby="modificarUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modificarUsuarioModalLabel">
-            Modificar usuario!
+        <div class="modal-header headModalParking">
+          <h5 class="modal-title" id="agregarUsuarioModalLabel">
+            Modificar usuario
           </h5>
-          <img src="../../Multimedia/logoDocu.svg" height="10px;" class="iconoFormulario" />
+          <img src="../../Multimedia/logoUnidades.png" height="20px;" class="iconoFormulario" />
           <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
             <span aria-hidden="true">&times;</span>
           </button>
