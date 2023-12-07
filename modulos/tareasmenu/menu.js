@@ -40,8 +40,8 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/AsignacionServicios.html";
   });
 
-  $("#ConsultarServicios").on("click", function () {
-    window.location.href = "../tareasmenu/Seguimiento.html";
+  $("#ConsultarVehiculos").on("click", function () {
+    window.location.href = "../tareasmenu/Vehiculos.html";
   });
 
   $("#Asignados").on("click", function () {
@@ -144,8 +144,8 @@ function verificarAccesos(Nombre) {
   if (rolUsuario === "administrador") {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
     $("#ContenedorMiPerfil").removeClass("hidden");
-    /* $("#ContenedorGestionServicios").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
+    $("#ContenedorMisVehiculos").removeClass("hidden");
+    /* $("#ContenedorGestionServicios").removeClass("hidden"); 
     $("#ContenedorReporteServicios").removeClass("hidden");
     $("#ContenedorAsignacionServicio").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden"); */

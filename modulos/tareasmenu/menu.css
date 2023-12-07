@@ -270,16 +270,16 @@ Fondo de baner central
   background-position: center;
 }
 
-.btnConsulta {
-  background-color: #ffb54d;
-  background-image: url(../../Multimedia/detallado.svg);
+.btnVehiculo {
+  background-color: red;
+  background-image: url(../../Multimedia/coche.svg);
   background-repeat: no-repeat;
   background-size: 65%;
   background-position: center;
 }
 
 .btnReportes {
-  background-color: red;
+  background-color: ffb54d;
   background-image: url(../../Multimedia/reporte.svg);
   background-repeat: no-repeat;
   background-size: 65%;

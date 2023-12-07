@@ -80,7 +80,7 @@ function cargarInformacion() {
       $("#generoPersona").val(result.persona.genero);
       $("#correoPersona").val(result.persona.correo);
       $("#vehiculoPersona").val("xxxx");
-
+      $("#sectionDatosOrigen").removeClass("hidden");
       console.log(result);
       $("#spinner").hide();
     })

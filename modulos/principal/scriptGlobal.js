@@ -39,7 +39,32 @@ $(document).ready(function () {
   $(this).scrollTop(0);
 });
 
-  function verificarSesion() {
+function verificarSesion() {
+  console.log("VerificandoSessionbyJDFM");
+  fetch("/api/sesion")
+    .then((response) => response.json())
+    .then((data) => {
+      const idusuario = data.idusuario;
+      rol = data.rol;
+      idUsuario = data.idusuario;
+      if (idusuario === undefined || idusuario === null) {
+        $("#ContenedorTotal").addClass("hidden");
+        AlertIncorrectX(
+          "Estas tratando de acceder al sistema sin credenciales"
+        );
+        setTimeout(function () {
+          window.location.href = "../../acceso/Login.html";
+        }, 1000);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function verificarSesionWrapper() {
+  return new Promise((resolve, reject) => {
+    spinner("Cargando información");
     console.log("VerificandoSessionbyJDFM");
     fetch("/api/sesion")
       .then((response) => response.json())
@@ -47,47 +72,26 @@ $(document).ready(function () {
         const idusuario = data.idusuario;
         rol = data.rol;
         idUsuario = data.idusuario;
+
         if (idusuario === undefined || idusuario === null) {
           $("#ContenedorTotal").addClass("hidden");
           AlertIncorrectX(
-            "Estas tratando de acceder al sistema sin credenciales"
+            "Estás tratando de acceder al sistema sin credenciales"
           );
           setTimeout(function () {
             window.location.href = "../../acceso/Login.html";
           }, 1000);
+          reject(new Error("Credenciales no válidas"));
+        } else {
+          resolve();
         }
       })
       .catch((error) => {
         console.error(error);
+        reject(new Error("Error al verificar la sesión"));
       });
-  }
-
-  function verificarSesionWrapper() {
-    return new Promise((resolve, reject) => {
-      console.log("VerificandoSessionbyJDFM");
-      fetch("/api/sesion")
-        .then((response) => response.json())
-        .then((data) => {
-          const idusuario = data.idusuario;
-          rol = data.rol;
-          idUsuario = data.idusuario;
-  
-          if (idusuario === undefined || idusuario === null) {
-            $("#ContenedorTotal").addClass("hidden");
-            AlertIncorrectX(
-              "Estás tratando de acceder al sistema sin credenciales"
-            );
-            reject(new Error("Credenciales no válidas"));
-          } else {
-            resolve();
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          reject(new Error("Error al verificar la sesión"));
-        });
-    });
-  }
+  });
+}
 
 function CerrarSession() {
   fetch("/api/logout", { method: "GET" })
