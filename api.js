@@ -27,15 +27,90 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
-// Actualizar Contraseña
-router.post("/cambiarContra", jsonParser, async (req, res) => {
+//Validar usuario por modificacion / MI PERFIL (PARKING-UTS)
+router.post("/EspecificUserLogin", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      usuario: req.body.usuario,
+    };
+    let idusuario = new ObjectId(req.body.idusuario);
+    const result = await collection.findOne(query, { returnDocument: "After" });
+    if (result) {
+      if (result._id.toString() === idusuario.toString()) {
+        res.json(result);
+      } else {
+        res.status(404).json({ error: "OCUPED-USER" });
+      }
+    } else {
+      res.json(result);
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//Actualizar datos personales / MI PERFIL (PARKING-UTS)
+router.post("/ChangePersonalInformation", jsonParser, async (req, res) => {
   try {
     const {
-      idusuario: idusuario,
-      token: token,
-      idrol: idrol,
-      newPass: newPass,
+      usuario: usuario,
+      password: password,
+      genero: genero,
+      correo: correo,
+      telefono: telefono,
+      direccion: direccion,
+      actualizarContraseña: actualizarContraseña,
     } = req.body;
+
+    const idusuario = req.body.idusuario;
+    const collection = database.collection("usuarios");
+    const updateObject = {
+      usuario: usuario,
+      "persona.genero": genero,
+      "persona.celular": telefono,
+      "persona.direccion": direccion,
+      "persona.correo": correo,
+    };
+    if (actualizarContraseña) {
+      updateObject.password = crypto
+        .SHA256(String(password))
+        .toString(crypto.enc.Hex);
+    }
+    const result = await collection.findOneAndUpdate(
+      { _id: new ObjectId(idusuario), estado: true },
+      {
+        $set: updateObject,
+      },
+      { returnDocument: "After" }
+    );
+    //Actualizacion del usuario persona
+    let usuarioModificado = result.value;
+    let idusuarioP = usuarioModificado.persona._id;
+
+    const collectionP = database.collection("persona");
+    const resultP = await collectionP.updateOne(
+      { _id: new ObjectId(idusuarioP) },
+      {
+        $set: {
+          genero: genero,
+          celular: telefono,
+          direccion: direccion,
+          correo: correo,
+        },
+      }
+    );
+    res.json(resultP);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Actualizar Contraseña / LOGIN (PARKING-UTS)
+router.post("/cambiarContra", jsonParser, async (req, res) => {
+  try {
+    const { idusuario: idusuario, token: token, newPass: newPass } = req.body;
     const collection = database.collection("usuarios");
     const result = await collection.updateOne(
       {
@@ -65,7 +140,7 @@ router.post("/cambiarContra", jsonParser, async (req, res) => {
   }
 });
 
-// Actualizacion de token
+// Actualizacion de token de Usuario para cambio de contraseña / LOGIN (PARKING-UTS)
 router.post("/ActualizarToken", jsonParser, async (req, res) => {
   try {
     const token = Math.floor(Math.random() * 900000) + 100000;
@@ -95,7 +170,7 @@ router.post("/ActualizarToken", jsonParser, async (req, res) => {
   }
 });
 
-// Validacion del token
+// Validacion del token para cambio de contraseña /LOGIN (PARKING-UTS)
 router.post("/validarToken", jsonParser, async (req, res) => {
   token = req.body.token;
   idusuario = req.body.idusuario;
@@ -158,8 +233,7 @@ function enviarCorreoRecuperacion(objetoUsuario, codigo) {
     });
 }
 
-// Registrar Auditoria
-
+// Registrar Auditoria (GENERAL) / Desde distintos origenes (PARKING-UTS)
 router.post("/NewAuditoria", jsonParser, async (req, res) => {
   try {
     const fechaAuditoria = moment().tz("America/Bogota").format();
@@ -178,7 +252,7 @@ router.post("/NewAuditoria", jsonParser, async (req, res) => {
   }
 });
 
-// Login de un usuario
+// Login de un usuario / LOGIN (PARKING-UTS)
 router.post("/usuarios", jsonParser, async (req, res) => {
   let userL = req.body.usuario.trim();
   try {
@@ -200,12 +274,12 @@ router.post("/usuarios", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar usuario especifico
+// Cargar usuario especifico / Multiples interfaces (PARKING-UTS)
 router.post("/EspecificUser", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
     const query = {
-      _id: new ObjectId(req.body.idusuario)
+      _id: new ObjectId(req.body.idusuario),
     };
     const result = await collection.findOne(query);
     if (result) {
@@ -218,7 +292,7 @@ router.post("/EspecificUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Validar usuario especifico
+// Validar usuario especifico / Multiples interfaces (PARKING-UTS)
 router.post("/EspecificLogin", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
@@ -237,7 +311,7 @@ router.post("/EspecificLogin", jsonParser, async (req, res) => {
   }
 });
 
-// Validar usuario especifico
+// Validar persona  especifica por numero de identificacion y/o documento / LOGIN (PARKING-UTS)
 router.post("/documentoRecuperable", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("persona");
@@ -256,33 +330,7 @@ router.post("/documentoRecuperable", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar tecnicos
-router.get("/cargarTecnicos", async (req, res) => {
-  try {
-    const collection = database.collection("usuarios");
-    const query = {
-      idrol: 3, // Cambiar según el id del rol de técnico
-      estado: true,
-    };
-    const projection = {
-      correo: 1,
-      idusuario: 1,
-      nombre: 1,
-      _id: 0,
-    };
-    const cursor = await collection.find(query).project(projection);
-    const result = await cursor.toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.status(404).send("Técnicos no encontrados");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-// Eliminar usuario especifico
+// Eliminar usuario especifico / GESTOR DE USUARIOS (PARKING-UTS) - NO FUNCIONAL
 router.post("/deleteUser", async (req, res) => {
   try {
     const idusuario = req.body.idusuario;
@@ -301,7 +349,8 @@ router.post("/deleteUser", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Cargar todos los usuarios
+
+// Cargar todos los usuarios / GESTOR DE USUARIOS  (PARKING-UTS)
 router.get("/usuariosTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
@@ -316,7 +365,8 @@ router.get("/usuariosTotal", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Editar usuario especifico
+
+// Editar usuario especifico desde administracion de usuarios / GESTOR DE USUARIOS (PARKING-UTS) 70% FUNCIONAL
 router.post("/EditUser", jsonParser, async (req, res) => {
   try {
     const {
@@ -351,7 +401,7 @@ router.post("/EditUser", jsonParser, async (req, res) => {
   }
 });
 
-// Registrar nuevo usuario
+// Registrar nuevo usuario desde administracion de usuarios / GESTOR DE USUARIOS (PARKING-UTS)
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {
     const { usuario, password, idrol, nombre, correo } = req.body;
@@ -375,7 +425,8 @@ router.post("/NewUser", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Consultar Por filtros
+
+// Consultar USUARIOS por filtros / GESTOR DE USUARIOS (PARKING-UTS)
 router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
@@ -408,7 +459,35 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Registrar nuevo formulario
+
+// Cargar todas las auditorias del sistema / AUDITORIAS (PARKING-UTS)
+router.get("/auditoriasTotal", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("auditoria");
+
+    // Obtener los documentos y convertir las fechas de string a objetos de fecha
+    const result = await collection.find({}).toArray();
+    const resultWithDate = result.map((doc) => ({
+      ...doc,
+      fecha: new Date(doc.fecha),
+    }));
+
+    // Ordenar por fecha en orden descendente
+    const sortedResult = resultWithDate.sort((a, b) => b.fecha - a.fecha);
+
+    if (sortedResult.length > 0) {
+      res.json(sortedResult);
+    } else {
+      res.status(404).send("No se encontraron auditorias");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+// Registrar nuevo formulario (DOCUTECH)
 router.post("/NewForm", jsonParser, async (req, res) => {
   try {
     const {
@@ -455,7 +534,7 @@ router.post("/NewForm", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar todos los servicios
+// Cargar todos los servicios (DOCUTECH)
 router.get("/serviciosTotal", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
@@ -486,7 +565,7 @@ router.get("/serviciosTotal", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicios en cola
+// Cargar servicios en cola (DOCUTECH)
 router.get("/serviciosSinAsignar", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
@@ -522,7 +601,7 @@ router.get("/serviciosSinAsignar", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicios de un tecnico
+// Cargar servicios de un tecnico (DOCUTECH)
 router.post("/serviciosTecnico", jsonParser, async (req, res) => {
   try {
     const idtecnico = req.body.idTecnico;
@@ -559,7 +638,7 @@ router.post("/serviciosTecnico", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicios finalizados de un tecnico
+// Cargar servicios finalizados de un tecnico (DOCUTECH)
 router.post("/serviciosFinalizadosTecnico", jsonParser, async (req, res) => {
   try {
     const idtecnico = req.body.idTecnico;
@@ -596,7 +675,7 @@ router.post("/serviciosFinalizadosTecnico", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicio especifico
+// Cargar servicio especifico (DOCUTECH)
 router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
@@ -628,7 +707,7 @@ router.post("/servicioEspecifico", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicios de usuario especifico
+// Cargar servicios de usuario especifico (DOCUTECH)
 router.post("/serviciosUsuario", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("servicios");
@@ -654,7 +733,7 @@ router.post("/serviciosUsuario", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar servicios Gestionados de usuario especifico
+// Cargar servicios Gestionados de usuario especifico (DOCUTECH)
 router.post("/serviciosEntregadosUsuario", jsonParser, async (req, res) => {
   try {
     const idusuario = req.body.idusuario;
@@ -691,7 +770,7 @@ router.post("/serviciosEntregadosUsuario", jsonParser, async (req, res) => {
   }
 });
 
-// Editar servicio especifico
+// Editar servicio especifico (DOCUTECH)
 router.post("/EditService", jsonParser, async (req, res) => {
   try {
     const {
@@ -730,7 +809,7 @@ router.post("/EditService", jsonParser, async (req, res) => {
   }
 });
 
-// Asignar servicio especifico
+// Asignar servicio especifico (DOCUTECH)
 router.post("/AsignarServicio", jsonParser, async (req, res) => {
   try {
     const { idservicio, estado, comentariossalida } = req.body;
@@ -751,7 +830,7 @@ router.post("/AsignarServicio", jsonParser, async (req, res) => {
   }
 });
 
-// Registrar Asignacion
+// Registrar Asignacion (DOCUTECH)
 router.post("/NewAsignado", jsonParser, async (req, res) => {
   try {
     const fechaAsignacion = moment().tz("America/Bogota").format();
@@ -779,7 +858,7 @@ router.post("/NewAsignado", jsonParser, async (req, res) => {
   }
 });
 
-// Finalizar Asignacion
+// Finalizar Asignacion (DOCUTECH)
 router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   try {
     const idservicio = req.body.idservicio;
@@ -800,16 +879,26 @@ router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
   }
 });
 
-// Cargar todas las auditorias
-router.get("/auditoriasTotal", jsonParser, async (req, res) => {
+// Cargar tecnicos  (DOCUTECH)
+router.get("/cargarTecnicos", async (req, res) => {
   try {
-    const collection = database.collection("auditoria");
-    const result = await collection.find({}).toArray();
-
+    const collection = database.collection("usuarios");
+    const query = {
+      idrol: 3, // Cambiar según el id del rol de técnico
+      estado: true,
+    };
+    const projection = {
+      correo: 1,
+      idusuario: 1,
+      nombre: 1,
+      _id: 0,
+    };
+    const cursor = await collection.find(query).project(projection);
+    const result = await cursor.toArray();
     if (result.length > 0) {
       res.json(result);
     } else {
-      res.status(404).send("No se encontraron pudieron cargar las auditorias");
+      res.status(404).send("Técnicos no encontrados");
     }
   } catch (err) {
     console.error(err);

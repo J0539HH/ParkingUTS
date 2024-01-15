@@ -24,19 +24,24 @@
   width: 100% !important;
 }
 
-#nombrePersona{
-  color:  #363636;
+#nombrePersona,
+#carrera,
+#identificacion,
+#vehiculoPersona {
+  color: #000;
 }
 .inputGeneral {
   font-size: 12px;
   padding: 3px 12px;
   height: 25px;
 }
-.w100{
+.w100 {
   width: 100%;
 }
 
-.contMaxWeb{
+
+
+.contMaxWeb {
   max-width: 50% !important;
   display: flex;
   justify-content: center;

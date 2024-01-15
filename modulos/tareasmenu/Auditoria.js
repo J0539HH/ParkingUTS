@@ -63,11 +63,20 @@ function cargarAuditorias() {
 }
 
 function cargarTablaAuditorias(tableData) {
-  console.log(tableData);
+  const dataWithDate = tableData.data.map((item) => ({
+    ...item,
+    fecha: new Date(item.fecha),
+  }));
   $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
-    data: tableData.data,
+    data: dataWithDate,
+    columnDefs: [
+      {
+        targets: 1, // Indica la columna que contiene las fechas
+        type: "date-eu", // Indica que es un tipo de dato fecha (eu = formato europeo)
+      },
+    ],
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
       { data: "usuario.persona.nombre", className: " text-center" },
@@ -117,7 +126,6 @@ function cargarTablaAuditorias(tableData) {
     drawCallback: function (settings) {
       $("#spinner").hide();
     },
-    order: [[1, "desc"]],
     pagingType: "simple_numbers",
   });
 }

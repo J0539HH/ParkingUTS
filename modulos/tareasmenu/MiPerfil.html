@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+  <link rel="icon" type="image/png" href="../../Multimedia/favIcon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" />
   <title>Mi Perfil</title>
@@ -21,11 +21,13 @@
   <link rel="stylesheet" href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
   <!-- Sweet Alert -->
   <link rel="stylesheet" href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+  <!-- CSS Site -->
+  <link rel="stylesheet" href="MiPerfil.css" />
   <!-- Global CSS -->
   <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
-  <!-- CSS Site -->
+
   <link rel="stylesheet" href="menu.css" />
-  <link rel="stylesheet" href="MiPerfil.css" />
+
   <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
 </head>
 
@@ -79,29 +81,52 @@
           </div>
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="labelNameInput" for="direccionOrigen">Nombre</label>
+              <label class="labelNameInput" for="nombre">Nombre:
+
+              </label>
               <input readonly placeholder="" type="text" class="form-control" id="nombrePersona" name="nombre"> </input>
+            </div>
+          </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label class="labelNameInput" for="carrera">Carrera:
+              </label>
+              <input readonly placeholder="" type="text" class="form-control" id="carrera" name="carrera"> </input>
             </div>
           </div>
           <div class="d-flex w100">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput" for="direccionOrigen">Usuario</label>
+                <label class="labelNameInput" for="direccionOrigen">Usuario:</label>
                 <input placeholder="" type="text" class="form-control" id="userPersona" name="user"> </input>
               </div>
             </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput" for="direccionOrigen">Contraseña</label>
-                <input placeholder="" type="password" class="form-control" id="contraseña" name="carrera"> </input>
+                <label class="labelNameInput" for="direccionOrigen">Identificación:</label>
+                <input readonly placeholder="" type="text" class="form-control" id="identificacion" name="identificacion"> </input>
+              </div>
+            </div>
+          </div>
+               <div class="d-flex w100">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="labelNameInput" for="password">Contraseña:</label>
+                <input placeholder="" type="password" class="form-control" id="password" name="password"> </input>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="labelNameInput" for="passwordC">Confirmar contraseña:</label>
+                <input placeholder="" type="password" class="form-control" id="passwordC" name="passwordC"> </input>
               </div>
             </div>
           </div>
           <div class="d-flex w100">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput" for="direccionOrigen">Genero</label>
+                <label class="labelNameInput" for="direccionOrigen">Genero:</label>
                 <select class="form-control" id="generoPersona" name="genero">
                   <option value="">Seleccione de la lista</option>
                   <option value="masculino">Masculino</option>
@@ -125,7 +150,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Correo</label>
+                <label class="labelNameInput" for="numeroSerie">Correo:</label>
                 <input placeholder="" type="text" class="form-control" id="correoPersona" name="correo">
               </div>
             </div>
@@ -133,13 +158,13 @@
           <div class="d-flex w100">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Telefono</label>
+                <label class="labelNameInput" for="numeroSerie">Telefono:</label>
                 <input placeholder="" type="text" class="form-control" id="telefonoPersona" name="telefono">
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="form-group">
-                <label class="labelNameInput " for="tipoDispositivo">Dirección</label>
+                <label class="labelNameInput " for="tipoDispositivo">Dirección:</label>
                 <input placeholder="" type="text" class="form-control" id="direccionPersona" name="direccion"> </input>
               </div>
             </div>
@@ -147,8 +172,8 @@
           <div class="d-flex w100" style="width: 100%;">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Vehículo</label>
-                <input placeholder="" type="text" class="form-control" id="vehiculoPersona" name="vehiculo">
+                <label class="labelNameInput" for="numeroSerie">Vehículo favorito:</label>
+                <input readonly placeholder="" type="text" class="form-control" id="vehiculoPersona" name="vehiculo">
               </div>
             </div>
 
