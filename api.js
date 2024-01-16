@@ -27,7 +27,99 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
-// Elimniar un vehiculo / MIS VEHICULOS (PARKING-UTS)
+//Registrar el vehiculo favorito / Mi perfil (PARKING-UTS) NO FUNCIONAL
+router.post("/registrarFavorito", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, tipoVehiculo, placa, marca, color, linea } = req.body;
+    const queryU = {
+      _id: new ObjectId(idusuario),
+    };
+    const collectionU = database.collection("usuarios");
+    const resultU = await collectionU.findOne(queryU);
+    if (resultU) {
+      const queryV = {
+        placa: placa,
+        tipoVehiculo: { $ne: "Bicicleta" },
+      };
+      const collectionV = database.collection("vehiculos");
+      const resultV = await collectionV.findOne(queryV);
+      if (resultV === null) {
+        const collection = database.collection("vehiculos");
+        const result = await collection.insertOne({
+          usuario: resultU,
+          tipoVehiculo,
+          placa,
+          marca,
+          color,
+          estado: true,
+          linea,
+        });
+        const response = {
+          resultado: result,
+          tipoVehiculo: tipoVehiculo,
+          marca: marca,
+        };
+        res.json(response);
+      } else {
+        res.status(500).json({ error: "Placa utilizada" });
+        return;
+      }
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Cargar vehiculo favorito / Mi codigo QR (PARKING-UTS)
+router.post("/VehiculoFav", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("vehiculoFavorito");
+    const query = {
+      "usuario._id": new ObjectId(req.body.idusuario),
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.status(404).send("Vehiculo favorito no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Registrar Auditoria CON IDUSUARIO (GENERAL)  / Desde distintos origenes (PARKING-UTS)
+router.post("/registrarAuditoriaModelo", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, textoAuditoria } = req.body;
+    const fechaAuditoria = moment().tz("America/Bogota").format();
+    const collectionU = database.collection("usuarios");
+    const queryU = {
+      _id: new ObjectId(idusuario),
+    };
+    const resultU = await collectionU.findOne(queryU);
+    if (resultU) {
+      const collectionA = database.collection("auditoria");
+      const result = await collectionA.insertOne({
+        usuario: resultU,
+        fecha: fechaAuditoria,
+        descripcion: textoAuditoria,
+      });
+      res.json(result);
+    } else {
+      res.status(500).json({ error: "No se puede ingresar la auditoria" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Elimninar un vehiculo / MIS VEHICULOS (PARKING-UTS)
 router.post("/EliminarVehiculoUser", jsonParser, async (req, res) => {
   try {
     const { idusuario, idVehiculo } = req.body;
@@ -42,7 +134,11 @@ router.post("/EliminarVehiculoUser", jsonParser, async (req, res) => {
       const deleteResult = await collectionV.deleteOne(queryV);
 
       if (deleteResult.deletedCount === 1) {
-        res.json("Vehículo eliminado exitosamente");
+        const response = {
+          respuesta: "Vehículo eliminado exitosamente",
+          VehiculoEliminado: resultV,
+        };
+        res.json(response);
       } else {
         res.json("Error al intentar eliminar el vehículo");
       }
@@ -242,6 +338,7 @@ router.post("/validarToken", jsonParser, async (req, res) => {
   }
 });
 
+// Envio del codigo de validacion para recuperacion de contraseña / LOGIN (PARKING-UTS)
 function enviarCorreoRecuperacion(objetoUsuario, codigo) {
   let correo = objetoUsuario.persona.correo;
   let nombre = objetoUsuario.persona.nombre;
@@ -334,6 +431,7 @@ router.post("/registrarVehiculo", jsonParser, async (req, res) => {
     if (resultU) {
       const queryV = {
         placa: placa,
+        tipoVehiculo: { $ne: "Bicicleta" },
       };
       const collectionV = database.collection("vehiculos");
       const resultV = await collectionV.findOne(queryV);
@@ -348,7 +446,12 @@ router.post("/registrarVehiculo", jsonParser, async (req, res) => {
           estado: true,
           linea,
         });
-        res.json(result);
+        const response = {
+          resultado: result,
+          tipoVehiculo: tipoVehiculo,
+          marca: marca,
+        };
+        res.json(response);
       } else {
         res.status(500).json({ error: "Placa utilizada" });
         return;

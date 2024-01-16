@@ -3,7 +3,6 @@ body {
   min-width: 630px;
 }
 
-
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 
 #templateContainer {
@@ -13,11 +12,13 @@ body {
 }
 
 #logoCabecera {
-  margin-top: -24px;
+  border: 1.5px solid var(--orange-main-color);
+  margin-top: -13px;
   border-radius: 20px;
   background-color: #fff;
   padding: 6px;
-  height: 75px;
+  height: 55px;
+  box-shadow: 0px 1px 15px var(--orange-main-color);
 }
 
 #templateContainer.fullscreen {
@@ -144,7 +145,7 @@ Fondo de baner central
   margin-bottom: 0;
   background: white;
   color: black;
-  border: 2px solid var(--orange-main-color);;
+  border: 2px solid var(--orange-main-color);
   box-shadow: 0px 0px 10px #c0c0c0;
   border-radius: 10px;
 }
@@ -264,7 +265,7 @@ Fondo de baner central
 
 .btnGestion {
   background-color: #68c182;
-  background-image: url(../../Multimedia/gestion.svg);
+  background-image: url(../../Multimedia/qrIcon.svg);
   background-repeat: no-repeat;
   background-size: 65%;
   background-position: center;
@@ -358,7 +359,7 @@ div#contFooter p.pInfoFooter {
   background: white;
   font-size: x-large;
   font-weight: bold;
-  color: #aeb628;;
+  color: #aeb628;
   padding: 5px 15px 5px 15px;
   border-radius: 10px;
   box-shadow: 0px 10px 15px #c0c0c0;

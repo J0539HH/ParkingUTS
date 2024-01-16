@@ -274,7 +274,7 @@ function cambiarAcceso() {
     })
     .then((result) => {
       let descripcionAuditoria =
-        "El usuario cambia la contraseña desde la opción de recuperación";
+        "El usuario cambia la contraseña desde la opción de recuperación desde el login";
       RegistrarAuditoria(result, descripcionAuditoria);
     })
     .catch((error) => {
@@ -432,11 +432,11 @@ function enviarCorreoRecuperacion(objetoUsuario) {
         $("#modalCodigoRecuperar").modal("show");
         $("#modalRecuperar").modal("hide");
         $("#spinner").hide();
-        return response.json(); 
+        return response.json();
       } else {
         $("#modalRecuperar").modal("show");
         AlertIncorrecta("Error al tratar de recuperar usuario");
-        throw new Error("Error en la petición"); 
+        throw new Error("Error en la petición");
       }
     })
     .then((result) => {
@@ -635,7 +635,7 @@ function IniciarSession(objetoUsuario) {
       "Content-Type": "application/json",
     },
   });
-  let descripcionAuditoria = "Ingreso exitoso al sistema";
+  let descripcionAuditoria = "Ingreso exitoso al sistema desde el login";
   RegistrarAuditoria(objetoUsuario, descripcionAuditoria);
   AlertCorrecta("Bienvenido al sistema!");
   document.cookie =

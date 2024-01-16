@@ -280,8 +280,16 @@ function eliminarVehiculoDB(idVehiculo) {
   })
     .then((response) => response.json())
     .then((result) => {
+      let vehiculo = result.VehiculoEliminado;
       AlertCorrectX("Vehiculo eliminado exitosamente");
       cargarVehiculos();
+      RegistrarAuditoria(
+        "Vehiculo de tipo " +
+          vehiculo.tipoVehiculo +
+          " y marca " +
+          vehiculo.marca +
+          " eliminado exitosamente desde el modulo de gestion de vehiculos"
+      );
       $("#spinner").hide();
       return;
     })
@@ -415,6 +423,13 @@ function RegistrarVehiculo(tipoVehiculo, placa, marca, color, linea) {
         return;
       }
       AlertCorrectX("Vehiculo registrado exitosamente");
+      RegistrarAuditoria(
+        "Vehiculo tipo " +
+          result.tipoVehiculo +
+          " de marca " +
+          result.marca +
+          " registrado exitosamente desde el modulo de gestion de vehiculos"
+      );
       cargarVehiculos();
       $("#modalNewVehiculo").modal("hide");
       $("#spinner").hide();
@@ -424,6 +439,31 @@ function RegistrarVehiculo(tipoVehiculo, placa, marca, color, linea) {
       AlertIncorrecta(
         "No se pudo registrar el vehiculo, valida la información"
       );
+      $("#spinner").hide();
+    });
+}
+
+function RegistrarAuditoria(textoAuditoria) {
+  spinner("Registrando auditoria");
+  const url = "/api/registrarAuditoriaModelo";
+  const data = {
+    idusuario: idUsuario,
+    textoAuditoria: textoAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+      return;
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo registrar la auditoria, algo falló");
       $("#spinner").hide();
     });
 }

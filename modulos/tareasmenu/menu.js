@@ -32,7 +32,7 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/ReporteServicios.html";
   });
 
-  $("#GestionarServicio").on("click", function () {
+  $("#miQR").on("click", function () {
     window.location.href = "../tareasmenu/GestionarServicios.html";
   });
 
@@ -120,9 +120,9 @@ function verificarAccesos(Nombre) {
     $("#ContainerMenu").addClass("centrarBotones");
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
     );
   }
 
@@ -134,9 +134,9 @@ function verificarAccesos(Nombre) {
     $("#ContainerMenu").addClass("centrarBotones");
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
     );
   }
 
@@ -145,16 +145,17 @@ function verificarAccesos(Nombre) {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
     $("#ContenedorMiPerfil").removeClass("hidden");
     $("#ContenedorMisVehiculos").removeClass("hidden");
-    /* $("#ContenedorGestionServicios").removeClass("hidden"); 
-    $("#ContenedorReporteServicios").removeClass("hidden");
+    $("#ContenedorMiQR").removeClass("hidden");
+    $("#ContenedorAuditoria").removeClass("hidden");
+    /*    $("#ContenedorReporteServicios").removeClass("hidden");
     $("#ContenedorAsignacionServicio").removeClass("hidden");
     $("#ContenedorMiHistorial").removeClass("hidden"); */
-    $("#ContenedorAuditoria").removeClass("hidden");
+
     $("#infoUsuario").html(
       "Hola <b>" +
-      Nombre +
-      "</b>" +
-      ", hemos identificado que eres un usuario <br><b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del menu disponibles, gracias por preferir nuestro sistema!"
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un usuario <br><b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del menu disponibles, gracias por preferir nuestro sistema!"
     );
   }
 

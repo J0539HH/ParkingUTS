@@ -4,10 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+    <link rel="icon" type="image/png" href="../../Multimedia/favIcon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" />
-    <title>Gestionar Servicios</title>
+    <title>Mi codigo QR</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,12 +20,10 @@
       href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <!-- Bootstrap Icon-->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
-      />
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
     <!-- OverlayScrollbars -->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
-      />
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
     <!-- Sweet Alert -->
     <link rel="stylesheet"
       href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
@@ -44,15 +42,15 @@
           <nav class="navbar navbar-fixed-top alta-theme" style="position:
             relative; background: white">
             <div class="container-fluid ">
-              <div class="navbar-header"> <span style="float: left; font-size:
-                  25px; margin: 20px 10px"><img
-                    src="../../Multimedia/logoDocu.svg"
+              <div class="navbar-header">
+                <span
+                  style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    id="logoCabecera" src="../../Multimedia/logoUnidades.png"
                     height="40px;" style="margin-right: 10px; background-color:
-                    #fff;" /></span>
+                    #fff;"></span>
               </div>
-              <h6 class="InfoCabecera">Interfaz para gestionar solicitudes de
-                servicios</h6>
-              <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
+              <h6 class="InfoCabecera">Codigo QR de ingreso y salida</h6>
+              <a id="VolverMenu" class="button button8 BotonCabecera">Volver al
                 menú</a>
             </div>
           </nav>
@@ -60,17 +58,14 @@
         </div>
       </div>
       <div id="mainContainer" class="container">
-
-        <a id="volverAsignados" class="button button5 BotonCabecera hidden">Volver
-          a mis asignados
-        </a>
         <!-- Header -->
         <header>
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
               divContSaldo">
               <p class="TituloFormulario">
-                Formulario de salida
+                Presenta este <b>código QR</b> para acceder y salir del
+                parqueadero
               </p>
             </div>
           </div>
@@ -89,150 +84,15 @@
           <!-- Datos Origen Section -->
           <section id="sectionDatosOrigen" class="row contPasos contMaxWeb">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
-              <h1 class="h1TitleForm">Datos del mantenimiento</h1>
+              <h1 class="h1TitleForm">El código a continuación verifica tu
+                identidad.</h1>
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="numeroServicio">Número de
-                  servicio</label>
-                <input placeholder="" type="text" class="form-control"
-                  id="numeroServicio" name="numeroServicio">
-              </div>
+            <div id="codigoQRContainer"
+              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="comentariosEntrada">Comentarios
-                  del cliente</label>
-                <textarea placeholder="" type="text" class="form-control"
-                  id="comentariosEntrada"
-                  name="comentariosEntrada"> </textarea>
-
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="marca">Marca</label>
-                <select class="form-control selectpicker" id="marca"
-                  name="marca" data-live-search="false" data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="acer">Acer</option>
-                  <option value="apple">Apple</option>
-                  <option value="asus">Asus</option>
-                  <option value="dell">Dell</option>
-                  <option value="google">Google</option>
-                  <option value="hp">HP</option>
-                  <option value="huawei">Huawei</option>
-                  <option value="lenovo">Lenovo</option>
-                  <option value="motorola">Motorola</option>
-                  <option value="msi">MSI</option>
-                  <option value="oneplus">OnePlus</option>
-                  <option value="razer">Razer</option>
-                  <option value="samsung">Samsung</option>
-                  <option value="sony">Sony</option>
-                  <option value="xiaomi">Xiaomi</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Modelo</label>
-                <input placeholder="" type="text" class="form-control"
-                  id="modelo" name="modelo">
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput " for="tipoDispositivo">Tipo de
-                  dispositivo</label>
-                <select class="form-control selectpicker" id="tipoDispositivo"
-                  name="tipoDispositivo"
-                  data-live-search="false" data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="Computador Portatil">Computador Portatil</option>
-                  <option value="Computador de escritorio">Computador de
-                    escritorio</option>
-                  <option value="Celular">Celular</option>
-                  <option value="Tablet">Tablet</option>
-                  <option value="Otro">Otro</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput " for="ram">Memoria ram</label>
-                <select class="form-control selectpicker" id="ram" name="ram"
-                  data-live-search="false" data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="1GB">1GB</option>
-                  <option value="2B">2GB</option>
-                  <option value="4GB">4GB</option>
-                  <option value="8GB">8GB</option>
-                  <option value="16GB">16GB</option>
-                  <option value="32GB">32GB</option>
-                  <option value="64GB">64GB</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput " for="tipoDisco">Tipo de
-                  almacenamiento</label>
-                <select class="form-control selectpicker" id="tipoDisco"
-                  name="tipoDisco" data-live-search="false"
-                  data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="Disco Duro">Disco Duro</option>
-                  <option value="Disco de Estado Sólido">Disco de Estado Sólido</option>
-                  <option value="Tarjeta de Memoria">Tarjeta de Memoria</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="numeroSerie">Número de
-                  serie (Opcional)</label>
-                <input placeholder="" type="text" class="form-control"
-                  id="numeroSerie" name="numeroSerie">
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput " for="estado">Estado</label>
-                <select class="form-control selectpicker" id="estado"
-                  name="estado" data-live-search="false"
-                  data-size="5">
-                  <option value="">-- Seleccione de la lista --</option>
-                  <option value="En cola">En cola</option>
-                  <option value="En mantenimiento">En mantenimiento</option>
-                  <option value="Listo para entregar">Listo para entregar</option>
-                  <option value="Entregado">Entregado</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="form-group">
-                <label class="labelNameInput" for="comentariosSalida">Comentarios
-                  del servicio</label>
-                <textarea placeholder="" type="text" class="form-control"
-                  id="comentariosSalida"
-                  name="comentariosSalida"> </textarea>
-                <span class="spanHelperErrorInput">La informacion es obligatoria</span>
-              </div>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
-              contInterfaceBtn">
-              <button id="btnGestionar" class="buttonBtn btnPrimary">
-                Actualizar
-              </button>
-            </div>
-
           </section>
-
         </div>
       </div>
-
     </div>
     <div id="contFooter" class="FooterSistema">
       <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
@@ -251,15 +111,17 @@
         <div id="textLoad" class="spinner-msg"></div>
       </div>
     </div>
-
     <!-- jQuery -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
     <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
     <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
     <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
     <!-- Popper -->
     <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <script
+      src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
     <!-- OverlayScrollbars -->
     <script
       src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
@@ -273,6 +135,8 @@
     <script src="GestionarServicios.js"></script>
     <!-- Script Tables -->
     <script src="../../lib/datatables/datatables.min.js"></script>
+
+
   </body>
 
 </html>

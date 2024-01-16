@@ -37,6 +37,9 @@ input[type="radio"]:checked {
 
   margin: 0 0 0 0;
 }
+#bodycentral {
+  margin-bottom: 10% !important;
+}
 .placaTabla {
   background: #ffda14;
   text-align: center !important;

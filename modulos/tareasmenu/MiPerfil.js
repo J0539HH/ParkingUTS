@@ -77,6 +77,31 @@ function ValidacionCambioContraseña() {
   });
 }
 
+function RegistrarAuditoria(textoAuditoria) {
+  spinner("Registrando auditoria");
+  const url = "/api/registrarAuditoriaModelo";
+  const data = {
+    idusuario: idUsuario,
+    textoAuditoria: textoAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+      return;
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo registrar la auditoria, algo falló");
+      $("#spinner").hide();
+    });
+}
+
 function validateExistingUser() {
   let usuario = $("#userPersona").val().toUpperCase();
   spinner("Validando disponibilidad del login");
@@ -189,6 +214,7 @@ function validarModificacion() {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Información modificada exitosamente!");
+      RegistrarAuditoria("El usuario modifica su información personal desde el modulo mi perfil");
       cargarInformacion();
       $("#spinner").hide();
     })

@@ -97,6 +97,7 @@ app.get(
     "/Multimedia/eye.svg",
     "/Multimedia/ciclismo.svg",
     "/Multimedia/personas.svg",
+    "/Multimedia/qrIcon.svg",
     "/Multimedia/newServicio.svg",
     "/Multimedia/asignarServicios.svg",
     "/Multimedia/gestion.svg",
