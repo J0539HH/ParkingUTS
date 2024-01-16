@@ -309,7 +309,7 @@ function AlertIncorrecta(Texto) {
 function AlertCorrectX(Texto) {
   Swal.fire({
     title: "",
-    text: Texto,
+    html: Texto,
     imageUrl: "../../Multimedia/icoAlertSuccess.svg",
     imageWidth: 80,
     imageHeight: 80,

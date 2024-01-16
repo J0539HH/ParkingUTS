@@ -76,8 +76,15 @@ app.get(
     "/Multimedia/identificacion.png",
     "/Multimedia/codigo.png",
     "/Multimedia/serie.png",
+    "/Multimedia/editar.png",
+    "/Multimedia/borrar.png",
     "/Multimedia/coche.svg",
+    "/Multimedia/deportivo.svg",
+    "/Multimedia/cocheblack.svg",
+    "/Multimedia/motoenduro.svg",
     "/Multimedia/lupa.png",
+    "/Multimedia/motocicleta.png",
+    "/Multimedia/preguntas.png",
     "/Multimedia/Registration.png",
     "/Multimedia/Star.png",
     "/Multimedia/candadoAbierto.png",
@@ -85,8 +92,10 @@ app.get(
     "/Multimedia/modelos.png",
     "/Multimedia/tool.png",
     "/Multimedia/fondomenu.png",
+    "/Multimedia/bicicleta.png",
     "/Multimedia/fondoBodyM.png",
     "/Multimedia/eye.svg",
+    "/Multimedia/ciclismo.svg",
     "/Multimedia/personas.svg",
     "/Multimedia/newServicio.svg",
     "/Multimedia/asignarServicios.svg",
@@ -96,6 +105,7 @@ app.get(
     "/Multimedia/reporte.svg",
     "/Multimedia/asignado.svg",
     "/Multimedia/logoDocu.svg",
+    "/Multimedia/infocar.png",
     "/Multimedia/gearDocu.svg",
     "/Multimedia/favIcon.png",
     "/Multimedia/logoUTS.png",
@@ -349,7 +359,7 @@ app.get(
     res.set("Content-Type", "application/javascript");
     res.sendFile(
       __dirname +
-      "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+        "/lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
     );
   }
 );

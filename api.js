@@ -16,7 +16,7 @@ const client = new MongoClient(uri);
 (async () => {
   try {
     await client.connect();
-    console.log("Connected to MongoDB Atlas --> DOCUTECHCLUSTER (4000-JDFM)");
+    console.log("Connected to MongoDB Atlas --> PARKING-UTS (4000-JDFM)");
   } catch (err) {
     console.error(err);
   }
@@ -27,7 +27,55 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
-//Validar usuario por modificacion / MI PERFIL (PARKING-UTS)
+// Elimniar un vehiculo / MIS VEHICULOS (PARKING-UTS)
+router.post("/EliminarVehiculoUser", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, idVehiculo } = req.body;
+    const queryV = {
+      _id: new ObjectId(idVehiculo),
+      "usuario._id": new ObjectId(idusuario),
+    };
+    const collectionV = database.collection("vehiculos");
+    const resultV = await collectionV.findOne(queryV);
+
+    if (resultV) {
+      const deleteResult = await collectionV.deleteOne(queryV);
+
+      if (deleteResult.deletedCount === 1) {
+        res.json("Vehículo eliminado exitosamente");
+      } else {
+        res.json("Error al intentar eliminar el vehículo");
+      }
+    } else {
+      res.json("Usuario no encontrado o vehículo no asociado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//Cargar todos los vehiculos personales / MIS VEHICULOS (PARKING-UTS)
+router.post("/VehiculosPersonales", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("vehiculos");
+    const query = {
+      "usuario._id": new ObjectId(req.body.idusuario),
+    };
+    const result = await collection.find(query).toArray();
+
+    if (result && result.length > 0) {
+      res.json(result);
+    } else {
+      res.json("Usuario sin vehiculos");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//Validar login (disponible) por modificacion de usuario / MI PERFIL (PARKING-UTS)
 router.post("/EspecificUserLogin", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");
@@ -274,6 +322,46 @@ router.post("/usuarios", jsonParser, async (req, res) => {
   }
 });
 
+//Registrar un nuevo vehiculo / MIS VEHICULOS (PARKING-UTS)
+router.post("/registrarVehiculo", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, tipoVehiculo, placa, marca, color, linea } = req.body;
+    const queryU = {
+      _id: new ObjectId(idusuario),
+    };
+    const collectionU = database.collection("usuarios");
+    const resultU = await collectionU.findOne(queryU);
+    if (resultU) {
+      const queryV = {
+        placa: placa,
+      };
+      const collectionV = database.collection("vehiculos");
+      const resultV = await collectionV.findOne(queryV);
+      if (resultV === null) {
+        const collection = database.collection("vehiculos");
+        const result = await collection.insertOne({
+          usuario: resultU,
+          tipoVehiculo,
+          placa,
+          marca,
+          color,
+          estado: true,
+          linea,
+        });
+        res.json(result);
+      } else {
+        res.status(500).json({ error: "Placa utilizada" });
+        return;
+      }
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar usuario especifico / Multiples interfaces (PARKING-UTS)
 router.post("/EspecificUser", jsonParser, async (req, res) => {
   try {
@@ -485,7 +573,6 @@ router.get("/auditoriasTotal", jsonParser, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // Registrar nuevo formulario (DOCUTECH)
 router.post("/NewForm", jsonParser, async (req, res) => {

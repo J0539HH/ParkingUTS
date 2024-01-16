@@ -1,89 +1,494 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" contx ent="IE=edge" />
-  <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" />
-  <title>Seguimiento de servicios</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" contx ent="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/favIcon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Mis vehiculos</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icon-->
-  <link rel="stylesheet" href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
-  <!-- OverlayScrollbars -->
-  <link rel="stylesheet" href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
-  <!-- Sweet Alert -->
-  <link rel="stylesheet" href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
-  <!-- CSS Site -->
-  <link rel="stylesheet" href="menu.css" />
-  <link rel="stylesheet" href="Vehiculos.css" />
-  <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
-</head>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="Vehiculos.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
 
-<body>
-  <div id="ContenedorTotal">
-    <div id="templateContainer">
-      <nav class="navbar navbar-fixed-top alta-theme" style="position:
+  <body>
+    <div id="ContenedorTotal">
+      <div id="templateContainer">
+        <nav class="navbar navbar-fixed-top alta-theme" style="position:
         relative; background: white">
-        <div class="container-fluid ">
-          <div class="navbar-header">
-            <span style="float: left; font-size: 25px; margin: 20px 10px"><img id="logoCabecera"
-                src="../../Multimedia/logoUnidades.png" /></span>
+          <div class="container-fluid ">
+            <div class="navbar-header">
+              <span style="float: left; font-size: 25px; margin: 20px 10px"><img
+                  id="logoCabecera"
+                  src="../../Multimedia/logoUnidades.png" /></span>
+            </div>
+            <h6 class="InfoCabecera">Administra tus vehiculos</h6>
+            <a id="VolverMenu" class="button fondoRojo BotonCabecera">Volver al
+              menú</a>
           </div>
-          <h6 class="InfoCabecera">Administra tus vehiculos</h6>
-          <a id="VolverMenu" class="button fondoRojo BotonCabecera">Volver al
-            menú</a>
+        </nav>
+        <br />
+      </div>
+      <div id="bodycentral">
+        <div class="d-flex">
+          <div
+            style="width: 90%; display: flex; justify-content: center;text-align: center;">
+            <h4 class="mt-3 h1TitleForm">Aquí tus vehiculos registrados</h4>
+          </div>
+          <button id="nuevoVehiculo" class="BotonNuevoV buttonBtn btnPrimary">
+            Nuevo</button>
         </div>
-      </nav>
-      <br />
+        <div id="contenedorVehiculos">
+          <p>Parece que no tienes vehiculos
+            registrados..</p>
+
+        </div>
+      </div>
+
+    </div>
+    <div id="contFooter" class="FooterSistema">
+      <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+      <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+      <img src="../../Multimedia/JS.png" class="iconoFooter" />
+      <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+      <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+      <p class="txtFooter ml-4">Powered by JDFM ©</p>
     </div>
 
-
-
-  </div>
-  <div id="contFooter" class="FooterSistema">
-    <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
-    <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
-    <img src="../../Multimedia/JS.png" class="iconoFooter" />
-    <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
-    <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
-    <p class="txtFooter ml-4">Powered by JDFM ©</p>
-  </div>
-
-  <!-- Spinner Site -->
-  <div id="spinner" class="spinner">
-    <div class="contSpinner">
-      <img class="spinner-img" src="../../Multimedia/spinner.gif" alt="Loading" />
-      <div id="textLoad" class="spinner-msg"></div>
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div class="contSpinner">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
     </div>
-  </div>
 
-  <!-- jQuery -->
-  <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
-  <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
-  <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
-  <!-- Popper -->
-  <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
-  <!-- OverlayScrollbars -->
-  <script src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
-    type="text/javascript"></script>
-  <!-- Sweet Alert -->
-  <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-  <!-- Script Global -->
-  <script src="../../modulos/principal/scriptGlobal.js"></script>
-  <!-- Script Site -->
-  <script src="Vehiculos.js"></script>
-</body>
+    <!-- Modal nuevo vehiculo -->
+    <div class="modal notificationModal fade" id="modalNewVehiculo"
+      tabindex="-1" role="dialog"
+      aria-labelledby="modalUserLabel" aria-hidden="true">
+      <div class="modal-dialog dialogCambiarPass">
 
-</html>
+        <section class="modal-content content-CambiarContra">
+          <button type="button" class="close" data-dismiss="modal"
+            style="justify-content: end;display: flex;margin: -16px 0 -8px 0;"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p style="color: #aeb628;"
+            class="tituloRestablecerContraseña text-center">
+            Registro de un nuevo vehiculo
+          </p>
+          <p class="InfoCambiarPass infoCambiarPass0">Para garantizar la
+            autenticidad y asociar el vehículo a tu usuario, por favor
+            proporciona los datos solicitados. Asegúrate de ingresar información
+            precisa y verídica.</p>
+
+          <section id="sectionLogin" class="row contForm">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <img id="imagenTipoVehiculo" src="../../Multimedia/preguntas.png"
+                height="60px;"
+                style="margin-top:10px;margin-right: 10px; margin-bottom: 10px; margin-left: 42%" />
+              <p style="color: black; text-align: center; margin-bottom: 10px;"
+                class="InfoCambiarPass font-weight-bold">
+                Todos los campos son obligatorios
+              </p>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p style="width: 75%;margin-left: 16%;font-size: 14px;">Tipo de
+                vehiculo </p>
+              <div class="form-group">
+                <div class="d-flex"
+                  style="justify-content: space-evenly;width: 75%;margin-left: 15%;">
+                  <label style="display: grid;">
+                    <input type="radio" name="vehiculo"
+                      style="margin: 5px;margin: 61px 0 -104px 9px;"
+                      value="Carro">
+                    Carro
+                    <img src="../../Multimedia/deportivo.svg"
+                      style="background: #aeb628;padding: 10px; border-radius: 10px;   border: 2px solid black;"
+                      width="50">
+                  </label>
+                  <br>
+                  <label style="display: grid;">
+                    <input type="radio" name="vehiculo"
+                      style="margin: 5px;margin: 61px 0 -104px 9px;"
+                      value="Moto">
+                    Moto
+                    <img src="../../Multimedia/motoenduro.svg"
+                      style="background: #aeb628;padding: 10px; border-radius: 10px;  border: 2px solid black;"
+                      width="50">
+                  </label>
+                  <br>
+                  <label style="display: grid;">
+                    <input type="radio" name="vehiculo"
+                      style="margin: 5px;margin: 61px 0 -104px 9px;"
+                      value="Bicicleta">
+                    Bicicleta
+                    <img src="../../Multimedia/ciclismo.svg"
+                      style="background: #aeb628;padding: 10px; border-radius: 10px;  border: 2px solid black;"
+                      width="50">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div id="datosCarro" class="hidden">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="placaCarro">Placa</label>
+                  <input placeholder="Ejemplo: CWC243" type="text" maxlength="6"
+                    class="form-control"
+                    id="placaCarro"
+                    name="placaCarro" />
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="marcasCarro">Marca</label>
+                  <select id="marcasCarro" name="marcasCarro">
+                    <option value>Seleccione de la lista</option>
+                    <option value="chevrolet">Chevrolet</option>
+                    <option value="renault">Renault</option>
+                    <option value="mazda">Mazda</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="kia">Kia</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="ford">Ford</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="honda">Honda</option>
+                    <option value="peugeot">Peugeot</option>
+                    <option value="subaru">Subaru</option>
+                    <option value="bmw">BMW</option>
+                    <option value="mercedes-benz">Mercedes-Benz</option>
+                    <option value="audi">Audi</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="volvo">Volvo</option>
+                    <option value="jeep">Jeep</option>
+                    <option value="land-rover">Land Rover</option>
+                    <option value="mitsubishi">Mitsubishi</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="ColorCarro">Color</label>
+                  <input type="text" placeholder="Ejemplo: Gris"
+                    class="form-control passwordInfo" id="ColorCarro"
+                    name="ColorCarro" />
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="LineaCarro">Linea</label>
+                  <input type="text" placeholder="Ejemplo: Mazda 3"
+                    class="form-control passwordInfo" id="LineaCarro"
+                    name="LineaCarro" />
+                </div>
+              </div>
+            </div>
+            <div id="datosMoto" class="hidden">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="placaMoto">Placa</label>
+                  <input placeholder="Ejemplo: XMR09C" type="text" maxlength="6"
+                    class="form-control"
+                    id="placaMoto"
+                    name="placaMoto" />
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="marcasMoto">Marca</label>
+                  <select id="marcasMoto" name="marcasMoto">
+                    <option value>Seleccione de la lista</option>
+                    <option value="honda">Honda</option>
+                    <option value="yamaha">Yamaha</option>
+                    <option value="suzuki">Suzuki</option>
+                    <option value="kawasaki">Kawasaki</option>
+                    <option value="harley-davidson">Harley-Davidson</option>
+                    <option value="ktm">KTM</option>
+                    <option value="ducati">Ducati</option>
+                    <option value="bmw">BMW</option>
+                    <option value="triumph">Triumph</option>
+                    <option value="kymco">Kymco</option>
+                    <option value="bajaj">Bajaj</option>
+                    <option value="hero">Hero</option>
+                    <option value="tvSuzuki">TVS</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="ColorMoto">Color</label>
+                  <input type="text" placeholder="Ejemplo: Azul"
+                    class="form-control passwordInfo" id="ColorMoto"
+                    name="ColorMoto" />
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="LineaMoto">Linea</label>
+                  <input type="text" placeholder="Ejemplo: XTZ-250"
+                    class="form-control passwordInfo" id="LineaMoto"
+                    name="LineaMoto" />
+                </div>
+              </div>
+            </div>
+            <div id="datosBicicleta" class="hidden">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="MarcaCicla">Marca</label>
+                  <input type="text" placeholder="Ejemplo: GW"
+                    class="form-control passwordInfo" id="MarcaCicla"
+                    name="MarcaCicla" />
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="labelNameInput" for="ColorCicla">Color</label>
+                  <input type="text" placeholder="Ejemplo: Azul"
+                    class="form-control passwordInfo" id="ColorCicla"
+                    name="ColorCicla" />
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center mt-3 d-flex">
+              <button type="button" class="buttonBtn btnPrimary btnCambiarpass"
+                id="btnRegistrar">
+                Registrar
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Modal editar vehiculo -->
+      <div class="modal notificationModal fade" id="modalEditarVehiculo"
+        tabindex="-1" role="dialog"
+        aria-labelledby="modalUserLabel" aria-hidden="true">
+        <div class="modal-dialog dialogCambiarPass">
+
+          <section class="modal-content content-CambiarContra">
+            <button type="button" class="close" data-dismiss="modal"
+              style="justify-content: end;display: flex;margin: -16px 0 -8px 0;"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p style="color: #aeb628;"
+              class="tituloRestablecerContraseña text-center">
+              Editar un vehiculo existente
+            </p>
+            <p class="InfoCambiarPass infoCambiarPass0">Para garantizar la
+              autenticidad y asociar el vehículo a tu usuario, por favor
+              proporciona los datos solicitados. Asegúrate de ingresar
+              información
+              precisa y verídica.</p>
+
+            <section id="sectionEdit" class="row contForm">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img id="imagenTipoVehiculoE"
+                  src="../../Multimedia/preguntas.png"
+                  height="60px;"
+                  style="margin-top:10px;margin-right: 10px; margin-bottom: 10px; margin-left: 42%" />
+                <p
+                  style="color: black; text-align: center; margin-bottom: 10px;"
+                  class="InfoCambiarPass font-weight-bold">
+                  Todos los campos son obligatorios
+                </p>
+              </div>
+              <div id="datosCarroE" class="hidden">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="placaCarroE">Placa</label>
+                    <input placeholder="Ejemplo: CWC243" type="text"
+                      maxlength="6"
+                      class="form-control"
+                      id="placaCarroE"
+                      name="placaCarroE" />
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="marcasCarroE">Marca</label>
+                    <select id="marcasCarroE" name="marcasCarroE">
+                      <option value>Seleccione de la lista</option>
+                      <option value="chevrolet">Chevrolet</option>
+                      <option value="renault">Renault</option>
+                      <option value="mazda">Mazda</option>
+                      <option value="toyota">Toyota</option>
+                      <option value="hyundai">Hyundai</option>
+                      <option value="kia">Kia</option>
+                      <option value="nissan">Nissan</option>
+                      <option value="ford">Ford</option>
+                      <option value="volkswagen">Volkswagen</option>
+                      <option value="honda">Honda</option>
+                      <option value="peugeot">Peugeot</option>
+                      <option value="subaru">Subaru</option>
+                      <option value="bmw">BMW</option>
+                      <option value="mercedes-benz">Mercedes-Benz</option>
+                      <option value="audi">Audi</option>
+                      <option value="fiat">Fiat</option>
+                      <option value="volvo">Volvo</option>
+                      <option value="jeep">Jeep</option>
+                      <option value="land-rover">Land Rover</option>
+                      <option value="mitsubishi">Mitsubishi</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="ColorCarroE">Color</label>
+                    <input type="text" placeholder="Ejemplo: Gris"
+                      class="form-control passwordInfo" id="ColorCarroE"
+                      name="ColorCarroE" />
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="LineaCarroE">Linea</label>
+                    <input type="text" placeholder="Ejemplo: Mazda 3"
+                      class="form-control passwordInfo" id="LineaCarroE"
+                      name="LineaCarroE" />
+                  </div>
+                </div>
+              </div>
+              <div id="datosMotoE" class="hidden">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput" for="placaMotoE">Placa</label>
+                    <input placeholder="Ejemplo: XMR09C" type="text"
+                      maxlength="6"
+                      class="form-control"
+                      id="placaMotoE"
+                      name="placaMotoE" />
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="marcasMotoE">Marca</label>
+                    <select id="marcasMotoE" name="marcasMotoE">
+                      <option value>Seleccione de la lista</option>
+                      <option value="honda">Honda</option>
+                      <option value="yamaha">Yamaha</option>
+                      <option value="suzuki">Suzuki</option>
+                      <option value="kawasaki">Kawasaki</option>
+                      <option value="harley-davidson">Harley-Davidson</option>
+                      <option value="ktm">KTM</option>
+                      <option value="ducati">Ducati</option>
+                      <option value="bmw">BMW</option>
+                      <option value="triumph">Triumph</option>
+                      <option value="kymco">Kymco</option>
+                      <option value="bajaj">Bajaj</option>
+                      <option value="hero">Hero</option>
+                      <option value="tvSuzuki">TVS</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput" for="ColorMotoE">Color</label>
+                    <input type="text" placeholder="Ejemplo: Azul"
+                      class="form-control passwordInfo" id="ColorMotoE"
+                      name="ColorMotoE" />
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput" for="LineaMotoE">Linea</label>
+                    <input type="text" placeholder="Ejemplo: XTZ-250"
+                      class="form-control passwordInfo" id="LineaMotoE"
+                      name="LineaMotoE" />
+                  </div>
+                </div>
+              </div>
+              <div id="datosBicicletaE" class="hidden">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="MarcaCiclaE">Marca</label>
+                    <input type="text" placeholder="Ejemplo: GW"
+                      class="form-control passwordInfo" id="MarcaCiclaE"
+                      name="MarcaCiclaE" />
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="labelNameInput"
+                      for="ColorCiclaE">Color</label>
+                    <input type="text" placeholder="Ejemplo: Azul"
+                      class="form-control passwordInfo" id="ColorCiclaE"
+                      name="ColorCiclaE" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center mt-3 d-flex">
+                <button type="button"
+                  class="buttonBtn btnPrimary btnCambiarpass"
+                  id="btnRegistrarE">
+                  Editar
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+        <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+        <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+        <!-- Popper -->
+        <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+        <!-- Bootstrap -->
+        <script
+          src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+        <!-- OverlayScrollbars -->
+        <script
+          src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+          type="text/javascript"></script>
+        <!-- Sweet Alert -->
+        <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+          type="text/javascript"></script>
+        <!-- Script Global -->
+        <script src="../../modulos/principal/scriptGlobal.js"></script>
+        <!-- Script Site -->
+        <script src="Vehiculos.js"></script>
+      </body>
+
+    </html>

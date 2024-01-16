@@ -432,11 +432,11 @@ function enviarCorreoRecuperacion(objetoUsuario) {
         $("#modalCodigoRecuperar").modal("show");
         $("#modalRecuperar").modal("hide");
         $("#spinner").hide();
-        return response.json(); // Return the parsed JSON from the response
+        return response.json(); 
       } else {
         $("#modalRecuperar").modal("show");
         AlertIncorrecta("Error al tratar de recuperar usuario");
-        throw new Error("Error en la petición"); // Throw an error to skip the next 'then'
+        throw new Error("Error en la petición"); 
       }
     })
     .then((result) => {
