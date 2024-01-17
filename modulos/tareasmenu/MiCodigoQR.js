@@ -77,24 +77,21 @@ function crearQR(infoUsuario, infoVehiculo) {
   let linea = infoVehiculo.linea;
   $("#codigoQRContainer").empty();
   const qrContainer = $("<div>");
+  let infoArray = [
+    "Nombre: " + nombre.toUpperCase(),
+    "Genero: " + infoUsuario.persona.genero.toUpperCase(),
+    "Documento: " + documento,
+    "Tipo de vehiculo: " + tipoVehiculo.toUpperCase(),
+    "Marca: " + marca,
+    "Linea: " + linea,
+    "Placa: " + placa,
+    "Color: " + color,
+  ];
+
+  let infoTexto = infoArray.join("\n");
+
   new QRCode(qrContainer[0], {
-    text:
-      "Nombre:" +
-      nombre +
-      " Genero:" +
-      infoUsuario.persona.genero.toUpperCase() +
-      " Documento:" +
-      documento +
-      " Tipo de vehiculo:" +
-      tipoVehiculo +
-      " Marca:" +
-      marca +
-      " Linea:" +
-      linea +
-      " Placa:" +
-      placa +
-      " Color:" +
-      color,
+    text: infoTexto,
     width: 380,
     height: 380,
   });

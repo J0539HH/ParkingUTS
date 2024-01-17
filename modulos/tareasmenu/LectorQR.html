@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/png" href="../../Multimedia/favIcon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" />
+    <title>Lector QR</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
+    <!-- OverlayScrollbars -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet"
+      href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
+    <!-- CSS Site -->
+    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="LectorQR.css" />
+    <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
+  </head>
+
+  <body>
+    <div id="ContenedorTotal">
+      <div id="ContenedorGestion" style="display: grid">
+        <div id="templateContainer">
+          <nav class="navbar navbar-fixed-top alta-theme" style="position:
+            relative; background: white">
+            <div class="container-fluid ">
+              <div class="navbar-header">
+                <span
+                  style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    id="logoCabecera" src="../../Multimedia/logoUnidades.png"
+                    height="40px;" style="margin-right: 10px; background-color:
+                    #fff;"></span>
+              </div>
+              <h6 class="InfoCabecera">Lector QR</h6>
+              <a id="VolverMenu" class="button button8 BotonCabecera">Volver al
+                menú</a>
+            </div>
+          </nav>
+          <br />
+        </div>
+        <div id="mainContainer" class="container">
+          <header>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12
+              divContSaldo">
+                <p class="TituloFormulario">
+                  Plataforma para escanear <b>códigos QR</b> y documentar las
+                  actividades de los vehículos en el estacionamiento.
+                </p>
+              </div>
+            </div>
+          </header>
+          <div id="ContenedorBotonQR">
+            <button type="button" id="LeerCodigo"
+              class="btn btn-primary">
+              EscanearQR
+            </button>
+
+          </div>
+          <div id="lector-qr">
+            <video id="video" width="640" height="480" autoplay
+              playsinline></video>
+
+          </div>
+          <div id="infoCodigo">
+            <p id="textoCodigo"> </p>
+          </div>
+        </div>
+      </div>
+      <div id="contFooter" class="FooterSistema">
+        <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+        <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+        <img src="../../Multimedia/JS.png" class="iconoFooter" />
+        <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+        <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+        <p class="txtFooter ml-4">Powered by JDFM ©</p>
+      </div>
+    </div>
+
+    <!-- Spinner Site -->
+    <div id="spinner" class="spinner">
+      <div class="contSpinner">
+        <img class="spinner-img" src="../../Multimedia/spinner.gif"
+          alt="Loading" />
+        <div id="textLoad" class="spinner-msg"></div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script
+      src="https://cdn.rawgit.com/cozmo/jsQR/master/dist/jsQR.js"></script>
+
+    <script src="../../lib/js/vendor/jquery-3.6.1/jquery-3.6.1.js"></script>
+    <script src="../../lib/jQuery/utilidadesjQuery.js"></script>
+    <script src="../../lib/jQuery/alertas/jquery.alerts.js"></script>
+    <!-- Popper -->
+    <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script
+      src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <!-- OverlayScrollbars -->
+    <script
+      src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
+      type="text/javascript"></script>
+    <!-- Sweet Alert -->
+    <script src="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.js"
+      type="text/javascript"></script>
+    <!-- Script Global -->
+    <script src="../../modulos/principal/scriptGlobal.js"></script>
+    <!-- Script Site -->
+    <script src="LectorQR.js"></script>
+    <!-- Script Tables -->
+    <script src="../../lib/datatables/datatables.min.js"></script>
+  </body>
+
+</html>

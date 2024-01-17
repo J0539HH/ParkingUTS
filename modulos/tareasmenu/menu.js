@@ -36,8 +36,8 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/MiCodigoQR.html";
   });
 
-  $("#AsignacionServicios").on("click", function () {
-    window.location.href = "../tareasmenu/AsignacionServicios.html";
+  $("#lectorQR").on("click", function () {
+    window.location.href = "../tareasmenu/LectorQR.html";
   });
 
   $("#ConsultarVehiculos").on("click", function () {
@@ -147,9 +147,7 @@ function verificarAccesos(Nombre) {
     $("#ContenedorMisVehiculos").removeClass("hidden");
     $("#ContenedorMiQR").removeClass("hidden");
     $("#ContenedorAuditoria").removeClass("hidden");
-    /*    $("#ContenedorReporteServicios").removeClass("hidden");
-    $("#ContenedorAsignacionServicio").removeClass("hidden");
-    $("#ContenedorMiHistorial").removeClass("hidden"); */
+    $("#ContenedorLectorQR").removeClass("hidden");
 
     $("#infoUsuario").html(
       "Hola <b>" +

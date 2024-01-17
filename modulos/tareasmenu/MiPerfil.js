@@ -219,6 +219,9 @@ function validarModificacion() {
       RegistrarAuditoria(
         "El usuario modifica su información personal desde el modulo mi perfil"
       );
+      if (vehiculoFavID !== "") {
+        RegistrarAuditoria("El usuario modifica su vehiculo favorito");
+      }
       cargarInformacion();
       $("#spinner").hide();
     })

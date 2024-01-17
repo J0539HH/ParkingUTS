@@ -8,6 +8,17 @@
 .cabeceranav {
   background-color: #1664ab;
 }
+video {
+  display: flex;
+  justify-content: center;
+  margin-left: 15%;
+}
+
+#ContenedorBotonQR {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
 
 #sidebar .sidebar-header {
   background: #1664ab;
