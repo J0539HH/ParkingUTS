@@ -197,10 +197,9 @@ function cargarVehiculoFav() {
       const rutaImagen = "url('../../Multimedia/starFav.png')";
       $("#" + idfav).css({
         "background-image": rutaImagen,
-        "background-repeat": "repeat-y",
-        "background-size": "25px",
-        "background-position-x": "120px",
-        "background-position-y": "18px",
+        "background-repeat": "no-repeat",
+        "background-size": "119px",
+        "background-position": "120px 13px",
       });
       $("#spinner").hide();
     })
