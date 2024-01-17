@@ -5,6 +5,7 @@ $(document).ready(function () {
   spinner("Cargando información");
   verificarSesionWrapper()
     .then(() => {
+       inicializarLectorQR();
       $("#spinner").hide();
     })
     .catch((error) => {
