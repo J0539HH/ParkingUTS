@@ -106,7 +106,7 @@ function cargarVehiculos() {
         });
         table.append(headerRow);
         result.forEach(function (item) {
-          var row = $("<tr>");
+          var row = $("<tr id='" + item._id + "'>");
           var columnKeys = [
             "tipoVehiculo",
             "placa",
@@ -169,10 +169,43 @@ function cargarVehiculos() {
 
         $("#contenedorVehiculos").append(table);
       }
+      cargarVehiculoFav();
       $("#spinner").hide();
     })
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar la información de tus vehiculos");
+      $("#spinner").hide();
+    });
+}
+
+function cargarVehiculoFav() {
+  spinner("Cargando tu vehiculo favorito");
+  const url = "/api/VehiculoFav";
+  const data = {
+    idusuario: idUsuario,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      let idfav = result._id;
+      const rutaImagen = "url('../../Multimedia/starFav.png')";
+      $("#" + idfav).css({
+        "background-image": rutaImagen,
+        "background-repeat": "repeat-y",
+        "background-size": "25px",
+        "background-position-x": "120px",
+        "background-position-y": "18px",
+      });
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo cargar tu vehiculo favorito");
       $("#spinner").hide();
     });
 }

@@ -72,27 +72,31 @@ function crearQR(infoUsuario, infoVehiculo) {
   let documento = infoUsuario.persona.documento;
   let tipoVehiculo = infoVehiculo.tipoVehiculo;
   let placa = infoVehiculo.placa;
-  let marca = infoVehiculo.marca;
+  let marca = infoVehiculo.marca.toUpperCase();
   let color = infoVehiculo.color;
+  let linea = infoVehiculo.linea;
   $("#codigoQRContainer").empty();
   const qrContainer = $("<div>");
   new QRCode(qrContainer[0], {
     text:
       "Nombre:" +
       nombre +
+      " Genero:" +
+      infoUsuario.persona.genero.toUpperCase() +
       " Documento:" +
       documento +
       " Tipo de vehiculo:" +
       tipoVehiculo +
       " Marca:" +
       marca +
+      " Linea:" +
+      linea +
       " Placa:" +
       placa +
       " Color:" +
-      color +
-      " ",
-    width: 256,
-    height: 256,
+      color,
+    width: 380,
+    height: 380,
   });
   $("#codigoQRContainer").append(qrContainer);
   console.log("Escanea este código QR para ver la información.");

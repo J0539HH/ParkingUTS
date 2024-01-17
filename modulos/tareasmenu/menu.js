@@ -33,7 +33,7 @@ $(document).ready(function () {
   });
 
   $("#miQR").on("click", function () {
-    window.location.href = "../tareasmenu/GestionarServicios.html";
+    window.location.href = "../tareasmenu/MiCodigoQR.html";
   });
 
   $("#AsignacionServicios").on("click", function () {

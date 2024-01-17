@@ -190,6 +190,7 @@ function validarModificacion() {
     AlertIncorrectX("Debes ingresar una dirección!");
     return;
   }
+  let vehiculoFavID = $("#vehiculos").val();
 
   spinner("Cambiando información de tu perfil");
   const url = "/api/ChangePersonalInformation";
@@ -202,6 +203,7 @@ function validarModificacion() {
     telefono: telefono,
     direccion: direccion,
     actualizarContraseña: actualizarContraseña,
+    vehiculofavorito: vehiculoFavID,
   };
 
   fetch(url, {
@@ -214,7 +216,9 @@ function validarModificacion() {
     .then((response) => response.json())
     .then((result) => {
       AlertCorrectX("Información modificada exitosamente!");
-      RegistrarAuditoria("El usuario modifica su información personal desde el modulo mi perfil");
+      RegistrarAuditoria(
+        "El usuario modifica su información personal desde el modulo mi perfil"
+      );
       cargarInformacion();
       $("#spinner").hide();
     })
@@ -225,6 +229,7 @@ function validarModificacion() {
 }
 
 function cargarInformacion() {
+  spinner("Cambiando información de tu perfil");
   const url = "/api/EspecificUser";
   const data = {
     idusuario: idUsuario,
@@ -238,6 +243,7 @@ function cargarInformacion() {
   })
     .then((response) => response.json())
     .then((result) => {
+      cargarVehiculos();
       $("#nombrePersona").val(result.persona.nombre);
       $("#carrera").val(result.persona.carrera);
       $("#identificacion").val(result.persona.documento);
@@ -254,6 +260,86 @@ function cargarInformacion() {
     })
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar la información de tu perfil");
+      $("#spinner").hide();
+    });
+}
+
+function cargarVehiculos() {
+  spinner("Cargando información de tus vehiculos");
+  const url = "/api/VehiculosPersonales";
+  const data = {
+    idusuario: idUsuario,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      var selectElement = $("#vehiculos");
+      selectElement.empty();
+      selectElement.append(
+        $("<option>").val("").text("Seleccione un vehiculo")
+      );
+      $.each(result, function (index, vehiculo) {
+        if (vehiculo.tipoVehiculo === "Bicicleta") {
+          var option = $("<option>")
+            .val(vehiculo._id)
+            .text(
+              vehiculo.tipoVehiculo +
+                " - " +
+                vehiculo.marca.toUpperCase() +
+                " - " +
+                vehiculo.color
+            );
+        } else {
+          var option = $("<option>")
+            .val(vehiculo._id)
+            .text(
+              vehiculo.tipoVehiculo +
+                " - " +
+                vehiculo.marca.toUpperCase() +
+                " - " +
+                vehiculo.linea.toUpperCase() +
+                " - " +
+                vehiculo.placa
+            );
+        }
+
+        selectElement.append(option);
+      });
+      cargarVehiculoFav();
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo cargar la información de tus vehiculos");
+      $("#spinner").hide();
+    });
+}
+
+function cargarVehiculoFav() {
+  spinner("Cargando tu vehiculo favorito");
+  const url = "/api/VehiculoFav";
+  const data = {
+    idusuario: idUsuario,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#vehiculos").val(result._id);
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo cargar tu vehiculo favorito");
       $("#spinner").hide();
     });
 }

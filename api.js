@@ -205,6 +205,7 @@ router.post("/ChangePersonalInformation", jsonParser, async (req, res) => {
       telefono: telefono,
       direccion: direccion,
       actualizarContraseña: actualizarContraseña,
+      vehiculofavorito: vehiculofavorito,
     } = req.body;
 
     const idusuario = req.body.idusuario;
@@ -244,6 +245,25 @@ router.post("/ChangePersonalInformation", jsonParser, async (req, res) => {
         },
       }
     );
+    if (vehiculofavorito !== "") {
+      const collectionV = database.collection("vehiculos");
+      const queryV = {
+        _id: new ObjectId(vehiculofavorito),
+      };
+      const resultV = await collectionV.findOne(queryV);
+      if (resultV) {
+        const collectionVF = database.collection("vehiculoFavorito");
+        const deleteQuery = {
+          "usuario._id": new ObjectId(usuarioModificado._id),
+        };
+        await collectionVF.deleteMany(deleteQuery);
+        await collectionVF.insertOne(resultV);
+      } else {
+        res.status(404).send("Vehiculo no encontrado");
+        return;
+      }
+    }
+
     res.json(resultP);
   } catch (err) {
     console.error(err);
