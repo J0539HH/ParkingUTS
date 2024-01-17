@@ -8,10 +8,20 @@
 .cabeceranav {
   background-color: #1664ab;
 }
+
+.iconosR {
+  height: 36px;
+  margin: -9px 5px 24px 0;
+}
 video {
   display: flex;
   justify-content: center;
   margin-left: 15%;
+}
+
+#detallesServicio {
+  display: grid;
+  width: 70%;
 }
 
 #ContenedorBotonQR {

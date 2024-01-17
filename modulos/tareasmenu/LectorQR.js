@@ -5,7 +5,7 @@ $(document).ready(function () {
   spinner("Cargando información");
   verificarSesionWrapper()
     .then(() => {
-       inicializarLectorQR();
+      inicializarLectorQR();
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -60,10 +60,27 @@ function inicializarLectorQR() {
       if (code) {
         $("#lector-qr").addClass("hidden");
         $("#infoCodigo").removeClass("hidden");
-        $("#textoCodigo").html(code.data);
+        setearInformacion(code.data);
+        return;
       }
 
       detectarCodigoQR(video, canvas);
     });
   }
+}
+
+function setearInformacion(info) {
+  var lineas = info.split("\n");
+  lineas.forEach(function (linea) {
+    var partes = linea.split(":");
+    var id = partes[0].trim().toLowerCase(); 
+    if (id === "tipo de vehiculo") {
+      id = "tipovehiculo";
+    }
+
+    var elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.textContent = partes[1].trim();
+    }
+  });
 }
