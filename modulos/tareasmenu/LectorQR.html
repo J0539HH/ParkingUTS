@@ -143,21 +143,61 @@
                       <p id="color"> </p>
                     </div>
                   </div>
+                    <h1 class="h1TitleForm">Llena la siguiente información  </h1>
+                  <div class="row mt-2 contenedorPreguntaDatosCoinciden" >
+                    <div
+                      class="col-md-6 d-flex">
+                      <label for="coinciden">¿Los datos coinciden?</label>
+                    </div>
+                    <div id="contenedorPreguntasOperador"
+                      class="col-md-6 d-flex">
+                      <label style="width: 10%;" for="si">Sí</label>
+                      <input class="OpcionesRadio" type="radio" id="si"
+                        name="coinciden" value="si">
+                      <label  style="width: 10%;" for="no">No</label>
+                      <input class="OpcionesRadio" type="radio" id="no"
+                        name="coinciden" value="no">
+                    </div>
+
+                  </div>
+                  <div class="row contenedorPreguntasInferior">
+                    <div
+                      class="col-md-6 d-flex">
+                      <label for="coinciden">Tipo de movimiento</label>
+                    </div>
+                    <div id="contenedorPreguntasOperador"
+                      class="col-md-6 d-flex">
+                      <label for="si" style="width: 10%;">Entrada</label>
+                      <input class="OpcionesRadio" type="radio" id="entrada"
+                        name="movimiento" value="Entrada">
+                      <label style="width: 10%;" for="no">Salida</label>
+                      <input class="OpcionesRadio" type="radio" id="salida"
+                        name="movimiento" value="Salida">
+                    </div>
+
+                  </div>
                 </div>
+
+                <button type="button" id="movimientoParqueadero"
+                  class="btn btn-primary">
+                  Registrar movimiento
+                </button>
               </div>
               <div>
 
               </div>
             </div>
+
           </div>
-          <div id="contFooter" class="FooterSistema">
-            <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
-            <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
-            <img src="../../Multimedia/JS.png" class="iconoFooter" />
-            <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
-            <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
-            <p class="txtFooter ml-4">Powered by JDFM ©</p>
-          </div>
+
+        </div>
+        <div id="contFooter" class="FooterSistema">
+          <p class="txtFooter">Tecnologias utilizadas en este desarrollo</p>
+          <img src="../../Multimedia/nodejs.jpg" class="iconoFooter ML-15" />
+          <img src="../../Multimedia/JS.png" class="iconoFooter" />
+          <img src="../../Multimedia/Mongo-db-logo.png" class="iconoFooter" />
+          <img src="../../Multimedia/visual.jpg" class="iconoFooter" />
+          <p class="txtFooter ml-4">Powered by JDFM ©</p>
         </div>
 
         <!-- Spinner Site -->

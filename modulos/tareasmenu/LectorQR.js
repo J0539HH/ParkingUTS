@@ -5,6 +5,7 @@ $(document).ready(function () {
   spinner("Cargando información");
   verificarSesionWrapper()
     .then(() => {
+      limpiarDatos();
       inicializarLectorQR();
       $("#spinner").hide();
     })
@@ -69,18 +70,52 @@ function inicializarLectorQR() {
   }
 }
 
-function setearInformacion(info) {
-  var lineas = info.split("\n");
-  lineas.forEach(function (linea) {
-    var partes = linea.split(":");
-    var id = partes[0].trim().toLowerCase(); 
-    if (id === "tipo de vehiculo") {
-      id = "tipovehiculo";
-    }
+function setearInformacion(idusuarioparqueadero) {
+  limpiarDatos();
+  spinner("Validando información del usuario");
+  const url = "/api/validarQR";
+  const data = {
+    idusuario: idusuarioparqueadero,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      llenarDatos(result);
+      AlertCorrectX("Informacion cargada exitosamente");
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo cargar la información");
+      $("#spinner").hide();
+    });
+}
 
-    var elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.textContent = partes[1].trim();
-    }
-  });
+function llenarDatos(infoVehiculoFav) {
+  $("#color").html(infoVehiculoFav.color.toUpperCase());
+  $("#placa").html(infoVehiculoFav.placa.toUpperCase());
+  $("#linea").html(infoVehiculoFav.linea.toUpperCase());
+  $("#marca").html(infoVehiculoFav.marca.toUpperCase());
+  $("#tipovehiculo").html(infoVehiculoFav.tipoVehiculo.toUpperCase());
+  $("#documento").html(infoVehiculoFav.usuario.persona.documento.toUpperCase());
+  $("#genero").html(infoVehiculoFav.usuario.persona.genero.toUpperCase());
+  $("#nombre").html(infoVehiculoFav.usuario.persona.nombre.toUpperCase());
+}
+
+function limpiarDatos() {
+  $("input[name='movimiento']").prop("checked", false);
+  $("input[name='coinciden']").prop("checked", false);
+  $("#color").html("");
+  $("#placa").html("");
+  $("#linea").html("");
+  $("#marca").html("");
+  $("#tipovehiculo").html("");
+  $("#documento").html("");
+  $("#genero").html("");
+  $("#nombre").html("");
 }

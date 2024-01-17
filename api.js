@@ -27,6 +27,33 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+//Cargar informacion del codigo QR / LectorQR (PARKING-UTS)
+router.post("/validarQR", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      _id: new ObjectId(req.body.idusuario),
+      estado: true,
+    };
+
+    const result = await collection.findOne(query, { returnDocument: "After" });
+    if (result) {
+      const collectionVF = database.collection("vehiculoFavorito");
+      const queryVF = {
+        "usuario._id": new ObjectId(req.body.idusuario),
+      };
+      const resultvf = await collectionVF.findOne(queryVF, {
+        returnDocument: "After",
+      });
+      res.json(resultvf);
+    } else {
+      res.status(400).json({ error: "Usuario invalido" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 //Registrar el vehiculo favorito / Mi perfil (PARKING-UTS) NO FUNCIONAL
 router.post("/registrarFavorito", jsonParser, async (req, res) => {
   try {

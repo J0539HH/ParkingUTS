@@ -13,10 +13,40 @@
   height: 36px;
   margin: -9px 5px 24px 0;
 }
+.contenedorPreguntaDatosCoinciden {
+  border: 1px solid black;
+  padding: 7px !important;
+  padding-top: 10px !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.contenedorPreguntasInferior {
+  border: 1px solid black;
+  padding: 7px !important;
+  border-top: none;
+  margin-bottom: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+strong {
+  margin: 0 5px 0 6px;
+}
+
 video {
   display: flex;
   justify-content: center;
   margin-left: 15%;
+}
+.OpcionesRadio {
+  height: 25px;
+  width: 36px;
+  margin-left: 10px;
+}
+
+#contenedorPreguntasOperador {
+  display: flex !important;
+  justify-content: space-evenly;
 }
 
 #detallesServicio {

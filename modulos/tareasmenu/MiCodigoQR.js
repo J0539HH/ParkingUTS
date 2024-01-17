@@ -58,7 +58,7 @@ function cargarVehiculo(datosUsuario) {
   })
     .then((response) => response.json())
     .then((result) => {
-      crearQR(datosUsuario, result);
+      crearQR(datosUsuario);
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -67,31 +67,12 @@ function cargarVehiculo(datosUsuario) {
     });
 }
 
-function crearQR(infoUsuario, infoVehiculo) {
-  let nombre = infoUsuario.persona.nombre;
-  let documento = infoUsuario.persona.documento;
-  let tipoVehiculo = infoVehiculo.tipoVehiculo;
-  let placa = infoVehiculo.placa;
-  let marca = infoVehiculo.marca.toUpperCase();
-  let color = infoVehiculo.color;
-  let linea = infoVehiculo.linea;
+function crearQR(infoUsuario) {
   $("#codigoQRContainer").empty();
   const qrContainer = $("<div>");
-  let infoArray = [
-    "Nombre: " + nombre.toUpperCase(),
-    "Genero: " + infoUsuario.persona.genero.toUpperCase(),
-    "Documento: " + documento,
-    "Tipo de vehiculo: " + tipoVehiculo.toUpperCase(),
-    "Marca: " + marca,
-    "Linea: " + linea,
-    "Placa: " + placa,
-    "Color: " + color,
-  ];
-
-  let infoTexto = infoArray.join("\n");
 
   new QRCode(qrContainer[0], {
-    text: infoTexto,
+    text: infoUsuario._id,
     width: 380,
     height: 380,
   });
