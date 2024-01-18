@@ -195,12 +195,14 @@ function cargarVehiculoFav() {
     .then((result) => {
       let idfav = result._id;
       const rutaImagen = "url('../../Multimedia/starFav.png')";
-      $("#" + idfav).css({
-        "background-image": rutaImagen,
-        "background-repeat": "no-repeat",
-        "background-size": "119px",
-        "background-position": "120px 13px",
-      });
+      $("#" + idfav)
+        .css({
+          "background-image": rutaImagen,
+          "background-repeat": "no-repeat",
+          "background-size": "119px",
+          "background-position": "120px 13px",
+        })
+        .attr("favorito", "true");
       $("#spinner").hide();
     })
     .catch((error) => {

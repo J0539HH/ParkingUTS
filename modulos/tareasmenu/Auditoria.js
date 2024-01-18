@@ -66,14 +66,22 @@ function cargarTablaAuditorias(tableData) {
   const dataWithDate = tableData.data.map((item) => ({
     ...item,
     fecha: new Date(item.fecha),
+    formattedFecha: new Date(item.fecha).toLocaleString("es-CO", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }),
   }));
-    console.log(dataWithDate);
   $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
     data: dataWithDate,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
+      { data: "fecha", className: " hidden" },
       { data: "usuario.persona.nombre", className: " text-center" },
       {
         data: "fecha",
@@ -122,9 +130,7 @@ function cargarTablaAuditorias(tableData) {
       $("#spinner").hide();
     },
     pagingType: "simple_numbers",
-    order: [
-      [1, "desc"],
-    ],
+    order: [[0, "desc"]],
   });
 }
 

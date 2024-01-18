@@ -105,6 +105,32 @@ function llenarDatos(infoVehiculoFav) {
   $("#documento").html(infoVehiculoFav.usuario.persona.documento.toUpperCase());
   $("#genero").html(infoVehiculoFav.usuario.persona.genero.toUpperCase());
   $("#nombre").html(infoVehiculoFav.usuario.persona.nombre.toUpperCase());
+  $("#movimientoParqueadero").on("click", function () {
+    GuardarMovimientoParqueadero(infoVehiculoFav);
+  });
+}
+
+function GuardarMovimientoParqueadero(infoVehiculoFav) {
+  console.log(infoVehiculoFav);
+  var coincidenDatos = $("input[name='coinciden']:checked").val();
+  var tipoDeMovimiento = $("input[name='movimiento']:checked").val();
+  if (coincidenDatos === undefined) {
+    AlertIncorrecta("Debes seleccionar si los datos coinciden");
+    return;
+  }
+  if (tipoDeMovimiento === undefined) {
+    AlertIncorrecta(
+      "Debes seleccionar si es una <b>Entrada</b> o una <b>Salida</b> del parqueadero"
+    );
+    return;
+  }
+
+  if (coincidenDatos === "no") {
+    AlertIncorrecta(
+      "El usuario debe <b>VALIDAR</b> con un <b>DOCUMENTO</b> o <b>MODIFICAR</b> sus datos antes de realizar el movimiento en el parqueadero"
+    );
+  }
+  console.log(coincidenDatos, tipoDeMovimiento);
 }
 
 function limpiarDatos() {

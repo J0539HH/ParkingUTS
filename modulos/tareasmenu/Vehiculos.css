@@ -393,8 +393,20 @@ i.rotateImg::before {
   }
 }
 
-@media (max-width: 600px) {
-  /* Estilos para pantallas pequeñas */
+@media (max-width: 800px) {
+  .imgTabla {
+    display: none;
+  }
+
+  tr[favorito="true"] {
+    background-color: #ffeeaa;
+    background-image: none !important;
+  }
+
+  body {
+    min-width: 800px;
+    overflow-y: auto;
+  }
 
   .container-fluid {
     display: list-item !important;
