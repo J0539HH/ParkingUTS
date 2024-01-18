@@ -1,12 +1,16 @@
 var rol = null;
 var idUsuario = null;
+var idvehiculofav = null;
 
 $(document).ready(function () {
+  $("#movimientoParqueadero").on("click", function () {
+    GuardarMovimientoParqueadero(idvehiculofav);
+  });
   spinner("Cargando información");
   verificarSesionWrapper()
     .then(() => {
       limpiarDatos();
-      inicializarLectorQR();
+      // inicializarLectorQR();
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -22,7 +26,7 @@ $(document).ready(function () {
 
   $("#LeerCodigo").on("click", function () {
     $("#lector-qr").removeClass("hidden");
-    $("#infoCodigo").addClass("hidden");
+    $("#infoCodigo, #informacionInstructivo").addClass("hidden");
     inicializarLectorQR();
   });
 });
@@ -87,7 +91,7 @@ function setearInformacion(idusuarioparqueadero) {
     .then((response) => response.json())
     .then((result) => {
       llenarDatos(result);
-      AlertCorrectX("Informacion cargada exitosamente");
+      AlertCorrectX("Información cargada exitosamente");
       $("#spinner").hide();
     })
     .catch((error) => {
@@ -105,13 +109,10 @@ function llenarDatos(infoVehiculoFav) {
   $("#documento").html(infoVehiculoFav.usuario.persona.documento.toUpperCase());
   $("#genero").html(infoVehiculoFav.usuario.persona.genero.toUpperCase());
   $("#nombre").html(infoVehiculoFav.usuario.persona.nombre.toUpperCase());
-  $("#movimientoParqueadero").on("click", function () {
-    GuardarMovimientoParqueadero(infoVehiculoFav);
-  });
+  idvehiculofav = infoVehiculoFav;
 }
 
 function GuardarMovimientoParqueadero(infoVehiculoFav) {
-  console.log(infoVehiculoFav);
   var coincidenDatos = $("input[name='coinciden']:checked").val();
   var tipoDeMovimiento = $("input[name='movimiento']:checked").val();
   if (coincidenDatos === undefined) {
@@ -127,10 +128,92 @@ function GuardarMovimientoParqueadero(infoVehiculoFav) {
 
   if (coincidenDatos === "no") {
     AlertIncorrecta(
-      "El usuario debe <b>VALIDAR</b> con un <b>DOCUMENTO</b> o <b>MODIFICAR</b> sus datos antes de realizar el movimiento en el parqueadero"
+      "El usuario debe <b>VALIDAR</b> su <br>identidad  con un <br> <b>DOCUMENTO</b>  y/o <b>MODIFICAR</b> <br>sus datos antes de realizar <br>el movimiento en el parqueadero"
     );
+    $("#video").html("");
+    $("#infoCodigo").addClass("hidden");
+    $("#informacionInstructivo").removeClass("hidden");
+    return;
   }
-  console.log(coincidenDatos, tipoDeMovimiento);
+  spinner("Registrando el movimiento del parqueadero");
+  const url = "/api/registrarMovimientoParqueadero";
+  const data = {
+    tipoDeMovimiento: tipoDeMovimiento,
+    idUsuarioOperador: idUsuario,
+    idVehiculoFav: infoVehiculoFav._id,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result === "Movimiento registrado") {
+        AlertCorrectX(
+          "<b>Ahora</b> puedes dejar que el vehículo <b>AVANCE</b>"
+        );
+        $("#infoCodigo").addClass("hidden");
+        limpiarDatos();
+        $("#spinner").hide();
+        $("#informacionInstructivo").removeClass("hidden");
+        if (infoVehiculoFav.tipoVehiculo === "Bicicleta") {
+          RegistrarAuditoria(
+            "El usuario permite el movimiento:" +
+              tipoDeMovimiento.toUpperCase() +
+              " en el parqueadero del vehiculo: " +
+              infoVehiculoFav.tipoVehiculo.toUpperCase() +
+              " de marca: " +
+              infoVehiculoFav.marca.toUpperCase() +
+              " y color: " +
+              infoVehiculoFav.color.toUpperCase()
+          );
+        } else {
+          RegistrarAuditoria(
+            "El usuario permite el movimiento:" +
+              tipoDeMovimiento.toUpperCase() +
+              " en el parqueadero del vehiculo: " +
+              infoVehiculoFav.tipoVehiculo.toUpperCase() +
+              " de marca: " +
+              infoVehiculoFav.marca.toUpperCase() +
+              " y placas: " +
+              infoVehiculoFav.placa.toUpperCase()
+          );
+        }
+      }
+    })
+    .catch((error) => {
+      AlertIncorrecta(
+        "No se puede registar el ingreso por favor<br> intentalo nuevamente..."
+      );
+      $("#spinner").hide();
+    });
+}
+
+function RegistrarAuditoria(textoAuditoria) {
+  spinner("Registrando auditoria");
+  const url = "/api/registrarAuditoriaModelo";
+  const data = {
+    idusuario: idUsuario,
+    textoAuditoria: textoAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo registrar la auditoria, algo falló");
+      $("#spinner").hide();
+    });
 }
 
 function limpiarDatos() {

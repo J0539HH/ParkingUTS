@@ -75,9 +75,13 @@
             </button>
 
           </div>
-          <div id="lector-qr">
+          <div id="lector-qr" class="hidden">
             <video id="video" width="640" height="480" autoplay
               playsinline></video>
+
+          </div>
+          <div id="informacionInstructivo">
+            <img src="../../Multimedia/Instructivo.png" class="instructivoImg">
 
           </div>
           <div id="infoCodigo" class="hidden">
@@ -143,8 +147,8 @@
                       <p id="color"> </p>
                     </div>
                   </div>
-                    <h1 class="h1TitleForm">Llena la siguiente información  </h1>
-                  <div class="row mt-2 contenedorPreguntaDatosCoinciden" >
+                  <h1 class="h1TitleForm">Llena la siguiente información </h1>
+                  <div class="row mt-2 contenedorPreguntaDatosCoinciden">
                     <div
                       class="col-md-6 d-flex">
                       <label for="coinciden">¿Los datos coinciden?</label>
@@ -154,7 +158,7 @@
                       <label style="width: 10%;" for="si">Sí</label>
                       <input class="OpcionesRadio" type="radio" id="si"
                         name="coinciden" value="si">
-                      <label  style="width: 10%;" for="no">No</label>
+                      <label style="width: 10%;" for="no">No</label>
                       <input class="OpcionesRadio" type="radio" id="no"
                         name="coinciden" value="no">
                     </div>

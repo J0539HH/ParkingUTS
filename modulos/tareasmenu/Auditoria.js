@@ -4,6 +4,9 @@ var idUsuario = null;
 $(document).ready(function () {
   verificarSesion();
   cargarAuditorias();
+  $("#recargarConsulta").on("click", function () {
+    cargarAuditorias();
+  });
 
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
@@ -49,7 +52,7 @@ $(document).ready(function () {
 });
 
 function cargarAuditorias() {
-  spinner("Cargando servicios, por favor espere");
+  spinner("Cargando auditorias, por favor espere...");
   const url = "/api/auditoriasTotal";
   fetch(url)
     .then((response) => response.json())

@@ -27,6 +27,51 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+// Registrar movimieinto del parqueadero / LectorQR (PARKING-UTS)
+router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("usuarios");
+    const query = {
+      _id: new ObjectId(req.body.idUsuarioOperador),
+      estado: true,
+    };
+    const result = await collection.findOne(query, { returnDocument: "After" });
+    if (result) {
+      const collectionVF = database.collection("vehiculoFavorito");
+      const queryVF = {
+        _id: new ObjectId(req.body.idVehiculoFav),
+      };
+      const resultvf = await collectionVF.findOne(queryVF, {
+        returnDocument: "After",
+      });
+
+      if (resultvf) {
+        const fechaMovimiento = moment().tz("America/Bogota").format();
+        const collectionMovimientos = database.collection(
+          "movimientosParqueadero"
+        );
+        const resultInsert = await collectionMovimientos.insertOne({
+          vehiculo: resultvf,
+          usuarioOperador: result,
+          fechaMovimiento: fechaMovimiento,
+          tipoMovimiento: req.body.tipoDeMovimiento,
+        });
+        if (resultInsert) {
+          res.json("Movimiento registrado");
+        } else {
+          res.status(400).json({ error: "No se pudo registrar el movimiento" });
+        }
+      } else {
+        res.status(400).json({ error: "Vehiculo invalido" });
+      }
+    } else {
+      res.status(400).json({ error: "Usuario invalido" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 //Cargar informacion del codigo QR / LectorQR (PARKING-UTS)
 router.post("/validarQR", jsonParser, async (req, res) => {
   try {
@@ -35,7 +80,6 @@ router.post("/validarQR", jsonParser, async (req, res) => {
       _id: new ObjectId(req.body.idusuario),
       estado: true,
     };
-
     const result = await collection.findOne(query, { returnDocument: "After" });
     if (result) {
       const collectionVF = database.collection("vehiculoFavorito");
