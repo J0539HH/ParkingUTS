@@ -35,7 +35,9 @@ router.post("/modificarVehiculo", jsonParser, async (req, res) => {
       _id: new ObjectId(idusuario),
     };
     const collectionU = database.collection("usuarios");
-    const resultU = await collectionU.findOne(queryU);
+    const resultU = await collectionU.findOne(queryU, {
+      returnDocument: "After",
+    });
     if (resultU) {
       const queryV = {
         _id: new ObjectId(idvehiculo),
@@ -47,6 +49,7 @@ router.post("/modificarVehiculo", jsonParser, async (req, res) => {
         res.json("El vehiculo no se puede modificar");
       } else {
         const updateObject = {
+          usuario: resultU,
           marca: marca,
           color: color,
           linea: linea,
