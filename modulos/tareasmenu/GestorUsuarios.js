@@ -16,14 +16,35 @@ $(document).ready(function () {
     ValidarActualizacion();
   });
 
+  $("#atrasCrear").on("click", function () {
+    $("#netxStep, #contenedorDatosPersonales, #cerrarCrear").removeClass(
+      "hidden"
+    );
+    $("#infoSubtitulo").html("Datos personales:");
+    $("#agregarNewUser, #atrasCrear, #contenedorDatosUsuario").addClass(
+      "hidden"
+    );
+  });
+
   $("#BotonBusqueda").on("click", function () {
     BuscarXfiltros();
+  });
+
+  $("#netxStep").on("click", function () {
+    ValidarDatosPersonales();
   });
 
   $("#agregarNewUser").on("click", function () {
     ValidarInsercion();
   });
   $("#abrirModal").on("click", function () {
+    $("#netxStep, #contenedorDatosPersonales, #cerrarCrear").removeClass(
+      "hidden"
+    );
+    $("#infoSubtitulo").html("Datos personales:");
+    $("#agregarNewUser, #atrasCrear, #contenedorDatosUsuario").addClass(
+      "hidden"
+    );
     limpiarModal();
   });
 
@@ -124,7 +145,12 @@ function CargarTablaUsuarios(tableData) {
     columns: [
       { data: "usuario", className: " text-center" },
       { data: "persona.nombre", className: " text-center" },
-      { data: "rol", className: " text-center" },
+      {
+        data: "rol",
+        className: "text-center",
+        render: (data) => data.toUpperCase(),
+      },
+
       {
         data: "estado",
         className: " text-center",
@@ -142,10 +168,12 @@ function CargarTablaUsuarios(tableData) {
         className: " text-center",
         render: function (data, type, row) {
           return (
-            '<a class="btn fondoVerde btn-primary btn-sm btnEditarGestion" id="'+row._id+'" onclick="editarUsuario(this.id)">Editar</a>            ' +
-            '<a class="btn btn-danger btn-sm ml-1" onclick="ValidarEliminacion(' +
+            '<a class="btn fondoVerde btn-primary btn-sm btnEditarGestion" id="' +
             row._id +
-            ')">Eliminar</a>'
+            '" onclick="editarUsuario(this.id)">Editar</a>            ' +
+            '<a class="btn btn-danger btn-sm ml-1" id="' +
+            row._id +
+            '" onclick="ValidarEliminacion(this.id)">Eliminar</a>'
           );
         },
       },
@@ -233,7 +261,7 @@ function ValidarActualizacion(IdUsuario) {
     AlertIncorrectX("Debes agregar un nombre de usuario");
     return;
   }
- 
+
   if (IdRolEdit === "") {
     AlertIncorrectX("Debes agregar un tipo de usuario");
     return;
@@ -300,7 +328,7 @@ function ValidarActualizacion(IdUsuario) {
 function RealizarModificacion(IdUsuario) {
   spinner("Modificando datos del usuario, por favor espere");
   let UsuarioEdit = $("#usuarioMod").val().toUpperCase();
-  let IdRolEdit = $("#tipoUsuarioMod").val();
+  let tipoUsuario = $("#tipoUsuarioMod").val();
   let NombreEdit = $("#nombreMod").val();
   let correo = $("#correoMod").val();
   let estado = $("#estadoMod").val();
@@ -314,7 +342,7 @@ function RealizarModificacion(IdUsuario) {
   const dataM = {
     idusuario: IdUsuario,
     usuario: UsuarioEdit,
-    idrol: IdRolEdit,
+    tipoUsuario: tipoUsuario,
     nombre: NombreEdit,
     estado: EstadoEdit,
     correo: correo,
@@ -331,7 +359,7 @@ function RealizarModificacion(IdUsuario) {
       let descripcionAuditoria =
         "Modificación de los datos del usuario con id:" + IdUsuario;
       AlertCorrectX("Usuario Modificado exitosamente!");
-      RegistrarAuditoriaGestionU(descripcionAuditoria);
+      RegistrarAuditoria(descripcionAuditoria);
       $("#spinner").hide();
       cargarUsuarios();
     })
@@ -344,6 +372,31 @@ function RealizarModificacion(IdUsuario) {
   $("#modificarUsuarioModal").modal("hide");
 }
 
+function RegistrarAuditoria(textoAuditoria) {
+  spinner("Registrando auditoria");
+  const url = "/api/registrarAuditoriaModelo";
+  const data = {
+    idusuario: idUsuario,
+    textoAuditoria: textoAuditoria,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      $("#spinner").hide();
+      return;
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo registrar la auditoria, algo falló");
+      $("#spinner").hide();
+    });
+}
+
 function limpiarModalEdit() {
   $("#usuarioMod").val("");
   $("#contraseñaMod").val("");
@@ -353,31 +406,31 @@ function limpiarModalEdit() {
 }
 
 function ValidarInsercion() {
-  let NewUsuario = $("#usuario").val();
-  let NewPass = $("#contraseña").val();
-  let NewTipoU = $("#tipoUsuario").val();
-  let NewName = $("#nombre").val();
-  let Correo = $("#correo").val();
+  let NewUsuario = $("#usuarioR").val();
+  let NewPass = $("#passwordR").val();
+  let NewPassC = $("#passwordCR").val();
+  let NewTipoU = $("#tipoUsuarioR").val();
+  let estado = $("#estadoR").val();
 
   if (NewUsuario === "") {
-    AlertIncorrectX("Debes agregar un nombre de usuario");
+    AlertIncorrecta("Debes agregar un nombre de <b>usuario</b>");
     return;
   }
   if (NewPass === "") {
-    AlertIncorrectX("Debes agregar una contraseña para el usuario");
+    AlertIncorrecta("Debes agregar una <b>contraseña</b> para el usuario");
+    return;
+  }
+  if (NewPass !== NewPassC) {
+    AlertIncorrecta("Las contraseñas deben  <b>conincidir</b>");
     return;
   }
   if (NewTipoU === "") {
-    AlertIncorrectX("Debes agregar un tipo de usuario");
+    AlertIncorrecta("Debes agregar un <b>tipo de usuario</b>");
     return;
   }
-  if (Correo === "") {
-    AlertIncorrectX("Debes agregar correo electronico");
-    return;
-  }
-  if (NewName === "") {
-    AlertIncorrectX(
-      "Debes agregar el nombre de la persona que utilizará el perfil"
+  if (estado === "") {
+    AlertIncorrecta(
+      "Debes agregar un <b>estado</b> para el usuario a registrar"
     );
     return;
   }
@@ -427,18 +480,36 @@ function ValidarInsercion() {
 
 function InsertarUsuario() {
   spinner("Registrando usuario, por favor espere");
-  let NewUsuario = $("#usuario").val().toUpperCase();
-  let NewPass = $("#contraseña").val();
-  let NewTipoU = parseInt($("#tipoUsuario").val());
-  let NewName = $("#nombre").val();
-  let Correo = $("#correo").val();
+  let NewUsuario = $("#usuarioR").val();
+  let NewPass = $("#passwordR").val();
+  let NewTipoU = $("#tipoUsuarioR").val();
+  let estado = $("#estadoR").val();
+  let nombre = $("#nombrePersona").val();
+  let documento = $("#documentoPersona").val();
+  let genero = $("#generoPersona").val();
+  let carrera = $("#carreraPersona").val();
+  let celular = $("#celularPersona").val();
+  let direccion = $("#direccionPersona").val();
+  let correo = $("#correoPersona").val();
+
+  let estadoBool = false;
+  if (estado === "true") {
+    estadoBool = true;
+  }
+
   const url = "/api/NewUser";
   const data = {
-    usuario: NewUsuario,
+    usuario: NewUsuario.toUpperCase(),
     password: SHA256(NewPass),
-    idrol: NewTipoU,
-    nombre: NewName,
-    correo: Correo,
+    rol: NewTipoU,
+    estado: estadoBool,
+    nombre: nombre,
+    documento: documento,
+    genero: genero,
+    carrera: carrera,
+    celular: celular,
+    direccion: direccion,
+    correo: correo,
   };
   fetch(url, {
     method: "POST",
@@ -449,36 +520,46 @@ function InsertarUsuario() {
   })
     .then((response) => response.json())
     .then((result) => {
-      AlertCorrectX("Usuario registrado en el sistema ");
-      let descripcionAuditoria =
-        "Se registra un nuevo usuario para :" + NewName;
-      RegistrarAuditoriaGestionU(descripcionAuditoria);
-      $("#spinner").hide();
-      cargarUsuarios();
+      if (result === "Login Utilizado") {
+        AlertIncorrectX("El login a registrar ya está en uso");
+        return;
+      } else {
+        AlertCorrectX("Usuario registrado en el sistema ");
+        let descripcionAuditoria =
+          "Se registra un nuevo usuario para :" + nombre;
+        RegistrarAuditoria(descripcionAuditoria);
+        $("#spinner").hide();
+        limpiarModal();
+        cargarUsuarios();
+      }
     })
     .catch((error) => {
       console.error("Error al ingresar:", error);
       $("#spinner").hide();
     });
 
-  limpiarModal();
   $("#agregarUsuarioModal").modal("hide");
 }
 
 function limpiarModal() {
-  $("#usuario").val("");
-  $("#contraseña").val("");
-  $("#tipoUsuario").val("");
-  $("#nombre").val("");
+  $("#nombrePersona").val("");
+  $("#documentoPersona").val("");
+  $("#generoPersona").val("");
+  $("#carreraPersona").val("");
+  $("#celularPersona").val("");
+  $("#direccionPersona").val("");
+  $("#correoPersona").val("");
+  $("#usuarioR").val("");
+  $("#passwordR").val("");
+  $("#passwordCR").val("");
+  $("#tipoUsuarioR").val("");
+  $("#estadoR").val("");
 }
 
 function ValidarEliminacion(Id) {
   Swal.fire({
     title: "",
-    html:
-      "¿Estás seguro de eliminar el usuario con <b>identificador: " +
-      Id +
-      "</b> del sistema?",
+    html: "¿Estás seguro de eliminar el usuario del sistema?",
     imageUrl: "../../Multimedia/icoAlertWarning.svg",
     imageWidth: 80,
     imageHeight: 80,
@@ -519,6 +600,103 @@ function ValidarEliminacion(Id) {
   });
 }
 
+function ValidarDatosPersonales() {
+  let nombre = $("#nombrePersona").val();
+  let documento = $("#documentoPersona").val();
+  let genero = $("#generoPersona").val();
+  let carrera = $("#carreraPersona").val();
+  let celular = $("#celularPersona").val();
+  let direccion = $("#direccionPersona").val();
+  let correo = $("#correoPersona").val();
+
+  if (nombre === "") {
+    AlertIncorrecta(
+      "Debes introducir un <b>nombre</b> de la persona a registrar"
+    );
+    return;
+  }
+
+  if (documento === "") {
+    AlertIncorrecta(
+      "Debes introducir un <b>documento</b> de la persona a registrar"
+    );
+    return;
+  }
+  if (genero === "") {
+    AlertIncorrecta(
+      "Debes introducir un <b>genero</b> de la persona a registrar"
+    );
+    return;
+  }
+  if (carrera === "") {
+    AlertIncorrecta(
+      "Debes introducir una <b>carrera</b> de la persona a registrar"
+    );
+    return;
+  }
+  if (celular === "") {
+    AlertIncorrecta(
+      "Debes introducir un <b>celular</b> de la persona a registrar"
+    );
+    return;
+  }
+  if (direccion === "") {
+    AlertIncorrecta(
+      "Debes introducir una <b>direccion</b> de la persona a registrar"
+    );
+    return;
+  }
+  if (correo === "") {
+    AlertIncorrecta(
+      "Debes introducir una <b>correo</b> de la persona a registrar"
+    );
+    return;
+  }
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(correo)) {
+    AlertIncorrecta("El formato del correo electrónico no es válido");
+    return;
+  }
+
+  spinner(
+    "Validando la disponibilidad del documento a registrar, por favor espere.."
+  );
+  const url = "/api/findPersonByDocument";
+  const data = {
+    documento: documento,
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result === "Disponible") {
+        $("#infoSubtitulo").html("Datos del usuario: ");
+        $("#netxStep, #contenedorDatosPersonales, #cerrarCrear").addClass(
+          "hidden"
+        );
+        $("#agregarNewUser, #atrasCrear,#contenedorDatosUsuario").removeClass(
+          "hidden"
+        );
+        $("#spinner").hide();
+      } else {
+        AlertIncorrecta("El documento ya se encuentra registrado");
+        $("#spinner").hide();
+        return;
+      }
+    })
+    .catch((error) => {
+      AlertIncorrecta("No se pudo validar el documento");
+      $("#spinner").hide();
+      return;
+    });
+}
+
 function EliminarDefinitivo(idUser) {
   spinner("Eliminado el usuario, por favor espere");
   const url = "/api/deleteUser";
@@ -541,28 +719,5 @@ function EliminarDefinitivo(idUser) {
     .catch((error) => {
       AlertIncorrecta("No se pudo cargar el usuario");
       $("#spinner").hide();
-    });
-}
-
-function RegistrarAuditoriaGestionU(descripcionAuditoria) {
-  spinner("Registrando Auditoria");
-  const url = "/api/NewAudtoria";
-  const data = {
-    idusuario: idUsuario,
-    descripcion: descripcionAuditoria,
-  };
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      $("#spinner").hide();
-    })
-    .catch((error) => {
-      console.error("Error al ingresar:", error);
     });
 }

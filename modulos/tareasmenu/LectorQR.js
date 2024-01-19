@@ -103,15 +103,15 @@ function setearInformacion(idusuarioparqueadero) {
 }
 
 function llenarDatos(infoVehiculoFav) {
-  $("#color").html(infoVehiculoFav.color.toUpperCase());
-  $("#placa").html(infoVehiculoFav.placa.toUpperCase());
-  $("#linea").html(infoVehiculoFav.linea.toUpperCase());
-  $("#marca").html(infoVehiculoFav.marca.toUpperCase());
-  $("#tipovehiculo").html(infoVehiculoFav.tipoVehiculo.toUpperCase());
+  $("#color").html(infoVehiculoFav.vehiculo.color.toUpperCase());
+  $("#placa").html(infoVehiculoFav.vehiculo.placa.toUpperCase());
+  $("#linea").html(infoVehiculoFav.vehiculo.linea.toUpperCase());
+  $("#marca").html(infoVehiculoFav.vehiculo.marca.toUpperCase());
+  $("#tipovehiculo").html(infoVehiculoFav.vehiculo.tipoVehiculo.toUpperCase());
   $("#documento").html(infoVehiculoFav.usuario.persona.documento.toUpperCase());
   $("#genero").html(infoVehiculoFav.usuario.persona.genero.toUpperCase());
   $("#nombre").html(infoVehiculoFav.usuario.persona.nombre.toUpperCase());
-  idvehiculofav = infoVehiculoFav;
+  idvehiculofav = infoVehiculoFav.vehiculo;
 }
 
 function GuardarMovimientoParqueadero(infoVehiculoFav) {

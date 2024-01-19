@@ -27,6 +27,25 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
+//Validar Documento para pre-registro /
+router.post("/findPersonByDocument", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("persona");
+    const query = {
+      documento: req.body.documento,
+    };
+    const result = await collection.findOne(query);
+    if (result) {
+      res.json(result);
+    } else {
+      res.json("Disponible");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Modificar vehiculo / Mis vehiculos (PARKING-UTS)
 router.post("/modificarVehiculo", jsonParser, async (req, res) => {
   try {
@@ -137,8 +156,14 @@ router.post("/validarQR", jsonParser, async (req, res) => {
       const resultvf = await collectionVF.findOne(queryVF, {
         returnDocument: "After",
       });
-      res.json(resultvf);
+      const respuesta = {
+        usuario: result,
+        vehiculo: resultvf,
+      };
+
+      res.json(respuesta);
     } else {
+      console.log(result);
       res.status(400).json({ error: "Usuario invalido" });
     }
   } catch (err) {
@@ -370,12 +395,22 @@ router.post("/ChangePersonalInformation", jsonParser, async (req, res) => {
         _id: new ObjectId(vehiculofavorito),
       };
       const resultV = await collectionV.findOne(queryV);
+      const updateObjectV = {
+        usuario: result.value,
+      };
       if (resultV) {
         const collectionVF = database.collection("vehiculoFavorito");
         const deleteQuery = {
           "usuario._id": new ObjectId(usuarioModificado._id),
         };
         await collectionVF.deleteMany(deleteQuery);
+        await collectionV.findOneAndUpdate(
+          { _id: new ObjectId(resultV._id) },
+          {
+            $set: updateObjectV,
+          },
+          { returnDocument: "After" }
+        );
         await collectionVF.insertOne(resultV);
       } else {
         res.status(404).send("Vehiculo no encontrado");
@@ -663,16 +698,29 @@ router.post("/documentoRecuperable", jsonParser, async (req, res) => {
 // Eliminar usuario especifico / GESTOR DE USUARIOS (PARKING-UTS) - NO FUNCIONAL
 router.post("/deleteUser", async (req, res) => {
   try {
-    const idusuario = req.body.idusuario;
-    const database = client.db("docutech");
     const collection = database.collection("usuarios");
+    const collectionP = database.collection("persona");
+    const queryU = {
+      _id: new ObjectId(req.body.idusuario),
+    };
+    const resultU = await collection.findOne(queryU, {
+      returnDocument: "After",
+    });
+
     const result = await collection.deleteOne({
-      idusuario: idusuario,
+      _id: new ObjectId(req.body.idusuario),
     });
     if (result.deletedCount > 0) {
-      res.json({ success: true });
+      const resultDP = await collectionP.deleteOne({
+        documento: resultU.persona.documento,
+      });
+      if (resultDP.deletedCount > 0) {
+        res.json({ success: true });
+      } else {
+        res.status(404).send("No se pudo eliminar");
+      }
     } else {
-      res.status(404).send("Usuario no encontrado");
+      res.status(404).send("No se pudo eliminar");
     }
   } catch (err) {
     console.error(err);
@@ -700,31 +748,50 @@ router.get("/usuariosTotal", jsonParser, async (req, res) => {
 router.post("/EditUser", jsonParser, async (req, res) => {
   try {
     const {
+      idusuario: idusuario,
       usuario: usuario,
-      password: password,
-      idrol: idrol,
+      tipoUsuario: tipoUsuario,
       nombre: nombre,
       estado: estado,
       correo: correo,
     } = req.body;
-    const idusuario = parseInt(req.body.idusuario);
-    const idrolInt = parseInt(idrol);
     const estadoBool = estado;
     const collection = database.collection("usuarios");
-    const result = await collection.updateOne(
-      { idusuario: idusuario },
+    const updateObject = {
+      usuario: usuario,
+      rol: tipoUsuario,
+      "persona.nombre": nombre,
+      estado: estadoBool,
+      "persona.correo": correo,
+    };
+    const resultM = await collection.findOneAndUpdate(
       {
-        $set: {
-          usuario: usuario,
-          password: password,
-          idrol: idrolInt,
-          nombre: nombre,
-          estado: estadoBool,
-          correo: correo,
-        },
-      }
+        _id: new ObjectId(idusuario),
+      },
+      {
+        $set: updateObject,
+      },
+      { returnDocument: "After" }
     );
-    res.json(result);
+    if (resultM.value) {
+      const collectionP = database.collection("persona");
+      const updateObjectP = {
+        nombre: nombre,
+        correo: correo,
+      };
+      const resultMP = await collectionP.findOneAndUpdate(
+        {
+          _id: new ObjectId(resultM.value.persona._id),
+        },
+        {
+          $set: updateObjectP,
+        },
+        { returnDocument: "After" }
+      );
+      res.json(resultM);
+    } else {
+      res.status(500).json({ error: "No se pudo modificar el usuario" });
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
@@ -734,22 +801,62 @@ router.post("/EditUser", jsonParser, async (req, res) => {
 // Registrar nuevo usuario desde administracion de usuarios / GESTOR DE USUARIOS (PARKING-UTS)
 router.post("/NewUser", jsonParser, async (req, res) => {
   try {
-    const { usuario, password, idrol, nombre, correo } = req.body;
-    const collection = database.collection("usuarios");
-
-    const lastUser = await collection.findOne({}, { sort: { idusuario: -1 } });
-    const newId = lastUser ? lastUser.idusuario + 1 : 1;
-
-    const result = await collection.insertOne({
-      idusuario: newId,
+    const {
       usuario,
       password,
-      idrol,
+      rol,
+      estado,
       nombre,
-      estado: true,
+      documento,
+      genero,
+      carrera,
+      celular,
+      direccion,
       correo,
+    } = req.body;
+    const collectionU = database.collection("usuarios");
+    const queryU = {
+      usuario: usuario,
+    };
+    const resultU = await collectionU.findOne(queryU, {
+      returnDocument: "After",
     });
-    res.json(result);
+
+    if (resultU === null) {
+    } else {
+      res.json("Login Utilizado");
+    }
+    const collectionP = database.collection("persona");
+    const resultP = await collectionP.insertOne(
+      {
+        nombre: nombre,
+        documento: documento,
+        genero: genero,
+        carrera: carrera,
+        celular: celular,
+        direccion: direccion,
+        correo: correo,
+      },
+      { returnDocument: "After" }
+    );
+    if (resultP) {
+      const queryPF = {
+        documento: documento,
+      };
+      const resultPF = await collectionP.findOne(queryPF, {
+        returnDocument: "After",
+      });
+      const resultIU = await collectionU.insertOne({
+        usuario: usuario,
+        password: password,
+        token: null,
+        ultimoingreso: null,
+        rol: rol,
+        estado: estado,
+        persona: resultPF,
+      });
+      res.json(resultIU);
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
@@ -777,7 +884,6 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
     if (typeof req.body.estado === "boolean") {
       query.estado = req.body.estado;
     }
-    console.log(query);
     const result = await collection.find(query).toArray();
     if (result.length > 0) {
       res.json(result);

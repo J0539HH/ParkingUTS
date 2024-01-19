@@ -943,6 +943,21 @@ div.swal2-container div.swal2-popup.swal2-modal div.swal2-html-container {
   overflow: initial;
 }
 
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny {
+  background-color: rgb(226, 65, 62) !important;
+  border: none !important;
+}
+
+div.swal2-container
+  div.swal2-popup.swal2-modal
+  div.swal2-actions
+  button.swal2-deny:hover {
+  background-color: red !important;
+}
+
 div.swal2-container div.swal2-popup.swal2-modal div.swal2-actions {
   margin: 0 auto;
   display: flex;

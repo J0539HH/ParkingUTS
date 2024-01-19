@@ -92,11 +92,10 @@ function verificarSesionM() {
   fetch("/api/sesion")
     .then((response) => response.json())
     .then((data) => {
-      const idusuario = data.idusuario;
       rolUsuario = data.rol;
       idUsuario = data.idusuario;
       verificarAccesos(data.nombre);
-      if (idusuario === undefined || idusuario === null) {
+      if (idUsuario === undefined || idUsuario === null) {
         $("#ContenedorTotal").addClass("hidden");
         AlertIncorrectX(
           "Estas tratando de acceder al sistema sin credenciales"
@@ -112,34 +111,6 @@ function verificarSesionM() {
 }
 
 function verificarAccesos(Nombre) {
-  // Opciones de un  cliente
-  if (rolUsuario === 2) {
-    $("#ContenedorMiPerfil").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
-    $("#ContenedorMiHistorial").removeClass("hidden");
-    $("#ContainerMenu").addClass("centrarBotones");
-    $("#infoUsuario").html(
-      "Hola <b>" +
-        Nombre +
-        "</b>" +
-        ", hemos identificado que eres un usuario del tipo <b>CLIENTE</b>.<br>En el menú tendrás la opción de crear solicitudes de mantenimiento, ver el historial de tus solicitudes anteriores y hacer un seguimiento específico de cada una de ellas. <br>Gracias por preferirnos como tu gestor de mantenimientos!"
-    );
-  }
-
-  // Opciones de un  tecnico
-  if (rolUsuario === 3) {
-    $("#ContenedorGestionServicios").removeClass("hidden");
-    $("#ContenedorConsultarServicios").removeClass("hidden");
-    $("#ContenedorAsignados").removeClass("hidden");
-    $("#ContainerMenu").addClass("centrarBotones");
-    $("#infoUsuario").html(
-      "Hola <b>" +
-        Nombre +
-        "</b>" +
-        ", hemos identificado que eres un usuario del tipo <b>TECNICO</b>. <br>Dentro de las opciones de tu menú, puedes administrar las solicitudes de mantenimiento que te han sido asignadas y también puedes acceder al historial y los detalles específicos de cada una de ellas.<br>Esperamos que tengas un dia muy productivo!"
-    );
-  }
-
   // Opciones de un  administrador
   if (rolUsuario === "administrador") {
     $("#ContenedorGestionUsuarios").removeClass("hidden");
@@ -154,6 +125,27 @@ function verificarAccesos(Nombre) {
         Nombre +
         "</b>" +
         ", hemos identificado que eres un usuario <br><b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del menu disponibles, gracias por preferir nuestro sistema!"
+    );
+  } else if (rolUsuario === "estudiante") {
+    $("#ContenedorMiPerfil").removeClass("hidden");
+    $("#ContenedorMisVehiculos").removeClass("hidden");
+    $("#ContenedorMiQR").removeClass("hidden");
+
+    $("#infoUsuario").html(
+      "Hola <b>" +
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un <b>ESTUDIANTE.</b> <br> Utiliza esta plataforma para validar tu identidad."
+    );
+  } else if (rolUsuario === "controlador") {
+    $("#ContenedorMiPerfil").removeClass("hidden");
+    $("#ContenedorLectorQR").removeClass("hidden");
+
+    $("#infoUsuario").html(
+      "Hola <b>" +
+        Nombre +
+        "</b>" +
+        ", hemos identificado que eres un <b>OPERADOR.</b> <br> Utiliza esta plataforma para permitir ingresos y salidas del parqueadero."
     );
   }
 

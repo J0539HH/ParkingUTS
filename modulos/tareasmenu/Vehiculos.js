@@ -433,7 +433,7 @@ function validarRegistro() {
       "NO APLICA"
     );
   } else {
-    AlertIncorrecta("Estas tratando de registrar un vehiculo invalido?");
+    AlertIncorrecta("Estas tratando de registrar un vehiculo inválido?");
     return;
   }
 }
