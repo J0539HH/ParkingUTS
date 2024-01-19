@@ -81,7 +81,7 @@ input[type="radio"]:checked {
 
 #ContenedorBotonQR {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   margin-top: 10px;
 }
 
