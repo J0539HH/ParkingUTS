@@ -27,7 +27,52 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
-// Registrar movimieinto del parqueadero / LectorQR (PARKING-UTS)
+// Modificar vehiculo / Mis vehiculos (PARKING-UTS)
+router.post("/modificarVehiculo", jsonParser, async (req, res) => {
+  try {
+    const { idusuario, idvehiculo, marca, color, linea } = req.body;
+    const queryU = {
+      _id: new ObjectId(idusuario),
+    };
+    const collectionU = database.collection("usuarios");
+    const resultU = await collectionU.findOne(queryU);
+    if (resultU) {
+      const queryV = {
+        _id: new ObjectId(idvehiculo),
+        "usuario._id": new ObjectId(idusuario),
+      };
+      const collectionV = database.collection("vehiculos");
+      const resultV = await collectionV.findOne(queryV);
+      if (resultV === null) {
+        res.json("El vehiculo no se puede modificar");
+      } else {
+        const updateObject = {
+          marca: marca,
+          color: color,
+          linea: linea,
+        };
+        const resultVM = await collectionV.findOneAndUpdate(
+          {
+            _id: new ObjectId(idvehiculo),
+            "usuario._id": new ObjectId(idusuario),
+          },
+          {
+            $set: updateObject,
+          },
+          { returnDocument: "After" }
+        );
+        res.json(resultVM);
+      }
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Registrar movimiento del parqueadero / LectorQR (PARKING-UTS)
 router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("usuarios");

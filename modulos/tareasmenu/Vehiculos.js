@@ -26,6 +26,12 @@ $(document).ready(function () {
     validarRegistro();
   });
 
+  $("#btnRegistrarE").on("click", function () {
+    let idVehiculoEditable = $("#btnRegistrarE").attr("idvehiculo");
+    let tipoVehiculo = $("#btnRegistrarE").attr("tipovehiculo");
+    validarModificacion(idVehiculoEditable, tipoVehiculo);
+  });
+
   $("#nuevoVehiculo").on("click", function () {
     $("#modalNewVehiculo").modal("show");
     limpiarDatos();
@@ -152,18 +158,15 @@ function cargarVehiculos() {
           var eliminarIcon = $(
             '<img class="accion-icon iconoAccion" src="../../Multimedia/borrar.png" alt="Eliminar">'
           ).attr("data-id", item._id);
-
           editarIcon.on("click", function () {
             editarVehiculo(item);
           });
-
           eliminarIcon.on("click", function () {
             eliminarVehiculo(item);
           });
 
           actionsCell.append(editarIcon, eliminarIcon);
           row.append(actionsCell);
-
           table.append(row);
         });
 
@@ -212,7 +215,8 @@ function cargarVehiculoFav() {
 }
 
 function editarVehiculo(info) {
-  console.log(info);
+  $("#btnRegistrarE").attr("idvehiculo", info._id);
+  $("#btnRegistrarE").attr("tipovehiculo", info.tipoVehiculo);
   limpiarDatosEditar();
   if (info.tipoVehiculo === "Carro") {
     $("#placaCarroE").val(info.placa);
@@ -295,7 +299,6 @@ function eliminarVehiculo(info) {
       // DENIED CODE
     }
   });
-  console.log(id);
 }
 
 function eliminarVehiculoDB(idVehiculo) {
@@ -421,10 +424,10 @@ function validarRegistro() {
     }
     RegistrarVehiculo(
       vehiculoSeleccionado,
-      "No aplica",
+      "NO APLICA",
       marcaCicla,
       ColorCicla,
-      "No aplica"
+      "NO APLICA"
     );
   } else {
     AlertIncorrecta("Estas tratando de registrar un vehiculo invalido?");
@@ -437,10 +440,10 @@ function RegistrarVehiculo(tipoVehiculo, placa, marca, color, linea) {
   const data = {
     idusuario: idUsuario,
     tipoVehiculo: tipoVehiculo,
-    placa: placa,
-    marca: marca,
-    color: color,
-    linea: linea,
+    placa: placa.toUpperCase(),
+    marca: marca.toUpperCase(),
+    color: color.toUpperCase(),
+    linea: linea.toUpperCase(),
   };
   fetch(url, {
     method: "POST",
@@ -498,6 +501,109 @@ function RegistrarAuditoria(textoAuditoria) {
     })
     .catch((error) => {
       AlertIncorrecta("No se pudo registrar la auditoria, algo falló");
+      $("#spinner").hide();
+    });
+}
+
+function validarModificacion(idvehiculo, tipoVehiculo) {
+  console.log(idvehiculo, tipoVehiculo);
+  let marca = "";
+  let color = "";
+  let placa = "";
+  let linea = "";
+  if (tipoVehiculo === "Bicicleta") {
+    marca = $("#MarcaCiclaE").val();
+    color = $("#ColorCiclaE").val();
+    placa = "NO APLICA";
+    linea = "NO APLICA";
+    if (marca === "") {
+      AlertIncorrecta("Debes ingresar una <b>marca</b> para la bicicleta");
+      return;
+    }
+    if (color === "") {
+      AlertIncorrecta("Debes ingresar una <b>color</b> para la bicicleta");
+      return;
+    }
+  } else if (tipoVehiculo === "Moto") {
+    marca = $("#marcasMotoE").val();
+    color = $("#ColorMotoE").val();
+    placa = $("#placaMotoE").val();
+    linea = $("#LineaMotoE").val();
+    if (marca === "") {
+      AlertIncorrecta("Debes ingresar una <b>marca</b> para la motocicleta");
+      return;
+    }
+    if (color === "") {
+      AlertIncorrecta("Debes ingresar una <b>color</b> para la motocicleta");
+      return;
+    }
+    if (placa === "") {
+      AlertIncorrecta("Debes ingresar una <b>placa</b> para la motocicleta");
+      return;
+    }
+    if (linea === "") {
+      AlertIncorrecta("Debes ingresar una <b>linea</b> para la motocicleta");
+      return;
+    }
+  } else {
+    marca = $("#marcasCarroE").val();
+    color = $("#ColorCarroE").val();
+    placa = $("#placaCarroE").val();
+    linea = $("#LineaCarroE").val();
+    if (marca === "") {
+      AlertIncorrecta("Debes ingresar una <b>marca</b> para la motocicleta");
+      return;
+    }
+    if (color === "") {
+      AlertIncorrecta("Debes ingresar una <b>color</b> para la motocicleta");
+      return;
+    }
+    if (placa === "") {
+      AlertIncorrecta("Debes ingresar una <b>placa</b> para la motocicleta");
+      return;
+    }
+    if (linea === "") {
+      AlertIncorrecta("Debes ingresar una <b>linea</b> para la motocicleta");
+      return;
+    }
+  }
+  spinner("Intentando modificar tu vehiculo");
+  const url = "/api/modificarVehiculo";
+  const data = {
+    idusuario: idUsuario,
+    idvehiculo: idvehiculo,
+    marca: marca.toUpperCase(),
+    color: color.toUpperCase(),
+    linea: linea.toUpperCase(),
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result === "El vehiculo no se puede modificar") {
+        AlertIncorrecta("El vehiculo no se puede modificar");
+        return;
+      } else {
+        AlertCorrectX("El vehiculo se ha modificado exitosamente");
+        RegistrarAuditoria(
+          "El usuario modifica la información del vehiculo con id:" + idvehiculo
+        );
+        $("#modalEditarVehiculo").modal("hide");
+        limpiarDatosEditar();
+        cargarVehiculos();
+        console.log(result);
+      }
+      $("#spinner").hide();
+    })
+    .catch((error) => {
+      AlertIncorrecta(
+        "No se pudo registrar el vehiculo, valida la información"
+      );
       $("#spinner").hide();
     });
 }
