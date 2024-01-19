@@ -206,6 +206,9 @@ function cargarVehiculoFav() {
           "background-position": "120px 13px",
         })
         .attr("favorito", "true");
+
+      var elemento = $("[alt='Eliminar'][data-id='" + idfav + "']");
+      elemento.hide();
       $("#spinner").hide();
     })
     .catch((error) => {
