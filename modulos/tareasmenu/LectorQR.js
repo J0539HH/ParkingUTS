@@ -95,6 +95,8 @@ function setearInformacion(idusuarioparqueadero) {
       $("#spinner").hide();
     })
     .catch((error) => {
+      $("#informacionInstructivo").removeClass("hidden");
+      $("#infoCodigo").addClass("hidden");
       AlertIncorrecta("No se pudo cargar la información");
       $("#spinner").hide();
     });
