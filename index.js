@@ -83,6 +83,7 @@ app.get(
     "/Multimedia/Star.png",
     "/Multimedia/candadoAbierto.png",
     "/Multimedia/generos.png",
+    "/Multimedia/iconoGit.png",
     "/Multimedia/instructivo.png",
     "/Multimedia/placa.png",
     "/Multimedia/colores.png",
