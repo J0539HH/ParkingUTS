@@ -896,6 +896,32 @@ router.post("/FiltrarUsuarios", jsonParser, async (req, res) => {
   }
 });
 
+// Cargar todas los movimientos del parqueadero del sistema / AUDITORIAS (PARKING-UTS)
+router.get("/movimientosTotal", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("movimientosParqueadero");
+
+    // Obtener los documentos y convertir las fechas de string a objetos de fecha
+    const result = await collection.find({}).toArray();
+    const resultWithDate = result.map((doc) => ({
+      ...doc,
+      fecha: new Date(doc.fechaMovimiento),
+    }));
+
+    // Ordenar por fecha en orden descendente
+    const sortedResult = resultWithDate.sort((a, b) => b.fecha - a.fecha);
+
+    if (sortedResult.length > 0) {
+      res.json(sortedResult);
+    } else {
+      res.status(404).send("No se encontraron auditorias");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Cargar todas las auditorias del sistema / AUDITORIAS (PARKING-UTS)
 router.get("/auditoriasTotal", jsonParser, async (req, res) => {
   try {

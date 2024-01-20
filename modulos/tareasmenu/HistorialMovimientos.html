@@ -4,10 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/png" href="../../Multimedia/gearDocu.svg" />
+    <link rel="icon" type="image/png" href="/Multimedia/favIcon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" />
-    <title>Reporte de servicios</title>
+    <title>Historial de movimientos</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,12 +20,10 @@
       href="../../lib/js/vendor/bootstrap-4.6.2-dist/css/bootstrap.min.css" />
     <!-- Bootstrap Icon-->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css"
-      />
+      href="../../lib/js/vendor/bootstrap-icons-1.2.2/font/bootstrap-icons.css" />
     <!-- OverlayScrollbars -->
     <link rel="stylesheet"
-      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css"
-      />
+      href="../../lib/js/vendor/OverlayScrollbars/css/OverlayScrollbars.min.css" />
     <!-- Sweet Alert -->
     <link rel="stylesheet"
       href="../../lib/js/vendor/sweetalert2/dist/sweetalert2.min.css" />
@@ -33,7 +31,7 @@
     <link rel="stylesheet" href="../../modulos/principal/styleGlobal.css" />
     <!-- CSS Site -->
     <link rel="stylesheet" href="menu.css" />
-    <link rel="stylesheet" href="ReporteServicios.css" />
+    <link rel="stylesheet" href="HistorialMovimientos.css" />
     <link rel="stylesheet" href="../../lib/jQuery/alertas/jquery.alerts.css" />
   </head>
 
@@ -45,13 +43,15 @@
             relative; background: white">
             <div class="container-fluid ">
               <div class="navbar-header">
-                <span style="float: left; font-size: 25px; margin: 20px 10px"><img
-                    src="../../Multimedia/logoDocu.svg"
-                    height="40px;" style="margin-right: 10px; background-color:
-                    #fff;" /></span>
+                <span
+                  style="float: left; font-size: 25px; margin: 20px 10px"><img
+                    id="logoCabecera"
+                    src="../../Multimedia/logoUnidades.png" /></span>
               </div>
-              <h6 class="InfoCabecera">Reporte total de servicios</h6>
-              <a id="VolverMenu" class="button button2 BotonCabecera">Volver al
+              <h6 class="InfoCabecera">Reporte movimientos en el
+                parqueadero</h6>
+              <a id="VolverMenu" class="button fondoRojo BotonCabecera">Volver
+                al
                 menú</a>
             </div>
           </nav>
@@ -59,20 +59,24 @@
         </div>
         <div id="contenedorCentral">
           <div id="ContenedorTabla" class="alta-theme ContenedorMax">
-            <h4 class="BlueSistem">Reporte total de servicios en el sistema</h4>
+            <div class="d-flex ">
+              <button id="recargarConsulta" style="margin: 0 0 0 0;"
+                class="buttonBtn btnPrimary">Recargar</button>
+            </div>
+            <h4 class="BlueSistem">Todos los movimientos del sistema</h4>
             <!--<div class="table-wrapper-scroll-y my-custom-scrollbar">-->
             <table id="tablaUsuarios" class="table table-striped"
               style="font-size: 12px; width: 100%">
               <thead id="thead1">
                 <tr>
-                  <th class="text-center">ID</th>
+                  <th class="text-center hidden">Fecha</th>
+                  <th class="text-center">Usuario</th>
+                  <th class="text-center">Fecha</th>
+                  <th class="text-center">Tipo de movimiento</th>
+                  <th class="text-center">Vehiculo</th>
                   <th class="text-center">Marca</th>
-                  <th class="text-center">Estado</th>
-                  <th class="text-center">Tipo de dispositivo</th>
-                  <th class="text-center">Cliente</th>
-                  <th class="text-center">Fecha entrada</th>
-                  <th class="text-center">Comentarios</th>
-                  <th class="text-center">Detalles</th>
+                  <th class="text-center">Placa</th>
+                  <th class="text-center">Color</th>
                 </tr>
               </thead>
               <tbody id="tbody1"></tbody>
@@ -91,8 +95,6 @@
       </div>
     </div>
 
-
-
     <!-- Spinner Site -->
     <div id="spinner" class="spinner">
       <div class="contSpinner">
@@ -109,7 +111,8 @@
     <!-- Popper -->
     <script src="../../lib/js/vendor/popper-1.16.0/popper.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <script
+      src="../../lib/js/vendor/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
     <!-- OverlayScrollbars -->
     <script
       src="../../lib/js/vendor/OverlayScrollbars/js/jquery.overlayScrollbars.min.js"
@@ -120,7 +123,7 @@
     <!-- Script Global -->
     <script src="../../modulos/principal/scriptGlobal.js"></script>
     <!-- Script Site -->
-    <script src="ReporteServicios.js"></script>
+    <script src="HistorialMovimientos.js"></script>
     <!-- Script Tables -->
     <script src="../../lib/datatables/datatables.min.js"></script>
   </body>

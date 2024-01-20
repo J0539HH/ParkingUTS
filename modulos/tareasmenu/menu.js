@@ -24,8 +24,8 @@ $(document).ready(function () {
     window.location.href = "../tareasmenu/GestorUsuarios.html";
   });
 
-  $("#myHistorial").on("click", function () {
-    window.location.href = "../tareasmenu/HistorialCliente.html";
+  $("#historialMovimientos").on("click", function () {
+    window.location.href = "../tareasmenu/HistorialMovimientos.html";
   });
 
   $("#ReporteServicios").on("click", function () {
@@ -119,6 +119,7 @@ function verificarAccesos(Nombre) {
     $("#ContenedorMiQR").removeClass("hidden");
     $("#ContenedorAuditoria").removeClass("hidden");
     $("#ContenedorLectorQR").removeClass("hidden");
+    $("#ContenedorHistorialEntradas").removeClass("hidden");
 
     $("#infoUsuario").html(
       "Hola <b>" +
@@ -127,6 +128,7 @@ function verificarAccesos(Nombre) {
         ", hemos identificado que eres un usuario <br><b>ADMINISTRADOR</b>. <br>Tienes todas las opciones del menu disponibles, gracias por preferir nuestro sistema!"
     );
   } else if (rolUsuario === "estudiante") {
+    // Opciones de un  estudiante
     $("#ContenedorMiPerfil").removeClass("hidden");
     $("#ContenedorMisVehiculos").removeClass("hidden");
     $("#ContenedorMiQR").removeClass("hidden");
@@ -138,9 +140,9 @@ function verificarAccesos(Nombre) {
         ", hemos identificado que eres un <b>ESTUDIANTE.</b> <br> Utiliza esta plataforma para validar tu identidad."
     );
   } else if (rolUsuario === "controlador") {
+    // Opciones de un controlador
     $("#ContenedorMiPerfil").removeClass("hidden");
     $("#ContenedorLectorQR").removeClass("hidden");
-
     $("#infoUsuario").html(
       "Hola <b>" +
         Nombre +

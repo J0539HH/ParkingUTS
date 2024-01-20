@@ -3,7 +3,10 @@ var idUsuario = null;
 
 $(document).ready(function () {
   verificarSesion();
-  cargarServicios();
+  cargarMovimientos();
+  $("#recargarConsulta").on("click", function () {
+    cargarMovimientos();
+  });
 
   $("#VolverMenu").on("click", function () {
     window.location.href = "../tareasmenu/menu.html";
@@ -48,61 +51,69 @@ $(document).ready(function () {
   });
 });
 
-function cargarServicios() {
-  spinner("Cargando servicios, por favor espere");
-  const url = "/api/serviciosTotal";
+function cargarMovimientos() {
+  spinner("Cargando auditorias, por favor espere...");
+  const url = "/api/movimientosTotal";
   fetch(url)
     .then((response) => response.json())
     .then((result) => {
       const tableData = { data: result };
-      CargarTablaServicios(tableData);
+      cargarTablaMovimientos(tableData);
     })
     .catch((error) => {
-      // Lógica para manejar el error...
+      AlertIncorrecta("No se pudieron cargar los movimientos del parqueadero");
     });
 }
 
-function CargarTablaServicios(tableData) {
+function cargarTablaMovimientos(tableData) {
+  const dataWithDate = tableData.data.map((item) => ({
+    ...item,
+    fecha: new Date(item.fecha),
+    formattedFecha: new Date(item.fecha).toLocaleString("es-CO", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }),
+  }));
   $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tablaUsuarios").DataTable({
     destroy: true,
-    data: tableData.data,
+    data: dataWithDate,
     dom: "<'row'<'col-sm-12 paginadorTU col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row mt-3 '<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     columns: [
-      { data: "idservicio", className: " text-center" },
+      { data: "fecha", className: " hidden" },
+      { data: "vehiculo.usuario.persona.nombre", className: " text-center" },
       {
-        data: "marca",
-        className: "text-center",
-        render: function (data, type, row, meta) {
-          return data.charAt(0).toUpperCase() + data.slice(1);
-        },
-      },
-      { data: "estado", className: " text-center" },
-      { data: "tipodispositivo", className: " text-center" },
-      { data: "usuario.nombre", className: " text-center" },
-      {
-        data: "fechaentrada",
+        data: "fecha",
         className: "text-center",
         render: function (data, type, row, meta) {
           var date = new Date(data);
-          var options = { day: "numeric", month: "long", year: "numeric" };
-          return date.toLocaleDateString("es-CO", options);
-        },
-        type: "date",
-      },
-      { data: "comentariosentrada", className: " text-center" },
-      {
-        data: null,
-        className: "text-center",
-        render: function (data, type, row) {
-          return (
-            '<img src="../../Multimedia/lupa.png" class="iconoTabla" onclick="Detallado(\'' +
-            row.idservicio +
-            "')\" />"
-          );
+          var options = {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          };
+          return date.toLocaleString("es-CO", options);
         },
       },
+      { data: "tipoMovimiento", className: " text-center" },
+      { data: "vehiculo.tipoVehiculo", className: " text-center" },
+      { data: "vehiculo.marca", className: " text-center" },
+      { data: "vehiculo.placa", className: " text-center" },
+      { data: "vehiculo.color", className: " text-center" },
     ],
+    createdRow: function (row, data, dataIndex) {
+      if (data.tipoMovimiento === "Entrada") {
+        $(row).css("background-color", "#98e198");
+      } else {
+        $(row).css("background-color", "#e19b98");
+      }
+    },
     language: {
       sProcessing: "Procesando...",
       sLengthMenu: "Mostrar _MENU_ registros",
@@ -132,7 +143,8 @@ function CargarTablaServicios(tableData) {
     drawCallback: function (settings) {
       $("#spinner").hide();
     },
-    order: [[0, "asc"]],
+    pagingType: "simple_numbers",
+    order: [[0, "desc"]],
   });
 }
 
