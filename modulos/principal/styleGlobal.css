@@ -940,7 +940,23 @@ div.swal2-container div.swal2-popup.swal2-modal div.swal2-html-container {
   text-align: center;
   color: var(--black-text-color);
   padding: 2px 10px;
+
   overflow: initial;
+}
+
+.navbar-header {
+  display: flex;
+  margin: 4px 0 -2px -32px;
+}
+
+#contenedorEspaciosDisponibles {
+  background: white;
+  height: 38px;
+  border: 2px solid var(--orange-main-color);
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  margin: 13px 0 0 0 !important;
+  box-shadow: 0px 1px 15px var(--orange-main-color);
 }
 
 div.swal2-container

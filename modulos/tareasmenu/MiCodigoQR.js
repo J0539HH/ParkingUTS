@@ -10,7 +10,6 @@ $(document).ready(function () {
     .catch((error) => {
       $("#spinner").hide();
       setTimeout(function () {
-        console.log("no session");
         window.location.href = "../../acceso/Login.html";
       }, 1000);
     });
@@ -77,5 +76,4 @@ function crearQR(infoUsuario) {
     height: 380,
   });
   $("#codigoQRContainer").append(qrContainer);
-  console.log("Escanea este código QR para ver la información.");
 }

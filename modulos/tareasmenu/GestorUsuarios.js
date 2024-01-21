@@ -238,7 +238,6 @@ function editarUsuario(idUser) {
 }
 
 function MostrarDatosUsuario(Data) {
-  console.log(Data);
   $("#usuarioMod").val(Data.usuario);
   $("#contraseñaMod").val(Data.password);
   $("#tipoUsuarioMod").val(Data.rol);

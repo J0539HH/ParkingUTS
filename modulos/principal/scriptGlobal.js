@@ -36,6 +36,7 @@ opcionesDatatable = {
 };
 
 $(document).ready(function () {
+  cargarEspaciosDisponibles();
   $(this).scrollTop(0);
 });
 
@@ -262,6 +263,50 @@ function spinner(texto) {
   $("#spinner").show();
 }
 
+function cargarEspaciosDisponibles() {
+  const url = "/api/CargarInfoEspacios";
+  fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      let navar = $(".navbar-header");
+      navar.empty();
+      let numeroEspacios = result.espaciosDisponibles;
+      let numeroTotal = result.espaciosTotales;
+      let img =
+        '<img id="logoCabecera" src="../../Multimedia/logoUnidades.png" height="40px;" style="margin: 4px 5px 0 11px; background-color: #fff;">';
+
+      let divContenedor = $(
+        "<div class='mt-4' id='contenedorEspaciosDisponibles'>"
+      );
+      let contador = $("<span >").text(
+        "Espacios: " + numeroEspacios + "/" + numeroTotal
+      );
+
+      let circuloVerde = $("<div>").addClass("circulo-verde").css({
+        width: "20px",
+        height: "20px",
+        borderRadius: "50%",
+        backgroundColor: "green",
+        display: "inline-block",
+        margin: "0px 6px -5px 8px",
+      });
+
+      divContenedor.append(contador);
+      divContenedor.append(circuloVerde);
+       navar.append(img);
+      navar.append(divContenedor);
+    })
+    .catch((error) => {
+      AlertIncorrecta(
+        "No se pudo cargar información de espacios disponibles en el parqueadero"
+      );
+    });
+}
 function AlertIncorrecta(Texto) {
   Swal.fire({
     title: "",

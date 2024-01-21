@@ -119,7 +119,6 @@ function validateExistingUser() {
   })
     .then((response) => response.json())
     .then((result) => {
-      console.log(result);
       if (result === null) {
         validarModificacion();
         $("#spinner").hide();

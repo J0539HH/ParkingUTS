@@ -13,7 +13,6 @@ $(document).ready(function () {
     .catch((error) => {
       $("#spinner").hide();
       setTimeout(function () {
-        console.log("no session");
         window.location.href = "../../acceso/Login.html";
       }, 1000);
     });
@@ -509,7 +508,6 @@ function RegistrarAuditoria(textoAuditoria) {
 }
 
 function validarModificacion(idvehiculo, tipoVehiculo) {
-  console.log(idvehiculo, tipoVehiculo);
   let marca = "";
   let color = "";
   let placa = "";
@@ -599,7 +597,6 @@ function validarModificacion(idvehiculo, tipoVehiculo) {
         $("#modalEditarVehiculo").modal("hide");
         limpiarDatosEditar();
         cargarVehiculos();
-        console.log(result);
       }
       $("#spinner").hide();
     })

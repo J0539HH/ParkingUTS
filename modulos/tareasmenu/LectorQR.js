@@ -158,6 +158,7 @@ function GuardarMovimientoParqueadero(infoVehiculoFav) {
           "<b>Ahora</b> puedes dejar que el vehículo <b>AVANCE</b>"
         );
         $("#infoCodigo").addClass("hidden");
+        cargarEspaciosDisponibles();
         limpiarDatos();
         $("#spinner").hide();
         $("#informacionInstructivo").removeClass("hidden");

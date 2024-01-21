@@ -27,7 +27,21 @@ router.get("/", (req, res) => {
   res.send("API funcionando by Jhosep Florez");
 });
 
-//Validar Documento para pre-registro /
+//Cargar informacion de espacios del parqueadero / Multiples interfaces (UTS-PARKING)
+router.get("/CargarInfoEspacios", jsonParser, async (req, res) => {
+  try {
+    const collection = database.collection("espaciosDisponibles");
+    const query = {
+      _id: new ObjectId("65ada073a975d00b83a0c2d9"),
+    };
+    const result = await collection.findOne(query, { returnDocument: "After" });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//Validar Documento para pre-registro / GESTOR DE USUARIOS (UTS-PARKING)
 router.post("/findPersonByDocument", jsonParser, async (req, res) => {
   try {
     const collection = database.collection("persona");
@@ -97,6 +111,15 @@ router.post("/modificarVehiculo", jsonParser, async (req, res) => {
 // Registrar movimiento del parqueadero / LectorQR (PARKING-UTS)
 router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
   try {
+    const collectionEspaciosDisponibles = database.collection(
+      "espaciosDisponibles"
+    );
+    const queryEspacios = {
+      _id: new ObjectId("65ada073a975d00b83a0c2d9"),
+    };
+    const espacios = await collectionEspaciosDisponibles.findOne(queryEspacios);
+    let espaciosDisponibles = espacios.espaciosDisponibles;
+
     const collectionMovimientos = database.collection("movimientosParqueadero");
     let idvehiculofavorito = req.body.idVehiculoFav;
     let movimientoAregistrar = req.body.tipoDeMovimiento;
@@ -141,6 +164,20 @@ router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
           tipoMovimiento: req.body.tipoDeMovimiento,
         });
         if (resultInsert) {
+          let espaciosActuales = espaciosDisponibles - 1;
+          if (req.body.tipoDeMovimiento === "Salida") {
+            espaciosActuales = espaciosActuales + 2;
+          }
+          const updateObjectME = {
+            espaciosDisponibles: espaciosActuales,
+          };
+          const resultModificacionEspacios =
+            await collectionEspaciosDisponibles.findOneAndUpdate(
+              { _id: new ObjectId("65ada073a975d00b83a0c2d9") },
+              {
+                $set: updateObjectME,
+              }
+            );
           res.json("Movimiento registrado");
         } else {
           res.status(400).json({ error: "No se pudo registrar el movimiento" });
@@ -180,7 +217,6 @@ router.post("/validarQR", jsonParser, async (req, res) => {
 
       res.json(respuesta);
     } else {
-      console.log(result);
       res.status(400).json({ error: "Usuario invalido" });
     }
   } catch (err) {
@@ -712,7 +748,7 @@ router.post("/documentoRecuperable", jsonParser, async (req, res) => {
   }
 });
 
-// Eliminar usuario especifico / GESTOR DE USUARIOS (PARKING-UTS) - NO FUNCIONAL
+// Eliminar usuario especifico / GESTOR DE USUARIOS (PARKING-UTS)
 router.post("/deleteUser", async (req, res) => {
   try {
     const collection = database.collection("usuarios");
@@ -761,7 +797,7 @@ router.get("/usuariosTotal", jsonParser, async (req, res) => {
   }
 });
 
-// Editar usuario especifico desde administracion de usuarios / GESTOR DE USUARIOS (PARKING-UTS) 70% FUNCIONAL
+// Editar usuario especifico desde administracion de usuarios / GESTOR DE USUARIOS (PARKING-UTS)
 router.post("/EditUser", jsonParser, async (req, res) => {
   try {
     const {
@@ -958,425 +994,6 @@ router.get("/auditoriasTotal", jsonParser, async (req, res) => {
       res.json(sortedResult);
     } else {
       res.status(404).send("No se encontraron auditorias");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Registrar nuevo formulario (DOCUTECH)
-router.post("/NewForm", jsonParser, async (req, res) => {
-  try {
-    const {
-      idusuario,
-      comentariosentrada,
-      marca,
-      tipodispositivo,
-      numeroserie,
-      modelo,
-    } = req.body;
-    const collection = database.collection("servicios");
-    const lastUser = await collection.findOne({}, { sort: { idservicio: -1 } });
-    const newId = lastUser ? lastUser.idservicio + 1 : 1;
-    const fechaEntrada = moment().tz("America/Bogota").format();
-    const result = await collection.insertOne({
-      idservicio: newId,
-      comentariosentrada,
-      marca,
-      tipodispositivo,
-      modelo,
-      numeroserie,
-      estado: true,
-      comentariossalida: "",
-      ram: "",
-      tipodisco: "",
-      estado: "En cola",
-      fechaentrada: fechaEntrada,
-      fechasalida: null,
-      idusuario,
-    });
-    const insertedItem = await collection.findOne({ idservicio: newId });
-    const usuariosCollection = database.collection("usuarios");
-    const usuario = await usuariosCollection.findOne({
-      idusuario: insertedItem.idusuario,
-    });
-    const response = {
-      servicio: insertedItem,
-      usuario: usuario,
-    };
-    res.json(response);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar todos los servicios (DOCUTECH)
-router.get("/serviciosTotal", jsonParser, async (req, res) => {
-  try {
-    const collection = database.collection("servicios");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "usuarios",
-            localField: "idusuario",
-            foreignField: "idusuario",
-            as: "usuario",
-          },
-        },
-        {
-          $unwind: "$usuario",
-        },
-      ])
-      .toArray();
-
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.status(404).send("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicios en cola (DOCUTECH)
-router.get("/serviciosSinAsignar", jsonParser, async (req, res) => {
-  try {
-    const collection = database.collection("servicios");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "usuarios",
-            localField: "idusuario",
-            foreignField: "idusuario",
-            as: "usuario",
-          },
-        },
-        {
-          $unwind: "$usuario",
-        },
-        {
-          $match: {
-            estado: "En cola",
-          },
-        },
-      ])
-      .toArray();
-
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.json("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicios de un tecnico (DOCUTECH)
-router.post("/serviciosTecnico", jsonParser, async (req, res) => {
-  try {
-    const idtecnico = req.body.idTecnico;
-    const collection = database.collection("servicios");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "serviciosasignados",
-            localField: "idservicio",
-            foreignField: "idservicio",
-            as: "serviciosasignados",
-          },
-        },
-        {
-          $unwind: "$serviciosasignados",
-        },
-        {
-          $match: {
-            estado: "En mantenimiento",
-            "serviciosasignados.idusuario": idtecnico,
-          },
-        },
-      ])
-      .toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.json("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicios finalizados de un tecnico (DOCUTECH)
-router.post("/serviciosFinalizadosTecnico", jsonParser, async (req, res) => {
-  try {
-    const idtecnico = req.body.idTecnico;
-    const collection = database.collection("servicios");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "serviciosasignados",
-            localField: "idservicio",
-            foreignField: "idservicio",
-            as: "serviciosasignados",
-          },
-        },
-        {
-          $unwind: "$serviciosasignados",
-        },
-        {
-          $match: {
-            estado: { $in: ["Listo para entregar", "Entregado"] },
-            "serviciosasignados.idusuario": idtecnico,
-          },
-        },
-      ])
-      .toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.json("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicio especifico (DOCUTECH)
-router.post("/servicioEspecifico", jsonParser, async (req, res) => {
-  try {
-    const collection = database.collection("servicios");
-    const aggregation = [
-      {
-        $match: { idservicio: req.body.idservicio },
-      },
-      {
-        $lookup: {
-          from: "usuarios",
-          localField: "idusuario",
-          foreignField: "idusuario",
-          as: "usuario",
-        },
-      },
-      {
-        $unwind: "$usuario",
-      },
-    ];
-    const result = await collection.aggregate(aggregation).toArray();
-    if (result.length > 0) {
-      res.json(result[0]);
-    } else {
-      res.status(404).send("Servicio no encontrado");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicios de usuario especifico (DOCUTECH)
-router.post("/serviciosUsuario", jsonParser, async (req, res) => {
-  try {
-    const collection = database.collection("servicios");
-    const aggregation = [
-      {
-        $match: {
-          estado: {
-            $in: ["Listo para entregar", "En cola", "En mantenimiento"],
-          },
-          idusuario: req.body.idusuario,
-        },
-      },
-    ];
-    const result = await collection.aggregate(aggregation).toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.json("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar servicios Gestionados de usuario especifico (DOCUTECH)
-router.post("/serviciosEntregadosUsuario", jsonParser, async (req, res) => {
-  try {
-    const idusuario = req.body.idusuario;
-    const collection = database.collection("servicios");
-    const result = await collection
-      .aggregate([
-        {
-          $lookup: {
-            from: "serviciosasignados",
-            localField: "idservicio",
-            foreignField: "idservicio",
-            as: "serviciosasignados",
-          },
-        },
-        {
-          $unwind: "$serviciosasignados",
-        },
-        {
-          $match: {
-            estado: "Entregado",
-            idusuario: idusuario,
-          },
-        },
-      ])
-      .toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.json("No se encontraron servicios");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Editar servicio especifico (DOCUTECH)
-router.post("/EditService", jsonParser, async (req, res) => {
-  try {
-    const {
-      idservicio,
-      marca,
-      tipodispositivo,
-      estado,
-      numeroserie,
-      comentariossalida,
-      ram,
-      tipodisco,
-      modelo,
-    } = req.body;
-    const collection = database.collection("servicios");
-    const fechasalida = moment().tz("America/Bogota").format();
-    const result = await collection.updateOne(
-      { idservicio: idservicio },
-      {
-        $set: {
-          marca: marca,
-          comentariossalida: comentariossalida,
-          tipodispositivo: tipodispositivo,
-          numeroserie: numeroserie,
-          estado: estado,
-          fechasalida: fechasalida,
-          ram: ram,
-          tipodisco: tipodisco,
-          modelo: modelo,
-        },
-      }
-    );
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Asignar servicio especifico (DOCUTECH)
-router.post("/AsignarServicio", jsonParser, async (req, res) => {
-  try {
-    const { idservicio, estado, comentariossalida } = req.body;
-    const collection = database.collection("servicios");
-    const result = await collection.updateOne(
-      { idservicio: idservicio },
-      {
-        $set: {
-          comentariossalida: comentariossalida,
-          estado: estado,
-        },
-      }
-    );
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Registrar Asignacion (DOCUTECH)
-router.post("/NewAsignado", jsonParser, async (req, res) => {
-  try {
-    const fechaAsignacion = moment().tz("America/Bogota").format();
-    const { idusuario, idservicio } = req.body;
-    const collection = database.collection("serviciosasignados");
-    const lastAsignacion = await collection.findOne(
-      {},
-      { sort: { idasignacion: -1 } }
-    );
-    const newIdAsignacion = lastAsignacion
-      ? lastAsignacion.idasignacion + 1
-      : 1;
-
-    const result = await collection.insertOne({
-      idasignacion: newIdAsignacion,
-      idusuario: idusuario,
-      idservicio: idservicio,
-      fechaAsignacion: fechaAsignacion,
-      fechaFinalizacion: null,
-    });
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Finalizar Asignacion (DOCUTECH)
-router.post("/finalizarAsignacion", jsonParser, async (req, res) => {
-  try {
-    const idservicio = req.body.idservicio;
-    const collection = database.collection("serviciosasignados");
-    const fechaFinalizacion = moment().tz("America/Bogota").format();
-    const result = await collection.updateOne(
-      { idservicio: idservicio },
-      {
-        $set: {
-          fechaFinalizacion: fechaFinalizacion,
-        },
-      }
-    );
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Cargar tecnicos  (DOCUTECH)
-router.get("/cargarTecnicos", async (req, res) => {
-  try {
-    const collection = database.collection("usuarios");
-    const query = {
-      idrol: 3, // Cambiar según el id del rol de técnico
-      estado: true,
-    };
-    const projection = {
-      correo: 1,
-      idusuario: 1,
-      nombre: 1,
-      _id: 0,
-    };
-    const cursor = await collection.find(query).project(projection);
-    const result = await cursor.toArray();
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.status(404).send("Técnicos no encontrados");
     }
   } catch (err) {
     console.error(err);
