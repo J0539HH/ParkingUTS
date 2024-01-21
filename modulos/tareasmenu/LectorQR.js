@@ -184,6 +184,24 @@ function GuardarMovimientoParqueadero(infoVehiculoFav) {
               infoVehiculoFav.placa.toUpperCase()
           );
         }
+      } else if (result === "Movimiento sospechoso") {
+        AlertIncorrecta(
+          "Este parece ser un movimiento <b> SOSPECHOSO </b> pues el ultimo movimiento del vehiculo en el sistema también fue una <b>" +
+            tipoDeMovimiento.toUpperCase() +
+            "</b> , valida los documentos del vehiculo y de ser necesario registra ambos movimientos"
+        );
+        $("#infoCodigo").addClass("hidden");
+        limpiarDatos();
+        $("#spinner").hide();
+        $("#informacionInstructivo").removeClass("hidden");
+      } else if (result === "Error primer movimiento") {
+        AlertIncorrecta(
+          "El primer movimiento del <b>vehiculo</b> en el parqueadero no puede ser una <b>Salida</b>"
+        );
+        $("#infoCodigo").addClass("hidden");
+        limpiarDatos();
+        $("#spinner").hide();
+        $("#informacionInstructivo").removeClass("hidden");
       }
     })
     .catch((error) => {

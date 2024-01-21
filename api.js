@@ -97,6 +97,25 @@ router.post("/modificarVehiculo", jsonParser, async (req, res) => {
 // Registrar movimiento del parqueadero / LectorQR (PARKING-UTS)
 router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
   try {
+    const collectionMovimientos = database.collection("movimientosParqueadero");
+    let idvehiculofavorito = req.body.idVehiculoFav;
+    let movimientoAregistrar = req.body.tipoDeMovimiento;
+    const queryLastMoviment = {
+      "vehiculo._id": new ObjectId(idvehiculofavorito),
+    };
+    const resultLastMoviment = await collectionMovimientos.findOne(
+      queryLastMoviment,
+      { sort: { fechaMovimiento: -1 } }
+    );
+    if (resultLastMoviment === null) {
+      if (req.body.tipoDeMovimiento === "Salida") {
+        res.json("Error primer movimiento");
+        return;
+      }
+    } else if (movimientoAregistrar === resultLastMoviment.tipoMovimiento) {
+      res.json("Movimiento sospechoso");
+      return;
+    }
     const collection = database.collection("usuarios");
     const query = {
       _id: new ObjectId(req.body.idUsuarioOperador),
@@ -114,9 +133,7 @@ router.post("/registrarMovimientoParqueadero", jsonParser, async (req, res) => {
 
       if (resultvf) {
         const fechaMovimiento = moment().tz("America/Bogota").format();
-        const collectionMovimientos = database.collection(
-          "movimientosParqueadero"
-        );
+
         const resultInsert = await collectionMovimientos.insertOne({
           vehiculo: resultvf,
           usuarioOperador: result,
