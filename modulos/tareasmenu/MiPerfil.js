@@ -6,6 +6,9 @@ $(document).ready(function () {
   LimpiarFormulario();
   verificarSesionWrapper()
     .then(() => {
+      if (rol !== "controlador") {
+        $("#contenedorVehiculos").removeClass("hidden");
+      }
       cargarInformacion();
     })
     .catch((error) => {
@@ -317,8 +320,12 @@ function cargarVehiculos() {
       $("#spinner").hide();
     })
     .catch((error) => {
-      AlertIncorrecta("No se pudo cargar la información de tus vehiculos");
-      $("#spinner").hide();
+      if (rol === "controlador") {
+        $("#spinner").hide();
+      } else {
+        AlertIncorrecta("No se pudo cargar la información de tus vehiculos");
+        $("#spinner").hide();
+      }
     });
 }
 
